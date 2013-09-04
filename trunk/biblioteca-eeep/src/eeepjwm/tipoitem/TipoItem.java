@@ -4,13 +4,8 @@ import eeepjwm.acervo.Acervo;
 import java.util.List;
 
 public class TipoItem {
- 
-	private int id;
-	 
-	private String descricao;
-	 
-	private List<Acervo> acervos;
-	 
-	 
+
+    private int id;
+    private String descricao;
+    private List<Acervo> acervos;
 }
- 
