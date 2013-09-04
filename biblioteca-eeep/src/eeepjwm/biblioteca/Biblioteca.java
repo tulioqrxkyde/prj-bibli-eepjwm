@@ -4,12 +4,8 @@ import eeepjwm.acervo.Acervo;
 import java.util.List;
 
 public class Biblioteca {
- 
-	private int id;
-	 
-	private String descricao;
-	 
-	private List<Acervo> acervos;
-	 
+
+    private int id;
+    private String descricao;
+    private List<Acervo> acervos;
 }
- 
