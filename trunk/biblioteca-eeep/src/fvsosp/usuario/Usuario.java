@@ -65,16 +65,14 @@ public class Usuario {
         this.senha = md5(senha);
     }
     
-    public String md5(String senha){  
-        String sen = "";  
+    public String md5(String senha){ 
         MessageDigest md = null;  
         try {  
             md = MessageDigest.getInstance("MD5");  
         } catch (NoSuchAlgorithmException e) {  
             e.printStackTrace();  
         }  
-        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));  
-        sen = hash.toString(16);              
-        return sen;  
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));            
+        return ((String) hash.toString(16));  
     } 
 }
