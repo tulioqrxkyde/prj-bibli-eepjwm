@@ -17,6 +17,7 @@ public class Cidade {
     private int id;
     @Column(length = 21, nullable = true)
     private String uf;
+    @OneToMany(mappedBy = "idLeitor")
     private List<Leitor> leitores;
 
     /*** @retorna o código do IBGE ***/
