@@ -11,12 +11,16 @@ public class Cidade {
     @Id
     @GeneratedValue
     private int codIBGE;
+    
     @Column(length = 150, nullable = true)
     private String descricao;
+    
     @Column(length = 16, nullable = false)
     private int id;
+    
     @Column(length = 21, nullable = true)
     private String uf;
+    
     @OneToMany(mappedBy = "idLeitor")
     private List<Leitor> leitores;
 
