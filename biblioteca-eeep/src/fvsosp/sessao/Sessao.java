@@ -20,7 +20,7 @@ public class Sessao {
     @Column(nullable=true, length=150)
     private int descricao;
     
-    @OneToMany(mappedBy="id")
+    @OneToMany(mappedBy="idAcervo")
     private List<Acervo> acervos;
 
     /**
