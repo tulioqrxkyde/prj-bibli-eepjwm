@@ -7,7 +7,7 @@ import java.util.List;
 
 public class Emprestimo {
 
-    private int id;
+    private int idEmprestimo;
     private Date dataEmrepstimo;
     private Date dataDevolucao;
     private List<Acervo> acervos;

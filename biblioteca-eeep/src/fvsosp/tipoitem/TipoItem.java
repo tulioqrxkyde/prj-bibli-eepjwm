@@ -5,7 +5,7 @@ import java.util.List;
 
 public class TipoItem {
 
-    private int id;
+    private int TipoItem;
     private String descricao;
     private List<Acervo> acervos;
 }
