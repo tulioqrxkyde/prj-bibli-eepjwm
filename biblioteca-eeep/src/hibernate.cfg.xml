@@ -16,6 +16,8 @@
 		<property name="use_sql_coments">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
                 <mapping class="fvsosp.usuario.Usuario"/>
+                <mapping class="fvsosp.autor.Autor"/>
+                <mapping class="fvsosp.sessao.Sessao"/>
 	</session-factory>
 </hibernate-configuration>
 
