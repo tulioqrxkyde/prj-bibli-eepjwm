@@ -3,7 +3,6 @@ package fvsosp.sessao;
 import fvsosp.acervo.Acervo;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.swing.text.html.parser.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
