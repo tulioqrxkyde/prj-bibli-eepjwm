@@ -2,9 +2,11 @@ package fvsosp.autor;
 
 import fvsosp.acervo.Acervo;
 import java.util.List;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 
@@ -16,7 +18,11 @@ public class Autor {
     @GeneratedValue
     private int id;
     
+    @Column(nullable=true, length=150)
     private String nome;
+    
     private String sobreOAutor;
+    
+    @OneToMany(mappedBy="id")
     private List<Acervo> acervos;
 }
