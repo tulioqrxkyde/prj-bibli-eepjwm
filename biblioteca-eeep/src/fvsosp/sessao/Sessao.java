@@ -12,7 +12,10 @@ import javax.persistence.Table;
 @Table(name="sessao")
 public class Sessao {
 
+    @Id
+    @GeneratedValue
     private int id;
+    
     private int descricao;
     private List<Acervo> acervos;
 }
