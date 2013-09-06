@@ -1,5 +1,8 @@
 package fvsosp.usuario;
 
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,7 +15,7 @@ public class Usuario {
     
     @Id
     @GeneratedValue
-    private int id;
+    private int idUsuario;
     
     @Column(length=50,nullable=true)
     private String login;
@@ -23,15 +26,15 @@ public class Usuario {
     /**
      * @return the id
      */
-    public int getId() {
-        return id;
+    public int getIdUsuario() {
+        return idUsuario;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setIdUsuario(int id) {
+        this.idUsuario = id;
     }
 
     /**
@@ -59,6 +62,19 @@ public class Usuario {
      * @param senha the senha to set
      */
     public void setSenha(String senha) {
-        this.senha = senha;
+        this.senha = md5(senha);
     }
+    
+    public String md5(String senha){  
+        String sen = "";  
+        MessageDigest md = null;  
+        try {  
+            md = MessageDigest.getInstance("MD5");  
+        } catch (NoSuchAlgorithmException e) {  
+            e.printStackTrace();  
+        }  
+        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));  
+        sen = hash.toString(16);              
+        return sen;  
+    } 
 }

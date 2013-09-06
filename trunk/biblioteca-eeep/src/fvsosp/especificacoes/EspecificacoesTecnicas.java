@@ -4,7 +4,7 @@ import fvsosp.acervo.Acervo;
 
 public class EspecificacoesTecnicas {
 
-    private int id;
+    private int idEspecificacoesTecnicas;
     private int numeroPaginas;
     private int peso;
     private String acabamentoCapa;

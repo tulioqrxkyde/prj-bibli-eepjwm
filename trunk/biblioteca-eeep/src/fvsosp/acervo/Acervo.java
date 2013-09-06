@@ -13,7 +13,8 @@ import java.util.List;
 
 public class Acervo {
 
-    private int id;
+    
+    private int idAcervo;
     private int tombo;
     private String tituloObra;
     private String subtituloObra;

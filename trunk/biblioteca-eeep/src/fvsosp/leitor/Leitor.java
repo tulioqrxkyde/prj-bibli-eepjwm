@@ -8,7 +8,7 @@ import java.util.List;
 
 public class Leitor {
 
-    private int id;
+    private int idLeitor;
     private String nome;
     private String email;
     private Date dataNascimento;

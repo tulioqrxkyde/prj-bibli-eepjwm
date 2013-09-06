@@ -5,7 +5,7 @@ import java.util.List;
 
 public class GruposLeitores {
 
-    private int id;
+    private int idGruposLeitores;
     private String descricao;
     private double valorMultaDiaria;
     private int quantMaxLivros;

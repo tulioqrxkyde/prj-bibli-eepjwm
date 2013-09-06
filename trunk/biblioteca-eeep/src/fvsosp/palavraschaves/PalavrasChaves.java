@@ -5,7 +5,7 @@ import java.util.List;
 
 public class PalavrasChaves {
 
-    private int id;
+    private int idPalavrasChaves;
     private int descricao;
     private List<Acervo> acervos;
 }

@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Editora {
 
-    private int id;
+    private int idEditora;
     private String nome;
     private String endereco;
     private String bairro;
