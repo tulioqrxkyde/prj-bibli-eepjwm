@@ -12,7 +12,7 @@ public class Biblioteca {
     @GeneratedValue // campo auto incremento
     private int idBiblioteca;
     
-    @Column(length = 70, nullable = true) 
+    @Column(length = 70, nullable = true, columnDefinition = "varchar(70) default ''") 
     private String descricao;
     
     /*Uma biblioteca possui vários acervos

@@ -13,10 +13,10 @@ public class Usuario {
     @GeneratedValue // campo auto incremento
     private int idUsuario;
     
-    @Column(length=50,nullable=false)
+    @Column(length = 50, nullable = false, columnDefinition = "varchar(50) default ''")
     private String login;
     
-    @Column(length=50,nullable=false)
+    @Column(length = 50, nullable = false, columnDefinition = "varchar(50) default ''")
     private String senha;
 
     /*** @retorna o id do Usuário ***/

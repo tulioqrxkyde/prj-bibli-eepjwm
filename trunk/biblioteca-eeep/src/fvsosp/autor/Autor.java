@@ -13,10 +13,10 @@ public class Autor {
     @GeneratedValue // campo autoincremento
     private int idAutor;
     
-    @Column(nullable=false, length=150) // not null de tamanho 150
+    @Column(nullable = false, length = 150, columnDefinition = "varchar(150) default ''") // not null de tamanho 150
     private String nome;
     
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = 200, columnDefinition = "varchar(200) default ''")
     private String sobreOAutor;
     
     /* Um autor possui vários acervos
