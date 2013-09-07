@@ -9,14 +9,14 @@ import javax.persistence.*;
 @Table(name = "Emprestimo")
 public class Emprestimo {
 
-    @Id //campo chave primária
-    @GeneratedValue // campo aotu incremento
+    @Id // campo chave primária
+    @GeneratedValue // campo auto-incremento
     private int idEmprestimo;
     
-    @Temporal(TemporalType.DATE) //ignora horas e minutos e persiste apenas a data
+    @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
     private Date dataEmprestimo;
 
-    @Temporal(TemporalType.DATE) //ignora horas e minutos e persiste apenas a data
+    @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
     private Date dataDevolucao;
 
     @ManyToMany (cascade = CascadeType.ALL)
@@ -24,7 +24,7 @@ public class Emprestimo {
     private List<Acervo> acervos;
 
     /*um emprestimo tem apenas um leitor
-     * a chave estrangeiroa irá se chamar idLeitor
+     * a chave estrangeira irá se chamar idLeitor
      */
     @ManyToOne 
     @JoinColumn(name = "idLeitor")

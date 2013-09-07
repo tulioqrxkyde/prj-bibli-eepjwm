@@ -2,12 +2,7 @@ package fvsosp.sessao;
 
 import fvsosp.acervo.Acervo;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="sessao")
@@ -27,44 +22,32 @@ public class Sessao {
     @OneToMany(mappedBy="idAcervo")
     private List<Acervo> acervos;
 
-    /**
-     * @return the idSessao
-     */
+    /*** @retorna o id da Sessão ***/
     public int getIdSessao() {
         return idSessao;
     }
 
-    /**
-     * @param idSessao the idSessao to set
-     */
+    /*** @seta o id da Sessão ***/
     public void setIdSessao(int idSessao) {
         this.idSessao = idSessao;
     }
 
-    /**
-     * @return the descricao
-     */
+    /*** @retorna a Descrição ***/
     public int getDescricao() {
         return descricao;
     }
 
-    /**
-     * @param descricao the descricao to set
-     */
+    /*** @seta a Descrição da Sessão */
     public void setDescricao(int descricao) {
         this.descricao = descricao;
     }
 
-    /**
-     * @return the acervos
-     */
+    /*** @retorna a lista de Acervos ***/
     public List<Acervo> getAcervos() {
         return acervos;
     }
 
-    /**
-     * @param acervos the acervos to set
-     */
+    /*** @seta e copia a lista de Acervos recebida para a lista de Acervos da Classe ***/
     public void setAcervos(List<Acervo> acervos) {
         this.acervos = acervos;
     }
