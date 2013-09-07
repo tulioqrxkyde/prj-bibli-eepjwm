@@ -19,11 +19,12 @@ public class Emprestimo {
     @Temporal(TemporalType.DATE) //ignora horas e minutos e persiste apenas a data
     private Date dataDevolucao;
 
-    @OneToMany(mappedBy = "idAcervo")
+    @ManyToMany (cascade = CascadeType.ALL)
+    @JoinTable(name = "AcervoEmprestimos", joinColumns = @JoinColumn(name = "idEmprestimo"), inverseJoinColumns = @JoinColumn(name = "idAcervo"))
     private List<Acervo> acervos;
 
     /*um emprestimo tem apenas um leitor
-     * a chave estrangeiroa irá se chamar idleitor
+     * a chave estrangeiroa irá se chamar idLeitor
      */
     @ManyToOne 
     @JoinColumn(name = "idLeitor")
