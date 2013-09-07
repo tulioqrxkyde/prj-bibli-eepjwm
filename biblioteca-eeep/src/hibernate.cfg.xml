@@ -19,7 +19,9 @@
                 <mapping class="fvsosp.autor.Autor"/>
                 <mapping class="fvsosp.sessao.Sessao"/>
                 <mapping class="fvsosp.cidade.Cidade"/>
-                
+                <mapping class="fvsosp.cidade.Biblioteca"/>
+                <mapping class="fvsosp.cidade.Idioma"/>
+                <mapping class="fvsosp.cidade.Emprestimo"/>
 	</session-factory>
 </hibernate-configuration>
 
