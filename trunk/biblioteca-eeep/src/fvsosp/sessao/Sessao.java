@@ -13,13 +13,17 @@ import javax.persistence.Table;
 @Table(name="sessao")
 public class Sessao {
 
-    @Id
-    @GeneratedValue
+    @Id // chave primária
+    @GeneratedValue //auto incrmento
     private int idSessao;
     
-    @Column(nullable=true, length=150)
+    @Column(nullable=false, length=150)
     private int descricao;
     
+    /*Uma sessao possui vários acervos
+     * quando uma sessao for criada já irá vir carregado com uma lista
+     * de acervos pertencentes a ele
+     */
     @OneToMany(mappedBy="idAcervo")
     private List<Acervo> acervos;
 

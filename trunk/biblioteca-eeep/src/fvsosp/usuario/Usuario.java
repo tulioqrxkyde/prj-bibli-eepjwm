@@ -13,14 +13,14 @@ import javax.persistence.Table;
 @Table(name="usuario")
 public class Usuario {
     
-    @Id
-    @GeneratedValue
+    @Id //chave primária
+    @GeneratedValue // campo auto incremento
     private int idUsuario;
     
-    @Column(length=50,nullable=true)
+    @Column(length=50,nullable=false)
     private String login;
     
-    @Column(length=50,nullable=true)
+    @Column(length=50,nullable=false)
     private String senha;
 
     /**
