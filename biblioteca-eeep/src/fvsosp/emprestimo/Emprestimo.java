@@ -9,14 +9,14 @@ import javax.persistence.*;
 @Table(name = "Emprestimo")
 public class Emprestimo {
 
-    @Id
-    @GeneratedValue
+    @Id //campo chave primária
+    @GeneratedValue // campo aotu incremento
     private int idEmprestimo;
     
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE) //ignora horas e minutos e persiste apenas a data
     private Date dataEmprestimo;
 
-    @Temporal(TemporalType.DATE)
+    @Temporal(TemporalType.DATE) //ignora horas e minutos e persiste apenas a data
     private Date dataDevolucao;
 
     @OneToMany(mappedBy = "idAcervo")

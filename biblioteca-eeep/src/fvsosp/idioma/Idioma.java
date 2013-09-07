@@ -8,12 +8,17 @@ import javax.persistence.*;
 @Table(name = "Idioma")
 public class Idioma {
 
-    @Id
+    @Id // campo chave primária
+    @GeneratedValue //campo auto incremento
     private int idIdioma;
     
-    @Column(length = 40, nullable = true)
+    @Column(length = 40, nullable = false)
     private String descricao;
 
+    /*Um idioma possui vários acervos
+     * quando um idioma for criado já irá vir carregado com uma lista
+     * de acervos pertencentes a ele
+     */
     @OneToMany(mappedBy = "idAcervo")
     private List<Acervo> acervo;
 

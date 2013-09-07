@@ -8,15 +8,19 @@ import javax.persistence.*;
 @Table(name = "cidade")
 public class Cidade {
     
-    @Id
+    @Id // campo chave primária
     private int codIBGE;
     
-    @Column(length = 62, nullable = true)
+    @Column(length = 62, nullable = false)
     private String descricao;
       
-    @Column(length = 2, nullable = true)
+    @Column(length = 2, nullable = false)
     private String uf;
     
+    /*Uma cidade possui vários leitores
+     * quando uma cidade for criada já irá vir carregada com uma lista
+     * de leitores pertencentes a ela
+     */
     @OneToMany(mappedBy = "idLeitor")
     private List<Leitor> leitores;
 

@@ -14,15 +14,19 @@ import javax.persistence.Table;
 @Table(name="aluno")
 public class Autor {
 
-    @Id
-    @GeneratedValue
+    @Id // cmapo chave primária
+    @GeneratedValue //campo autoincremento
     private int idAutor;
     
-    @Column(nullable=true, length=150)
+    @Column(nullable=false, length=150) //not null de tamanho 150
     private String nome;
     
     private String sobreOAutor;
     
+    /*Um autor possui vários acervos
+     * quando um autor for criado já irá vir carregado com uma lista
+     * de acervos pertencentes a ele
+     */
     @OneToMany(mappedBy="idAcervo")
     private List<Acervo> acervos;
 
