@@ -22,7 +22,11 @@ public class Emprestimo {
     @OneToMany(mappedBy = "idAcervo")
     private List<Acervo> acervos;
 
-    @OneToOne(mappedBy = "idLeitor")
+    /*um emprestimo tem apenas um leitor
+     * a chave estrangeiroa irá se chamar idleitor
+     */
+    @ManyToOne 
+    @JoinColumn(name = "idLeitor")
     private Leitor leitor;
 
     /*** @retorna o id do Empréstimo ***/
