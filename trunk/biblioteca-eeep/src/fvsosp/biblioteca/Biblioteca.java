@@ -8,7 +8,7 @@ import javax.persistence.*;
 @Table(name = "Biblioteca")
 public class Biblioteca {
 
-    @Id //campo chave primária
+    @Id // campo chave primária
     @GeneratedValue // campo auto incremento
     private int idBiblioteca;
     
@@ -16,7 +16,7 @@ public class Biblioteca {
     private String descricao;
     
     /*Uma biblioteca possui vários acervos
-     * quando um autor for criado já irá vir carregado com uma lista
+     * quando uma biblioteca for criada já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
     @OneToMany(mappedBy = "idAcervo")

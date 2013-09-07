@@ -2,86 +2,66 @@ package fvsosp.autor;
 
 import fvsosp.acervo.Acervo;
 import java.util.List;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 
 @Entity
 @Table(name="aluno")
 public class Autor {
 
-    @Id // cmapo chave primária
-    @GeneratedValue //campo autoincremento
+    @Id // campo chave primária
+    @GeneratedValue // campo autoincremento
     private int idAutor;
     
-    @Column(nullable=false, length=150) //not null de tamanho 150
+    @Column(nullable=false, length=150) // not null de tamanho 150
     private String nome;
     
+    @Column(nullable = false, length = 200)
     private String sobreOAutor;
     
-    /*Um autor possui vários acervos
+    /* Um autor possui vários acervos
      * quando um autor for criado já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
     @OneToMany(mappedBy="idAcervo")
     private List<Acervo> acervos;
 
-    /**
-     * @return the idAutor
-     */
+    /*** @retorna o id do Autor ***/
     public int getIdAutor() {
         return idAutor;
     }
 
-    /**
-     * @param idAutor the idAutor to set
-     */
+    /*** @seta o id do Autor ***/
     public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
 
-    /**
-     * @return the nome
-     */
+    /*** @retorna o nome do Autor ***/
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
+    /*** @seta o nome do Autor ***/
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the sobreOAutor
-     */
+    /*** @retorna as informações sobre o Autor ***/
     public String getSobreOAutor() {
         return sobreOAutor;
     }
 
-    /**
-     * @param sobreOAutor the sobreOAutor to set
-     */
+    /*** @seta as informações do Autor ***/
     public void setSobreOAutor(String sobreOAutor) {
         this.sobreOAutor = sobreOAutor;
     }
 
-    /**
-     * @return the acervos
-     */
+    /*** @retorna a lista de Acervos ***/
     public List<Acervo> getAcervos() {
         return acervos;
     }
 
-    /**
-     * @param acervos the acervos to set
-     */
+    /*** @seta e copia a lista de Acervos recebida para a lista da Classe ***/
     public void setAcervos(List<Acervo> acervos) {
         this.acervos = acervos;
     }

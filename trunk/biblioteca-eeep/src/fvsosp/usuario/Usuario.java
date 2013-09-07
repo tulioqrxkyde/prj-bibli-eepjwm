@@ -3,17 +3,13 @@ package fvsosp.usuario;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name="usuario")
 public class Usuario {
     
-    @Id //chave primária
+    @Id // chave primária
     @GeneratedValue // campo auto incremento
     private int idUsuario;
     
@@ -23,48 +19,37 @@ public class Usuario {
     @Column(length=50,nullable=false)
     private String senha;
 
-    /**
-     * @return the id
-     */
+    /*** @retorna o id do Usuário ***/
     public int getIdUsuario() {
         return idUsuario;
     }
 
-    /**
-     * @param id the id to set
-     */
+    /*** @seta o id do Usuário ***/
     public void setIdUsuario(int id) {
         this.idUsuario = id;
     }
 
-    /**
-     * @return the login
-     */
+    /*** @retorna o Login do Usuário ***/
     public String getLogin() {
         return login;
     }
 
-    /**
-     * @param login the login to set
-     */
+    /*** @seta o Login do Usuário ***/
     public void setLogin(String login) {
         this.login = login;
     }
 
-    /**
-     * @return the senha
-     */
+    /*** @retorna a Senha do Usuário ***/
     public String getSenha() {
         return senha;
     }
 
-    /**
-     * @param senha the senha to set
-     */
+    /*** @seta a senha a passando para o HASH MD5 ***/
     public void setSenha(String senha) {
         this.senha = md5(senha);
     }
     
+    /* @MD5 Método de Encriptação da Senha em um HASH Hexadecimal */
     public String md5(String senha){ 
         MessageDigest md = null;  
         try {  
