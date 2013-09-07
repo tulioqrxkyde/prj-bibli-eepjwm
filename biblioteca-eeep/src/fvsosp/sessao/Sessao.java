@@ -12,8 +12,8 @@ public class Sessao {
     @GeneratedValue //auto incrmento
     private int idSessao;
     
-    @Column(nullable=false, length=150)
-    private int descricao;
+    @Column(nullable = false, length = 150, columnDefinition = "varchar(150) default ''")
+    private String descricao;
     
     /*Uma sessao possui vários acervos
      * quando uma sessao for criada já irá vir carregado com uma lista
@@ -33,12 +33,12 @@ public class Sessao {
     }
 
     /*** @retorna a Descrição ***/
-    public int getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
 
     /*** @seta a Descrição da Sessão */
-    public void setDescricao(int descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
 

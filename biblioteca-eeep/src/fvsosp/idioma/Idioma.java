@@ -12,7 +12,7 @@ public class Idioma {
     @GeneratedValue //campo auto incremento
     private int idIdioma;
     
-    @Column(length = 40, nullable = false)
+    @Column(length = 40, nullable = false, columnDefinition = "varchar(40) default ''")
     private String descricao;
 
     /*Um idioma possui vários acervos

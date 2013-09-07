@@ -11,10 +11,10 @@ public class Cidade {
     @Id // campo chave primária
     private int codIBGE;
     
-    @Column(length = 62, nullable = false)
+    @Column(length = 62, nullable = false, columnDefinition = "varchar(62) default ''")
     private String descricao;
       
-    @Column(length = 2, nullable = false)
+    @Column(length = 2, nullable = false, columnDefinition = "varchar(2) default ''")
     private String uf;
     
     /*Uma cidade possui vários leitores
