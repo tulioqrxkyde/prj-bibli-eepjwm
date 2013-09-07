@@ -4,7 +4,7 @@
     "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		<!-- Configuração da conexão com o Banco PostgreSQL e dialeto -->
+		<!-- Configuração da conexão com o Banco MySQL e dialeto -->
 		<property name="dialect">org.hibernate.dialect.MySQL5InnoDBDialect</property>
 		<property name="connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="connection.url">jdbc:mysql://localhost/bibliotecaeeepjwm</property>
@@ -19,6 +19,7 @@
                 <mapping class="fvsosp.autor.Autor"/>
                 <mapping class="fvsosp.sessao.Sessao"/>
                 <mapping class="fvsosp.cidade.Cidade"/>
+                
 	</session-factory>
 </hibernate-configuration>
 
