@@ -13,7 +13,8 @@ import org.hibernate.Session;
 public class Principal {
     
     public static void main(String[] args) {
-        Session sessao = HibernateUtil.getSessionFactory().openSession(); 
+        Session sessao = 
+                HibernateUtil.getSessionFactory().openSession(); 
     }
     
 }
