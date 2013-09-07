@@ -16,12 +16,13 @@
 		<property name="use_sql_coments">true</property>
 		<property name="hibernate.hbm2ddl.auto">update</property>
                 <mapping class="fvsosp.usuario.Usuario"/>
-                <mapping class="fvsosp.autor.Autor"/>
+                 <mapping class="fvsosp.autor.Autor"/>
                 <mapping class="fvsosp.sessao.Sessao"/>
                 <mapping class="fvsosp.cidade.Cidade"/>
                 <mapping class="fvsosp.biblioteca.Biblioteca"/>
                 <mapping class="fvsosp.idioma.Idioma"/>
                 <mapping class="fvsosp.emprestimo.Emprestimo"/>
+               
 	</session-factory>
 </hibernate-configuration>
 
