@@ -11,7 +11,7 @@ public class Cidade {
     @Id
     private int codIBGE;
     
-    @Column(length = 150, nullable = true)
+    @Column(length = 62, nullable = true)
     private String descricao;
       
     @Column(length = 2, nullable = true)
@@ -50,12 +50,12 @@ public class Cidade {
         this.uf = uf;
     }
 
-    /*** @retorna a Lista de Leitores ***/
+    /*** @retorna a lista de Leitores ***/
     public List<Leitor> getLeitores() {
         return leitores;
     }
 
-    /*** @seta e copia a Lista de Leitores recebida para a Lista da Classe ***/
+    /*** @seta e copia a lista de Leitores recebida para a lista da Classe ***/
     public void setLeitores(List<Leitor> leitores) {
         this.leitores = leitores;
     }
