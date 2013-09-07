@@ -9,16 +9,12 @@ import javax.persistence.*;
 public class Cidade {
     
     @Id
-    @GeneratedValue
     private int codIBGE;
     
     @Column(length = 150, nullable = true)
     private String descricao;
-    
-    @Column(length = 16, nullable = false)
-    private int id;
-    
-    @Column(length = 21, nullable = true)
+      
+    @Column(length = 2, nullable = true)
     private String uf;
     
     @OneToMany(mappedBy = "idLeitor")
@@ -42,16 +38,6 @@ public class Cidade {
     /*** @seta a Descrição da Cidade ***/
     public void setDescricao(String descricao) {
         this.descricao = descricao;
-    }
-
-    /*** @retorna o ID da Cidade ***/
-    public int getId() {
-        return id;
-    }
-
-    /*** @seta o ID da Cidade ***/
-    public void setId(int id) {
-        this.id = id;
     }
 
     /*** @retorna o Estado ***/
