@@ -13,7 +13,8 @@ public class Autor {
     @GeneratedValue // campo autoincremento
     private int idAutor;
     
-    @Column(nullable = false, length = 150, columnDefinition = "varchar(150) default ''") // not null de tamanho 150
+    // not null de tamanho 150 e valor padrão ''
+    @Column(nullable = false, length = 150, columnDefinition = "varchar(150) default ''") 
     private String nome;
     
     @Column(nullable = false, length = 200, columnDefinition = "varchar(200) default ''")

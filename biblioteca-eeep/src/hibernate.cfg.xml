@@ -22,7 +22,9 @@
                 <mapping class="fvsosp.biblioteca.Biblioteca"/>
                 <mapping class="fvsosp.idioma.Idioma"/>
                 <mapping class="fvsosp.emprestimo.Emprestimo"/>
-                <mapping class="fvscsp.palavrasChaves.PalavrasChaves"/>
+                <mapping class="fvsosp.palavrasChaves.PalavrasChaves"/>
+                <mapping class="fvsosp.acervo.Acervo"/>
+                <mapping class="fvsosp.tipoitem.TipoItem"/>
         </session-factory>
 </hibernate-configuration>
 
