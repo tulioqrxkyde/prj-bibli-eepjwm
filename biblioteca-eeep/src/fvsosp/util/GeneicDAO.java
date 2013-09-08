@@ -19,6 +19,12 @@ public abstract class GeneicDAO<T> {
 
     private Session sessao;
     private Transaction transacao;
+    
+    private Class classe;
+    
+    public GeneicDAO(Class classe){
+        this.classe = classe;
+    }
 
     public void salvar(T entity) {
         try {
@@ -65,4 +71,9 @@ public abstract class GeneicDAO<T> {
         }
     }
   
+    public List<T> listar(){
+        this.sessao = HibernateUtil.getSessionFactory().openSession();
+        transacao = sessao.beginTransaction();
+        return this.sessao.createCriteria(classe).list();
+    }  
 }
