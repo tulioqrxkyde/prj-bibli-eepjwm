@@ -7,7 +7,7 @@ import java.util.*;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Emprestimo")
+@Table(name = "emprestimo")
 public class Emprestimo implements Serializable{
 
     @Override

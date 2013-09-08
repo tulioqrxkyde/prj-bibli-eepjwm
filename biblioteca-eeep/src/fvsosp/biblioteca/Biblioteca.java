@@ -7,7 +7,7 @@ import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Biblioteca")
+@Table(name = "biblioteca")
 public class Biblioteca implements Serializable{
 
     @Id // campo chave primária
