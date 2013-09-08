@@ -23,9 +23,10 @@ public class Autor {
      * quando um autor for criado já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
-    @OneToMany(mappedBy="idAcervo")
-    private List<Acervo> acervos;
-
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "AutorAcervo", joinColumns = @JoinColumn(name = "idAutor"), inverseJoinColumns = @JoinColumn(name = "idAcervo"))
+    private List<Acervo> acervo;
+    
     /*** @retorna o id do Autor ***/
     public int getIdAutor() {
         return idAutor;
@@ -58,11 +59,11 @@ public class Autor {
 
     /*** @retorna a lista de Acervos ***/
     public List<Acervo> getAcervos() {
-        return acervos;
+        return acervo;
     }
 
     /*** @seta e copia a lista de Acervos recebida para a lista da Classe ***/
     public void setAcervos(List<Acervo> acervos) {
-        this.acervos = acervos;
+        this.acervo = acervo;
     }
 }
