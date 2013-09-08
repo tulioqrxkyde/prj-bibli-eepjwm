@@ -51,7 +51,7 @@ public class Biblioteca implements Serializable{
      * quando uma biblioteca for criada já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
-    @OneToMany(mappedBy = "idAcervo")
+    @OneToMany(mappedBy = "biblioteca")
     private List<Acervo> acervos;
 
     /*** @retorna o ID da Biblioteca ***/

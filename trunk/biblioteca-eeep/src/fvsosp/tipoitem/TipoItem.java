@@ -52,7 +52,7 @@ public class TipoItem implements Serializable{
     @Column(length=100, columnDefinition = "varchar(100) default ''", nullable=false)
     private String descricao;
     
-    @OneToMany(mappedBy="idAcervo")
+    @OneToMany(mappedBy="tipoItem")
     private List<Acervo> acervos;
 
     /**

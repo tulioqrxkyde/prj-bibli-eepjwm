@@ -57,7 +57,7 @@ public class Cidade implements Serializable{
      * quando uma cidade for criada já irá vir carregada com uma lista
      * de leitores pertencentes a ela
      */
-    @OneToMany(mappedBy = "idLeitor")
+    @OneToMany(mappedBy = "cidade")
     private List<Leitor> leitores;
 
     /*** @retorna o código do IBGE ***/
