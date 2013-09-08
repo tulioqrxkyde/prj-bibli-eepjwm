@@ -19,10 +19,9 @@ public abstract class GeneicDAO<T> {
 
     private Session sessao;
     private Transaction transacao;
-    
     private Class classe;
-    
-    public GeneicDAO(Class classe){
+
+    public GeneicDAO(Class classe) {
         this.classe = classe;
     }
 
@@ -37,10 +36,10 @@ public abstract class GeneicDAO<T> {
                     + ". Erro: " + e.getMessage());
         } finally {
             sessao.close();
-            
+
         }
     }
-    
+
     public void atualizar(T entity) {
         try {
             this.sessao = HibernateUtil.getSessionFactory().openSession();
@@ -52,10 +51,10 @@ public abstract class GeneicDAO<T> {
                     + ". Erro: " + e.getMessage());
         } finally {
             sessao.close();
-            
+
         }
     }
-    
+
     public void remover(T entity) {
         try {
             this.sessao = HibernateUtil.getSessionFactory().openSession();
@@ -63,17 +62,28 @@ public abstract class GeneicDAO<T> {
             this.sessao.delete(entity);
             this.transacao.commit();
         } catch (HibernateException e) {
-            System.out.println("Não foi possível atualizar " + entity.getClass()
+            System.out.println("Não foi possível remover " + entity.getClass()
                     + ". Erro: " + e.getMessage());
         } finally {
             sessao.close();
-            
+
         }
     }
-  
-    public List<T> listar(){
-        this.sessao = HibernateUtil.getSessionFactory().openSession();
-        transacao = sessao.beginTransaction();
-        return this.sessao.createCriteria(classe).list();
-    }  
+
+    public List<T> listar() {
+        List<T> lista = null;
+        try {
+            this.sessao = HibernateUtil.getSessionFactory().openSession();
+            transacao = sessao.beginTransaction();
+            lista = this.sessao.createCriteria(classe).list();
+        } catch (Throwable e) {
+            if(transacao.isActive()){
+                transacao.rollback();
+            }
+            System.out.println("Erro ao listar. Erro "+e.getMessage());
+        }
+
+
+        return lista;
+    }
 }
