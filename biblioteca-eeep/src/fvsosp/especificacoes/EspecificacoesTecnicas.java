@@ -10,6 +10,7 @@ import javax.persistence.*;
 public class EspecificacoesTecnicas implements Serializable {
 
     @Id
+    @GeneratedValue
     private int idEspecificacoesTecnicas;
 
     @Override
