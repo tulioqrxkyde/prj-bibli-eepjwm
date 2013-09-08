@@ -15,6 +15,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import org.hibernate.annotations.NaturalId;
 
@@ -157,8 +158,8 @@ public class Acervo implements Serializable{
     @JoinColumn(name="ididioma")
     private Idioma idioma;
     
-    @ManyToOne
-    @JoinColumn(name="idespecificacoestecnicas")
+    @OneToOne
+    @JoinColumn(name="idespecificacoestecnicas",unique=true)
     private EspecificacoesTecnicas especificacoesTecnicas;
     
     @ManyToOne

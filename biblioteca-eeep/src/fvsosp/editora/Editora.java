@@ -23,7 +23,7 @@ public class Editora implements Serializable{
     @Column(length=150, nullable=false)
     private String nome;
     
-    @OneToMany(mappedBy="idacervo")
+    @OneToMany(mappedBy="idAcervo")
     private List<Acervo> acervo;
 
     /**
