@@ -4,7 +4,7 @@ import fvsosp.cidade.Cidade;
 import fvsosp.emprestimo.Emprestimo;
 import fvsosp.grupoleitores.GruposLeitores;
 import java.io.Serializable;
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Column;
