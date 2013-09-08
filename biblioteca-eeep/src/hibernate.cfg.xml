@@ -25,6 +25,7 @@
                 <mapping class="fvsosp.palavrasChaves.PalavrasChaves"/>
                 <mapping class="fvsosp.acervo.Acervo"/>
                 <mapping class="fvsosp.tipoitem.TipoItem"/>
+                <mapping class="fvsosp.editora.Editora"/>
         </session-factory>
 </hibernate-configuration>
 
