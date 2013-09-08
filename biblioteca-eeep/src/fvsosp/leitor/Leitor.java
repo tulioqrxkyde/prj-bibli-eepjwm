@@ -75,15 +75,15 @@ public class Leitor implements Serializable{
     @Column(length=11)
     private String cpf;
     
-//    @ManyToOne
-//    @JoinColumn(name="idgrupoleitores")
-    private int gruposLeitores;
+    @ManyToOne
+    @JoinColumn(name="idgrupoleitores")
+    private GruposLeitores gruposLeitores;
     
     @ManyToOne
     @JoinColumn(name="idcidade")
     private Cidade cidade;
     
-    @OneToMany(mappedBy="idEmprestimo")
+    @OneToMany(mappedBy="leitor")
     private List<Emprestimo> emprestimos;
 
     /**
@@ -341,14 +341,14 @@ public class Leitor implements Serializable{
     /**
      * @return the gruposLeitores
      */
-    public int getGruposLeitores() {
+    public GruposLeitores getGruposLeitores() {
         return gruposLeitores;
     }
 
     /**
      * @param gruposLeitores the gruposLeitores to set
      */
-    public void setGruposLeitores(int gruposLeitores) {
+    public void setGruposLeitores(GruposLeitores gruposLeitores) {
         this.gruposLeitores = gruposLeitores;
     }
 

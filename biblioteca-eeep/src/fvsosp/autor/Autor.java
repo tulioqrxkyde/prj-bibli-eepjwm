@@ -6,7 +6,7 @@ import javax.persistence.*;
 
 
 @Entity
-@Table(name="aluno")
+@Table(name="autor")
 public class Autor {
 
     @Id // campo chave primária
@@ -25,7 +25,9 @@ public class Autor {
      * de acervos pertencentes a ele
      */
     @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "AutorAcervo", joinColumns = @JoinColumn(name = "idAutor"), inverseJoinColumns = @JoinColumn(name = "idAcervo"))
+    @JoinTable(name = "AutorAcervo", 
+            joinColumns = @JoinColumn(name = "idAutor"), 
+            inverseJoinColumns = @JoinColumn(name = "idAcervo"))
     private List<Acervo> acervo;
     
     /*** @retorna o id do Autor ***/

@@ -1,6 +1,5 @@
 package fvsosp.especificacoes;
 
-import fvsosp.acervo.Acervo;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
@@ -55,10 +54,10 @@ public class EspecificacoesTecnicas implements Serializable {
         return true;
     }
 
-    @Column(length = 10000, nullable = false, columnDefinition = "int(10000) default '0'")
+    @Column(nullable = false, columnDefinition = "int default '0'")
     private int numeroPaginas;
 
-    @Column(length = 10000, nullable = false, columnDefinition = "int(10000) default '0'")
+    @Column( nullable = false, columnDefinition = "int default '0'")
     private int peso;
 
     @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''")

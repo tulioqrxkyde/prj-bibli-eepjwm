@@ -51,7 +51,7 @@ public class Sessao implements Serializable{
      * quando uma sessao for criada já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
-    @OneToMany(mappedBy="idAcervo")
+    @OneToMany(mappedBy="sessao")
     private List<Acervo> acervos;
 
     /*** @retorna o id da Sessão ***/

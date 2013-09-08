@@ -51,7 +51,7 @@ public class Idioma implements Serializable{
      * quando um idioma for criado já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
-    @OneToMany(mappedBy = "idAcervo")
+    @OneToMany(mappedBy = "idioma")
     private List<Acervo> acervo;
 
     /*** @retorna o id do Idioma ***/

@@ -1,6 +1,7 @@
 package fvsosp.grupoleitores;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.leitor.Leitor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -11,6 +12,7 @@ import javax.persistence.*;
 public class GruposLeitores implements Serializable{
 
     @Id
+    @GeneratedValue
     private int idGruposLeitores;
 
     @Override
@@ -21,7 +23,7 @@ public class GruposLeitores implements Serializable{
         hash = 41 * hash + (int) (Double.doubleToLongBits(this.valorMultaDiaria) ^ (Double.doubleToLongBits(this.valorMultaDiaria) >>> 32));
         hash = 41 * hash + this.quantMaxLivros;
         hash = 41 * hash + this.duracaoDiasEmprestimo;
-        hash = 41 * hash + Objects.hashCode(this.acervos);
+        hash = 41 * hash + Objects.hashCode(this.leitores);
         return hash;
     }
     
@@ -49,7 +51,7 @@ public class GruposLeitores implements Serializable{
         if (this.duracaoDiasEmprestimo != other.duracaoDiasEmprestimo) {
             return false;
         }
-        if (!Objects.equals(this.acervos, other.acervos)) {
+        if (!Objects.equals(this.leitores, other.leitores)) {
             return false;
         }
         return true;
@@ -67,8 +69,8 @@ public class GruposLeitores implements Serializable{
     @Column(length = 30, nullable = false, columnDefinition = "Varchar(30) default ''")
     private int duracaoDiasEmprestimo;
     
-    @OneToMany(mappedBy = "idLeitor")
-    private List <Acervo> acervos;
+    @OneToMany(mappedBy = "gruposLeitores")
+    private List <Leitor> leitores;
 
     public int getIdGruposLeitores() {
         return idGruposLeitores;
@@ -110,12 +112,12 @@ public class GruposLeitores implements Serializable{
         this.duracaoDiasEmprestimo = duracaoDiasEmprestimo;
     }
 
-    public List<Acervo> getAcervos() {
-        return acervos;
+    public List<Leitor> getLeitores() {
+        return leitores;
     }
 
-    public void setAcervos(List<Acervo> acervos) {
-        this.acervos = acervos;
+    public void setLeitores(List<Leitor> leitores) {
+        this.leitores = leitores;
     }
     private static final long serialVersionUID = -3510357413546466120L;    
 }

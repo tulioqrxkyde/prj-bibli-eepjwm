@@ -169,6 +169,7 @@ public class Acervo implements Serializable{
     @ManyToOne
     @JoinColumn(name="idbiblioteca")
     private Biblioteca biblioteca;
+    
     private static long serialVersionUID = -8256983727176831230L;
 
     /**
