@@ -1,18 +1,50 @@
 package fvsosp.biblioteca;
 
 import fvsosp.acervo.Acervo;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "Biblioteca")
-public class Biblioteca {
+public class Biblioteca implements Serializable{
 
     @Id // campo chave primária
     @GeneratedValue // campo auto incremento
     private int idBiblioteca;
+
+    @Override
+    public int hashCode() {
+        int hash = 5;
+        hash = 11 * hash + this.idBiblioteca;
+        hash = 11 * hash + Objects.hashCode(this.descricao);
+        hash = 11 * hash + Objects.hashCode(this.acervos);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Biblioteca other = (Biblioteca) obj;
+        if (this.idBiblioteca != other.idBiblioteca) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.acervos, other.acervos)) {
+            return false;
+        }
+        return true;
+    }
     
-    @Column(length = 70, nullable = true, columnDefinition = "varchar(70) default ''") 
+    @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''") 
     private String descricao;
     
     /*Uma biblioteca possui vários acervos
@@ -51,4 +83,5 @@ public class Biblioteca {
     public void setAcervos(List<Acervo> acervos) {
         this.acervos = acervos;
     }
+    private static final long serialVersionUID = 8467106441036780639L;
 }

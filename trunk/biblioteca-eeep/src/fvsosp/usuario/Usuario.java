@@ -1,17 +1,49 @@
 package fvsosp.usuario;
 
+import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
 @Table(name="usuario")
-public class Usuario {
+public class Usuario implements Serializable{
     
     @Id // chave primária
     @GeneratedValue // campo auto incremento
     private int idUsuario;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 13 * hash + this.idUsuario;
+        hash = 13 * hash + Objects.hashCode(this.login);
+        hash = 13 * hash + Objects.hashCode(this.senha);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.idUsuario != other.idUsuario) {
+            return false;
+        }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        return true;
+    }
     
     @Column(length = 50, nullable = false)
     private String login;
@@ -60,4 +92,5 @@ public class Usuario {
         BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));            
         return ((String) hash.toString(16));  
     } 
+    private static final long serialVersionUID = -8877584534061371241L;
 }

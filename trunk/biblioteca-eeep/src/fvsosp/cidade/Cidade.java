@@ -1,15 +1,51 @@
 package fvsosp.cidade;
 
 import fvsosp.leitor.Leitor;
+import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 
 @Entity
 @Table(name = "cidade")
-public class Cidade {
+public class Cidade implements Serializable{
     
     @Id // campo chave primária
     private int codIBGE;
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 19 * hash + this.codIBGE;
+        hash = 19 * hash + Objects.hashCode(this.descricao);
+        hash = 19 * hash + Objects.hashCode(this.uf);
+        hash = 19 * hash + Objects.hashCode(this.leitores);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Cidade other = (Cidade) obj;
+        if (this.codIBGE != other.codIBGE) {
+            return false;
+        }
+        if (!Objects.equals(this.descricao, other.descricao)) {
+            return false;
+        }
+        if (!Objects.equals(this.uf, other.uf)) {
+            return false;
+        }
+        if (!Objects.equals(this.leitores, other.leitores)) {
+            return false;
+        }
+        return true;
+    }
     
     @Column(length = 62, nullable = false, columnDefinition = "varchar(62) default ''")
     private String descricao;
@@ -63,4 +99,5 @@ public class Cidade {
     public void setLeitores(List<Leitor> leitores) {
         this.leitores = leitores;
     }
+    private static final long serialVersionUID = -5660386351782012215L;
 }
