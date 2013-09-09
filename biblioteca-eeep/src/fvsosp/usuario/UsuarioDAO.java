@@ -30,6 +30,8 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
             Query loginFind = getSessao().createQuery("from Usuario where login = ?");
             loginFind.setParameter(0, login);
             usuario = (Usuario) loginFind.list().get(0);
+            this.getTransacao().commit();
+            this.getSessao().close();
         } catch (Throwable t) {
             System.out.println("Não foi possível localizar o login.");
         }
@@ -46,6 +48,8 @@ public class UsuarioDAO extends GenericDAO<Usuario>{
         Query loginFind = this.getSessao().createQuery("from Usuario as usr where usr.login = :procurarLogin and usr.senha = :procurarSenha");
         loginFind.setParameter("procurarLogin", usuario.getLogin());
         loginFind.setParameter("procurarSenha", usuario.getSenha());
+        this.getTransacao().commit();
+        this.getSessao().close();
         if (!loginFind.list().isEmpty()) {
             return true;
         } else {

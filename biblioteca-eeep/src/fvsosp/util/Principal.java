@@ -1,5 +1,7 @@
 package fvsosp.util;
 
+import fvsosp.tipoitem.TipoItem;
+import fvsosp.tipoitem.TipoItemDAO;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioDAO;
 import java.util.List;
@@ -13,8 +15,8 @@ import org.hibernate.Session;
 public class Principal {
 
     public static void main(String[] args) {
-        Usuario u = new Usuario();
-        UsuarioDAO dao = new UsuarioDAO();
+//        Usuario u = new Usuario();
+//        UsuarioDAO dao = new UsuarioDAO();
         
         //        u.setLogin("c");
         //        u.setSenha("c");
@@ -31,6 +33,12 @@ public class Principal {
         /* Exemplo de pesquisa através do Login */ 
         /* System.out.println("Login: "+dao.pesquisarLogin(u.getLogin()));
          */
+        
+        TipoItemDAO dao = new TipoItemDAO();
+        List<TipoItem> lista = dao.procuraDescricao("teste");
+        for (TipoItem tipoItem : lista) {
+            JOptionPane.showMessageDialog(null, tipoItem.getDescricao());
+        }
         
         
         

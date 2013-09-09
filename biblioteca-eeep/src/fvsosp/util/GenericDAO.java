@@ -76,6 +76,7 @@ public abstract class GenericDAO<T> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             setTransacao(getSessao().beginTransaction());
             lista = this.getSessao().createCriteria(classe).list();
+            sessao.close();
         } catch (Throwable e) {
             if (getTransacao().isActive()) {
                 getTransacao().rollback();
