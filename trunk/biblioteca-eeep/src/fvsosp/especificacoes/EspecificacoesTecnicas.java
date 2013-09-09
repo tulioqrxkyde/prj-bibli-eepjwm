@@ -1,5 +1,6 @@
 package fvsosp.especificacoes;
 
+import fvsosp.acervo.Acervo;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
@@ -20,7 +21,7 @@ public class EspecificacoesTecnicas implements Serializable {
         hash = 23 * hash + this.peso;
         hash = 23 * hash + Objects.hashCode(this.acabamentoCapa);
         hash = 23 * hash + Objects.hashCode(this.acabamentoMiolo);
-        //hash = 23 * hash + Objects.hashCode(this.acervo);
+        hash = 23 * hash + Objects.hashCode(this.acervo);
         return hash;
     }
 
@@ -48,9 +49,9 @@ public class EspecificacoesTecnicas implements Serializable {
         if (!Objects.equals(this.acabamentoMiolo, other.acabamentoMiolo)) {
             return false;
         }
-//        if (!Objects.equals(this.acervo, other.acervo)) {
-//            return false;
-//        }
+        if (!Objects.equals(this.acervo, other.acervo)) {
+            return false;
+        }
         return true;
     }
 
@@ -66,8 +67,8 @@ public class EspecificacoesTecnicas implements Serializable {
     @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''")
     private String acabamentoMiolo;
 
-//    @OneToOne(mappedBy = "idAcervo")
-//    private Acervo acervo;
+    @OneToOne(mappedBy = "especificacoesTecnicas")
+    private Acervo acervo;
 
     /*** @retorna o id das Especificações Técnicas ***/
     public int getIdEspecificacoesTecnicas() {
@@ -120,14 +121,14 @@ public class EspecificacoesTecnicas implements Serializable {
     }
 
     /*** @retorna o Acervo ***/
-//    public Acervo getAcervo() {
-//        return acervo;
-//    }
+    public Acervo getAcervo() {
+        return acervo;
+    }
 
     /*** @seta e copia o Acervo do livro recebido para o Acervo da Classe ***/
-//    public void setAcervo(Acervo acervo) {
-//        this.acervo = acervo;
-//    }
+    public void setAcervo(Acervo acervo) {
+        this.acervo = acervo;
+    }
 
     private static final long serialVersionUID = -6626525357639762449L;
 
