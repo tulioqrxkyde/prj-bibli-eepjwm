@@ -2,16 +2,17 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fvsosp.usuario;
+package fvsosp.editora;
 
 import fvsosp.util.GeneicDAO;
+
 /**
  *
- * @author Pedro Saraiva
+ * @author Oziel
  */
-public class UsuarioDAO extends GeneicDAO<Usuario>{
+public class EditoraDAO extends GeneicDAO<Editora>{
     
-    public UsuarioDAO(){
-        super(Usuario.class);
+    public EditoraDAO(){
+        super(Editora.class);
     }
 }
