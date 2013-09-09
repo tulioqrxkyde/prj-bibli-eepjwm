@@ -24,15 +24,15 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
     }
 
     /* Metódo da Pesquisa criado por Marcos Ellys */
-    public List<Editora> pesquisaDescricao(String descricao) {
-        List<Editora> descricaoPesquisa = null;
+    public List<GruposLeitores> pesquisaDescricao(String descricao) {
+        List<GruposLeitores> descricaoPesquisa = null;
 
         try {
 
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            descricaoPesquisa = (List<Editora>) getSessao().createCriteria(Editora.class).
+            descricaoPesquisa = (List<GruposLeitores>) getSessao().createCriteria(GruposLeitores.class).
                     add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
