@@ -26,15 +26,15 @@ public class Principal {
             JOptionPane.showMessageDialog(null, dao.listar().get(i).getLogin());
         }
         
-        // Modelo de Autenticação 
-        if(dao.autenticaLoginSenha("c", (String) u.md5("c")))
-            System.out.println("Sucesso");
-        else
-            System.out.println("Insucesso");
-      
+        /* Modelo de Autenticação */ 
+        /* if(dao.autenticaLoginSenha("c", (String) u.md5("c")))
+        /*    System.out.println("Sucesso");
+        /* else
+        /*    System.out.println("Insucesso");
+        /* 
         /* Exemplo de pesquisa através do Login */ 
-         System.out.println("Login: "+dao.pesquisarLogin(u.getLogin()));
-        //*/
+        /* System.out.println("Login: "+dao.pesquisarLogin(u.getLogin()));
+         */
         
     }
 }
