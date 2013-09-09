@@ -4,7 +4,14 @@
  */
 package fvsosp.autor;
 
+import fvsosp.editora.Editora;
 import fvsosp.util.GenericDAO;
+import fvsosp.util.HibernateUtil;
+import java.util.List;
+import org.hibernate.HibernateException;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -15,4 +22,43 @@ public class AutorDAO extends GenericDAO<Autor> {
     public AutorDAO() {
         super(Autor.class);
     }
+    
+    public List<Autor> nome(String nome) {
+        List<Autor> autores = null;
+
+        try {
+
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            autores = (List<Autor>) getSessao().createCriteria(Autor.class).
+                    add(Restrictions.like("nome", nome, MatchMode.ANYWHERE)).
+                    addOrder(Order.asc("nome")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por nome: " + e.getMessage());
+        }
+        return autores;
+    }
+    
+    public List<Autor> sobreOAutor(String descricaoAutor){
+        List<Autor> autores = null;
+
+        try {
+
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            autores = (List<Autor>) getSessao().createCriteria(Autor.class).
+                    add(Restrictions.like("descricaoAutor", descricaoAutor, MatchMode.ANYWHERE)).
+                    addOrder(Order.asc("descricaoAutor")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Autor: " + e.getMessage());
+        }
+        return autores;
+        
+        
+    }
 }
+
