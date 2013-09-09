@@ -15,8 +15,11 @@ import org.hibernate.Session;
 public class Principal {
 
     public static void main(String[] args) {
-//        Usuario u = new Usuario();
-//        UsuarioDAO dao = new UsuarioDAO();
+        TipoItem u = new TipoItem();
+        TipoItemDAO dao = new TipoItemDAO();
+        
+        u = dao.carregaChavePrimaria(1);
+        JOptionPane.showMessageDialog(null, u.getDescricao());
         
         //        u.setLogin("c");
         //        u.setSenha("c");
@@ -34,12 +37,7 @@ public class Principal {
         /* System.out.println("Login: "+dao.pesquisarLogin(u.getLogin()));
          */
         
-        TipoItemDAO dao = new TipoItemDAO();
-        List<TipoItem> lista = dao.procuraDescricao("teste");
-        for (TipoItem tipoItem : lista) {
-            JOptionPane.showMessageDialog(null, tipoItem.getDescricao());
-        }
-        
+            
         
         
     }
