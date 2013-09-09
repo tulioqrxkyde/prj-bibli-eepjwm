@@ -23,7 +23,7 @@ public class AutorDAO extends GenericDAO<Autor> {
         super(Autor.class);
     }
     
-    public List<Autor> nome(String nome) {
+    public List<Autor> pesquisarNome(String nome) {
         List<Autor> autores = null;
 
         try {
@@ -41,7 +41,7 @@ public class AutorDAO extends GenericDAO<Autor> {
         return autores;
     }
     
-    public List<Autor> sobreOAutor(String descricaoAutor){
+    public List<Autor> pesquisarSobreOAutor(String descricaoAutor){
         List<Autor> autores = null;
 
         try {
@@ -50,8 +50,8 @@ public class AutorDAO extends GenericDAO<Autor> {
             this.setTransacao(getSessao().beginTransaction());
 
             autores = (List<Autor>) getSessao().createCriteria(Autor.class).
-                    add(Restrictions.like("descricaoAutor", descricaoAutor, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("descricaoAutor")).list();
+                    add(Restrictions.like("sobreOAutor", descricaoAutor, MatchMode.ANYWHERE)).
+                    addOrder(Order.asc("sobreOAutor")).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Autor: " + e.getMessage());
