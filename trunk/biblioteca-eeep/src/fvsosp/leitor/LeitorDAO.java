@@ -6,7 +6,6 @@ package fvsosp.leitor;
 
 import fvsosp.cidade.Cidade;
 import fvsosp.grupoleitores.GruposLeitores;
-import fvsosp.tipoitem.TipoItem;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.Date;
@@ -32,7 +31,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.like("nome", nome, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
@@ -48,7 +47,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.like("email", email, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("email")).list();
 
@@ -65,7 +64,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.like("dataNascimento", String.valueOf(dataNascimento), MatchMode.ANYWHERE)).
                     addOrder(Order.asc("dataNascimento")).list();
 
@@ -81,7 +80,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.like("telefone", telefone, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
@@ -98,7 +97,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.like("celular", celular, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
@@ -115,7 +114,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.like("matricula", matricula, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("matricula")).list();
 
@@ -133,7 +132,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.eq("ativo", ativo)).
                     addOrder(Order.asc("nome")).list();
 
@@ -150,7 +149,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.eq("gruposLeitores", gruposLeitores)).
                     addOrder(Order.asc("nome")).list();
 
@@ -167,7 +166,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+            leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
                     add(Restrictions.eq("cidade", cidades)).
                     addOrder(Order.asc("nome")).list();
 
