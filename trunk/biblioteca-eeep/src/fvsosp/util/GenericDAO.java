@@ -27,45 +27,45 @@ public abstract class GenericDAO<T> {
 
     public void salvar(T entity) {
         try {
-            this.sessao = HibernateUtil.getSessionFactory().openSession();
-            this.transacao = sessao.beginTransaction();
-            this.sessao.save(entity);
-            this.transacao.commit();
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            this.getSessao().save(entity);
+            this.getTransacao().commit();
         } catch (HibernateException e) {
             System.out.println("Não foi possível inserir " + entity.getClass()
                     + ". Erro: " + e.getMessage());
         } finally {
-            sessao.close();
+            getSessao().close();
 
         }
     }
 
     public void atualizar(T entity) {
         try {
-            this.sessao = HibernateUtil.getSessionFactory().openSession();
-            this.transacao = sessao.beginTransaction();
-            this.sessao.update(entity);
-            this.transacao.commit();
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            this.getSessao().update(entity);
+            this.getTransacao().commit();
         } catch (HibernateException e) {
             System.out.println("Não foi possível atualizar " + entity.getClass()
                     + ". Erro: " + e.getMessage());
         } finally {
-            sessao.close();
+            getSessao().close();
 
         }
     }
 
     public void remover(T entity) {
         try {
-            this.sessao = HibernateUtil.getSessionFactory().openSession();
-            this.transacao = sessao.beginTransaction();
-            this.sessao.delete(entity);
-            this.transacao.commit();
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            this.getSessao().delete(entity);
+            this.getTransacao().commit();
         } catch (HibernateException e) {
             System.out.println("Não foi possível remover " + entity.getClass()
                     + ". Erro: " + e.getMessage());
         } finally {
-            sessao.close();
+            getSessao().close();
 
         }
     }
@@ -73,15 +73,43 @@ public abstract class GenericDAO<T> {
     public List<T> listar() {
         List<T> lista = null;
         try {
-            this.sessao = HibernateUtil.getSessionFactory().openSession();
-            transacao = sessao.beginTransaction();
-            lista = this.sessao.createCriteria(classe).list();
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            setTransacao(getSessao().beginTransaction());
+            lista = this.getSessao().createCriteria(classe).list();
         } catch (Throwable e) {
-            if (transacao.isActive()) {
-                transacao.rollback();
+            if (getTransacao().isActive()) {
+                getTransacao().rollback();
             }
             System.out.println("Erro ao listar. Erro " + e.getMessage());
         }
         return lista;
+    }
+
+    /**
+     * @return the sessao
+     */
+    public Session getSessao() {
+        return sessao;
+    }
+
+    /**
+     * @param sessao the sessao to set
+     */
+    public void setSessao(Session sessao) {
+        this.sessao = sessao;
+    }
+
+    /**
+     * @return the transacao
+     */
+    public Transaction getTransacao() {
+        return transacao;
+    }
+
+    /**
+     * @param transacao the transacao to set
+     */
+    public void setTransacao(Transaction transacao) {
+        this.transacao = transacao;
     }
 }
