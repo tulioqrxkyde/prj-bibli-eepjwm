@@ -4,13 +4,13 @@
  */
 package fvsosp.leitor;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class LeitorDAO extends GeneicDAO<Leitor>{
+public class LeitorDAO extends GenericDAO<Leitor>{
     
     public LeitorDAO(){
        super(Leitor.class);

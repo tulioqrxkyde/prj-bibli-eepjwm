@@ -4,13 +4,13 @@
  */
 package fvsosp.idioma;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class IdiomaDAO extends GeneicDAO<Idioma>{
+public class IdiomaDAO extends GenericDAO<Idioma>{
     
     public IdiomaDAO(){
         super(Idioma.class);

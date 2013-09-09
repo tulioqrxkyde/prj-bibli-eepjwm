@@ -4,13 +4,13 @@
  */
 package fvsosp.grupoleitores;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class GruposLeitoresDAO extends GeneicDAO<GruposLeitores>{
+public class GruposLeitoresDAO extends GenericDAO<GruposLeitores>{
     
     public GruposLeitoresDAO(){
         super(GruposLeitores.class);

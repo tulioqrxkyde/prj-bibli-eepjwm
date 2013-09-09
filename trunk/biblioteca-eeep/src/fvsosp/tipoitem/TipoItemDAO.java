@@ -4,12 +4,12 @@
  */
 package fvsosp.tipoitem;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 /**
  *
  * @author Oziel
  */
-public class TipoItemDAO extends GeneicDAO<TipoItem>{
+public class TipoItemDAO extends GenericDAO<TipoItem>{
     
     public TipoItemDAO(){
         super(TipoItem.class);

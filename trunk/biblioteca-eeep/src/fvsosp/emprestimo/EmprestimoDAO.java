@@ -4,13 +4,13 @@
  */
 package fvsosp.emprestimo;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class EmprestimoDAO extends GeneicDAO<Emprestimo>{
+public class EmprestimoDAO extends GenericDAO<Emprestimo>{
     
     public EmprestimoDAO(){
         super(Emprestimo.class);

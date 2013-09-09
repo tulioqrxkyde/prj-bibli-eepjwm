@@ -4,13 +4,13 @@
  */
 package fvsosp.palavraschaves;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class PalavrasChavesDAO extends GeneicDAO<PalavrasChaves>{
+public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves>{
     
     public PalavrasChavesDAO(){
         super(PalavrasChaves.class);

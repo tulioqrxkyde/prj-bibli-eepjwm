@@ -4,12 +4,12 @@
  */
 package fvsosp.usuario;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 /**
  *
  * @author Pedro Saraiva
  */
-public class UsuarioDAO extends GeneicDAO<Usuario>{
+public class UsuarioDAO extends GenericDAO<Usuario>{
     
     public UsuarioDAO(){
         super(Usuario.class);
