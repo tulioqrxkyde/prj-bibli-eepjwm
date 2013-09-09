@@ -69,7 +69,7 @@ public class UsuarioRN {
         return false;
     }
     
-    public List<Usuario> pesquisaLogin(String login){
+    public Usuario pesquisaLogin(String login){
         return usuDAO.pesquisarLogin(login);
     }
     

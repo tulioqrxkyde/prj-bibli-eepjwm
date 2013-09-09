@@ -31,13 +31,13 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
      * Recebe um login por parâmetro e procura
      * se encontrar retorna o usuário
      */
-    public List<Usuario> pesquisarLogin(String login) {
-        List<Usuario> usuario = null;
+    public Usuario pesquisarLogin(String login) {
+        Usuario usuario = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(this.getSessao().beginTransaction());
-            usuario = getSessao().createCriteria(Usuario.class)
-                    .add(Restrictions.like("login", login, MatchMode.ANYWHERE)).list();
+            usuario = (Usuario) getSessao().createCriteria(Usuario.class)
+                    .add(Restrictions.eq("login", login)).uniqueResult();
             this.getTransacao().commit();
             this.getSessao().close();
         } catch (Throwable t) {
