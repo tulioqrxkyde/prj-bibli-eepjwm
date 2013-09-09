@@ -17,15 +17,14 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Oziel
  */
-public class GruposLeitoresDAO extends GenericDAO<GruposLeitores>{
-    
-    public GruposLeitoresDAO(){
+public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
+
+    public GruposLeitoresDAO() {
         super(GruposLeitores.class);
     }
-    
-      /* Metódo da Pesquisa criado por Marcos Ellys */  
-    
-  public List<Editora> pesquisaDescricao(String descricao) {
+
+    /* Metódo da Pesquisa criado por Marcos Ellys */
+    public List<Editora> pesquisaDescricao(String descricao) {
         List<Editora> descricaoPesquisa = null;
 
         try {
@@ -42,6 +41,4 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores>{
         }
         return descricaoPesquisa;
     }
-
-
 }

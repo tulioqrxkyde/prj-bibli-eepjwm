@@ -17,31 +17,22 @@ import org.hibernate.criterion.Restrictions;
  *
  * @author Oziel
  */
-public class EspecificacoesTecnicasDAO extends GenericDAO<EspecificacoesTecnicas>{
-    
-    public EspecificacoesTecnicasDAO(){
+public class EspecificacoesTecnicasDAO extends GenericDAO<EspecificacoesTecnicas> {
+
+    public EspecificacoesTecnicasDAO() {
         super(EspecificacoesTecnicas.class);
     }
 
-  /* Metódo da Pesquisa criado por Marcos Ellys */  
-    
-public List<Acervo> pesquinaAcervo(String acervo) {
-        List<Acervo> acervos = null;
-
+    /* Metódo da Pesquisa criado por Marcos Ellys */
+    public EspecificacoesTecnicas pesquisaPorAcervo(Acervo acervo) {
+        EspecificacoesTecnicas et = null;
         try {
-
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-
-            acervos = (List<Acervo>) getSessao().createCriteria(Acervo.class).
-                    add(Restrictions.like("acervo", acervo, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("acervo")).list();
-
+            et = (EspecificacoesTecnicas) this.getSessao().createCriteria(EspecificacoesTecnicas.class).
+                    add(Restrictions.eq("acervo", acervo)).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Acervo: " + e.getMessage());
         }
-        return acervos;
+        return et;
     }
-
-
 }
