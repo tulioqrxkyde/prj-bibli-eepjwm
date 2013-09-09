@@ -4,13 +4,13 @@
  */
 package fvsosp.autor;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class AutorDAO extends GeneicDAO<Autor> {
+public class AutorDAO extends GenericDAO<Autor> {
 
     public AutorDAO() {
         super(Autor.class);

@@ -4,13 +4,13 @@
  */
 package fvsosp.cidade;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class CidadeDAO extends GeneicDAO<Cidade> {
+public class CidadeDAO extends GenericDAO<Cidade> {
 
     public CidadeDAO() {
         super(Cidade.class);

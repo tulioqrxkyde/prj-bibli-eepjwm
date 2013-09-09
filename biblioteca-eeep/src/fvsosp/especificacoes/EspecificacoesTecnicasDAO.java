@@ -4,13 +4,13 @@
  */
 package fvsosp.especificacoes;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class EspecificacoesTecnicasDAO extends GeneicDAO<EspecificacoesTecnicas>{
+public class EspecificacoesTecnicasDAO extends GenericDAO<EspecificacoesTecnicas>{
     
     public EspecificacoesTecnicasDAO(){
         super(EspecificacoesTecnicas.class);

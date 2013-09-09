@@ -4,13 +4,13 @@
  */
 package fvsosp.sessao;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class SessaoDAO extends GeneicDAO<Sessao>{
+public class SessaoDAO extends GenericDAO<Sessao>{
  
     public SessaoDAO(){
         super(Sessao.class);

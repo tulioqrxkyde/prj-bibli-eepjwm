@@ -15,13 +15,13 @@ import org.hibernate.Transaction;
  * @author Pedro Saraiva
  */
 @SuppressWarnings("unchecked")
-public abstract class GeneicDAO<T> {
+public abstract class GenericDAO<T> {
 
     private Session sessao;
     private Transaction transacao;
     private Class classe;
 
-    public GeneicDAO(Class classe) {
+    public GenericDAO(Class classe) {
         this.classe = classe;
     }
 

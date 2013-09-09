@@ -4,13 +4,13 @@
  */
 package fvsosp.biblioteca;
 
-import fvsosp.util.GeneicDAO;
+import fvsosp.util.GenericDAO;
 
 /**
  *
  * @author Oziel
  */
-public class BibliotecaDAO extends GeneicDAO<Biblioteca>{
+public class BibliotecaDAO extends GenericDAO<Biblioteca>{
     
     public BibliotecaDAO(){
         super(BibliotecaDAO.class);
