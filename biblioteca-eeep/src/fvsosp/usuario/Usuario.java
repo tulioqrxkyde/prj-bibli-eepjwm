@@ -88,9 +88,9 @@ public class Usuario implements Serializable{
             md = MessageDigest.getInstance("MD5");  
         } catch (NoSuchAlgorithmException e) {  
             e.printStackTrace();  
-        }  
+        }
         BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));            
-        return ((String) hash.toString(16));  
+        return ((String) hash.toString(16));
     } 
     private static final long serialVersionUID = -8877584534061371241L;
 }
