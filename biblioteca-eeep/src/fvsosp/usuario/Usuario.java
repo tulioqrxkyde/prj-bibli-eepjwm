@@ -15,41 +15,14 @@ public class Usuario implements Serializable{
     @GeneratedValue // campo auto incremento
     private int idUsuario;
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 13 * hash + this.idUsuario;
-        hash = 13 * hash + Objects.hashCode(this.login);
-        hash = 13 * hash + Objects.hashCode(this.senha);
-        return hash;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Usuario other = (Usuario) obj;
-        if (this.idUsuario != other.idUsuario) {
-            return false;
-        }
-        if (!Objects.equals(this.login, other.login)) {
-            return false;
-        }
-        if (!Objects.equals(this.senha, other.senha)) {
-            return false;
-        }
-        return true;
-    }
-    
     @Column(length = 50, nullable = false)
     private String login;
     
     @Column(length = 50, nullable = false)
     private String senha;
+    
+    @Column(columnDefinition="boolean default 0")
+    private boolean administrador;
 
     /*** @retorna o id do Usuário ***/
     public int getIdUsuario() {
@@ -93,4 +66,54 @@ public class Usuario implements Serializable{
         return ((String) hash.toString(16));
     } 
     private static final long serialVersionUID = -8877584534061371241L;
+
+    /**
+     * @return the administrador
+     */
+    public boolean isAdministrador() {
+        return administrador;
+    }
+
+    /**
+     * @param administrador the administrador to set
+     */
+    public void setAdministrador(boolean administrador) {
+        this.administrador = administrador;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 17 * hash + this.idUsuario;
+        hash = 17 * hash + Objects.hashCode(this.login);
+        hash = 17 * hash + Objects.hashCode(this.senha);
+        hash = 17 * hash + (this.administrador ? 1 : 0);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Usuario other = (Usuario) obj;
+        if (this.idUsuario != other.idUsuario) {
+            return false;
+        }
+        if (!Objects.equals(this.login, other.login)) {
+            return false;
+        }
+        if (!Objects.equals(this.senha, other.senha)) {
+            return false;
+        }
+        if (this.administrador != other.administrador) {
+            return false;
+        }
+        return true;
+    }
+    
+    
 }
