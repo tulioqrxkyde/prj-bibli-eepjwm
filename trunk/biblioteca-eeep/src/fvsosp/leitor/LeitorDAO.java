@@ -4,9 +4,12 @@
  */
 package fvsosp.leitor;
 
+import fvsosp.cidade.Cidade;
+import fvsosp.grupoleitores.GruposLeitores;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
+import java.util.Date;
 import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.MatchMode;
@@ -55,119 +58,123 @@ public class LeitorDAO extends GenericDAO<Leitor> {
         return leitores;
 
     }
-    
-    public List<Leitor> pesquisarDataNascimento(String dataNascimento) {
+
+    public List<Leitor> pesquisarDataNascimento(Date dataNascimento) {
         List<Leitor> leitores = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
-                    add(Restrictions.like("dataNascimento", dataNascimento, MatchMode.ANYWHERE)).
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+                    add(Restrictions.like("dataNascimento", String.valueOf(dataNascimento), MatchMode.ANYWHERE)).
                     addOrder(Order.asc("dataNascimento")).list();
-                
+
         } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por Data de Nascimento: "+e.getMessage());
+            System.out.println("Erro ao procurar por Data de Nascimento: " + e.getMessage());
         }
         return leitores;
-}
-     public List<Leitor> pesquisarTelefone(String telefone) {
+    }
+
+    public List<Leitor> pesquisarTelefone(String telefone) {
         List<Leitor> leitores = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
                     add(Restrictions.like("telefone", telefone, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("telefone")).list();
-                
+                    addOrder(Order.asc("nome")).list();
+
         } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por telefone: "+e.getMessage());
+            System.out.println("Erro ao procurar por telefone: " + e.getMessage());
         }
         return leitores;
-   
-}
-          public List<Leitor> pesquisarCelular(String celular) {
+
+    }
+
+    public List<Leitor> pesquisarCelular(String celular) {
         List<Leitor> leitores = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
                     add(Restrictions.like("celular", celular, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("celular")).list();
-                
+                    addOrder(Order.asc("nome")).list();
+
         } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por celular: "+e.getMessage());
+            System.out.println("Erro ao procurar por celular: " + e.getMessage());
         }
         return leitores;
-   
-}
-     
-           public List<Leitor> pesquisarMatricula(String matricula) {
+
+    }
+
+    public List<Leitor> pesquisarMatricula(String matricula) {
         List<Leitor> leitores = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
                     add(Restrictions.like("matricula", matricula, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("matricula")).list();
-                
-        } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por matricula: "+e.getMessage());
-        }
-        return leitores;
-   
-}
-           
-            public List<Leitor> pesquisarAtivo(String ativo) {
-        List<Leitor> leitores = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
-                    add(Restrictions.like("ativo", ativo, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("ativo")).list();
-                
-        } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por ativo: "+e.getMessage());
-        }
-        return leitores;
-   
-}
-          public List<Leitor> pesquisarGrupoLeitores(String gruposLeitores) {
-        List<Leitor> leitores = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
-                    add(Restrictions.like("gruposLeitores", gruposLeitores, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("gruposLeitores")).list();
-                
-        } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por grupos de Leitores: "+e.getMessage());
-        }
-        return leitores;
-   
-}    
-           public List<Leitor> pesquisarCidades(String cidades) {
-        List<Leitor> leitores = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            
-            leitores= (List<Leitor>) getSessao().createCriteria(TipoItem.class).
-                    add(Restrictions.like("cidades", cidades, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("cidades")).list();
-                
-        } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por cidades: "+e.getMessage());
-        }
-        return leitores;
-   
-}    
-}
 
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por matricula: " + e.getMessage());
+        }
+        return leitores;
+
+    }
+
+    public List<Leitor> pesquisarAtivo(boolean ativo) {
+        List<Leitor> leitores = null;
+
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+                    add(Restrictions.eq("ativo", ativo)).
+                    addOrder(Order.asc("nome")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por ativo: " + e.getMessage());
+        }
+        return leitores;
+
+    }
+
+    public List<Leitor> pesquisarGrupoLeitores(GruposLeitores gruposLeitores) {
+        List<Leitor> leitores = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+                    add(Restrictions.eq("gruposLeitores", gruposLeitores)).
+                    addOrder(Order.asc("nome")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por grupos de Leitores: " + e.getMessage());
+        }
+        return leitores;
+
+    }
+
+    public List<Leitor> pesquisarCidade(Cidade cidades) {
+        List<Leitor> leitores = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitores = (List<Leitor>) getSessao().createCriteria(TipoItem.class).
+                    add(Restrictions.eq("cidade", cidades)).
+                    addOrder(Order.asc("nome")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por cidades: " + e.getMessage());
+        }
+        return leitores;
+
+    }
+}
