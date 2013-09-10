@@ -28,24 +28,24 @@ public class CidadeDAO extends GenericDAO<Cidade> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
+
             cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
-                    add(Restrictions.eq("codibge", codibge)).
+                    add(Restrictions.eq("codibge", String.valueOf(codibge))).
                     addOrder(Order.asc("nome")).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por CodigoIbge: " + e.getMessage());
         }
         return cidades;
-    
+
     }
-        
+
     public List<Cidade> pesquisarDescricao(String descricao) {
         List<Cidade> cidades = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
+
             cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
                     add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
@@ -54,15 +54,15 @@ public class CidadeDAO extends GenericDAO<Cidade> {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
         }
         return cidades;
-    
+
     }
-       
-        public List<Cidade> pesquisarUf(String descricao) {
+
+    public List<Cidade> pesquisarUf(String descricao) {
         List<Cidade> cidades = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
+
             cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
                     add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
