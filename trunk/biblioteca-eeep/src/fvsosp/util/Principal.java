@@ -15,11 +15,10 @@ import org.hibernate.Session;
 public class Principal {
 
     public static void main(String[] args) {
-        TipoItem u = new TipoItem();
-        TipoItemDAO dao = new TipoItemDAO();
+        HibernateUtil.getSessionFactory().openSession();
         
-        u = dao.carregaChavePrimaria(1);
-        JOptionPane.showMessageDialog(null, u.getDescricao());
+//        u = dao.carregaChavePrimaria(1);
+//        JOptionPane.showMessageDialog(null, u.getDescricao());
         
         //        u.setLogin("c");
         //        u.setSenha("c");
