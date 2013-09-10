@@ -11,7 +11,7 @@ import java.util.List;
  * @author Pedro Saraiva
  */
 public class UsuarioRN {
-    
+
     /*
      * Essa é a classe de comunicação com
      * a camada visual (interface)
@@ -19,62 +19,62 @@ public class UsuarioRN {
      * essa classe implementa todas as regras de negócio
      * possíveis a Usuario
      */
-    
     private UsuarioDAO usuDAO = new UsuarioDAO();
-    
-    public boolean autentica(Usuario usuario){
+
+    public boolean autentica(Usuario usuario) {
         Usuario usu = usuDAO.pesquisaUsuario(usuario);
-        if(usu!=null){
+        if (usu != null) {
             return true;
         } else {
             return false;
         }
     }
-    
+
     /*
      * se usuário for administrador não pode ser removido
      */
-    public boolean remover(Usuario usuario){
-        if (!usuario.isAdministrador()){
+    public boolean remover(Usuario usuario) {
+        if (!usuario.isAdministrador()) {
             usuDAO.remover(usuario);
             return true;
         } else {
             return false;
         }
     }
-    
+
     /*
      * verifica se a senha foi confirmada corretamente
      * depois atualiza
      */
-    public boolean atualizar(Usuario usuario, String confirmaSenha){
+    public boolean atualizar(Usuario usuario, String confirmaSenha) {
         Usuario usu = usuDAO.carregaChavePrimaria(usuario.getIdUsuario());
-        if(usu.getSenha().equals(confirmaSenha)){
+        if (usu.getSenha().equals(confirmaSenha)) {
             usuDAO.atualizar(usuario);
             return true;
         }
         return false;
-        
+
     }
-    
+
     /*
      * antes de adicionar verifica se a senha 
      * foi confirmada corretamente
      */
-    public boolean adiciona(Usuario usuario, String confirmaSenha){
-        if(usuario.getSenha().equals(confirmaSenha)){
-            usuDAO.adicionar(usuario);
-            return true;
-        } 
+    public boolean adiciona(Usuario usuario, String confirmaSenha) {
+        if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
+            if (usuario.getSenha().equals(confirmaSenha)) {
+                usuDAO.adicionar(usuario);
+                return true;
+            }
+        }
         return false;
     }
-    
-    public Usuario pesquisaLogin(String login){
+
+    public Usuario pesquisaLogin(String login) {
         return usuDAO.pesquisarLogin(login);
     }
-    
-    public List<Usuario> listar(){
+
+    public List<Usuario> listar() {
         return usuDAO.listar();
     }
-    
 }

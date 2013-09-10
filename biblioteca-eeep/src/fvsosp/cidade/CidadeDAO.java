@@ -23,20 +23,20 @@ public class CidadeDAO extends GenericDAO<Cidade> {
         super(Cidade.class);
     }
 
-    public List<Cidade> pesquisarCodIbge(int codibge) {
-        List<Cidade> cidades = null;
+    public Cidade pesquisarCodIbge(int codibge) {
+        Cidade cidade = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
+            cidade = (Cidade) getSessao().createCriteria(Cidade.class).
                     add(Restrictions.eq("codibge", String.valueOf(codibge))).
                     addOrder(Order.asc("nome")).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por CodigoIbge: " + e.getMessage());
         }
-        return cidades;
+        return cidade;
 
     }
 
