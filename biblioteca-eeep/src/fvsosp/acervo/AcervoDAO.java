@@ -170,12 +170,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public Acervo pesquisarEditora(Editora editora) {
-        Acervo acervo = null;
+    public List<Acervo> pesquisarEditora(Editora editora) {
+        List<Acervo> acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("editora", editora)).addOrder(Order.asc("editora")).list();
+            acervo = (List<Acervo>) (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("editora", editora)).addOrder(Order.asc("editora")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Editora. Erro: " + e.getMessage());
         }
