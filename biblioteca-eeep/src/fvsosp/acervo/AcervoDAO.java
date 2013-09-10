@@ -31,7 +31,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("tombo", String.valueOf(tombos))).addOrder(Order.asc("tombo")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("tombo", new Integer(tombos))).addOrder(Order.asc("tombo")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Tombo. Erro: " + e.getMessage());
         }
@@ -43,7 +43,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("tituloObra", "titulo", MatchMode.ANYWHERE)).addOrder(Order.asc("tituloObra")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("tituloObra", titulo, MatchMode.ANYWHERE)).addOrder(Order.asc("tituloObra")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Título. Erro: " + e.getMessage());
         }
@@ -55,7 +55,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("subtituloObra", "subtitulo", MatchMode.ANYWHERE)).addOrder(Order.asc("subtituloObra")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("subtituloObra", subtitulo, MatchMode.ANYWHERE)).addOrder(Order.asc("subtituloObra")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Sub-Título. Erro: " + e.getMessage());
         }
@@ -67,7 +67,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("isbn", "isbns", MatchMode.ANYWHERE)).addOrder(Order.asc("isbn")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("isbn", isbns, MatchMode.ANYWHERE)).addOrder(Order.asc("isbn")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o isbn. Erro: " + e.getMessage());
         }
@@ -79,7 +79,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("exemplar", String.valueOf(exemplares))).addOrder(Order.asc("exemplar")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("exemplar", new Integer(exemplares))).addOrder(Order.asc("exemplar")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Exemplar. Erro: " + e.getMessage());
         }
@@ -91,7 +91,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("volume", "volumes", MatchMode.ANYWHERE)).addOrder(Order.asc("volume")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("volume", volumes, MatchMode.ANYWHERE)).addOrder(Order.asc("volume")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Volume. Erro: " + e.getMessage());
         }
@@ -103,7 +103,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("edicao", "edicoes", MatchMode.ANYWHERE)).addOrder(Order.asc("edicao")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("edicao", edicoes, MatchMode.ANYWHERE)).addOrder(Order.asc("edicao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Edição. Erro: " + e.getMessage());
         }
@@ -115,7 +115,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("anoEdicao", String.valueOf(anos))).addOrder(Order.asc("anoEdicao")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("anoEdicao", new Integer(anos))).addOrder(Order.asc("anoEdicao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Ano de Edição. Erro: " + e.getMessage());
         }
@@ -127,7 +127,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("informacoesAdicionais", "informacoes", MatchMode.ANYWHERE)).addOrder(Order.asc("informacoesAdicionais")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("informacoesAdicionais", informacoes, MatchMode.ANYWHERE)).addOrder(Order.asc("informacoesAdicionais")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar as Informações Adicionais. Erro: " + e.getMessage());
         }
@@ -139,7 +139,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("localizacao", "localizacoes", MatchMode.ANYWHERE)).addOrder(Order.asc("localizacoes")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("localizacao", localizacoes, MatchMode.ANYWHERE)).addOrder(Order.asc("localizacoes")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Localização. Erro: " + e.getMessage());
         }
@@ -151,7 +151,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("idtipoitem", tipoitem)).addOrder(Order.asc("idtipoitem")).addOrder(Order.asc("idtipoitem")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("tipoitem", tipoitem)).addOrder(Order.asc("idtipoitem")).addOrder(Order.asc("tipoitem")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Tipo do Item. Erro: " + e.getMessage());
         }
@@ -175,7 +175,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("editora", editora)).addOrder(Order.asc("editora")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("editora", editora)).addOrder(Order.asc("editora")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Editora. Erro: " + e.getMessage());
         }
