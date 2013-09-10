@@ -3,6 +3,7 @@ package fvsosp.autor;
 import fvsosp.acervo.Acervo;
 import java.util.List;
 import javax.persistence.*;
+import org.hibernate.annotations.Type;
 
 
 @Entity
@@ -17,7 +18,8 @@ public class Autor {
     @Column(nullable = false, length = 150, columnDefinition = "varchar(150) default ''") 
     private String nome;
     
-    @Column(nullable = false, length = 200, columnDefinition = "varchar(200) default ''")
+    @Type(type="text")
+    @Column(nullable = false, length = 200)
     private String sobreOAutor;
     
     /* Um autor possui vários acervos
