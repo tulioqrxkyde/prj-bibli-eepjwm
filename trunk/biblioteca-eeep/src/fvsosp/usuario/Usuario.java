@@ -6,7 +6,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import javax.persistence.*;
-
+//classe persistente de usuário
 @Entity
 @Table(name="usuario")
 public class Usuario implements Serializable{
