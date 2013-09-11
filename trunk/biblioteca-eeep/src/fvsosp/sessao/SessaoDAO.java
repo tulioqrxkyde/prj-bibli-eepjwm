@@ -4,6 +4,7 @@
  */
 package fvsosp.sessao;
 
+import fvsosp.acervo.Acervo;
 import fvsosp.leitor.Leitor;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
@@ -40,15 +41,15 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
     }
 
-    public List<Sessao> pesquisarAcervos(String acervos) {
+    public List<Sessao> pesquisarAcervos(Acervo acervos) {
         List<Sessao> Sessaoa = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
             Sessaoa = (List<Sessao>) getSessao().createCriteria(Sessao.class).
-                    add(Restrictions.like("acervos", acervos, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("acervos")).list();
+                    add(Restrictions.eq("acervos", acervos)).
+                    addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por acervos: " + e.getMessage());
