@@ -95,7 +95,7 @@ public class Emprestimo implements Serializable{
     }
 
     /*** @retorna a Data do Empréstimo ***/
-    public Date getDataEmrepstimo() {
+    public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 

@@ -1,14 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
 import fvsosp.leitor.Leitor;
-import fvsosp.util.GenericDAO;
-import fvsosp.util.HibernateUtil;
-import java.util.Date;
+import fvsosp.util.*;
+import java.util.*;
 import org.hibernate.HibernateException;
 import org.hibernate.criterion.*;
 
@@ -22,48 +17,48 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         super(Emprestimo.class);
     }
 
-    public Acervo pesquisaridEmprestimo(int id) {
-        Acervo acervo = null;
+    public Emprestimo pesquisaridEmprestimo(int id) {
+        Emprestimo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("idEmprestimo", String.valueOf(id), MatchMode.ANYWHERE)).addOrder(Order.asc("idEmprestimo")).uniqueResult();
+            acervo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("idEmprestimo", String.valueOf(id), MatchMode.ANYWHERE)).addOrder(Order.asc("idEmprestimo")).uniqueResult();
         } catch (HibernateException e) {
-            System.out.println("Erro ao localizar o isbn. Erro: " + e.getMessage());
+            System.out.println("Erro ao localizar o id do Emprestimo. Erro: " + e.getMessage());
         }
         return acervo;
     }
 
-    public Acervo pesquisardataEmprestimo(Date data) {
-        Acervo acervo = null;
+    public List<Emprestimo> pesquisardataEmprestimo(Date data) {
+        List<Emprestimo> acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
+            acervo = (List<Emprestimo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
         } catch (HibernateException e) {
-            System.out.println("Erro ao localizar o isbn. Erro: " + e.getMessage());
+            System.out.println("Erro ao localizar a Data de Emprestimo. Erro: " + e.getMessage());
         }
         return acervo;
     }
 
-    public Acervo pesquisardataDevolucao(Date data) {
-        Acervo acervo = null;
+    public Emprestimo pesquisardataDevolucao(Date data) {
+        Emprestimo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("dataDevolucao", data)).addOrder(Order.asc("dataDevolucao")).list();
+            acervo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataDevolucao", data)).addOrder(Order.asc("dataDevolucao")).list();
         } catch (HibernateException e) {
-            System.out.println("Erro ao localizar o isbn. Erro: " + e.getMessage());
+            System.out.println("Erro ao localizar a Data de Devolução. Erro: " + e.getMessage());
         }
         return acervo;
     }
 
-    public Acervo pesquisarAcervoEmprestimo(Emprestimo emprestimo) {
+    public Acervo pesquisarEmprestimo(Emprestimo emprestimo) {
         Acervo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("AcervoEmprestimos", emprestimo)).uniqueResult();
+            acervo = (Acervo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("AcervoEmprestimos", emprestimo)).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
         }
@@ -75,7 +70,7 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            leitor = (Leitor) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("idLeitor", emprestimo)).uniqueResult();
+            leitor = (Leitor) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("idLeitor", emprestimo)).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
         }
