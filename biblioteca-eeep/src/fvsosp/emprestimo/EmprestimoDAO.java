@@ -18,39 +18,39 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
     }
 
     public Emprestimo pesquisaridEmprestimo(int id) {
-        Emprestimo acervo = null;
+        Emprestimo emprestimo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("idEmprestimo", String.valueOf(id), MatchMode.ANYWHERE)).addOrder(Order.asc("idEmprestimo")).uniqueResult();
+            emprestimo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("idEmprestimo", String.valueOf(id), MatchMode.ANYWHERE)).addOrder(Order.asc("idEmprestimo")).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o id do Emprestimo. Erro: " + e.getMessage());
         }
-        return acervo;
+        return emprestimo;
     }
 
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
-        List<Emprestimo> acervo = null;
+        List<Emprestimo> emprestimo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Emprestimo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
+            emprestimo = (List<Emprestimo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Data de Emprestimo. Erro: " + e.getMessage());
         }
-        return acervo;
+        return emprestimo;
     }
 
     public Emprestimo pesquisardataDevolucao(Date data) {
-        Emprestimo acervo = null;
+        Emprestimo emprestimo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataDevolucao", data)).addOrder(Order.asc("dataDevolucao")).list();
+            emprestimo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataDevolucao", data)).addOrder(Order.asc("dataDevolucao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Data de Devolução. Erro: " + e.getMessage());
         }
-        return acervo;
+        return emprestimo;
     }
 
     public Acervo pesquisarEmprestimo(Emprestimo emprestimo) {

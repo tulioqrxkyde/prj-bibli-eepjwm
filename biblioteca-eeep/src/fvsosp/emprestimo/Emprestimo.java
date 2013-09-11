@@ -8,7 +8,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "emprestimo")
-public class Emprestimo implements Serializable{
+public class Emprestimo implements Serializable {
 
     @Override
     public int hashCode() {
@@ -47,14 +47,11 @@ public class Emprestimo implements Serializable{
         }
         return true;
     }
-
     @Id // campo chave primária
     @GeneratedValue // campo auto-incremento
     private int idEmprestimo;
-    
     @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
     private Date dataEmprestimo;
-
     @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
     private Date dataDevolucao;
 
@@ -67,11 +64,13 @@ public class Emprestimo implements Serializable{
      * todos os itens da tabela acervoemprestimos que façam referência 
      * ao emprestimo excluído será deletado também
      */
-    @ManyToMany (cascade = CascadeType.ALL)
-    @JoinTable(name = "AcervoEmprestimos", 
-            joinColumns = @JoinColumn(name = "idEmprestimo"), 
-            inverseJoinColumns = @JoinColumn(name = "idAcervo"))
-    private Set<Acervo> acervos = new HashSet<Acervo>(); 
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "AcervoEmprestimos",
+            joinColumns =
+            @JoinColumn(name = "idEmprestimo"),
+            inverseJoinColumns =
+            @JoinColumn(name = "idAcervo"))
+    private Set<Acervo> acervos = new HashSet<Acervo>();
     /*set não aceita valores duplicados, 
      * ou seja um mesmo livro não poderá ser emprestado ao 
      * mesmo emprestimo
@@ -80,56 +79,77 @@ public class Emprestimo implements Serializable{
     /*um emprestimo tem apenas um leitor
      * a chave estrangeira irá se chamar idLeitor
      */
-    @ManyToOne 
+    @ManyToOne
     @JoinColumn(name = "idLeitor")
     private Leitor leitor;
 
-    /*** @retorna o id do Empréstimo ***/
+    /**
+     * * @retorna o id do Empréstimo **
+     */
     public int getIdEmprestimo() {
         return idEmprestimo;
     }
 
-    /*** @seta o id do Empréstimo ***/
+    /**
+     * * @seta o id do Empréstimo **
+     */
     public void setIdEmprestimo(int idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
-    /*** @retorna a Data do Empréstimo ***/
+    /**
+     * * @retorna a Data do Empréstimo **
+     */
     public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
-    /*** @seta a Data do Empréstimo ***/
+    /**
+     * * @seta a Data do Empréstimo **
+     */
     public void setDataEmrepstimo(Date dataEmrepstimo) {
         this.dataEmprestimo = dataEmrepstimo;
     }
 
-    /*** @retorna a Data de Devolução ***/
+    /**
+     * * @retorna a Data de Devolução **
+     */
     public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
-    /*** @seta a Data de Devolução ***/
+    /**
+     * * @seta a Data de Devolução **
+     */
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
-    /*** @retorna a lista de Acervos ***/
+    /**
+     * * @retorna a lista de Acervos **
+     */
     public Set<Acervo> getAcervos() {
         return acervos;
     }
 
-    /*** @seta e copia a lista de Acervos recebida para a lista de Acervos da Classe ***/
+    /**
+     * * @seta e copia a lista de Acervos recebida para a lista de Acervos da
+     * Classe **
+     */
     public void setAcervos(Set<Acervo> acervos) {
         this.acervos = acervos;
     }
 
-    /*** @retorna o Leitor ***/
+    /**
+     * * @retorna o Leitor **
+     */
     public Leitor getLeitor() {
         return leitor;
     }
 
-    /*** @seta o Leitor ***/
+    /**
+     * * @seta o Leitor **
+     */
     public void setLeitor(Leitor leitor) {
         this.leitor = leitor;
     }
