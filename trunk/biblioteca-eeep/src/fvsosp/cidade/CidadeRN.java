@@ -15,7 +15,8 @@ public class CidadeRN {
     private CidadeDAO dao = new CidadeDAO();
 
     public boolean adiciona(Cidade cidade) {
-        if (cidade.getDescricao() != null) {
+        if ((cidade.getDescricao() != null)
+                &&(cidade.getUf()!=null)) {
             dao.adicionar(cidade);
             return true;
         }
@@ -38,5 +39,13 @@ public class CidadeRN {
 
     public List<Cidade> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
+    }
+    
+    public Cidade pesquisarCodIbge(int codibge) {
+        return dao.pesquisarCodIbge(codibge);
+    }
+    
+    public List<Cidade> pesquisarUf(String uf) {
+        return dao.pesquisarUf(uf);
     }
 }

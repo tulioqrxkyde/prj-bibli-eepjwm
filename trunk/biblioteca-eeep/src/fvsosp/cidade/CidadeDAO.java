@@ -57,14 +57,14 @@ public class CidadeDAO extends GenericDAO<Cidade> {
 
     }
 
-    public List<Cidade> pesquisarUf(String descricao) {
+    public List<Cidade> pesquisarUf(String uf) {
         List<Cidade> cidades = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
             cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
+                    add(Restrictions.like("descricao", uf, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {
