@@ -22,8 +22,8 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
         super(BibliotecaDAO.class);
     }
 
-    public List<Biblioteca> pesquisarDescricao(String descricao) {
-        List<Biblioteca> bibliotecas = null;
+    public Biblioteca pesquisarDescricao(String descricao) {
+        Biblioteca bibliotecas = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
@@ -34,9 +34,9 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
              * pode ser encontrada em qualquer lugar, representa o '%descricao%', ordenando
              * de forma crescente por descicao
              */
-            bibliotecas = (List<Biblioteca>) getSessao().createCriteria(Biblioteca.class).
+            bibliotecas = (Biblioteca) getSessao().createCriteria(Biblioteca.class).
                     add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("descricao")).list();
+                    addOrder(Order.asc("descricao")).uniqueResult();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
