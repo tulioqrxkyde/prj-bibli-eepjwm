@@ -7,6 +7,8 @@ package fvsosp.telas;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioDAO;
 import fvsosp.usuario.UsuarioRN;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
 
 /**
@@ -118,7 +120,7 @@ public class Login extends javax.swing.JFrame {
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
         // TODO add your handling code here:
-        if(verificaCampos()){
+        if (verificaCampos()) {
             /*
              * Se os campos estiverem todos preenchidos
              * é criado um usuário passado as informações pra ele
@@ -130,14 +132,14 @@ public class Login extends javax.swing.JFrame {
             Usuario usuario = new Usuario();
             usuario.setLogin(tfLogin.getText());
             usuario.setSenha(tfSenha.getText());
-            
+
             UsuarioRN uRN = new UsuarioRN();
-            if(uRN.autentica(usuario)){
-                JOptionPane.showMessageDialog(rootPane, "OK!", 
-                    "Informação", JOptionPane.INFORMATION_MESSAGE);
+            if (uRN.autentica(usuario)) {
+                JOptionPane.showMessageDialog(rootPane, "OK!",
+                        "Informação", JOptionPane.INFORMATION_MESSAGE);
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Login ou Senha Incorretos!", 
-                    "Informação", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(rootPane, "Login ou Senha Incorretos!",
+                        "Informação", JOptionPane.ERROR_MESSAGE);
             }
         }
     }//GEN-LAST:event_btLogarActionPerformed
@@ -150,23 +152,32 @@ public class Login extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_btCancelarActionPerformed
 
-    public boolean verificaCampos(){
+    public boolean verificaCampos() {
+        Pattern regex = Pattern.compile("\\W");
+        Matcher comparadorUsuario = regex.matcher(tfLogin.getText()), comparadorSenha = regex.matcher(tfSenha.getText());
         /*
          * Verifica se os campos estão vazios
          */
-        if(tfLogin.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Informe o Campo Login!", 
+        if (tfLogin.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Informe o Campo Login!",
                     "Campos Vazios", JOptionPane.INFORMATION_MESSAGE);
             tfLogin.setFocusable(true);
             return false;
-        } else if(tfSenha.getText().isEmpty()){
-            JOptionPane.showMessageDialog(rootPane, "Informe o Campo Senha!", 
+        } else if (tfSenha.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(rootPane, "Informe o Campo Senha!",
                     "Campos Vazios", JOptionPane.INFORMATION_MESSAGE);
             tfSenha.setFocusable(true);
             return false;
         }
+        /* Verifica se algum caractere especial 
+         * está contido dentro dos campos de Login e Senha */
+        if (comparadorUsuario.find() || comparadorSenha.find()) {
+            JOptionPane.showMessageDialog(rootPane, "Não é permitido o uso de caracteres especiais!", "Caracteres Inválidos", JOptionPane.INFORMATION_MESSAGE);
+            return false;
+        }
         return true;
     }
+
     /**
      * @param args the command line arguments
      */
