@@ -9,14 +9,7 @@ import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.io.Serializable;
 import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
@@ -120,26 +113,31 @@ public class Acervo implements Serializable{
         return true;
     }
     
-    @Column(nullable=false, length=150)
+    @Column(nullable = false, length = 150)
     private String tituloObra;
     
-    @Column(nullable=false, length=150)
+    @Column(nullable = false, length = 150)
     private String subtituloObra;
     
-    @Column(length=50, columnDefinition="varchar(50) default ''")
+    @Column(length = 50, columnDefinition = "varchar(50) default ''")
     private String isbn;
     
-    @Column(nullable=false)
+    @Column(nullable = false, columnDefinition = "int default 0")
     private int exemplar;
     
+    @Column(length = 4, nullable = false)
     private String volume;
     
+    @Column(length = 4, nullable = false)
     private String edicao;
     
+    @Column(nullable = false)
     private int anoEdicao;
     
+    @Column(nullable = false)
     private String informacoesAdicionais;
     
+    @Column(length = 50, nullable = false)
     private String localizacao;
     
     @ManyToOne
@@ -172,256 +170,183 @@ public class Acervo implements Serializable{
     
     private static long serialVersionUID = -8256983727176831230L;
 
-    /**
-     * @return the idAcervo
-     */
+    /*** @retorna o id do Acervo ***/
     public int getIdAcervo() {
         return idAcervo;
     }
 
-    /**
-     * @param idAcervo the idAcervo to set
-     */
+    /*** @seta idAcervo the idAcervo to set ***/
     public void setIdAcervo(int idAcervo) {
         this.idAcervo = idAcervo;
     }
 
-    /**
-     * @return the tombo
-     */
+    /*** @retorna o tombo ***/
     public int getTombo() {
         return tombo;
     }
 
-    /**
-     * @param tombo the tombo to set
-     */
+    /*** @seta o tombo ***/
     public void setTombo(int tombo) {
         this.tombo = tombo;
     }
 
-    /**
-     * @return the tituloObra
-     */
+    /*** @retorna o Título da Obra ***/
     public String getTituloObra() {
         return tituloObra;
     }
 
-    /**
-     * @param tituloObra the tituloObra to set
-     */
+    /*** @seta o Título da Obra ***/
     public void setTituloObra(String tituloObra) {
         this.tituloObra = tituloObra;
     }
 
-    /**
-     * @return the subtituloObra
-     */
+    /*** @retorna o Sub-Título da Obra ***/
     public String getSubtituloObra() {
         return subtituloObra;
     }
 
-    /**
-     * @param subtituloObra the subtituloObra to set
-     */
+    /*** @seta o Sub-Título da Obra ***/
     public void setSubtituloObra(String subtituloObra) {
         this.subtituloObra = subtituloObra;
     }
 
-    /**
-     * @return the isbn
-     */
+    /*** @retorna o Isbn ***/
     public String getIsbn() {
         return isbn;
     }
 
-    /**
-     * @param isbn the isbn to set
-     */
+    /*** @seta o Isbn ***/
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    /**
-     * @return the exemplar
-     */
+    /*** @retorna o Exemplar ***/
     public int getExemplar() {
         return exemplar;
     }
 
-    /**
-     * @param exemplar the exemplar to set
-     */
+    /*** @seta o Exemplar ***/
     public void setExemplar(int exemplar) {
         this.exemplar = exemplar;
     }
 
-    /**
-     * @return the volume
-     */
+    /*** @retorna o Volume ***/
     public String getVolume() {
         return volume;
     }
 
-    /**
-     * @param volume the volume to set
-     */
+    /*** @seta o Volume ***/
     public void setVolume(String volume) {
         this.volume = volume;
     }
 
-    /**
-     * @return the edicao
-     */
+    /*** @retorna a Edição ***/
     public String getEdicao() {
         return edicao;
     }
 
-    /**
-     * @param edicao the edicao to set
-     */
+    /*** @seta a Edição ***/
     public void setEdicao(String edicao) {
         this.edicao = edicao;
     }
 
-    /**
-     * @return the anoEdicao
-     */
+    /*** @retorna o Ano de Edição ***/
     public int getAnoEdicao() {
         return anoEdicao;
     }
 
-    /**
-     * @param anoEdicao the anoEdicao to set
-     */
+    /*** @seta o Ano de Edição ***/
     public void setAnoEdicao(int anoEdicao) {
         this.anoEdicao = anoEdicao;
     }
 
-    /**
-     * @return the informacoesAdicionais
-     */
+    /*** @retorna as Informações Adicionais ***/
     public String getInformacoesAdicionais() {
         return informacoesAdicionais;
     }
 
-    /**
-     * @param informacoesAdicionais the informacoesAdicionais to set
-     */
+    /*** @seta as Informações Adicionais ***/
     public void setInformacoesAdicionais(String informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
     }
 
-    /**
-     * @return the localizacao
-     */
+    /*** @retorna a Localização ***/
     public String getLocalizacao() {
         return localizacao;
     }
 
-    /**
-     * @param localizacao the localizacao to set
-     */
+    /*** @seta a Localização ***/
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
     }
 
-    /**
-     * @return the tipoItem
-     */
+    /*** @retorna o Tipo de Item ***/
     public TipoItem getTipoItem() {
         return tipoItem;
     }
 
-    /**
-     * @param tipoItem the tipoItem to set
-     */
+    /*** @seta e copia o Tipo de Item recebido para o Tipo de Item da Classe ***/
     public void setTipoItem(TipoItem tipoItem) {
         this.tipoItem = tipoItem;
     }
 
-    /**
-     * @return the autor
-     */
+    /*** @retorna o Autor ***/
     public Autor getAutor() {
         return autor;
     }
 
-    /**
-     * @param autor the autor to set
-     */
+    /*** @seta e copia o Autor recebido para o Autor da Classe ***/
     public void setAutor(Autor autor) {
         this.autor = autor;
     }
 
-    /**
-     * @return the editora
-     */
+    /*** @retorna a Editora ***/
     public Editora getEditora() {
         return editora;
     }
 
-    /**
-     * @param editora the editora to set
-     */
+    /*** @seta e copia a Editora recebida para a Editora da Classe ***/
     public void setEditora(Editora editora) {
         this.editora = editora;
     }
 
-    /**
-     * @return the idioma
-     */
+    /*** @retorna o Idioma ***/
     public Idioma getIdioma() {
         return idioma;
     }
 
-    /**
-     * @param idioma the idioma to set
-     */
+    /*** @seta e copia o Idioma recebido para o Idioma da Classe ***/
     public void setIdioma(Idioma idioma) {
         this.idioma = idioma;
     }
 
-    /**
-     * @return the especificacoesTecnicas
-     */
+    /*** @retorna uma Especificações Técnicas ***/
     public EspecificacoesTecnicas getEspecificacoesTecnicas() {
         return especificacoesTecnicas;
     }
 
-    /**
-     * @param especificacoesTecnicas the especificacoesTecnicas to set
-     */
+    /*** @seta e copia as Especificações Técnicas recebidas para a Especificações Técnicas da Classe ***/
     public void setEspecificacoesTecnicas(EspecificacoesTecnicas especificacoesTecnicas) {
         this.especificacoesTecnicas = especificacoesTecnicas;
     }
 
-    /**
-     * @return the sessao
-     */
+    /*** @retorna a Sessão ***/
     public Sessao getSessao() {
         return sessao;
     }
 
-    /**
-     * @param sessao the sessao to set
-     */
+    /*** @seta e copia a Sessão recebida para a Sessão da Classe ***/
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
     }
 
-    /**
-     * @return the biblioteca
-     */
+    /*** @retorna a Biblioteca ***/
     public Biblioteca getBiblioteca() {
         return biblioteca;
     }
 
-    /**
-     * @param biblioteca the biblioteca to set
-     */
+    /*** @seta e copia a Biblioteca recebida para a Biblioteca da Classe ***/
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
-    
 }
