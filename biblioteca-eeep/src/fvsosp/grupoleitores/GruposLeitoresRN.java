@@ -4,6 +4,7 @@
  */
 package fvsosp.grupoleitores;
 
+import fvsosp.cidade.Cidade;
 import java.util.List;
 
 /**
@@ -11,31 +12,34 @@ import java.util.List;
  * @author Pedro Saraiva
  */
 public class GruposLeitoresRN {
-    
+
     private GruposLeitoresDAO dao = new GruposLeitoresDAO();
-    
-    public boolean adiciona(GruposLeitores gl){
-        if(gl.getDescricao()!=null){
+
+    public boolean adiciona(GruposLeitores gl) {
+        if (gl.getDescricao() != null) {
             dao.adicionar(gl);
             return true;
         }
         return false;
     }
-    
-    public boolean atualiza(GruposLeitores gl){
+
+    public boolean atualiza(GruposLeitores gl) {
         dao.atualizar(gl);
         return true;
-        
+
     }
-    
-    public boolean remover(GruposLeitores gl){
+
+    public boolean remover(GruposLeitores gl) {
         dao.remover(gl);
         return true;
-        
+
     }
-    
-    public List<GruposLeitores> listar(){
+
+    public List<GruposLeitores> listar() {
         return dao.listar();
     }
-    
+
+    public List<GruposLeitores> pesquisarDescricao(String descricao) {
+        return dao.pesquisaDescricao(descricao);
+    }
 }
