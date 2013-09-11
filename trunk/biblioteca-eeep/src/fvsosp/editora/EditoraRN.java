@@ -12,7 +12,7 @@ public class EditoraRN {
     EditoraDAO dao = new EditoraDAO();
     
     public boolean adiciona(Editora ed) {
-        if ((ed.getIdEditora()> 0) && (!ed.getNome().isEmpty()) && (ed.getAcervo() != null) && (!ed.getAcervo().isEmpty())) {
+        if ((!ed.getNome().isEmpty()) && (ed.getAcervo() != null) && (!ed.getAcervo().isEmpty())) {
             dao.adicionar(ed);
             return true;
         }
@@ -31,10 +31,6 @@ public class EditoraRN {
 
     public List<Editora> listar() {
         return dao.listar();
-    }
-
-    public Editora pesquisarIdEditora(int id) {
-        return dao.procuraIdEditora(id);
     }
 
     public List<Editora> pesquisarNomeEditora(String nome) {

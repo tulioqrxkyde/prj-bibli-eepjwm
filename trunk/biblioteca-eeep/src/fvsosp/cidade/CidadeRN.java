@@ -40,11 +40,7 @@ public class CidadeRN {
     public List<Cidade> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
-    
-    public Cidade pesquisarCodIbge(int codibge) {
-        return dao.pesquisarCodIbge(codibge);
-    }
-    
+     
     public List<Cidade> pesquisarUf(String uf) {
         return dao.pesquisarUf(uf);
     }

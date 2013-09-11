@@ -17,18 +17,6 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         super(Emprestimo.class);
     }
 
-    public Emprestimo pesquisaridEmprestimo(int id) {
-        Emprestimo emprestimo = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            emprestimo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("idEmprestimo", String.valueOf(id), MatchMode.ANYWHERE)).addOrder(Order.asc("idEmprestimo")).uniqueResult();
-        } catch (HibernateException e) {
-            System.out.println("Erro ao localizar o id do Emprestimo. Erro: " + e.getMessage());
-        }
-        return emprestimo;
-    }
-
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
         List<Emprestimo> emprestimo = null;
         try {
@@ -53,12 +41,12 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         return emprestimo;
     }
 
-    public Acervo pesquisarEmprestimo(Emprestimo emprestimo) {
-        Acervo acervo = null;
+    public List<Acervo> pesquisarEmprestimo(Emprestimo emprestimo) {
+        List<Acervo> acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("AcervoEmprestimos", emprestimo)).uniqueResult();
+            acervo = (List<Acervo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("acervos", emprestimo)).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
         }
