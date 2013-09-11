@@ -4,6 +4,7 @@
  */
 package fvsosp.usuario;
 
+import fvsosp.util.Util;
 import java.util.List;
 
 /**
@@ -19,8 +20,9 @@ public class UsuarioRN {
      * essa classe implementa todas as regras de negócio
      * possíveis a Usuario
      */
-    private UsuarioDAO usuDAO = new UsuarioDAO();
-
+    private UsuarioDAO usuDAO = new UsuarioDAO(); 
+    
+    
     public boolean autentica(Usuario usuario) {
         Usuario usu = usuDAO.pesquisaUsuario(usuario);
         if (usu != null) {
@@ -61,6 +63,7 @@ public class UsuarioRN {
      * foi confirmada corretamente
      */
     public boolean adiciona(Usuario usuario, String confirmaSenha) {
+        confirmaSenha = Util.md5(confirmaSenha);
         if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
             if (usuario.getSenha().equals(confirmaSenha)) {
                 usuDAO.adicionar(usuario);
