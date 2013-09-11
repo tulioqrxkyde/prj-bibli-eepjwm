@@ -12,7 +12,7 @@ public class EmprestimoRN {
     EmprestimoDAO dao = new EmprestimoDAO();
 
     public boolean adiciona(Emprestimo em) {
-        if ((em.getIdEmprestimo() > 0) && (!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getAcervos().isEmpty())) {
+        if ((!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getAcervos().isEmpty())) {
             dao.adicionar(em);
             return true;
         }
@@ -41,7 +41,7 @@ public class EmprestimoRN {
         return dao.pesquisardataEmprestimo(data);
     }
 
-    public Acervo pesquisarEmprestimo(Emprestimo emprestimo) {
+    public List<Acervo> pesquisarEmprestimo(Emprestimo emprestimo) {
         return dao.pesquisarEmprestimo(emprestimo);
     }
 }

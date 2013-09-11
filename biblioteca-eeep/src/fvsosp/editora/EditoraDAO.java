@@ -17,23 +17,6 @@ public class EditoraDAO extends GenericDAO<Editora> {
         super(Editora.class);
     }
 
-    public Editora procuraIdEditora(int id) {
-        Editora editoras = null;
-
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-
-            editoras = (Editora) getSessao().createCriteria(Editora.class).
-                    add(Restrictions.ilike("idEditora", String.valueOf(id), MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("idEditora")).list();
-
-        } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por Id da Editora: " + e.getMessage());
-        }
-        return editoras;
-    }
-
     public List<Editora> procuraNomeEditora(String nome) {
         List<Editora> editoras = null;
 
