@@ -36,7 +36,7 @@ public class BibliotecaRN {
         return dao.listar();
     }
 
-    public List<Biblioteca> pesquisaDescricao(String descricao) {
+    public Biblioteca pesquisaDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
 }
