@@ -31,7 +31,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("tombo", new Integer(tombos))).addOrder(Order.asc("tombo")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("tombo", String.valueOf(tombos), MatchMode.ANYWHERE)).addOrder(Order.asc("tombo")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Tombo. Erro: " + e.getMessage());
         }
@@ -79,7 +79,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("exemplar", new Integer(exemplares))).addOrder(Order.asc("exemplar")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("exemplar", String.valueOf(exemplares), MatchMode.ANYWHERE)).addOrder(Order.asc("exemplar")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Exemplar. Erro: " + e.getMessage());
         }
@@ -115,7 +115,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("anoEdicao", new Integer(anos))).addOrder(Order.asc("anoEdicao")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("anoEdicao", String.valueOf(anos), MatchMode.ANYWHERE)).addOrder(Order.asc("anoEdicao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Ano de Edição. Erro: " + e.getMessage());
         }
