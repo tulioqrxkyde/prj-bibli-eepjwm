@@ -1,69 +1,48 @@
 package fvsosp.editora;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.cidade.Cidade;
 import java.io.Serializable;
-import java.util.List;
-import java.util.Objects;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import java.util.*;
+import javax.persistence.*;
 
 @Entity
-@Table(name="editora")
-public class Editora implements Serializable{
+@Table(name = "editora")
+public class Editora implements Serializable {
 
     @Id
     @GeneratedValue
     private int idEditora;
-    
-    @Column(length=150, nullable=false)
+    @Column(length = 150, nullable = false)
     private String nome;
-    
-    @OneToMany(mappedBy="editora")
+    @OneToMany(mappedBy = "editora")
     private List<Acervo> acervo;
 
-    /**
-     * @return the idEditora
-     */
+    /*** @retorna o id da Editora ***/
     public int getIdEditora() {
         return idEditora;
     }
 
-    /**
-     * @param idEditora the idEditora to set
-     */
+    /*** @seta o id da Editora ***/
     public void setIdEditora(int idEditora) {
         this.idEditora = idEditora;
     }
 
-    /**
-     * @return the nome
-     */
+    /*** @retorna o nome da Editora ***/
     public String getNome() {
         return nome;
     }
 
-    /**
-     * @param nome the nome to set
-     */
+    /*** @seta o nome da Editora ***/
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /**
-     * @return the acervo
-     */
+    /*** @retorna uma lista de Acervos ***/
     public List<Acervo> getAcervo() {
         return acervo;
     }
 
-    /**
-     * @param acervo the acervo to set
-     */
+    /*** @seta e copia a lista de Acervos recebida para a lista da Classe ***/
     public void setAcervo(List<Acervo> acervo) {
         this.acervo = acervo;
     }
@@ -98,7 +77,4 @@ public class Editora implements Serializable{
         }
         return true;
     }
-    
-    
-    
 }
