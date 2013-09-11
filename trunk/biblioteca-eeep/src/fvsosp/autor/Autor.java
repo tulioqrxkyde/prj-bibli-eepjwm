@@ -1,6 +1,7 @@
 package fvsosp.autor;
 
 import fvsosp.acervo.Acervo;
+
 import java.util.List;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
