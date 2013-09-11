@@ -1,5 +1,6 @@
 package fvsosp.usuario;
 
+import fvsosp.util.Util;
 import java.io.Serializable;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -51,20 +52,10 @@ public class Usuario implements Serializable{
 
     /*** @seta a senha a passando para o HASH MD5 ***/
     public void setSenha(String senha) {
-        this.senha = md5(senha);
+        this.senha = Util.md5(senha);
     }
     
-    /* @MD5 Método de Encriptação da Senha em um HASH Hexadecimal */
-    public String md5(String senha){ 
-        MessageDigest md = null;  
-        try {  
-            md = MessageDigest.getInstance("MD5");  
-        } catch (NoSuchAlgorithmException e) {  
-            e.printStackTrace();  
-        }
-        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));            
-        return ((String) hash.toString(16));
-    } 
+    
     private static final long serialVersionUID = -8877584534061371241L;
 
     /**
