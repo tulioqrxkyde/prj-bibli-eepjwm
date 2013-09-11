@@ -15,10 +15,10 @@ public class PalavrasChaves implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 5;
-        hash = 83 * hash + this.idPalavrasChaves;
-        hash = 83 * hash + this.descricao;
-        hash = 83 * hash + Objects.hashCode(this.acervo);
+        int hash = 7;
+        hash = 97 * hash + this.idPalavrasChaves;
+        hash = 97 * hash + Objects.hashCode(this.descricao);
+        hash = 97 * hash + Objects.hashCode(this.acervo);
         return hash;
     }
 
@@ -34,7 +34,7 @@ public class PalavrasChaves implements Serializable{
         if (this.idPalavrasChaves != other.idPalavrasChaves) {
             return false;
         }
-        if (this.descricao != other.descricao) {
+        if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
         if (!Objects.equals(this.acervo, other.acervo)) {
@@ -42,9 +42,10 @@ public class PalavrasChaves implements Serializable{
         }
         return true;
     }
+
     
-    @Column(length = 40, nullable = false, columnDefinition = "varchar(40) default ''")
-    private int descricao;
+    @Column(length = 100, nullable = false, columnDefinition = "varchar(100) default ''")
+    private String descricao;
     /*
      * Um palavraschaves possui muitos acervos, e um acervo possui 
      * muitos palavraschaves, no caso será criada uma nova tabela chamada
@@ -68,11 +69,11 @@ public class PalavrasChaves implements Serializable{
         this.idPalavrasChaves = idPalavrasChaves;
     }
     /*** @retorna a descrição ***/
-    public int getDescricao() {
+    public String getDescricao() {
         return descricao;
     }
     /*** @seta a descricao ***/
-    public void setDescricao(int descricao) {
+    public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
     /*** @retorna o acervo ***/
