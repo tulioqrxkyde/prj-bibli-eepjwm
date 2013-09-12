@@ -4,6 +4,7 @@
  */
 package fvsosp.suiteteste;
 
+import fvsosp.sessao.SessaoRNTest;
 import fvsosp.tipoitem.TipoItemRNTest;
 import fvsosp.usuario.UsuarioRNTest;
 import org.junit.After;
@@ -18,7 +19,8 @@ import org.junit.runners.Suite;
  * @author Pedro Saraiva
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({UsuarioRNTest.class,TipoItemRNTest.class})
+@Suite.SuiteClasses({UsuarioRNTest.class,TipoItemRNTest.class,
+    SessaoRNTest.class})
 public class TesteRN {
 
     @BeforeClass
