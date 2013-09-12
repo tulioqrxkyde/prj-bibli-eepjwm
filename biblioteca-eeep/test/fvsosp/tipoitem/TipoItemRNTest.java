@@ -42,13 +42,6 @@ public class TipoItemRNTest {
      */
     @Test
     public void testRemover() {
-        System.out.println("remover");
-        TipoItem tp = null;
-        TipoItemRN instance = new TipoItemRN();
-        boolean expResult = false;
-        boolean result = instance.remover(tp);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
@@ -57,13 +50,6 @@ public class TipoItemRNTest {
      */
     @Test
     public void testAtualizar() {
-        System.out.println("atualizar");
-        TipoItem tp = null;
-        TipoItemRN instance = new TipoItemRN();
-        boolean expResult = false;
-        boolean result = instance.atualizar(tp);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
@@ -72,13 +58,6 @@ public class TipoItemRNTest {
      */
     @Test
     public void testAdiciona() {
-        System.out.println("adiciona");
-        TipoItem tp = null;
-        TipoItemRN instance = new TipoItemRN();
-        boolean expResult = false;
-        boolean result = instance.adiciona(tp);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 
@@ -87,11 +66,6 @@ public class TipoItemRNTest {
      */
     @Test
     public void testListar() {
-        System.out.println("listar");
-        TipoItemRN instance = new TipoItemRN();
-        List expResult = null;
-        List result = instance.listar();
-        assertEquals(expResult, result);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
@@ -101,13 +75,6 @@ public class TipoItemRNTest {
      */
     @Test
     public void testPesquisaDescricao() {
-        System.out.println("pesquisaDescricao");
-        String descricao = "";
-        TipoItemRN instance = new TipoItemRN();
-        List expResult = null;
-        List result = instance.pesquisaDescricao(descricao);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
     }
 }
