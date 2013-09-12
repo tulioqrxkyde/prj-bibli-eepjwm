@@ -40,7 +40,7 @@ public class AutorRN {
         return dao.listar();
     }
 
-    // Metódo de pesquisa
+    // Metódos de pesquisa
     public List<Autor> pesquisarNome(String autor) {
         return dao.pesquisarNome(autor);
     }
