@@ -48,9 +48,9 @@ public class UsuarioRN {
      * verifica se a senha foi confirmada corretamente
      * depois atualiza
      */
-    public boolean atualizar(Usuario usuario, String confirmaSenha) {
+    public boolean atualizar(Usuario usuario, String confirmaSenhaAnterior) {
         Usuario usu = usuDAO.carregaChavePrimaria(usuario.getIdUsuario());
-        if (usu.getSenha().equals(confirmaSenha)) {
+        if (usu.getSenha().equals(Util.md5(confirmaSenhaAnterior))) {
             usuDAO.atualizar(usuario);
             return true;
         }

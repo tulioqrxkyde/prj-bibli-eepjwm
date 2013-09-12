@@ -7,6 +7,7 @@ import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 //classe persistente de usuário
 @Entity
 @Table(name="usuario")
@@ -16,6 +17,7 @@ public class Usuario implements Serializable{
     @GeneratedValue // campo auto incremento
     private int idUsuario;
 
+    @NaturalId
     @Column(length = 50, nullable = false)
     private String login;
     
