@@ -17,20 +17,20 @@ public class CidadeRN {
     public boolean adiciona(Cidade cidade) {
         if ((cidade.getDescricao() != null)
                 &&(cidade.getUf()!=null)) {
-            dao.adicionar(cidade);
-            return true;
+            return dao.adicionar(cidade);
+         
         }
         return false;
     }
 
     public boolean remover(Cidade cidade) {
-        dao.remover(cidade);
-        return true;
+        return dao.remover(cidade);
+        
     }
 
     public boolean atualizar(Cidade cidade) {
-        dao.atualizar(cidade);
-        return true;
+        return dao.atualizar(cidade);
+        
     }
 
     public List<Cidade> listar() {
