@@ -17,20 +17,20 @@ public class SessaoRN {
     
     public boolean adicionar(Sessao sessao){
         if(!sessao.getDescricao().isEmpty()){
-            dao.adicionar(sessao);
-            return true;
+            return dao.adicionar(sessao);
+            
         } 
         return false;
     }
     
     public boolean atualizar(Sessao sessao){
-        dao.atualizar(sessao);
-        return true;
+        return dao.atualizar(sessao);
+        
     }
     
     public boolean remove(Sessao sessao){
-        dao.remover(sessao);
-        return true;
+        return dao.remover(sessao);
+        
     }
     
     public List<Sessao> listar(){

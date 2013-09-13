@@ -1,5 +1,6 @@
 package fvsosp.acervo;
 
+import br.edu.exemplar.Exemplar;
 import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
@@ -8,6 +9,7 @@ import fvsosp.idioma.Idioma;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.io.Serializable;
+import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
@@ -16,34 +18,44 @@ import org.hibernate.annotations.NaturalId;
 @Table(name="acervo")
 public class Acervo implements Serializable{
 
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+
     @Id
     @GeneratedValue
     private int idAcervo;
-    
-    @NaturalId
-    private int tombo;
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 61 * hash + this.getIdAcervo();
-        hash = 61 * hash + this.getTombo();
-        hash = 61 * hash + Objects.hashCode(this.getTituloObra());
-        hash = 61 * hash + Objects.hashCode(this.getSubtituloObra());
-        hash = 61 * hash + Objects.hashCode(this.getIsbn());
-        hash = 61 * hash + this.getExemplar();
-        hash = 61 * hash + Objects.hashCode(this.getVolume());
-        hash = 61 * hash + Objects.hashCode(this.getEdicao());
-        hash = 61 * hash + this.getAnoEdicao();
-        hash = 61 * hash + Objects.hashCode(this.getInformacoesAdicionais());
-        hash = 61 * hash + Objects.hashCode(this.getLocalizacao());
-        hash = 61 * hash + Objects.hashCode(this.getTipoItem());
-        hash = 61 * hash + Objects.hashCode(this.getAutor());
-        hash = 61 * hash + Objects.hashCode(this.getEditora());
-        hash = 61 * hash + Objects.hashCode(this.getIdioma());
-        hash = 61 * hash + Objects.hashCode(this.getEspecificacoesTecnicas());
-        hash = 61 * hash + Objects.hashCode(this.getSessao());
-        hash = 61 * hash + Objects.hashCode(this.getBiblioteca());
+        hash = 79 * hash + this.idAcervo;
+        hash = 79 * hash + Objects.hashCode(this.tituloObra);
+        hash = 79 * hash + Objects.hashCode(this.subtituloObra);
+        hash = 79 * hash + Objects.hashCode(this.isbn);
+        hash = 79 * hash + Objects.hashCode(this.volume);
+        hash = 79 * hash + Objects.hashCode(this.edicao);
+        hash = 79 * hash + this.anoEdicao;
+        hash = 79 * hash + Objects.hashCode(this.informacoesAdicionais);
+        hash = 79 * hash + Objects.hashCode(this.localizacao);
+        hash = 79 * hash + Objects.hashCode(this.tipoItem);
+        hash = 79 * hash + Objects.hashCode(this.autor);
+        hash = 79 * hash + Objects.hashCode(this.editora);
+        hash = 79 * hash + Objects.hashCode(this.idioma);
+        hash = 79 * hash + Objects.hashCode(this.especificacoesTecnicas);
+        hash = 79 * hash + Objects.hashCode(this.sessao);
+        hash = 79 * hash + Objects.hashCode(this.biblioteca);
+        hash = 79 * hash + Objects.hashCode(this.exemplares);
         return hash;
     }
 
@@ -56,10 +68,7 @@ public class Acervo implements Serializable{
             return false;
         }
         final Acervo other = (Acervo) obj;
-        if (this.getIdAcervo() != other.getIdAcervo()) {
-            return false;
-        }
-        if (this.getTombo() != other.getTombo()) {
+        if (this.idAcervo != other.idAcervo) {
             return false;
         }
         if (!Objects.equals(this.tituloObra, other.tituloObra)) {
@@ -71,16 +80,13 @@ public class Acervo implements Serializable{
         if (!Objects.equals(this.isbn, other.isbn)) {
             return false;
         }
-        if (this.getExemplar() != other.getExemplar()) {
-            return false;
-        }
         if (!Objects.equals(this.volume, other.volume)) {
             return false;
         }
         if (!Objects.equals(this.edicao, other.edicao)) {
             return false;
         }
-        if (this.getAnoEdicao() != other.getAnoEdicao()) {
+        if (this.anoEdicao != other.anoEdicao) {
             return false;
         }
         if (!Objects.equals(this.informacoesAdicionais, other.informacoesAdicionais)) {
@@ -110,9 +116,13 @@ public class Acervo implements Serializable{
         if (!Objects.equals(this.biblioteca, other.biblioteca)) {
             return false;
         }
+        if (!Objects.equals(this.exemplares, other.exemplares)) {
+            return false;
+        }
         return true;
     }
     
+      
     @Column(nullable = false, length = 150)
     private String tituloObra;
     
@@ -121,10 +131,7 @@ public class Acervo implements Serializable{
     
     @Column(length = 50, columnDefinition = "varchar(50) default ''")
     private String isbn;
-    
-    @Column(nullable = false, columnDefinition = "int default 0")
-    private int exemplar;
-    
+     
     @Column(length = 4, nullable = false)
     private String volume;
     
@@ -168,6 +175,10 @@ public class Acervo implements Serializable{
     @JoinColumn(name="idbiblioteca")
     private Biblioteca biblioteca;
     
+    @OneToMany(mappedBy="acervo")
+    private List<Exemplar> exemplares;
+    
+    
     private static long serialVersionUID = -8256983727176831230L;
 
     /*** @retorna o id do Acervo ***/
@@ -178,16 +189,6 @@ public class Acervo implements Serializable{
     /*** @seta idAcervo the idAcervo to set ***/
     public void setIdAcervo(int idAcervo) {
         this.idAcervo = idAcervo;
-    }
-
-    /*** @retorna o tombo ***/
-    public int getTombo() {
-        return tombo;
-    }
-
-    /*** @seta o tombo ***/
-    public void setTombo(int tombo) {
-        this.tombo = tombo;
     }
 
     /*** @retorna o Título da Obra ***/
@@ -218,16 +219,6 @@ public class Acervo implements Serializable{
     /*** @seta o Isbn ***/
     public void setIsbn(String isbn) {
         this.isbn = isbn;
-    }
-
-    /*** @retorna o Exemplar ***/
-    public int getExemplar() {
-        return exemplar;
-    }
-
-    /*** @seta o Exemplar ***/
-    public void setExemplar(int exemplar) {
-        this.exemplar = exemplar;
     }
 
     /*** @retorna o Volume ***/
@@ -348,5 +339,19 @@ public class Acervo implements Serializable{
     /*** @seta e copia a Biblioteca recebida para a Biblioteca da Classe ***/
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
+    }
+
+    /**
+     * @return the exemplares
+     */
+    public List<Exemplar> getExemplares() {
+        return exemplares;
+    }
+
+    /**
+     * @param exemplares the exemplares to set
+     */
+    public void setExemplares(List<Exemplar> exemplares) {
+        this.exemplares = exemplares;
     }
 }

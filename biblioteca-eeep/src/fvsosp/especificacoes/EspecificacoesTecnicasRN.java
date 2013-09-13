@@ -15,18 +15,18 @@ public class EspecificacoesTecnicasRN {
     private EspecificacoesTecnicasDAO dao = new EspecificacoesTecnicasDAO();
     
     public boolean adiciona(EspecificacoesTecnicas et){
-        dao.adicionar(et);
-        return true;
+        return dao.adicionar(et);
+        
     }
     
     public boolean remover(EspecificacoesTecnicas et){
-        dao.remover(et);
-        return true;
+        return dao.remover(et);
+        
     }
     
     public boolean atualiza(EspecificacoesTecnicas et){
-        dao.atualizar(et);
-        return true;
+        return dao.atualizar(et);
+        
     }
     
     public List<EspecificacoesTecnicas> listar(){

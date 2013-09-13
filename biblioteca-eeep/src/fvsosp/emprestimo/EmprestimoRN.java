@@ -13,20 +13,20 @@ public class EmprestimoRN {
 
     public boolean adiciona(Emprestimo em) {
         if ((!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getAcervos().isEmpty())) {
-            dao.adicionar(em);
-            return true;
+            return dao.adicionar(em);
+            
         }
         return false;
     }
 
     public boolean remover(Emprestimo em) {
-        dao.remover(em);
-        return true;
+        return dao.remover(em);
+        
     }
 
     public boolean atualizar(Emprestimo em) {
-        dao.atualizar(em);
-        return true;
+        return dao.atualizar(em);
+        
     }
 
     public List<Emprestimo> listar() {
