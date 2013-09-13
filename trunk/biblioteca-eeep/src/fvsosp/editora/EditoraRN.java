@@ -13,20 +13,20 @@ public class EditoraRN {
     
     public boolean adiciona(Editora ed) {
         if ((!ed.getNome().isEmpty()) && (ed.getAcervo() != null) && (!ed.getAcervo().isEmpty())) {
-            dao.adicionar(ed);
-            return true;
+            return dao.adicionar(ed);
+            
         }
         return false;
     }
 
     public boolean remover(Editora ed) {
-        dao.remover(ed);
-        return true;
+        return dao.remover(ed);
+        
     }
 
     public boolean atualizar(Editora ed) {
-        dao.atualizar(ed);
-        return true;
+        return dao.atualizar(ed);
+        
     }
 
     public List<Editora> listar() {

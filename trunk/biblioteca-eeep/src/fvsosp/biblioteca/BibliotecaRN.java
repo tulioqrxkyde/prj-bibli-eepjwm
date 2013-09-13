@@ -16,20 +16,20 @@ public class BibliotecaRN {
 
     public boolean adiciona(Biblioteca biblioteca) {
         if (biblioteca.getDescricao() != null) {
-            dao.adicionar(biblioteca);
-            return true;
+            return dao.adicionar(biblioteca);
+        
         }
         return false;
     }
 
     public boolean remove(Biblioteca biblioteca) {
-        dao.remover(biblioteca);
-        return true;
+        return dao.remover(biblioteca);
+
     }
 
     public boolean atualizar(Biblioteca biblioteca) {
-        dao.atualizar(biblioteca);
-        return true;
+        return dao.atualizar(biblioteca);
+   
     }
 
     public List<Biblioteca> listar() {

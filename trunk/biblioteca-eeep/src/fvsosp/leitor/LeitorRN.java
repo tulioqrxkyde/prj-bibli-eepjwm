@@ -20,20 +20,20 @@ public class LeitorRN {
     public boolean adiciona(Leitor leitor){
         if((leitor.getNome()!=null)&&(leitor.getGruposLeitores()!=null)
                 &&(leitor.getMatricula()!=null)){
-            dao.adicionar(leitor);
-            return true;
+            return dao.adicionar(leitor);
+            
         }
         return false;
     }
     
     public boolean atualiza(Leitor leitor){
-        dao.atualizar(leitor);
-        return true;
+        return dao.atualizar(leitor);
+        
     }
     
     public boolean remove(Leitor leitor){
-        dao.remover(leitor);
-        return true;
+        return dao.remover(leitor);
+      
     }
     
     public List<Leitor> listar(){

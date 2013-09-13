@@ -15,19 +15,19 @@ public class TipoItemRN {
     private TipoItemDAO dao = new TipoItemDAO();
 
     public boolean remover(TipoItem tp) {
-        dao.remover(tp);
-        return true;
+        return dao.remover(tp);
+        
     }
 
     public boolean atualizar(TipoItem tp) {
-        dao.atualizar(tp);
-        return true;
+        return dao.atualizar(tp);
+        
     }
 
     public boolean adiciona(TipoItem tp) {
         if (tp.getDescricao() != null) {
-            dao.adicionar(tp);
-            return true;
+            return dao.adicionar(tp);
+            
         }
         return false;
     }

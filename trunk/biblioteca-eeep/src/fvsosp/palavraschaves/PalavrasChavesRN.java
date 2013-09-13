@@ -17,20 +17,20 @@ public class PalavrasChavesRN {
     
     public boolean adicionar(PalavrasChaves pc){
         if(!pc.getDescricao().isEmpty()){
-            dao.adicionar(pc);
-            return true;
+            return dao.adicionar(pc);
+            
         } 
         return false;
     }
     
     public boolean atualizar(PalavrasChaves pc){
-        dao.atualizar(pc);
-        return true;
+        return dao.atualizar(pc);
+        
     }
     
     public boolean remove(PalavrasChaves pc){
-        dao.remover(pc);
-        return true;
+        return dao.remover(pc);
+        
     }
     
     public List<PalavrasChaves> listar(){

@@ -22,32 +22,27 @@ public class AcervoRN {
     // Metódo que adiciona um livro no acervo, caso contrário retorna false
     public boolean adiciona(Acervo acervo) {
         if (acervo.getTituloObra() != null) {
-            dao.adicionar(acervo);
-            return true;
+            return dao.adicionar(acervo);
+            
         }
         return false;
     }
 
     // Metódo que remove
     public boolean remover(Acervo acervo) {
-        dao.remover(acervo);
-        return true;
+        return dao.remover(acervo);
+        
     }
 
     // Metódo que atualiza no banco de dados o acervo
     public boolean atualizar(Acervo acervo) {
-        dao.atualizar(acervo);
-        return true;
+        return dao.atualizar(acervo);
+        
     }
 
     // Metódo que faz um List de arcervos
     public List<Acervo> listar() {
         return dao.listar();
-    }
-
-    // Metódos de pesquisa
-    public List<Acervo> pesquisarTombo(int tombos) {
-        return dao.pesquisarTombo(tombos);
     }
 
     public List<Acervo> pesquisarTitulodaObra(String obra) {
@@ -60,10 +55,6 @@ public class AcervoRN {
 
     public List<Acervo> pesquisarIsbn(String isbns) {
         return dao.pesquisarIsbn(isbns);
-    }
-
-    public List<Acervo> pesquisarExemplar(int exemplares) {
-        return dao.pesquisarExemplar(exemplares);
     }
 
     public List<Acervo> pesquisarVolume(String volumes) {

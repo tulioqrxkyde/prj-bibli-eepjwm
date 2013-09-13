@@ -17,21 +17,21 @@ public class GruposLeitoresRN {
 
     public boolean adiciona(GruposLeitores gl) {
         if (gl.getDescricao() != null) {
-            dao.adicionar(gl);
-            return true;
+            return dao.adicionar(gl);
+            
         }
         return false;
     }
 
     public boolean atualiza(GruposLeitores gl) {
-        dao.atualizar(gl);
-        return true;
+        return dao.atualizar(gl);
+        
 
     }
 
     public boolean remover(GruposLeitores gl) {
-        dao.remover(gl);
-        return true;
+        return dao.remover(gl);
+        
 
     }
 

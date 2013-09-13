@@ -16,21 +16,21 @@ public class IdiomaRN {
 
     public boolean adiciona(Idioma idioma) {
         if (idioma.getDescricao()!=null) {
-            dao.adicionar(idioma);
-            return true;
+            return dao.adicionar(idioma);
+            
         }
         return false;
 
     }
 
     public boolean remove(Idioma idioma) {
-        dao.remover(idioma);
-        return true;
+        return dao.remover(idioma);
+        
     }
 
     public boolean atualizar(Idioma idioma) {
-        dao.atualizar(idioma);
-        return true;
+        return dao.atualizar(idioma);
+        
     }
 
     public List<Idioma> listar() {
