@@ -1,6 +1,6 @@
 package fvsosp.acervo;
 
-import br.edu.exemplar.Exemplar;
+import fvsosp.exemplar.Exemplar;
 import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
