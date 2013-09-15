@@ -29,6 +29,7 @@
                 <mapping class="fvsosp.especificacoes.EspecificacoesTecnicas"/>
                 <mapping class="fvsosp.leitor.Leitor"/>
                 <mapping class="fvsosp.grupoleitores.GruposLeitores"/>
+                <mapping class="fvsosp.exemplar.Exemplar"/>
         </session-factory>
 </hibernate-configuration>
 

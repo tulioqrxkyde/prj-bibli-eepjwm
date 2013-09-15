@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import org.hibernate.annotations.Generated;
@@ -30,15 +31,15 @@ public class Exemplar {
    @Column(nullable=false)
    private int exemplar;
    
-   @OneToMany
+   @ManyToOne
    @JoinColumn(name="idacervo")
    private Acervo acervo;
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 41 * hash + this.exemplar;
-        hash = 41 * hash + Objects.hashCode(this.acervo);
+        hash = 41 * hash + this.getExemplar();
+        hash = 41 * hash + Objects.hashCode(this.getAcervo());
         return hash;
     }
 
@@ -51,10 +52,10 @@ public class Exemplar {
             return false;
         }
         final Exemplar other = (Exemplar) obj;
-        if (this.tombo != other.tombo) {
+        if (this.getTombo() != other.getTombo()) {
             return false;
         }
-        if (this.exemplar != other.exemplar) {
+        if (this.getExemplar() != other.getExemplar()) {
             return false;
         }
         if (!Objects.equals(this.acervo, other.acervo)) {
