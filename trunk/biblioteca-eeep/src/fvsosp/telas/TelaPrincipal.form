@@ -11,28 +11,45 @@
             <Property name="horizontalTextPosition" type="int" value="0"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="itemCadastroLivros">
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadAcervo">
               <Properties>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Livros"/>
+                <Property name="text" type="java.lang.String" value="Acervo"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="itemCadastroUsuario">
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadAluno">
               <Properties>
-                <Property name="selected" type="boolean" value="true"/>
-                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="itemCadastroAluno">
-              <Properties>
-                <Property name="selected" type="boolean" value="true"/>
                 <Property name="text" type="java.lang.String" value="Aluno"/>
               </Properties>
             </MenuItem>
-            <MenuItem class="javax.swing.JCheckBoxMenuItem" name="itemCadastroProfessor">
+            <MenuItem class="javax.swing.JMenuItem" name="itemBiblioteca">
               <Properties>
-                <Property name="selected" type="boolean" value="true"/>
+                <Property name="text" type="java.lang.String" value="Biblioteca"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemGrupoLeitores">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Grupo Leitores"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemGrupoLeitoresActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadProfessor">
+              <Properties>
                 <Property name="text" type="java.lang.String" value="Professor"/>
+              </Properties>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadSessao">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Sess&#xe3;o"/>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemCadSessaoActionPerformed"/>
+              </Events>
+            </MenuItem>
+            <MenuItem class="javax.swing.JMenuItem" name="itemCadUsuario">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Usu&#xe1;rio"/>
               </Properties>
             </MenuItem>
           </SubComponents>
