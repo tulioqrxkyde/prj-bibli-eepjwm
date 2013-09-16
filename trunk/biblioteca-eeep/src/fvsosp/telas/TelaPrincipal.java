@@ -29,13 +29,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jMenuBar2 = new javax.swing.JMenuBar();
-        jMenu4 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem2 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem3 = new javax.swing.JCheckBoxMenuItem();
-        jCheckBoxMenuItem4 = new javax.swing.JCheckBoxMenuItem();
-        jMenu1 = new javax.swing.JMenu();
+        menuCadastrado = new javax.swing.JMenu();
+        itemCadastroLivros = new javax.swing.JCheckBoxMenuItem();
+        itemCadastroUsuario = new javax.swing.JCheckBoxMenuItem();
+        itemCadastroAluno = new javax.swing.JCheckBoxMenuItem();
+        itemCadastroProfessor = new javax.swing.JCheckBoxMenuItem();
+        itemEmprestar = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        menuConsulta = new javax.swing.JMenu();
+        itemConsultarAcervo = new javax.swing.JMenuItem();
+        itemRelatorioUsuario = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        itemRelatorioFinanceiro = new javax.swing.JMenuItem();
+        itemRelatorioEmprestimo = new javax.swing.JMenuItem();
+        itemRelatorioCatalogacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,32 +59,65 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGap(0, 0, Short.MAX_VALUE)
         );
 
-        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/cad_icone.png"))); // NOI18N
-        jMenu4.setText("Cadastro");
-        jMenu4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jMenu4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jMenu4.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jButton1.setText("SAIR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("Livros");
-        jMenu4.add(jCheckBoxMenuItem1);
+        menuCadastrado.setText("Cadastro");
+        menuCadastrado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        menuCadastrado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        menuCadastrado.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        jCheckBoxMenuItem2.setSelected(true);
-        jCheckBoxMenuItem2.setText("Usuário");
-        jMenu4.add(jCheckBoxMenuItem2);
+        itemCadastroLivros.setSelected(true);
+        itemCadastroLivros.setText("Livros");
+        menuCadastrado.add(itemCadastroLivros);
 
-        jCheckBoxMenuItem3.setSelected(true);
-        jCheckBoxMenuItem3.setText("Aluno");
-        jMenu4.add(jCheckBoxMenuItem3);
+        itemCadastroUsuario.setSelected(true);
+        itemCadastroUsuario.setText("Usuário");
+        menuCadastrado.add(itemCadastroUsuario);
 
-        jCheckBoxMenuItem4.setSelected(true);
-        jCheckBoxMenuItem4.setText("Professor");
-        jMenu4.add(jCheckBoxMenuItem4);
+        itemCadastroAluno.setSelected(true);
+        itemCadastroAluno.setText("Aluno");
+        menuCadastrado.add(itemCadastroAluno);
 
-        jMenuBar2.add(jMenu4);
+        itemCadastroProfessor.setSelected(true);
+        itemCadastroProfessor.setText("Professor");
+        menuCadastrado.add(itemCadastroProfessor);
 
-        jMenu1.setText("Emprestimos");
-        jMenuBar2.add(jMenu1);
+        jMenuBar2.add(menuCadastrado);
+
+        itemEmprestar.setText("Emprestimos");
+
+        jMenuItem1.setText("Emprestar");
+        itemEmprestar.add(jMenuItem1);
+
+        jMenuBar2.add(itemEmprestar);
+
+        menuConsulta.setText("Consulta");
+
+        itemConsultarAcervo.setText("Acervo");
+        menuConsulta.add(itemConsultarAcervo);
+
+        jMenuBar2.add(menuConsulta);
+
+        itemRelatorioUsuario.setText("Relatórios");
+
+        jMenuItem3.setText("Usuário");
+        itemRelatorioUsuario.add(jMenuItem3);
+
+        itemRelatorioFinanceiro.setText("Financeiro");
+        itemRelatorioUsuario.add(itemRelatorioFinanceiro);
+
+        itemRelatorioEmprestimo.setText("Emprestimo");
+        itemRelatorioUsuario.add(itemRelatorioEmprestimo);
+
+        itemRelatorioCatalogacao.setText("Catalogação");
+        itemRelatorioUsuario.add(itemRelatorioCatalogacao);
+
+        jMenuBar2.add(itemRelatorioUsuario);
 
         setJMenuBar(jMenuBar2);
 
@@ -83,15 +125,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 775, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 437, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 382, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 292, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+System.exit(0);        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,13 +178,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem2;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem3;
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem4;
-    private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JCheckBoxMenuItem itemCadastroAluno;
+    private javax.swing.JCheckBoxMenuItem itemCadastroLivros;
+    private javax.swing.JCheckBoxMenuItem itemCadastroProfessor;
+    private javax.swing.JCheckBoxMenuItem itemCadastroUsuario;
+    private javax.swing.JMenuItem itemConsultarAcervo;
+    private javax.swing.JMenu itemEmprestar;
+    private javax.swing.JMenuItem itemRelatorioCatalogacao;
+    private javax.swing.JMenuItem itemRelatorioEmprestimo;
+    private javax.swing.JMenuItem itemRelatorioFinanceiro;
+    private javax.swing.JMenu itemRelatorioUsuario;
+    private javax.swing.JButton jButton1;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JMenu menuCadastrado;
+    private javax.swing.JMenu menuConsulta;
     // End of variables declaration//GEN-END:variables
 }
