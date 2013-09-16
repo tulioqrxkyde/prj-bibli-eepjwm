@@ -5,7 +5,6 @@
 package fvsosp.telas;
 
 import fvsosp.usuario.Usuario;
-import fvsosp.usuario.UsuarioDAO;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.util.Util;
 import javax.swing.JOptionPane;
@@ -72,15 +71,8 @@ public class Login extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Senha.:");
 
-        tfSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfSenhaActionPerformed(evt);
-            }
-        });
-
         btLogar.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         btLogar.setForeground(new java.awt.Color(0, 0, 204));
-        btLogar.setIcon(new javax.swing.ImageIcon("C:\\Users\\henri_000\\Documents\\NetBeansProjects\\Projeto_Integrador\\src\\projeto_integrador\\1367210420_001_06.gif")); // NOI18N
         btLogar.setText("Logar");
         btLogar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -90,7 +82,6 @@ public class Login extends javax.swing.JFrame {
 
         btCancelar.setFont(new java.awt.Font("Comic Sans MS", 2, 12)); // NOI18N
         btCancelar.setForeground(new java.awt.Color(0, 0, 204));
-        btCancelar.setIcon(new javax.swing.ImageIcon("C:\\Users\\henri_000\\Documents\\NetBeansProjects\\Projeto_Integrador\\src\\projeto_integrador\\1367210477_button_cancel.png")); // NOI18N
         btCancelar.setText("Cancelar");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -165,10 +156,6 @@ public class Login extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void tfSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
         // TODO add your handling code here:

@@ -4,7 +4,6 @@
  */
 package fvsosp.util;
 
-import java.awt.Component;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -30,7 +29,16 @@ public class Util {
         return ((String) hash.toString(16));
     }
 
-    public boolean chkCaracteres(String... caracteres) {
+    public boolean chkVazio(String... campos) {
+        for (String chk : campos) {
+            if (chk.isEmpty()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+public boolean chkCaracteres(String... caracteres) {
         Pattern regex = Pattern.compile("\\W");
         Matcher comparador;
 
