@@ -4,12 +4,18 @@
  */
 package fvsosp.telas;
 
+import fvsosp.sessao.Sessao;
+import fvsosp.sessao.SessaoRN;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author TULIO
  */
 public class TelaCadastroSessao extends javax.swing.JFrame {
 
+    private Sessao sessao;
+    private SessaoRN sessaoRN;
     /**
      * Creates new form Tela_Cadastro_Sessao
      */
@@ -17,6 +23,7 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         initComponents();
         this.setTitle("OSBilio - Sessão");
         this.setLocationRelativeTo(null);
+        btRemover.setEnabled(false);
     }
 
     /**
@@ -29,13 +36,11 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jTextField15 = new javax.swing.JTextField();
-        jLabel25 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jButton30 = new javax.swing.JButton();
-        jButton31 = new javax.swing.JButton();
-        jTextField16 = new javax.swing.JTextField();
-        jButton29 = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
+        btRemover = new javax.swing.JButton();
+        tfNomeSessao = new javax.swing.JTextField();
+        btCadastrar = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -45,15 +50,18 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         jPanel1.setMinimumSize(new java.awt.Dimension(775, 444));
         jPanel1.setPreferredSize(new java.awt.Dimension(775, 444));
 
-        jLabel25.setText("Acervo :");
-
         jLabel24.setText("Nome da Sessão :");
 
-        jButton30.setText("Pesquisar");
+        btPesquisar.setText("Pesquisar");
 
-        jButton31.setText("Remover");
+        btRemover.setText("Remover");
 
-        jButton29.setText("Cadastrar");
+        btCadastrar.setText("Cadastrar");
+        btCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btCadastrarActionPerformed(evt);
+            }
+        });
 
         jLabel23.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel23.setText("Sessão");
@@ -65,13 +73,6 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(153, 153, 153)
-                        .addComponent(jButton29)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton30)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton31))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel23))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -79,12 +80,14 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
                         .addComponent(jLabel24))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jLabel25))
+                        .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jTextField16, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
-                            .addComponent(jTextField15, javax.swing.GroupLayout.Alignment.LEADING))))
+                        .addGap(103, 103, 103)
+                        .addComponent(btCadastrar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btPesquisar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btRemover)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -95,19 +98,12 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(58, 58, 58)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jButton29)
-                            .addComponent(jButton30)
-                            .addComponent(jButton31))))
+                .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btCadastrar)
+                    .addComponent(btPesquisar)
+                    .addComponent(btRemover))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -115,15 +111,32 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 10, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 217, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 161, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
+        // TODO add your handling code here:
+        if(sessao==null){
+            sessao = new Sessao();
+        }    
+            
+        sessao.setDescricao(tfNomeSessao.getText().toString());
+        
+        sessaoRN = new SessaoRN();
+        if(sessaoRN.adicionar(sessao)){
+            JOptionPane.showMessageDialog(rootPane, "Sessão "+sessao.getDescricao()
+                    + ", cadastrada com sucesso!");
+        }
+    }//GEN-LAST:event_btCadastrarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -160,14 +173,12 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton30;
-    private javax.swing.JButton jButton31;
+    private javax.swing.JButton btCadastrar;
+    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btRemover;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
+    private javax.swing.JTextField tfNomeSessao;
     // End of variables declaration//GEN-END:variables
 }
