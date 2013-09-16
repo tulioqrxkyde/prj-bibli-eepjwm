@@ -7,8 +7,7 @@ package fvsosp.telas;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioDAO;
 import fvsosp.usuario.UsuarioRN;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import fvsosp.util.Util;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -18,6 +17,8 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Pedro Saraiva
  */
 public class Login extends javax.swing.JFrame {
+    
+    Util utilidades = new Util();
 
     /**
      * Creates new form Login
@@ -204,8 +205,6 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btCancelarActionPerformed
 
     public boolean verificaCampos() {
-        Pattern regex = Pattern.compile("\\W");
-        Matcher comparadorUsuario = regex.matcher(tfLogin.getText()), comparadorSenha = regex.matcher(tfSenha.getText());
         /*
          * Verifica se os campos estão vazios
          */
@@ -222,8 +221,7 @@ public class Login extends javax.swing.JFrame {
         }
         /* Verifica se algum caractere especial 
          * está contido dentro dos campos de Login e Senha */
-        if (comparadorUsuario.find() || comparadorSenha.find()) {
-            JOptionPane.showMessageDialog(rootPane, "Não é permitido o uso de caracteres especiais!", "Caracteres Inválidos", JOptionPane.INFORMATION_MESSAGE);
+        if (utilidades.chkCaracteres(tfLogin.getText().toString(), tfSenha.getText().toString())) {
             return false;
         }
         return true;
