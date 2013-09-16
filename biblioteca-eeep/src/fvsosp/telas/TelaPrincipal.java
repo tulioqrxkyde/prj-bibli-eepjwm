@@ -17,7 +17,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         //setLocationRelativeTo(null);   ( iniciar tela cheia )
         setTitle("OSBiblio");
-        setLocationRelativeTo(null);  
+        setLocationRelativeTo(null);        
     }
 
     /**
@@ -33,10 +33,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         botaoSairPrincipal = new javax.swing.JButton();
         BarradeMenuPrincipal = new javax.swing.JMenuBar();
         menuCadastrado = new javax.swing.JMenu();
-        itemCadastroLivros = new javax.swing.JCheckBoxMenuItem();
-        itemCadastroUsuario = new javax.swing.JCheckBoxMenuItem();
-        itemCadastroAluno = new javax.swing.JCheckBoxMenuItem();
-        itemCadastroProfessor = new javax.swing.JCheckBoxMenuItem();
+        itemCadAcervo = new javax.swing.JMenuItem();
+        itemCadAluno = new javax.swing.JMenuItem();
+        itemBiblioteca = new javax.swing.JMenuItem();
+        itemGrupoLeitores = new javax.swing.JMenuItem();
+        itemCadProfessor = new javax.swing.JMenuItem();
+        itemCadSessao = new javax.swing.JMenuItem();
+        itemCadUsuario = new javax.swing.JMenuItem();
         itemEmprestar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
         menuConsulta = new javax.swing.JMenu();
@@ -72,21 +75,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadastrado.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         menuCadastrado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
-        itemCadastroLivros.setSelected(true);
-        itemCadastroLivros.setText("Livros");
-        menuCadastrado.add(itemCadastroLivros);
+        itemCadAcervo.setText("Acervo");
+        menuCadastrado.add(itemCadAcervo);
 
-        itemCadastroUsuario.setSelected(true);
-        itemCadastroUsuario.setText("Usuário");
-        menuCadastrado.add(itemCadastroUsuario);
+        itemCadAluno.setText("Aluno");
+        menuCadastrado.add(itemCadAluno);
 
-        itemCadastroAluno.setSelected(true);
-        itemCadastroAluno.setText("Aluno");
-        menuCadastrado.add(itemCadastroAluno);
+        itemBiblioteca.setText("Biblioteca");
+        menuCadastrado.add(itemBiblioteca);
 
-        itemCadastroProfessor.setSelected(true);
-        itemCadastroProfessor.setText("Professor");
-        menuCadastrado.add(itemCadastroProfessor);
+        itemGrupoLeitores.setText("Grupo Leitores");
+        itemGrupoLeitores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemGrupoLeitoresActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemGrupoLeitores);
+
+        itemCadProfessor.setText("Professor");
+        menuCadastrado.add(itemCadProfessor);
+
+        itemCadSessao.setText("Sessão");
+        itemCadSessao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadSessaoActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadSessao);
+
+        itemCadUsuario.setText("Usuário");
+        menuCadastrado.add(itemCadUsuario);
 
         BarradeMenuPrincipal.add(menuCadastrado);
 
@@ -142,8 +160,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botaoSairPrincipalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoSairPrincipalActionPerformed
-System.exit(0);        // TODO add your handling code here:
+        System.exit(0);        // TODO add your handling code here:
     }//GEN-LAST:event_botaoSairPrincipalActionPerformed
+    
+    private void itemCadSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadSessaoActionPerformed
+        TelaCadastroSessao telacadsessao = new TelaCadastroSessao();
+        telacadsessao.setVisible(true);
+        
+    }//GEN-LAST:event_itemCadSessaoActionPerformed
+
+    private void itemGrupoLeitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGrupoLeitoresActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemGrupoLeitoresActionPerformed
 
     /**
      * @param args the command line arguments
@@ -182,12 +210,15 @@ System.exit(0);        // TODO add your handling code here:
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarradeMenuPrincipal;
     private javax.swing.JButton botaoSairPrincipal;
-    private javax.swing.JCheckBoxMenuItem itemCadastroAluno;
-    private javax.swing.JCheckBoxMenuItem itemCadastroLivros;
-    private javax.swing.JCheckBoxMenuItem itemCadastroProfessor;
-    private javax.swing.JCheckBoxMenuItem itemCadastroUsuario;
+    private javax.swing.JMenuItem itemBiblioteca;
+    private javax.swing.JMenuItem itemCadAcervo;
+    private javax.swing.JMenuItem itemCadAluno;
+    private javax.swing.JMenuItem itemCadProfessor;
+    private javax.swing.JMenuItem itemCadSessao;
+    private javax.swing.JMenuItem itemCadUsuario;
     private javax.swing.JMenuItem itemConsultarAcervo;
     private javax.swing.JMenu itemEmprestar;
+    private javax.swing.JMenuItem itemGrupoLeitores;
     private javax.swing.JMenuItem itemRelatorioCatalogacao;
     private javax.swing.JMenuItem itemRelatorioEmprestimo;
     private javax.swing.JMenuItem itemRelatorioFinanceiro;

@@ -12,7 +12,7 @@ import javax.swing.JOptionPane;
  *
  * @author TULIO
  */
-public class TelaCadastroSessao extends javax.swing.JFrame {
+public class TelaCadastroSessao extends javax.swing.JDialog {
 
     private Sessao sessao;
     private SessaoRN sessaoRN;
@@ -24,6 +24,7 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         this.setTitle("OSBilio - Sessão");
         this.setLocationRelativeTo(null);
         btRemover.setEnabled(false);
+        setModal(true);
     }
 
     /**
@@ -42,8 +43,8 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         tfNomeSessao = new javax.swing.JTextField();
         btCadastrar = new javax.swing.JButton();
         jLabel23 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
 
         jPanel1.setMaximumSize(new java.awt.Dimension(2147483647, 2147483647));
@@ -66,6 +67,13 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
         jLabel23.setFont(new java.awt.Font("Verdana", 0, 24)); // NOI18N
         jLabel23.setText("Sessão");
 
+        jButton1.setText("Sair");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -87,7 +95,9 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btPesquisar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btRemover)))
+                        .addComponent(btRemover)
+                        .addGap(60, 60, 60)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -99,11 +109,16 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
                 .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btCadastrar)
-                    .addComponent(btPesquisar)
-                    .addComponent(btRemover))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btCadastrar)
+                            .addComponent(btPesquisar)
+                            .addComponent(btRemover)))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jButton1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -113,7 +128,7 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 10, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 472, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,6 +152,10 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
                     + ", cadastrada com sucesso!");
         }
     }//GEN-LAST:event_btCadastrarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+dispose();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -176,6 +195,7 @@ public class TelaCadastroSessao extends javax.swing.JFrame {
     private javax.swing.JButton btCadastrar;
     private javax.swing.JButton btPesquisar;
     private javax.swing.JButton btRemover;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel1;
