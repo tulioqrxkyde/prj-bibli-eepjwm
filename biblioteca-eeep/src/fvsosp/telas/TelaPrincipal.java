@@ -15,8 +15,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);        
+        //setLocationRelativeTo(null);   ( iniciar tela cheia )
         setTitle("OSBiblio");
+        setLocationRelativeTo(null);  
     }
 
     /**
@@ -47,6 +48,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemRelatorioCatalogacao = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -92,6 +94,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemEmprestar.setText("Emprestimos");
 
         jMenuItem1.setText("Emprestar");
+        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         itemEmprestar.add(jMenuItem1);
 
         jMenuBar2.add(itemEmprestar);
