@@ -187,9 +187,7 @@ public class Login extends javax.swing.JFrame {
 
             UsuarioRN uRN = new UsuarioRN();
             if (uRN.autentica(usuario)) {
-                JOptionPane.showMessageDialog(rootPane, "OK!",
-                        "Informação", JOptionPane.INFORMATION_MESSAGE);
-                 TelaPrincipal tp = new TelaPrincipal();
+                TelaPrincipal tp = new TelaPrincipal();
                 tp.setVisible(true);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Login ou Senha Incorretos!",
