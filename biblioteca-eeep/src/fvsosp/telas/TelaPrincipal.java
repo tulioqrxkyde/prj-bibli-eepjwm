@@ -15,9 +15,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
      */
     public TelaPrincipal() {
         initComponents();
-        //setLocationRelativeTo(null);   ( iniciar tela cheia )
+        //setExtendedState( MAXIMIZED_BOTH ); ;   //( iniciar tela cheia )
         setTitle("OSBiblio");
-        setLocationRelativeTo(null);        
+        setLocationRelativeTo(null);       
     }
 
     /**

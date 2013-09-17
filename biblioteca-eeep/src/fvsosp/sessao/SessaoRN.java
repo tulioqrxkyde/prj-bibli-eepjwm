@@ -12,39 +12,39 @@ import java.util.List;
  * @author Controle Avaliação
  */
 public class SessaoRN {
-    
+
     private SessaoDAO dao = new SessaoDAO();
-    
-    public boolean adicionar(Sessao sessao){
-        if(!sessao.getDescricao().isEmpty()){
-            return dao.adicionar(sessao);
-            
-        } 
+
+    public boolean salvar(Sessao sessao) {
+        if (!sessao.getDescricao().isEmpty()) {
+            if (sessao.getIdSessao() == 0) {
+                return dao.adicionar(sessao);
+            } else {
+                return dao.atualizar(sessao);
+            }
+
+        }
         return false;
     }
-    
-    public boolean atualizar(Sessao sessao){
-        return dao.atualizar(sessao);
-        
-    }
-    
-    public boolean remove(Sessao sessao){
+
+    public boolean remove(Sessao sessao) {
         return dao.remover(sessao);
-        
+
     }
-    
-    public List<Sessao> listar(){
+
+    public List<Sessao> listar() {
         return dao.listar();
     }
-    
+
     public List<Sessao> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
-    
+
     public List<Sessao> pesquisarAcervos(Acervo acervos) {
         return dao.pesquisarAcervos(acervos);
     }
-    
-    
-    
+
+    public Sessao pesquisarCodigo(int codigo) {
+        return dao.pesquisarCodigo(codigo);
+    }
 }
