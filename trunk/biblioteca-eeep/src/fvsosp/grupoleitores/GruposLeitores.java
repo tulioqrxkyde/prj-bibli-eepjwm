@@ -57,16 +57,16 @@ public class GruposLeitores implements Serializable{
         return true;
     }
    
-    @Column(length = 40, nullable = false, columnDefinition = "Varchar(40) default ''")
+    @Column(length = 40, nullable = false)
     private String descricao;
     
-    @Column(length = 2, nullable = false, columnDefinition = "double(2) default '0'")
+    @Column(length = 2, nullable = false)
     private double valorMultaDiaria;
     
-    @Column(length = 2, nullable = false, columnDefinition = "tinyint(2) default '0'")
+    @Column(length = 2, nullable = false)
     private byte quantMaxLivros;
     
-    @Column(length = 2, nullable = false, columnDefinition = "tinyint(2) default '0'")
+    @Column(length = 2, nullable = false)
     private byte duracaoDiasEmprestimo;
     
     @OneToMany(mappedBy = "gruposLeitores")
