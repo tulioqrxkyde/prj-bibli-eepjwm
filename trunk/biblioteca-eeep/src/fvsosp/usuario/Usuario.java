@@ -15,13 +15,13 @@ public class Usuario implements Serializable{
     
     @Id // chave primária
     @GeneratedValue // campo auto incremento
-    private int idUsuario;
+    private short idUsuario;
 
     @NaturalId(mutable=true) // será um valor único mas poderá ser alterado
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, columnDefinition ="varchar(50) default ''")
     private String login;
     
-    @Column(length = 50, nullable = false)
+    @Column(length = 50, nullable = false, columnDefinition="string(50) default ''")
     private String senha;
     
     @Column(columnDefinition="boolean default 0")
@@ -33,7 +33,7 @@ public class Usuario implements Serializable{
     }
 
     /*** @seta o id do Usuário ***/
-    public void setIdUsuario(int id) {
+    public void setIdUsuario(short id) {
         this.idUsuario = id;
     }
 

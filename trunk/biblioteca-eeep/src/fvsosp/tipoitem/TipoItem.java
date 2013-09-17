@@ -17,7 +17,7 @@ public class TipoItem implements Serializable{
     
     @Id //chave primária
     @GeneratedValue //auto incremento
-    private int idTipoItem;
+    private short idTipoItem;
 
     @Override
     public int hashCode() {
@@ -49,7 +49,7 @@ public class TipoItem implements Serializable{
         return true;
     }
     
-    @Column(length=100, columnDefinition = "varchar(100) default ''", nullable=false)
+    @Column(length=100, nullable=false, columnDefinition = "varchar(100) default ''")
     private String descricao;
     
     @OneToMany(mappedBy="tipoItem")
@@ -65,7 +65,7 @@ public class TipoItem implements Serializable{
     /**
      * @param idTipoItem the idTipoItem to set
      */
-    public void setIdTipoItem(int idTipoItem) {
+    public void setIdTipoItem(short idTipoItem) {
         this.idTipoItem = idTipoItem;
     }
 
