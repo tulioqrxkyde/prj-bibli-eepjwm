@@ -11,7 +11,7 @@ public class EspecificacoesTecnicas implements Serializable {
 
     @Id
     @GeneratedValue
-    private int idEspecificacoesTecnicas;
+    private short idEspecificacoesTecnicas;
 
     @Override
     public int hashCode() {
@@ -71,12 +71,12 @@ public class EspecificacoesTecnicas implements Serializable {
     private Acervo acervo;
 
     /*** @retorna o id das Especificações Técnicas ***/
-    public int getIdEspecificacoesTecnicas() {
+    public short getIdEspecificacoesTecnicas() {
         return idEspecificacoesTecnicas;
     }
 
     /*** @seta o id das Especificações Técnicas ***/
-    public void setIdEspecificacoesTecnicas(int idEspecificacoesTecnicas) {
+    public void setIdEspecificacoesTecnicas(short idEspecificacoesTecnicas) {
         this.idEspecificacoesTecnicas = idEspecificacoesTecnicas;
     }
 

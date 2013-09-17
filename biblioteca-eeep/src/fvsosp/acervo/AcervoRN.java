@@ -65,7 +65,7 @@ public class AcervoRN {
         return dao.pesquisarEdicao(edicoes);
     }
 
-    public List<Acervo> pesquisaranoEdicao(int anos) {
+    public List<Acervo> pesquisaranoEdicao(short anos) {
         return dao.pesquisaranoEdicao(anos);
     }
 

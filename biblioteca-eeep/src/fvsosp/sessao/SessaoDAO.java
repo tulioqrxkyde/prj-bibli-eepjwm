@@ -41,7 +41,7 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
     }
     
-    public Sessao pesquisarCodigo(int codigo) {
+    public Sessao pesquisarCodigo(short codigo) {
         Sessao sessao = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
