@@ -123,13 +123,13 @@ public class Acervo implements Serializable{
     }
     
       
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 50)
     private String tituloObra;
     
-    @Column(nullable = false, length = 150)
+    @Column(nullable = false, length = 50)
     private String subtituloObra;
     
-    @Column(length = 50, columnDefinition = "varchar(50) default ''")
+    @Column(length = 14, columnDefinition = "varchar(14) default ''")
     private String isbn;
      
     @Column(length = 4, nullable = false)
@@ -138,10 +138,10 @@ public class Acervo implements Serializable{
     @Column(length = 4, nullable = false)
     private String edicao;
     
-    @Column(nullable = false)
-    private int anoEdicao;
+    @Column(length = 4, nullable = false)
+    private short anoEdicao;
     
-    @Column(nullable = false)
+    @Column(length = 70, nullable = false)
     private String informacoesAdicionais;
     
     @Column(length = 50, nullable = false)
@@ -177,7 +177,6 @@ public class Acervo implements Serializable{
     
     @OneToMany(mappedBy="acervo")
     private List<Exemplar> exemplares;
-    
     
     private static long serialVersionUID = -8256983727176831230L;
 
@@ -242,12 +241,12 @@ public class Acervo implements Serializable{
     }
 
     /*** @retorna o Ano de Edição ***/
-    public int getAnoEdicao() {
+    public short getAnoEdicao() {
         return anoEdicao;
     }
 
     /*** @seta o Ano de Edição ***/
-    public void setAnoEdicao(int anoEdicao) {
+    public void setAnoEdicao(short anoEdicao) {
         this.anoEdicao = anoEdicao;
     }
 

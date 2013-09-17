@@ -11,19 +11,19 @@ public class Editora implements Serializable {
 
     @Id
     @GeneratedValue
-    private int idEditora;
-    @Column(length = 150, nullable = false)
+    private short idEditora;
+    @Column(length = 70, nullable = false)
     private String nome;
     @OneToMany(mappedBy = "editora")
     private List<Acervo> acervo;
 
     /*** @retorna o id da Editora ***/
-    public int getIdEditora() {
+    public short getIdEditora() {
         return idEditora;
     }
 
     /*** @seta o id da Editora ***/
-    public void setIdEditora(int idEditora) {
+    public void setIdEditora(short idEditora) {
         this.idEditora = idEditora;
     }
 

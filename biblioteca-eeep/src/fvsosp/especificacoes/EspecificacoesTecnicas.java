@@ -55,16 +55,16 @@ public class EspecificacoesTecnicas implements Serializable {
         return true;
     }
 
-    @Column(nullable = false, columnDefinition = "int default '0'")
-    private int numeroPaginas;
+    @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")
+    private short numeroPaginas;
 
-    @Column( nullable = false, columnDefinition = "int default '0'")
-    private int peso;
+    @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")
+    private short peso;
 
-    @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''")
+    @Column(length = 30, nullable = false, columnDefinition = "varchar(30) default ''")
     private String acabamentoCapa;
 
-    @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''")
+    @Column(length = 30, nullable = false, columnDefinition = "varchar(30) default ''")
     private String acabamentoMiolo;
 
     @OneToOne(mappedBy = "especificacoesTecnicas")
@@ -81,22 +81,22 @@ public class EspecificacoesTecnicas implements Serializable {
     }
 
     /*** @retorna o Número de Páginas do livro ***/
-    public int getNumeroPaginas() {
+    public short getNumeroPaginas() {
         return numeroPaginas;
     }
 
     /*** @seta o Número de Páginas do livro ***/
-    public void setNumeroPaginas(int numeroPaginas) {
+    public void setNumeroPaginas(short numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
     }
 
     /*** @retorna o Peso do livro ***/
-    public int getPeso() {
+    public short getPeso() {
         return peso;
     }
 
     /*** @seta o peso do livro ***/
-    public void setPeso(int peso) {
+    public void setPeso(short peso) {
         this.peso = peso;
     }
 
