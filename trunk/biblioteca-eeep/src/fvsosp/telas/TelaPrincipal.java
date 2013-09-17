@@ -67,6 +67,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
+        botaoSairPrincipal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
         botaoSairPrincipal.setText("SAIR");
         botaoSairPrincipal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,7 +80,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(455, Short.MAX_VALUE)
+                .addContainerGap(427, Short.MAX_VALUE)
                 .addComponent(botaoSairPrincipal)
                 .addContainerGap())
         );
