@@ -38,7 +38,7 @@ public class Util {
         return true;
     }
 
-public boolean chkCaracteres(String... caracteres) {
+    public boolean chkCaracteres(String... caracteres) {
         Pattern regex = Pattern.compile("\\W");
         Matcher comparador;
 
@@ -46,7 +46,9 @@ public boolean chkCaracteres(String... caracteres) {
          * está contido dentro de um dos campos */
         for (int x = 0; x < caracteres.length; x++) {
             if (((comparador) = regex.matcher(caracteres[x])).find()) {
-                JOptionPane.showMessageDialog(null, "Não é permitido o uso de caracteres especiais!", "Caracteres Inválidos", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,
+                        "Não é permitido o uso de caracteres especiais!", "Caracteres Inválidos",
+                        JOptionPane.INFORMATION_MESSAGE);
             }
         }
         return true;

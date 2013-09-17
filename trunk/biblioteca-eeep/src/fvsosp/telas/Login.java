@@ -234,7 +234,7 @@ public class Login extends javax.swing.JFrame {
         }
         /* Verifica se algum caractere especial 
          * está contido dentro dos campos de Login e Senha */
-        if (utilidades.chkCaracteres(tfLogin.getText().toString(), tfSenha.getText().toString())) {
+        if (!utilidades.chkCaracteres(tfLogin.getText().toString(), tfSenha.getText().toString())) {
             return false;
         }
         return true;
