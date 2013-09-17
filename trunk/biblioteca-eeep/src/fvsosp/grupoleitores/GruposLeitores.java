@@ -13,7 +13,7 @@ public class GruposLeitores implements Serializable{
 
     @Id
     @GeneratedValue
-    private int idGruposLeitores;
+    private short idGruposLeitores;
 
     @Override
     public int hashCode() {
@@ -60,23 +60,23 @@ public class GruposLeitores implements Serializable{
     @Column(length = 40, nullable = false, columnDefinition = "Varchar(40) default ''")
     private String descricao;
     
-    @Column(length = 20, nullable = false, columnDefinition = "Varchar(20) default ''")
+    @Column(length = 2, nullable = false, columnDefinition = "double(2) default '0'")
     private double valorMultaDiaria;
     
-    @Column(length = 50, nullable = false, columnDefinition = "Varchar(50) default ''")
-    private int quantMaxLivros;
+    @Column(length = 2, nullable = false, columnDefinition = "tinyint(2) default '0'")
+    private byte quantMaxLivros;
     
-    @Column(length = 30, nullable = false, columnDefinition = "Varchar(30) default ''")
-    private int duracaoDiasEmprestimo;
+    @Column(length = 2, nullable = false, columnDefinition = "tinyint(2) default '0'")
+    private byte duracaoDiasEmprestimo;
     
     @OneToMany(mappedBy = "gruposLeitores")
     private List <Leitor> leitores;
 
-    public int getIdGruposLeitores() {
+    public short getIdGruposLeitores() {
         return idGruposLeitores;
     }
     
-    public void setIdGruposLeitores(int idGruposLeitores) {
+    public void setIdGruposLeitores(short idGruposLeitores) {
         this.idGruposLeitores = idGruposLeitores;
     }
 
@@ -96,19 +96,19 @@ public class GruposLeitores implements Serializable{
         this.valorMultaDiaria = valorMultaDiaria;
     }
 
-    public int getQuantMaxLivros() {
+    public byte getQuantMaxLivros() {
         return quantMaxLivros;
     }
 
-    public void setQuantMaxLivros(int quantMaxLivros) {
+    public void setQuantMaxLivros(byte quantMaxLivros) {
         this.quantMaxLivros = quantMaxLivros;
     }
 
-    public int getDuracaoDiasEmprestimo() {
+    public byte getDuracaoDiasEmprestimo() {
         return duracaoDiasEmprestimo;
     }
 
-    public void setDuracaoDiasEmprestimo(int duracaoDiasEmprestimo) {
+    public void setDuracaoDiasEmprestimo(byte duracaoDiasEmprestimo) {
         this.duracaoDiasEmprestimo = duracaoDiasEmprestimo;
     }
 

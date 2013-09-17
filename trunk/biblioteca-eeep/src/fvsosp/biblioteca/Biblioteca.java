@@ -12,7 +12,7 @@ public class Biblioteca implements Serializable{
 
     @Id // campo chave primária
     @GeneratedValue // campo auto incremento
-    private int idBiblioteca;
+    private short idBiblioteca;
 
     @Override
     public int hashCode() {
@@ -55,12 +55,12 @@ public class Biblioteca implements Serializable{
     private List<Acervo> acervos;
 
     /*** @retorna o ID da Biblioteca ***/
-    public int getIdBiblioteca() {
+    public short getIdBiblioteca() {
         return idBiblioteca;
     }
 
     /*** @seta o ID da Biblioteca ***/
-    public void setIdBiblioteca(int idBiblioteca) {
+    public void setIdBiblioteca(short idBiblioteca) {
         this.idBiblioteca = idBiblioteca;
     }
 
