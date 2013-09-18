@@ -50,7 +50,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         lbNovo = new javax.swing.JLabel();
         lbSalvar = new javax.swing.JLabel();
         lbRemover = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lbPesquisar = new javax.swing.JLabel();
         btSair = new javax.swing.JButton();
 
         setResizable(false);
@@ -60,50 +60,50 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
 
         tfNomeSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(59, 89, 152));
         jPanel3.setLayout(null);
 
-        jLabel23.setFont(new java.awt.Font("Verdana", 1, 36)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Sessão");
         jPanel3.add(jLabel23);
-        jLabel23.setBounds(0, 10, 170, 45);
+        jLabel23.setBounds(0, 0, 170, 30);
 
-        lbNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo.png"))); // NOI18N
+        lbNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
         lbNovo.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbNovoMouseClicked(evt);
             }
         });
         jPanel3.add(lbNovo);
-        lbNovo.setBounds(220, 10, 40, 40);
+        lbNovo.setBounds(250, 0, 30, 30);
 
-        lbSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save.png"))); // NOI18N
+        lbSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
         lbSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbSalvarMouseClicked(evt);
             }
         });
         jPanel3.add(lbSalvar);
-        lbSalvar.setBounds(270, 10, 40, 40);
+        lbSalvar.setBounds(290, 0, 30, 30);
 
-        lbRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove.png"))); // NOI18N
+        lbRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         lbRemover.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lbRemoverMouseClicked(evt);
             }
         });
         jPanel3.add(lbRemover);
-        lbRemover.setBounds(320, 10, 40, 40);
+        lbRemover.setBounds(330, 0, 30, 30);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar.png"))); // NOI18N
-        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+        lbPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar_1.png"))); // NOI18N
+        lbPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel1MouseClicked(evt);
+                lbPesquisarMouseClicked(evt);
             }
         });
-        jPanel3.add(jLabel1);
-        jLabel1.setBounds(370, 10, 40, 40);
+        jPanel3.add(lbPesquisar);
+        lbPesquisar.setBounds(370, 0, 30, 30);
 
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
         btSair.setText("Sair");
@@ -119,27 +119,27 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btSair)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jLabel24)
-                        .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 418, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(btSair)
+                        .addGroup(jPanel2Layout.createSequentialGroup()
+                            .addComponent(jLabel24)
+                            .addGap(330, 330, 330)))
+                    .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
+            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 24, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addComponent(btSair)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,7 +200,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_lbRemoverMouseClicked
 
-    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+    private void lbPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPesquisarMouseClicked
         // TODO add your handling code here:
         SessaoTableModel stm = new SessaoTableModel(sessaoRN.listar());
         Object o = TelaPesquisa.exibeTela(stm);
@@ -209,7 +209,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
             sessao = sessaoRN.pesquisarCodigo((short) o);
             tfNomeSessao.setText(sessao.getDescricao().toString());
         }
-    }//GEN-LAST:event_jLabel1MouseClicked
+    }//GEN-LAST:event_lbPesquisarMouseClicked
 
     public void limpaCampos() {
         tfNomeSessao.setText("");
@@ -252,12 +252,12 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btSair;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lbNovo;
+    private javax.swing.JLabel lbPesquisar;
     private javax.swing.JLabel lbRemover;
     private javax.swing.JLabel lbSalvar;
     private javax.swing.JTextField tfNomeSessao;
