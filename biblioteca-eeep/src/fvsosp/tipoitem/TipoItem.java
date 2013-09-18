@@ -58,7 +58,7 @@ public class TipoItem implements Serializable{
     /**
      * @return the idTipoItem
      */
-    public int getIdTipoItem() {
+    public short getIdTipoItem() {
         return idTipoItem;
     }
 

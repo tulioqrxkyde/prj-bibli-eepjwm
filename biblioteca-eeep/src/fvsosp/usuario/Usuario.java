@@ -28,7 +28,7 @@ public class Usuario implements Serializable{
     private boolean administrador;
 
     /*** @retorna o id do Usuário ***/
-    public int getIdUsuario() {
+    public short getIdUsuario() {
         return idUsuario;
     }
 
