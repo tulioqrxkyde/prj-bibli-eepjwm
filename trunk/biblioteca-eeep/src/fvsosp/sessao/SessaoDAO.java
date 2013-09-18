@@ -24,20 +24,20 @@ public class SessaoDAO extends GenericDAO<Sessao> {
         super(Sessao.class);
     }
 
-    public List<Sessao> pesquisarDescricao(String descricao) {
-        List<Sessao> Sessao = null;
+    public Sessao pesquisarDescricao(String descricao) {
+        Sessao sessao = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            Sessao = (List<Sessao>) getSessao().createCriteria(Sessao.class).
-                    add(Restrictions.like("decricao", descricao, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("descricao")).list();
+            sessao = (Sessao) getSessao().createCriteria(Sessao.class).
+                    add(Restrictions.eq("descricao", descricao)).
+                    addOrder(Order.asc("descricao")).uniqueResult();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por descricao: " + e.getMessage());
         }
-        return Sessao;
+        return sessao;
 
     }
     

@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="sessao")
@@ -44,6 +45,7 @@ public class Sessao implements Serializable{
         return true;
     }
     
+    @NaturalId(mutable=true)
     @Column(nullable = false, length = 150, columnDefinition = "varchar(150) default ''")
     private String descricao;
     

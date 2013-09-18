@@ -208,6 +208,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         if (o != null) {
             sessao = sessaoRN.pesquisarCodigo((short) o);
             tfNomeSessao.setText(sessao.getDescricao().toString());
+            lbRemover.setEnabled(true);
         }
     }//GEN-LAST:event_lbPesquisarMouseClicked
 
