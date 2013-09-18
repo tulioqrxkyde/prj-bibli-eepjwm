@@ -36,7 +36,7 @@ public class SessaoRN {
         return dao.listar();
     }
 
-    public List<Sessao> pesquisarDescricao(String descricao) {
+    public Sessao pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
 

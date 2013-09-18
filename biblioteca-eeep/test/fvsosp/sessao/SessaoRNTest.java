@@ -43,7 +43,23 @@ public class SessaoRNTest {
      */
     @Test
     public void testAdicionar() {
-        fail();
+               
+        Sessao sessao = new Sessao();
+        sessao.setDescricao("sessaoteste");
+        
+        SessaoRN rn = new SessaoRN();
+        rn.salvar(sessao);
+        
+        Sessao sessaoTest = rn.pesquisarDescricao("sessaoteste") ;
+        
+        assertNotNull(sessaoTest);
+        
+        sessao = new Sessao();
+        sessao.setDescricao("sessaoteste");
+        
+        assertFalse(rn.salvar(sessao));
+        
+        rn.remove(sessaoTest);
     }
 
     /**
@@ -59,7 +75,16 @@ public class SessaoRNTest {
      */
     @Test
     public void testRemove() {
-        fail();
+        Sessao sessao = new Sessao();
+        sessao.setDescricao("sessaotesteremove");
+        
+        SessaoRN rn = new SessaoRN();
+        rn.salvar(sessao);
+        
+        Sessao sessaoTest = rn.pesquisarDescricao("sessaotesteremove");
+        
+        assertTrue(rn.remove(sessaoTest));
+        
     }
 
     /**
