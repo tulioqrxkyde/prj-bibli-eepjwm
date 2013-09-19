@@ -2,9 +2,6 @@ package fvsosp.usuario;
 
 import fvsosp.util.Util;
 import java.io.Serializable;
-import java.math.BigInteger;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
@@ -18,17 +15,17 @@ public class Usuario implements Serializable{
     private short idUsuario;
 
     @NaturalId(mutable=true) // será um valor único mas poderá ser alterado
-    @Column(length = 50, nullable = false, columnDefinition ="varchar(50) default ''")
+    @Column(length = 50, nullable = false)
     private String login;
     
-    @Column(length = 50, nullable = false, columnDefinition="string(50) default ''")
+    @Column(length = 50, nullable = false)
     private String senha;
     
-    @Column(columnDefinition="boolean default 0")
+    @Column(nullable = false)
     private boolean administrador;
 
     /*** @retorna o id do Usuário ***/
-    public short getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 

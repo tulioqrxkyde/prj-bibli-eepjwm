@@ -13,7 +13,7 @@ public class Autor {
 
     @Id // campo chave primária
     @GeneratedValue // campo autoincremento
-    private short idAutor;
+    private int idAutor;
     
     // not null de tamanho 70 e valor padrão ''
     @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 
@@ -34,12 +34,12 @@ public class Autor {
     private List<Acervo> acervo;
     
     /*** @retorna o id do Autor ***/
-    public short getIdAutor() {
+    public int getIdAutor() {
         return idAutor;
     }
 
     /*** @seta o id do Autor ***/
-    public void setIdAutor(short idAutor) {
+    public void setIdAutor(int idAutor) {
         this.idAutor = idAutor;
     }
 
