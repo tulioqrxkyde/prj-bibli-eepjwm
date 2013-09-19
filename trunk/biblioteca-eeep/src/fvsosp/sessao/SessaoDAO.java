@@ -36,7 +36,10 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por descricao: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
+            
         return sessao;
 
     }
@@ -52,6 +55,8 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return sessao;
 
@@ -69,6 +74,8 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por acervos: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return Sessaoa;
 

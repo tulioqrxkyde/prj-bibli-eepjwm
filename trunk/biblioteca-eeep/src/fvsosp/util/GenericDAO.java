@@ -54,7 +54,7 @@ public abstract class GenericDAO<T> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            this.getSessao().update(entity);
+            this.getSessao().merge(entity);
             this.getTransacao().commit();
         } catch (HibernateException e) {
             System.out.println("Não foi possível atualizar " + entity.getClass()
@@ -111,6 +111,8 @@ public abstract class GenericDAO<T> {
             return (T) o;
         } catch (HibernateException e) {
             System.out.println("Erro ao carregar por chave primária: "+e.getMessage());
+        } finally {
+            sessao.close();
         }
         return null;
     }

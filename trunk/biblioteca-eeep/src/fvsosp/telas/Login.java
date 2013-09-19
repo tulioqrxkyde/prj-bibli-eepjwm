@@ -230,6 +230,7 @@ public class Login extends javax.swing.JFrame {
 
             UsuarioRN uRN = new UsuarioRN();
             if (uRN.autentica(usuario)) {
+                dispose();
                 TelaPrincipal tp = new TelaPrincipal();
                 tp.setVisible(true);
             } else {

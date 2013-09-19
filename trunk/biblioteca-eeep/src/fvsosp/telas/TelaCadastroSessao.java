@@ -29,9 +29,9 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         /*desabilita o o botão remover, o mesmo deve ser habilitado
          * quando for pesquisado algum item, 
          */
-        lbRemover.setEnabled(false);
+        btRemover.setEnabled(false);
         setModal(true);
-        
+
     }
 
     /**
@@ -48,11 +48,11 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         tfNomeSessao = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
-        lbNovo = new javax.swing.JLabel();
-        lbSalvar = new javax.swing.JLabel();
-        lbRemover = new javax.swing.JLabel();
-        lbPesquisar = new javax.swing.JLabel();
         btSair = new javax.swing.JButton();
+        btPesquisar = new javax.swing.JButton();
+        btRemover = new javax.swing.JButton();
+        btSalvar = new javax.swing.JButton();
+        btNovo = new javax.swing.JButton();
 
         setResizable(false);
 
@@ -70,42 +70,6 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         jPanel3.add(jLabel23);
         jLabel23.setBounds(0, 0, 170, 30);
 
-        lbNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
-        lbNovo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbNovoMouseClicked(evt);
-            }
-        });
-        jPanel3.add(lbNovo);
-        lbNovo.setBounds(250, 0, 30, 30);
-
-        lbSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
-        lbSalvar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbSalvarMouseClicked(evt);
-            }
-        });
-        jPanel3.add(lbSalvar);
-        lbSalvar.setBounds(290, 0, 30, 30);
-
-        lbRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
-        lbRemover.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbRemoverMouseClicked(evt);
-            }
-        });
-        jPanel3.add(lbRemover);
-        lbRemover.setBounds(330, 0, 30, 30);
-
-        lbPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar_1.png"))); // NOI18N
-        lbPesquisar.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                lbPesquisarMouseClicked(evt);
-            }
-        });
-        jPanel3.add(lbPesquisar);
-        lbPesquisar.setBounds(370, 0, 30, 30);
-
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
         btSair.setText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -114,40 +78,80 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
             }
         });
 
+        btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar_1.png"))); // NOI18N
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarActionPerformed(evt);
+            }
+        });
+
+        btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
+        btRemover.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btRemoverActionPerformed(evt);
+            }
+        });
+
+        btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
+        btSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarActionPerformed(evt);
+            }
+        });
+
+        btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(btSair)
-                        .addGroup(jPanel2Layout.createSequentialGroup()
-                            .addComponent(jLabel24)
-                            .addGap(330, 330, 330)))
-                    .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel24)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSair))
+                    .addComponent(tfNomeSessao))
+                .addGap(16, 16, 16))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(1, 1, 1)
                 .addComponent(tfNomeSessao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btSair)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btSair)
+                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -161,28 +165,20 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
-    private void lbNovoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNovoMouseClicked
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        limpaCampos();
-    }//GEN-LAST:event_lbNovoMouseClicked
-
-    private void lbSalvarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbSalvarMouseClicked
-        // TODO add your handling code here:
-        if (sessao == null) {
-            sessao = new Sessao();
+        SessaoTableModel stm = new SessaoTableModel(sessaoRN.listar());
+        Object o = TelaPesquisa.exibeTela(stm);
+        sessao = new Sessao();
+        if (o != null) {
+            short id = (short) o;
+            sessao = sessaoRN.pesquisarCodigo(id);
+            tfNomeSessao.setText(sessao.getDescricao().toString());
+            btRemover.setEnabled(true);
         }
+    }//GEN-LAST:event_btPesquisarActionPerformed
 
-
-        sessao.setDescricao(tfNomeSessao.getText().toString());
-
-        if (sessaoRN.salvar(sessao)) {
-            JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
-                    + ", cadastrada com sucesso!");
-            limpaCampos();
-        }
-    }//GEN-LAST:event_lbSalvarMouseClicked
-
-    private void lbRemoverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbRemoverMouseClicked
+    private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
         if (sessao != null) {
             if (sessao.getIdSessao() != 0) {
@@ -195,27 +191,43 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
                             "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
                 }
             }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Não existe Sessão para excluir!",
-                    "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
         }
-    }//GEN-LAST:event_lbRemoverMouseClicked
+        limpaCampos();
+    }//GEN-LAST:event_btRemoverActionPerformed
 
-    private void lbPesquisarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbPesquisarMouseClicked
+    private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
-        SessaoTableModel stm = new SessaoTableModel(sessaoRN.listar());
-        Object o = TelaPesquisa.exibeTela(stm);
-        sessao = new Sessao();
-        if (o != null) {
-            sessao = sessaoRN.pesquisarCodigo((short) o);
-            tfNomeSessao.setText(sessao.getDescricao().toString());
-            lbRemover.setEnabled(true);
+        if (sessao == null) {
+            sessao = new Sessao();
         }
-    }//GEN-LAST:event_lbPesquisarMouseClicked
+
+
+        sessao.setDescricao(tfNomeSessao.getText().toString());
+        int idSessao = sessao.getIdSessao();
+        if (sessaoRN.salvar(sessao)) {
+            if (idSessao == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
+                        + ", cadastrada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
+                        + ", alterada com sucesso!");
+            }
+            limpaCampos();
+            btRemover.setEnabled(false);
+        }
+    }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        // TODO add your handling code here:
+        limpaCampos();
+        
+    }//GEN-LAST:event_btNovoActionPerformed
 
     public void limpaCampos() {
         tfNomeSessao.setText("");
         sessao = null;
+        tfNomeSessao.requestFocus();
+        btRemover.setEnabled(false);
     }
 
     /**
@@ -253,15 +265,15 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btNovo;
+    private javax.swing.JButton btPesquisar;
+    private javax.swing.JButton btRemover;
     private javax.swing.JButton btSair;
+    private javax.swing.JButton btSalvar;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JLabel lbNovo;
-    private javax.swing.JLabel lbPesquisar;
-    private javax.swing.JLabel lbRemover;
-    private javax.swing.JLabel lbSalvar;
     private javax.swing.JTextField tfNomeSessao;
     // End of variables declaration//GEN-END:variables
 }

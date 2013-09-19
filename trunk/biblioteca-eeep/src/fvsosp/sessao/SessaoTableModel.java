@@ -16,25 +16,25 @@ import javax.swing.table.AbstractTableModel;
 public class SessaoTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Sessão"};
-    private List<Sessao> usuarios;
+    private List<Sessao> sessoes;
 
     // construtor padrão criando um arraylist de alunos  
     public SessaoTableModel() {
-        usuarios = new ArrayList<Sessao>();
+        sessoes = new ArrayList<Sessao>();
 
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
     public SessaoTableModel(List<Sessao> lista) {
         this();
-        this.usuarios.clear();
-        this.usuarios.addAll(lista);
+        this.sessoes.clear();
+        this.sessoes.addAll(lista);
         super.fireTableDataChanged();
 
     }
 
     public int getRowCount() {
-        return usuarios.size();
+        return sessoes.size();
         //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
@@ -44,7 +44,7 @@ public class SessaoTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Sessao sessao = usuarios.get(rowIndex);
+        Sessao sessao = sessoes.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return sessao.getIdSessao();
