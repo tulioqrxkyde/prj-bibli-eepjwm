@@ -57,7 +57,7 @@ public class Sessao implements Serializable{
     private List<Acervo> acervos;
 
     /*** @retorna o id da Sessão ***/
-    public short getIdSessao() {
+    public int getIdSessao() {
         return idSessao;
     }
 

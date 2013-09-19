@@ -55,7 +55,7 @@ public class Biblioteca implements Serializable{
     private List<Acervo> acervos;
 
     /*** @retorna o ID da Biblioteca ***/
-    public short getIdBiblioteca() {
+    public int getIdBiblioteca() {
         return idBiblioteca;
     }
 

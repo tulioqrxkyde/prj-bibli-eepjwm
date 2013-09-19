@@ -71,7 +71,7 @@ public class EspecificacoesTecnicas implements Serializable {
     private Acervo acervo;
 
     /*** @retorna o id das Especificações Técnicas ***/
-    public short getIdEspecificacoesTecnicas() {
+    public int getIdEspecificacoesTecnicas() {
         return idEspecificacoesTecnicas;
     }
 
