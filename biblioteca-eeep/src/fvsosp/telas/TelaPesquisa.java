@@ -52,7 +52,6 @@ public class TelaPesquisa extends javax.swing.JDialog {
         tbPesquisa = new javax.swing.JTable();
         btSelecionar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
 
         setTitle("Tela de Pesquisa");
 
@@ -83,9 +82,6 @@ public class TelaPesquisa extends javax.swing.JDialog {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo.png"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,8 +91,6 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(95, 95, 95)
                         .addComponent(btSelecionar)
                         .addGap(3, 3, 3)
                         .addComponent(btCancelar)))
@@ -110,8 +104,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btSelecionar)
-                    .addComponent(btCancelar)
-                    .addComponent(jLabel1))
+                    .addComponent(btCancelar))
                 .addContainerGap())
         );
 
@@ -173,7 +166,6 @@ public class TelaPesquisa extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btSelecionar;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tbPesquisa;
     // End of variables declaration//GEN-END:variables

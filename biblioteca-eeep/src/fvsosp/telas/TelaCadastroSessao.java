@@ -31,6 +31,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
          */
         lbRemover.setEnabled(false);
         setModal(true);
+        
     }
 
     /**
