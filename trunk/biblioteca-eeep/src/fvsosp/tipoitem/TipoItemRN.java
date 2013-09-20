@@ -16,18 +16,17 @@ public class TipoItemRN {
 
     public boolean remover(TipoItem tp) {
         return dao.remover(tp);
-        
-    }
 
-    public boolean atualizar(TipoItem tp) {
-        return dao.atualizar(tp);
-        
     }
 
     public boolean adiciona(TipoItem tp) {
-        if (tp.getDescricao() != null) {
-            return dao.adicionar(tp);
-            
+        if (tp.getIdTipoItem() == 0) {
+            if (tp.getDescricao() != null) {
+                return dao.adicionar(tp);
+
+            }
+        } else {
+            return dao.atualizar(tp);
         }
         return false;
     }

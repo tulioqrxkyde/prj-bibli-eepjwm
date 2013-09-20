@@ -12,9 +12,12 @@ public class EditoraRN {
     EditoraDAO dao = new EditoraDAO();
     
     public boolean adiciona(Editora ed) {
+        if(ed.getIdEditora()==0){
         if ((!ed.getNome().isEmpty()) && (ed.getAcervo() != null) && (!ed.getAcervo().isEmpty())) {
             return dao.adicionar(ed);
             
+        }}else{
+            return dao.atualizar(ed);
         }
         return false;
     }
@@ -24,10 +27,6 @@ public class EditoraRN {
         
     }
 
-    public boolean atualizar(Editora ed) {
-        return dao.atualizar(ed);
-        
-    }
 
     public List<Editora> listar() {
         return dao.listar();

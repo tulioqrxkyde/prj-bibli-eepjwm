@@ -5,21 +5,40 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "cidade")
 public class Cidade implements Serializable{
+
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
     
     @Id // campo chave primária
+    @GeneratedValue // campo auto incremento
+    private short idCidade;
+    
+    @NaturalId
     private int codIBGE;
 
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 19 * hash + this.codIBGE;
-        hash = 19 * hash + Objects.hashCode(this.descricao);
-        hash = 19 * hash + Objects.hashCode(this.uf);
-        hash = 19 * hash + Objects.hashCode(this.leitores);
+        hash = 19 * hash + this.getCodIBGE();
+        hash = 19 * hash + Objects.hashCode(this.getDescricao());
+        hash = 19 * hash + Objects.hashCode(this.getUf());
+        hash = 19 * hash + Objects.hashCode(this.getLeitores());
         return hash;
     }
 
@@ -32,7 +51,7 @@ public class Cidade implements Serializable{
             return false;
         }
         final Cidade other = (Cidade) obj;
-        if (this.codIBGE != other.codIBGE) {
+        if (this.getCodIBGE() != other.getCodIBGE()) {
             return false;
         }
         if (!Objects.equals(this.descricao, other.descricao)) {
@@ -95,9 +114,27 @@ public class Cidade implements Serializable{
         return leitores;
     }
 
-    /*** @seta e copia a lista de Leitores recebida para a lista da Classe ***/
+     private static long serialVersionUID = -5660386351782012215L;
+
+    /**
+     * @return the idCidade
+     */
+    public short getIdCidade() {
+        return idCidade;
+    }
+
+    /**
+     * @param idCidade the idCidade to set
+     */
+    public void setIdCidade(short idCidade) {
+        this.idCidade = idCidade;
+    }
+
+    /**
+     * @param leitores the leitores to set
+     */
     public void setLeitores(List<Leitor> leitores) {
         this.leitores = leitores;
     }
-    private static final long serialVersionUID = -5660386351782012215L;
+    
 }

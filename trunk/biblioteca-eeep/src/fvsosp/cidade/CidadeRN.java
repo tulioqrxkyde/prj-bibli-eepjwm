@@ -14,23 +14,22 @@ public class CidadeRN {
 
     private CidadeDAO dao = new CidadeDAO();
 
-    public boolean adiciona(Cidade cidade) {
-        if ((cidade.getDescricao() != null)
-                &&(cidade.getUf()!=null)) {
-            return dao.adicionar(cidade);
-         
+    public boolean salvar(Cidade cidade) {
+        if (cidade.getIdCidade() == 0) {
+            if ((cidade.getDescricao() != null)
+                    && (cidade.getUf() != null)) {
+                return dao.adicionar(cidade);
+
+            }
+        } else {
+            return dao.atualizar(cidade);
         }
         return false;
     }
 
     public boolean remover(Cidade cidade) {
         return dao.remover(cidade);
-        
-    }
 
-    public boolean atualizar(Cidade cidade) {
-        return dao.atualizar(cidade);
-        
     }
 
     public List<Cidade> listar() {
@@ -40,7 +39,7 @@ public class CidadeRN {
     public List<Cidade> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
-     
+
     public List<Cidade> pesquisarUf(String uf) {
         return dao.pesquisarUf(uf);
     }

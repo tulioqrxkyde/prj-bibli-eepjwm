@@ -16,23 +16,19 @@ public class GruposLeitoresRN {
     private GruposLeitoresDAO dao = new GruposLeitoresDAO();
 
     public boolean adiciona(GruposLeitores gl) {
-        if (gl.getDescricao() != null) {
-            return dao.adicionar(gl);
-            
+        if (gl.getIdGruposLeitores() == 0) {
+            if (gl.getDescricao() != null) {
+                return dao.adicionar(gl);
+
+            }
+        } else {
+            return dao.atualizar(gl);
         }
         return false;
     }
 
     public boolean atualiza(GruposLeitores gl) {
         return dao.atualizar(gl);
-        
-
-    }
-
-    public boolean remover(GruposLeitores gl) {
-        return dao.remover(gl);
-        
-
     }
 
     public List<GruposLeitores> listar() {

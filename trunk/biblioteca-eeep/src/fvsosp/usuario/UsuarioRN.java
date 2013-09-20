@@ -20,9 +20,8 @@ public class UsuarioRN {
      * essa classe implementa todas as regras de negócio
      * possíveis a Usuario
      */
-    private UsuarioDAO usuDAO = new UsuarioDAO(); 
-    
-    
+    private UsuarioDAO usuDAO = new UsuarioDAO();
+
     public boolean autentica(Usuario usuario) {
         Usuario usu = usuDAO.pesquisaUsuario(usuario);
         if (usu != null) {
@@ -43,28 +42,20 @@ public class UsuarioRN {
         }
     }
 
-    /*
-     * verifica se a senha foi confirmada corretamente
-     * depois atualiza
-     */
-    public boolean atualizar(Usuario usuario, String confirmaSenhaAnterior) {
-        Usuario usu = usuDAO.carregaChavePrimaria(usuario.getIdUsuario());
-        if (usu.getSenha().equals(Util.md5(confirmaSenhaAnterior))) {
-            return usuDAO.atualizar(usuario);
-        }
-        return false;
-
-    }
-
-    /*
-     * antes de adicionar verifica se a senha 
-     * foi confirmada corretamente
-     */
-    public boolean adiciona(Usuario usuario, String confirmaSenha) {
-        confirmaSenha = Util.md5(confirmaSenha);
-        if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
-            if (usuario.getSenha().equals(confirmaSenha)) {
-                return usuDAO.adicionar(usuario);
+    public boolean salvar(Usuario usuario, String outraSenha) {
+        if (usuario.getIdUsuario() == 0) {
+            //se adiciona tem que ter uma senha pra confirma a senha digitada
+            outraSenha = Util.md5(outraSenha);
+            if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
+                if (usuario.getSenha().equals(outraSenha)) {
+                    return usuDAO.adicionar(usuario);
+                }
+            }
+        } else {
+            //se altera tem que ter uma senha pra confirmar a senha anterior
+            Usuario usu = usuDAO.carregaChavePrimaria(usuario.getIdUsuario());
+            if (usu.getSenha().equals(Util.md5(outraSenha))) {
+                return usuDAO.atualizar(usuario);
             }
         }
         return false;

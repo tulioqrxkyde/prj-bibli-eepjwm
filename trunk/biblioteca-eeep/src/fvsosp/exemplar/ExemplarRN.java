@@ -18,19 +18,17 @@ public class ExemplarRN {
 
     // Metódo que adiciona um livro no acervo, caso contrário retorna false
     public boolean adiciona(Exemplar exemplar) {
-        return dao.adicionar(exemplar);
+        if (exemplar.getTombo() == 0) {
+            return dao.adicionar(exemplar);
+        } else {
+            return dao.atualizar(exemplar);
+        }
 
     }
 
     // Metódo que remove
     public boolean remover(Exemplar exemplar) {
         return dao.remover(exemplar);
-    }
-
-    // Metódo que atualiza no banco de dados o acervo
-    public boolean atualizar(Exemplar exemplar) {
-        return dao.atualizar(exemplar);
-
     }
 
     // Metódo que faz um List de arcervos

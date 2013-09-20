@@ -20,10 +20,14 @@ public class AcervoRN {
     private AcervoDAO dao = new AcervoDAO();
 
     // Metódo que adiciona um livro no acervo, caso contrário retorna false
-    public boolean adiciona(Acervo acervo) {
-        if (acervo.getTituloObra() != null) {
-            return dao.adicionar(acervo);
-            
+    public boolean salvar(Acervo acervo) {
+        if (acervo.getIdAcervo() == 0) {
+            if (acervo.getTituloObra() != null) {
+                return dao.adicionar(acervo);
+
+            }
+        } else {
+            return dao.atualizar(acervo);
         }
         return false;
     }
@@ -31,13 +35,7 @@ public class AcervoRN {
     // Metódo que remove
     public boolean remover(Acervo acervo) {
         return dao.remover(acervo);
-        
-    }
 
-    // Metódo que atualiza no banco de dados o acervo
-    public boolean atualizar(Acervo acervo) {
-        return dao.atualizar(acervo);
-        
     }
 
     // Metódo que faz um List de arcervos
