@@ -55,6 +55,8 @@ public class CidadeDAO extends GenericDAO<Cidade> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return cidades;
 
@@ -72,6 +74,8 @@ public class CidadeDAO extends GenericDAO<Cidade> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao pesquisar por UF: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return cidades;
     }

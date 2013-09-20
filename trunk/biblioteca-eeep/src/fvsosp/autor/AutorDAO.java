@@ -37,6 +37,8 @@ public class AutorDAO extends GenericDAO<Autor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por nome: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return autores;
     }
@@ -55,6 +57,8 @@ public class AutorDAO extends GenericDAO<Autor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar sobre autor: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return autores;
     }

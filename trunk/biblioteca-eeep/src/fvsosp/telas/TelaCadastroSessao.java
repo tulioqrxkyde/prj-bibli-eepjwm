@@ -60,6 +60,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         jLabel24.setText("Descrição.:");
 
         tfNomeSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfNomeSessao.setToolTipText("Digite aqui a descrição da sessão");
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
         jPanel3.setLayout(null);
@@ -72,6 +73,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
 
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
         btSair.setText("Sair");
+        btSair.setToolTipText("Sair");
         btSair.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSairActionPerformed(evt);
@@ -79,6 +81,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         });
 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar_1.png"))); // NOI18N
+        btPesquisar.setToolTipText("Pesquisar");
         btPesquisar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btPesquisarActionPerformed(evt);
@@ -86,6 +89,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         });
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
+        btRemover.setToolTipText("Excluir");
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -93,6 +97,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         });
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
+        btSalvar.setToolTipText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSalvarActionPerformed(evt);
@@ -100,6 +105,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         });
 
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
+        btNovo.setToolTipText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btNovoActionPerformed(evt);

@@ -37,6 +37,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por nome: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
     }
@@ -53,6 +55,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por email: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 
@@ -70,6 +74,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Data de Nascimento: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
     }
@@ -86,6 +92,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por telefone: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 
@@ -103,6 +111,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por celular: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 
@@ -120,6 +130,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por matricula: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 
@@ -138,6 +150,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por ativo: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 
@@ -155,6 +169,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por grupos de Leitores: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 
@@ -172,6 +188,8 @@ public class LeitorDAO extends GenericDAO<Leitor> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por cidades: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitores;
 

@@ -30,10 +30,12 @@ public class EditoraDAO extends GenericDAO<Editora> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Nome da Editora: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return editoras;
     }
-
+ 
     public List<Acervo> procuraAcervoEditora(Editora ed) {
         List<Acervo> acervos = null;
 
@@ -47,6 +49,8 @@ public class EditoraDAO extends GenericDAO<Editora> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Acervo: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return acervos;
     }

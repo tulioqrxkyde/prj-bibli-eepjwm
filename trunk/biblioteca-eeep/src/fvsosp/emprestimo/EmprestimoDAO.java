@@ -25,6 +25,8 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             emprestimo = (List<Emprestimo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Data de Emprestimo. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return emprestimo;
     }
@@ -37,6 +39,8 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             emprestimo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataDevolucao", data)).addOrder(Order.asc("dataDevolucao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Data de Devolução. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return emprestimo;
     }
@@ -49,6 +53,8 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             acervo = (List<Acervo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("acervos", emprestimo)).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return acervo;
     }
@@ -61,6 +67,8 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             leitor = (Leitor) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("idLeitor", emprestimo)).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return leitor;
     }
