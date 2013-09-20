@@ -12,21 +12,20 @@ public class EmprestimoRN {
     EmprestimoDAO dao = new EmprestimoDAO();
 
     public boolean adiciona(Emprestimo em) {
-        if ((!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getAcervos().isEmpty())) {
-            return dao.adicionar(em);
-            
+        if (em.getIdEmprestimo() == 0) {
+            if ((!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getAcervos().isEmpty())) {
+                return dao.adicionar(em);
+
+            }
+        } else {
+            return dao.atualizar(em);
         }
         return false;
     }
 
     public boolean remover(Emprestimo em) {
         return dao.remover(em);
-        
-    }
 
-    public boolean atualizar(Emprestimo em) {
-        return dao.atualizar(em);
-        
     }
 
     public List<Emprestimo> listar() {

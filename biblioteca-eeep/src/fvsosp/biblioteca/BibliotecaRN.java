@@ -14,10 +14,14 @@ public class BibliotecaRN {
 
     private BibliotecaDAO dao = new BibliotecaDAO();
 
-    public boolean adiciona(Biblioteca biblioteca) {
-        if (biblioteca.getDescricao() != null) {
-            return dao.adicionar(biblioteca);
-        
+    public boolean salvar(Biblioteca biblioteca) {
+        if (biblioteca.getIdBiblioteca() == 0) {
+            if (biblioteca.getDescricao() != null) {
+                return dao.adicionar(biblioteca);
+
+            }
+        } else {
+            return dao.atualizar(biblioteca);
         }
         return false;
     }
@@ -25,11 +29,6 @@ public class BibliotecaRN {
     public boolean remove(Biblioteca biblioteca) {
         return dao.remover(biblioteca);
 
-    }
-
-    public boolean atualizar(Biblioteca biblioteca) {
-        return dao.atualizar(biblioteca);
-   
     }
 
     public List<Biblioteca> listar() {

@@ -49,7 +49,7 @@ public class UsuarioRNTest {
             usuario.setLogin("testeautentica");
             usuario.setSenha("testeautenticasenha");
 
-            rn.adiciona(usuario, "testeautenticasenha");
+            rn.salvar(usuario, "testeautenticasenha");
         }
 
         assertEquals(rn.autentica(usuario), true);
@@ -73,7 +73,7 @@ public class UsuarioRNTest {
         usuario.setLogin("testeremover");
         usuario.setSenha("testeremoversenha");
 
-        rn.adiciona(usuario, "testeremoversenha");
+        rn.salvar(usuario, "testeremoversenha");
 
         //verifica se conseguiu remover o usuario de login testeremover
         assertEquals(rn.remover(usuario), true);
@@ -93,7 +93,7 @@ public class UsuarioRNTest {
             usuario.setLogin("testealterar");
             usuario.setSenha("testealterarsenha");
 
-            rn.adiciona(usuario, "testealterarsenha");
+            rn.salvar(usuario, "testealterarsenha");
         }
         //cria usuario dois e carrega um usario com login testealterar
         Usuario usuario2 = new Usuario();
@@ -104,7 +104,7 @@ public class UsuarioRNTest {
         usuario2.setSenha("testealterartestesenha");
 
         //atualiza o usuario de login testealterar para login testealterarsenha
-        assertEquals(rn.atualizar(usuario2, "testealterarsenha"), true);
+        assertEquals(rn.salvar(usuario2, "testealterarsenha"), true);
 
         //carrega o usuário testealterartest
         Usuario usuarioALterado = new Usuario();
@@ -132,14 +132,14 @@ public class UsuarioRNTest {
         usuario.setLogin("testeadiciona");
         usuario.setSenha("testeadicionasenha");
         //adiciona o primeiro usuário
-        assertEquals(rn.adiciona(usuario, "testeadicionasenha"), true);
+        assertEquals(rn.salvar(usuario, "testeadicionasenha"), true);
              
         //2º usário com as mesmas caracterísitcas do primeiro
         usuario = new Usuario();
         usuario.setLogin("testeadiciona");
         usuario.setSenha("testeadicionasenha");
         //não pode deixar adicionar dois usuários com o mesmo login
-        assertEquals(rn.adiciona(usuario, "testeadicionasenha"), false);
+        assertEquals(rn.salvar(usuario, "testeadicionasenha"), false);
 
         //pesquisa pelo usuario testeadiciona
         Usuario usuarioAdiciona = new Usuario();
@@ -164,7 +164,7 @@ public class UsuarioRNTest {
         usuario.setLogin("testepesquisalogin");
         usuario.setSenha("testepesquisaloginsenha");
 
-        rn.adiciona(usuario, "testepesquisaloginsenha");
+        rn.salvar(usuario, "testepesquisaloginsenha");
 
         //carrega o usuario com login testepesquisalogin
         Usuario usuarioPesqLogin = rn.pesquisaLogin("testepesquisalogin");
@@ -186,13 +186,13 @@ public class UsuarioRNTest {
         usuario.setLogin("testelistar");
         usuario.setSenha("testelistarsenha");
 
-        rn.adiciona(usuario, "testelistarsenha");
+        rn.salvar(usuario, "testelistarsenha");
         
         Usuario usuario2 = new Usuario();
         usuario2.setLogin("testelistar2");
         usuario2.setSenha("testelistarsenha2");
         
-        rn.adiciona(usuario2, "testelistarsenha2");
+        rn.salvar(usuario2, "testelistarsenha2");
         
         //carrega uma lista de usuarios
         List<Usuario> usuarios = rn.listar();
