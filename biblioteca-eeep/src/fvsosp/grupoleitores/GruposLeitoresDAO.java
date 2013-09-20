@@ -38,6 +38,8 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return descricaoPesquisa;
     }

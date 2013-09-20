@@ -32,6 +32,8 @@ public class EspecificacoesTecnicasDAO extends GenericDAO<EspecificacoesTecnicas
                     add(Restrictions.eq("acervo", acervo)).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Acervo: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return et;
     }

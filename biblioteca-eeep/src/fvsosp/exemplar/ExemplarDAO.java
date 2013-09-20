@@ -31,6 +31,8 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
                     add(Restrictions.eq("tombo", tombo)).addOrder(Order.asc("exemplar")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Tombo. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return exemplar;
     }
@@ -44,6 +46,8 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
                     add(Restrictions.eq("acervo", acervo)).addOrder(Order.asc("exemplar")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
         }
         return exemplar;
     }

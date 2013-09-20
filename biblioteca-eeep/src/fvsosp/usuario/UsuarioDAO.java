@@ -42,6 +42,8 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
             this.getSessao().close();
         } catch (Throwable t) {
             System.out.println("Não foi possível localizar o login.");
+        } finally {
+            this.getSessao().close();
         }
         return usuario;
     }
@@ -56,6 +58,8 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
                     add(Restrictions.eq("senha", usuario.getSenha())).uniqueResult();
         } catch (Exception e) {
             System.out.println("Erro encontrado. Erro "+e.getMessage());            
+        } finally {
+            this.getSessao().close();
         }
         return null;
     }
