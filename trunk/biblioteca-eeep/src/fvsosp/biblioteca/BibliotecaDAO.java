@@ -6,10 +6,7 @@ package fvsosp.biblioteca;
 
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
-import java.util.List;
 import org.hibernate.HibernateException;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 
 /**
@@ -19,7 +16,7 @@ import org.hibernate.criterion.Restrictions;
 public class BibliotecaDAO extends GenericDAO<Biblioteca> {
 
     public BibliotecaDAO() {
-        super(BibliotecaDAO.class);
+        super(Biblioteca.class);
     }
 
     public Biblioteca pesquisarDescricao(String descricao) {
@@ -35,8 +32,7 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
              * de forma crescente por descicao
              */
             bibliotecas = (Biblioteca) getSessao().createCriteria(Biblioteca.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("descricao")).uniqueResult();
+                    add(Restrictions.eq("descricao", descricao)).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
@@ -45,5 +41,22 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
         }
         return bibliotecas;
     }
-}
 
+    public Biblioteca pesquisarCodigo(int codigo) {
+        Biblioteca biblioteca = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            biblioteca = (Biblioteca) getSessao().createCriteria(Biblioteca.class).
+                    add(Restrictions.eq("idBiblioteca", codigo)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return biblioteca;
+
+    }
+}

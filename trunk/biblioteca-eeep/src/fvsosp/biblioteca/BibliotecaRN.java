@@ -15,13 +15,12 @@ public class BibliotecaRN {
     private BibliotecaDAO dao = new BibliotecaDAO();
 
     public boolean salvar(Biblioteca biblioteca) {
-        if (biblioteca.getIdBiblioteca() == 0) {
-            if (biblioteca.getDescricao() != null) {
+        if (!biblioteca.getDescricao().isEmpty()) {
+            if (biblioteca.getIdBiblioteca() == 0) {
                 return dao.adicionar(biblioteca);
-
+            } else {
+                return dao.atualizar(biblioteca);
             }
-        } else {
-            return dao.atualizar(biblioteca);
         }
         return false;
     }
@@ -37,5 +36,9 @@ public class BibliotecaRN {
 
     public Biblioteca pesquisaDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
+    }
+
+    public Biblioteca pesquisarCodigo(int codigo) {
+        return dao.pesquisarCodigo(codigo);
     }
 }
