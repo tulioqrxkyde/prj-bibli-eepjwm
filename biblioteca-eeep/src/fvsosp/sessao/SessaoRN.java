@@ -44,7 +44,7 @@ public class SessaoRN {
         return dao.pesquisarAcervos(acervos);
     }
 
-    public Sessao pesquisarCodigo(short codigo) {
+    public Sessao pesquisarCodigo(int codigo) {
         return dao.pesquisarCodigo(codigo);
     }
 }

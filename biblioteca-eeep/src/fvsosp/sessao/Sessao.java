@@ -13,7 +13,7 @@ public class Sessao implements Serializable{
 
     @Id // chave primária
     @GeneratedValue //auto incrmento
-    private short idSessao;
+    private int idSessao;
 
     @Override
     public int hashCode() {
@@ -57,12 +57,12 @@ public class Sessao implements Serializable{
     private List<Acervo> acervos;
 
     /*** @retorna o id da Sessão ***/
-    public short getIdSessao() {
+    public int getIdSessao() {
         return idSessao;
     }
 
     /*** @seta o id da Sessão ***/
-    public void setIdSessao(short idSessao) {
+    public void setIdSessao(int idSessao) {
         this.idSessao = idSessao;
     }
 
