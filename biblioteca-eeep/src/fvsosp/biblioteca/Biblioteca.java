@@ -12,7 +12,7 @@ public class Biblioteca implements Serializable{
 
     @Id // campo chave primária
     @GeneratedValue // campo auto incremento
-    private short idBiblioteca;
+    private int idBiblioteca;
 
     @Override
     public int hashCode() {
@@ -43,7 +43,7 @@ public class Biblioteca implements Serializable{
         }
         return true;
     }
-    
+
     @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''") 
     private String descricao;
     
@@ -60,7 +60,7 @@ public class Biblioteca implements Serializable{
     }
 
     /*** @seta o ID da Biblioteca ***/
-    public void setIdBiblioteca(short idBiblioteca) {
+    public void setIdBiblioteca(int idBiblioteca) {
         this.idBiblioteca = idBiblioteca;
     }
 
