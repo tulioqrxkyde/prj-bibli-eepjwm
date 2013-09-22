@@ -26,10 +26,10 @@ public class Leitor implements Serializable{
     @GeneratedValue
     private int idLeitor;
     
-    @Column(nullable=false, length=150)
+    @Column(nullable=false, length=100)
     private String nome;
     
-    @Column(length=150)
+    @Column(length=70)
     private String email;
     
     @Temporal(TemporalType.DATE)
@@ -53,23 +53,25 @@ public class Leitor implements Serializable{
     @Column(columnDefinition="boolean default 1")
     private boolean ativo;
     
+    @Column(length = 50)
     private String observacoes;
     
+    @Column(length = 70)
     private String endereco;
     
-    @Column(length=100)
+    @Column(length=50)
     private String bairro;
     
     @Column(length=10)
     private String cep;
     
-    @Column(length=150)
+    @Column(length=100)
     private String nomePai;
     
-    @Column(length=150)
+    @Column(length=100)
     private String nomeMae;
     
-    @Column(length=20)
+    @Column(length=8)
     private String rg;
     
     @Column(length=11)

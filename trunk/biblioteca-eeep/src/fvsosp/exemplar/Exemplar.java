@@ -28,8 +28,8 @@ public class Exemplar {
    @GeneratedValue
    private int tombo;
    
-   @Column(nullable=false)
-   private int exemplar;
+   @Column(length = 20, nullable=false)
+   private short exemplar;
    
    @ManyToOne
    @JoinColumn(name="idacervo")
@@ -81,14 +81,14 @@ public class Exemplar {
     /**
      * @return the exemplar
      */
-    public int getExemplar() {
+    public short getExemplar() {
         return exemplar;
     }
 
     /**
      * @param exemplar the exemplar to set
      */
-    public void setExemplar(int exemplar) {
+    public void setExemplar(short exemplar) {
         this.exemplar = exemplar;
     }
 
