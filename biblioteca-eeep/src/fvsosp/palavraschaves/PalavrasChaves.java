@@ -44,7 +44,7 @@ public class PalavrasChaves implements Serializable{
     }
 
     
-    @Column(length = 100, nullable = false, columnDefinition = "varchar(100) default ''")
+    @Column(length = 50, nullable = false, columnDefinition = "varchar(50) default ''")
     private String descricao;
     /*
      * Um palavraschaves possui muitos acervos, e um acervo possui 

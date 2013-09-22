@@ -49,7 +49,7 @@ public class TipoItem implements Serializable{
         return true;
     }
     
-    @Column(length=100, nullable=false, columnDefinition = "varchar(100) default ''")
+    @Column(length=50, nullable=false, columnDefinition = "varchar(50) default ''")
     private String descricao;
     
     @OneToMany(mappedBy="tipoItem")
