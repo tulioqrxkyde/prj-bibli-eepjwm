@@ -41,9 +41,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadastrado = new javax.swing.JMenu();
         itemCadAcervo = new javax.swing.JMenuItem();
         itemCadAluno = new javax.swing.JMenuItem();
-        itemBiblioteca = new javax.swing.JMenuItem();
-        itemGrupoLeitores = new javax.swing.JMenuItem();
-        itemCadProfessor = new javax.swing.JMenuItem();
+        itemCadAutor = new javax.swing.JMenuItem();
+        itemCadBiblioteca = new javax.swing.JMenuItem();
+        itemCadGrupoLeitores = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
         itemEmprestar = new javax.swing.JMenu();
@@ -145,24 +145,44 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadastrado.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
 
         itemCadAcervo.setText("Acervo");
+        itemCadAcervo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadAcervoActionPerformed(evt);
+            }
+        });
         menuCadastrado.add(itemCadAcervo);
 
         itemCadAluno.setText("Aluno");
-        menuCadastrado.add(itemCadAluno);
-
-        itemBiblioteca.setText("Biblioteca");
-        menuCadastrado.add(itemBiblioteca);
-
-        itemGrupoLeitores.setText("Grupo Leitores");
-        itemGrupoLeitores.addActionListener(new java.awt.event.ActionListener() {
+        itemCadAluno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemGrupoLeitoresActionPerformed(evt);
+                itemCadAlunoActionPerformed(evt);
             }
         });
-        menuCadastrado.add(itemGrupoLeitores);
+        menuCadastrado.add(itemCadAluno);
 
-        itemCadProfessor.setText("Professor");
-        menuCadastrado.add(itemCadProfessor);
+        itemCadAutor.setText("Autor");
+        itemCadAutor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadAutorActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadAutor);
+
+        itemCadBiblioteca.setText("Biblioteca");
+        itemCadBiblioteca.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadBibliotecaActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadBiblioteca);
+
+        itemCadGrupoLeitores.setText("Grupo Leitores");
+        itemCadGrupoLeitores.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadGrupoLeitoresActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadGrupoLeitores);
 
         itemCadSessao.setText("Sessão");
         itemCadSessao.addActionListener(new java.awt.event.ActionListener() {
@@ -173,6 +193,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuCadastrado.add(itemCadSessao);
 
         itemCadUsuario.setText("Usuário");
+        itemCadUsuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadUsuarioActionPerformed(evt);
+            }
+        });
         menuCadastrado.add(itemCadUsuario);
 
         BarradeMenuPrincipal.add(menuCadastrado);
@@ -234,14 +259,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, 0)
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(jLabel2)))
+                .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
@@ -250,19 +273,37 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
     
-    private void itemCadSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadSessaoActionPerformed
-        TelaCadastroSessao telacadsessao = new TelaCadastroSessao();
-        telacadsessao.setVisible(true);
-        
-    }//GEN-LAST:event_itemCadSessaoActionPerformed
-
-    private void itemGrupoLeitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemGrupoLeitoresActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemGrupoLeitoresActionPerformed
-
     private void ItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemSairActionPerformed
        System.exit(0);
     }//GEN-LAST:event_ItemSairActionPerformed
+
+    private void itemCadAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAcervoActionPerformed
+        // Instancie sua Tela
+    }//GEN-LAST:event_itemCadAcervoActionPerformed
+
+    private void itemCadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAlunoActionPerformed
+        // Instancie sua Tela
+    }//GEN-LAST:event_itemCadAlunoActionPerformed
+
+    private void itemCadAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAutorActionPerformed
+        // Instancie sua Tela
+    }//GEN-LAST:event_itemCadAutorActionPerformed
+
+    private void itemCadBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadBibliotecaActionPerformed
+        new TelaCadastroBiblioteca().setVisible(true);
+    }//GEN-LAST:event_itemCadBibliotecaActionPerformed
+
+    private void itemCadGrupoLeitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadGrupoLeitoresActionPerformed
+        // Instancie sua Tela
+    }//GEN-LAST:event_itemCadGrupoLeitoresActionPerformed
+
+    private void itemCadSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadSessaoActionPerformed
+        new TelaCadastroSessao().setVisible(true);
+    }//GEN-LAST:event_itemCadSessaoActionPerformed
+
+    private void itemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadUsuarioActionPerformed
+        // Instancie sua Tela
+    }//GEN-LAST:event_itemCadUsuarioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,15 +342,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuBar BarradeMenuPrincipal;
     private javax.swing.JMenu ItemSair;
-    private javax.swing.JMenuItem itemBiblioteca;
     private javax.swing.JMenuItem itemCadAcervo;
     private javax.swing.JMenuItem itemCadAluno;
-    private javax.swing.JMenuItem itemCadProfessor;
+    private javax.swing.JMenuItem itemCadAutor;
+    private javax.swing.JMenuItem itemCadBiblioteca;
+    private javax.swing.JMenuItem itemCadGrupoLeitores;
     private javax.swing.JMenuItem itemCadSessao;
     private javax.swing.JMenuItem itemCadUsuario;
     private javax.swing.JMenuItem itemConsultarAcervo;
     private javax.swing.JMenu itemEmprestar;
-    private javax.swing.JMenuItem itemGrupoLeitores;
     private javax.swing.JMenuItem itemRelatorioCatalogacao;
     private javax.swing.JMenuItem itemRelatorioEmprestimo;
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
