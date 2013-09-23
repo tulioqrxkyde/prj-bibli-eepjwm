@@ -240,9 +240,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         BarradeMenuPrincipal.add(itemRelatorioUsuario);
 
         ItemSair.setText("Sair");
-        ItemSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ItemSairActionPerformed(evt);
+        ItemSair.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                ItemSairMouseClicked(evt);
             }
         });
         BarradeMenuPrincipal.add(ItemSair);
@@ -279,10 +279,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemSairActionPerformed
-        System.exit(0);
-    }//GEN-LAST:event_ItemSairActionPerformed
-
     private void itemCadAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAcervoActionPerformed
         // Instancie sua Tela
     }//GEN-LAST:event_itemCadAcervoActionPerformed
@@ -310,6 +306,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void itemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadUsuarioActionPerformed
         // Instancie sua Tela
     }//GEN-LAST:event_itemCadUsuarioActionPerformed
+
+    private void ItemSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemSairMouseClicked
+        System.exit(0);
+    }//GEN-LAST:event_ItemSairMouseClicked
 
     /**
      * @param args the command line arguments
