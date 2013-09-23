@@ -23,7 +23,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
 
     public void setInformacoesPrincipal(Usuario usuario) {
-        jLabel1.setText(jLabel1.getText().replace("?",((usuario != null) ? usuario.getLogin() : "?")));
+        jLabel1.setText(jLabel1.getText().replace("?",((!usuario.getLogin().isEmpty()) ? usuario.getLogin() : "?")));
     }
 
     /**
