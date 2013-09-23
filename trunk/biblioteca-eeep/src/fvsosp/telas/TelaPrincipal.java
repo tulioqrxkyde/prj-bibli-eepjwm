@@ -50,6 +50,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadAutor = new javax.swing.JMenuItem();
         itemCadBiblioteca = new javax.swing.JMenuItem();
         itemCadGrupoLeitores = new javax.swing.JMenuItem();
+        itemCadProfessor = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
         itemEmprestar = new javax.swing.JMenu();
@@ -190,6 +191,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastrado.add(itemCadGrupoLeitores);
 
+        itemCadProfessor.setText("Professor");
+        itemCadProfessor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadProfessorActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadProfessor);
+
         itemCadSessao.setText("Sessão");
         itemCadSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -311,6 +320,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         System.exit(0);
     }//GEN-LAST:event_ItemSairMouseClicked
 
+    private void itemCadProfessorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadProfessorActionPerformed
+        // Instancie sua Tela
+    }//GEN-LAST:event_itemCadProfessorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -353,6 +366,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadAutor;
     private javax.swing.JMenuItem itemCadBiblioteca;
     private javax.swing.JMenuItem itemCadGrupoLeitores;
+    private javax.swing.JMenuItem itemCadProfessor;
     private javax.swing.JMenuItem itemCadSessao;
     private javax.swing.JMenuItem itemCadUsuario;
     private javax.swing.JMenuItem itemConsultarAcervo;
