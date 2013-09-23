@@ -24,7 +24,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
     public TelaCadastroBiblioteca() {
         initComponents();
         
-        this.setTitle("OSBilio - Biblioteca");
+        this.setTitle("OSBiblio - Biblioteca");
         this.setLocationRelativeTo(null);
         btRemover.setEnabled(false);
         setModal(true);

@@ -24,7 +24,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
      */
     public TelaCadastroSessao() {
         initComponents();
-        this.setTitle("OSBilio - Sessão");
+        this.setTitle("OSBiblio - Sessão");
         this.setLocationRelativeTo(null);
         /*desabilita o o botão remover, o mesmo deve ser habilitado
          * quando for pesquisado algum item, 
