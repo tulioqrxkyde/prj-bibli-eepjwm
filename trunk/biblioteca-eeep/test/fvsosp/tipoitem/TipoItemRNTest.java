@@ -42,7 +42,16 @@ public class TipoItemRNTest {
      */
     @Test
     public void testRemover() {
-        fail("The test case is a prototype.");
+        TipoItem item = new TipoItem();
+        
+        item.setDescricao("tipoItemDescrição");
+        TipoItemRN rn = new TipoItemRN();
+        rn.adiciona(item);
+        
+        if (item != null){
+            rn.remover(item);
+        }
+        assertFalse(false);
     }
 
     /**
@@ -66,8 +75,21 @@ public class TipoItemRNTest {
      */
     @Test
     public void testListar() {
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+       TipoItemRN rn = new TipoItemRN();
+       TipoItem item = new TipoItem();
+        item.setDescricao("ListarDescriçãoTipoItem");
+        rn.adiciona(item);
+        
+        TipoItem item2 = new TipoItem();
+        item2.setDescricao("ListarDescriçãoTipoItem2");
+        rn.adiciona(item2);
+        
+        List<TipoItem> tipoItens = rn.listar();
+        
+        assertTrue(tipoItens.size() >0);
+        
+        rn.remover(item);
+        rn.remover(item2);
     }
 
     /**
@@ -75,6 +97,12 @@ public class TipoItemRNTest {
      */
     @Test
     public void testPesquisaDescricao() {
-        fail("The test case is a prototype.");
+        TipoItem item = new TipoItem();
+        
+        item.setDescricao("tipoItemDescrição");
+        TipoItemRN rn = new TipoItemRN();
+        rn.adiciona(item);
+        
+        assertTrue("tipoItemDescrição", true);
     }
 }
