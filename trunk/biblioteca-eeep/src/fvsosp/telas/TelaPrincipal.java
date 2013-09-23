@@ -4,6 +4,8 @@
  */
 package fvsosp.telas;
 
+import fvsosp.usuario.Usuario;
+
 /**
  *
  * @author ADRIANO
@@ -17,7 +19,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         //setExtendedState( MAXIMIZED_BOTH ); ;   //( iniciar tela cheia )
         setTitle("OSBiblio");
-        setLocationRelativeTo(null);       
+        setLocationRelativeTo(null);
+    }
+
+    public void setInformacoesPrincipal(Usuario usuario) {
+        jLabel1.setText(jLabel1.getText().replace("?",((usuario != null) ? usuario.getLogin() : "?")));
     }
 
     /**
@@ -92,7 +98,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usuário:Nome do Usuário que esta logado");
+        jLabel1.setText("Logado como: ?");
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,7 +118,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap())
+                .addGap(121, 121, 121))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -272,9 +278,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-    
+
     private void ItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemSairActionPerformed
-       System.exit(0);
+        System.exit(0);
     }//GEN-LAST:event_ItemSairActionPerformed
 
     private void itemCadAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAcervoActionPerformed

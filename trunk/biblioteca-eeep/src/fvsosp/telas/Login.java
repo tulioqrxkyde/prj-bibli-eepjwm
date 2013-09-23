@@ -230,6 +230,7 @@ public class Login extends javax.swing.JFrame {
                 dispose();
                 TelaPrincipal tp = new TelaPrincipal();
                 tp.setVisible(true);
+                tp.setInformacoesPrincipal(usuario);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Login ou Senha Incorretos!",
                         "Informação", JOptionPane.ERROR_MESSAGE);
