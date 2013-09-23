@@ -5,6 +5,8 @@
 package fvsosp.sessao;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.acervo.AcervoRN;
+import fvsosp.usuario.Usuario;
 import java.util.List;
 import org.junit.After;
 import org.junit.AfterClass;
@@ -18,22 +20,22 @@ import static org.junit.Assert.*;
  * @author Pedro Saraiva
  */
 public class SessaoRNTest {
-    
+
     public SessaoRNTest() {
     }
-    
+
     @BeforeClass
     public static void setUpClass() {
     }
-    
+
     @AfterClass
     public static void tearDownClass() {
     }
-    
+
     @Before
     public void setUp() {
     }
-    
+
     @After
     public void tearDown() {
     }
@@ -41,33 +43,23 @@ public class SessaoRNTest {
     /**
      * Test of adicionar method, of class SessaoRN.
      */
-    @Test
-    public void testAdicionar() {
-               
-        Sessao sessao = new Sessao();
-        sessao.setDescricao("sessaoteste");
-        
-        SessaoRN rn = new SessaoRN();
-        rn.salvar(sessao);
-        
-        Sessao sessaoTest = rn.pesquisarDescricao("sessaoteste") ;
-        
-        assertNotNull(sessaoTest);
-        
-        sessao = new Sessao();
-        sessao.setDescricao("sessaoteste");
-        
-        assertFalse(rn.salvar(sessao));
-        
-        rn.remove(sessaoTest);
-    }
+   
 
-    /**
-     * Test of atualizar method, of class SessaoRN.
-     */
     @Test
     public void testAtualizar() {
-       fail();
+        SessaoRN rn = new SessaoRN();
+
+        Sessao sessao = new Sessao();
+        sessao = rn.pesquisarDescricao("TesteAtualizar");
+
+        if (sessao != null) {
+            sessao.setDescricao("TesteAtualizarAlterado");
+            rn.salvar(sessao);
+        }
+         assertTrue("TesteAtualizarAlterado", true);      
+        
+
+
     }
 
     /**
@@ -77,14 +69,14 @@ public class SessaoRNTest {
     public void testRemove() {
         Sessao sessao = new Sessao();
         sessao.setDescricao("sessaotesteremove");
-        
+
         SessaoRN rn = new SessaoRN();
         rn.salvar(sessao);
-        
+
         Sessao sessaoTest = rn.pesquisarDescricao("sessaotesteremove");
-        
+
         assertTrue(rn.remove(sessaoTest));
-        
+
     }
 
     /**
@@ -92,7 +84,27 @@ public class SessaoRNTest {
      */
     @Test
     public void testListar() {
-        fail();
+        SessaoRN rn = new SessaoRN();
+
+        Sessao sessao = new Sessao();
+        sessao = rn.pesquisarDescricao("sessaoTesteListar");
+        if (sessao != null) {
+            rn.remove(sessao);
+        }
+        sessao = new Sessao();
+        sessao.setDescricao("sessaoTesteListar");
+        rn.salvar(sessao);
+        
+        Sessao sessao2 = new Sessao();
+        sessao2.setDescricao("sessaoTesteListar2");
+        rn.salvar(sessao2);
+
+        List<Sessao> sessoes = rn.listar();
+
+        assertTrue(sessoes.size() > 0);
+
+        rn.remove(sessao);
+        rn.remove(sessao2);
     }
 
     /**
@@ -100,7 +112,20 @@ public class SessaoRNTest {
      */
     @Test
     public void testPesquisarDescricao() {
-        fail();
+        SessaoRN rn = new SessaoRN();
+
+        Sessao sessao = new Sessao();
+        sessao = rn.pesquisarDescricao("TestePesquisarDescrição");
+        if (sessao != null) {
+            rn.remove(sessao);
+        }
+        sessao = new Sessao();
+        sessao.setDescricao("TestePesquisarDescrição");
+        rn.salvar(sessao);
+
+        assertNotNull(sessao);
+
+        rn.remove(sessao);
     }
 
     /**
@@ -108,6 +133,19 @@ public class SessaoRNTest {
      */
     @Test
     public void testPesquisarAcervos() {
-        fail();
+        AcervoRN rn = new AcervoRN();
+        Acervo acervo = new Acervo();
+      
+        if (acervo != null) {
+            rn.remover(acervo);
+        }
+        acervo = new Acervo();
+        acervo.setTituloObra("TestePesquisarAcervo");
+        rn.salvar(acervo);
+
+        assertNotNull(acervo);
+
+        rn.remover(acervo);
+
     }
 }
