@@ -43,17 +43,11 @@ public class AutorTableModel extends AbstractTableModel {
         Autor autor = autores.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                while (autores.iterator().hasNext()) {
-                    return autores.iterator().next().getIdAutor();
-                }
+                    return autor.getIdAutor();
             case 1:
-                while (autores.iterator().hasNext()) {
-                    return autores.iterator().next().getNome();
-                }
+                    return autor.getNome();
             case 2:
-                while (autores.iterator().hasNext()) {
-                    return autores.iterator().next().getSobreOAutor();
-                }
+                    return autor.getSobreOAutor();
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet.");  

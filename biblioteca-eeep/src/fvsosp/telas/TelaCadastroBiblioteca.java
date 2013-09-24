@@ -7,6 +7,8 @@ package fvsosp.telas;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.biblioteca.BibliotecaTableModel;
+import fvsosp.sessao.SessaoRN;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -168,8 +170,14 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        BibliotecaTableModel btm = new BibliotecaTableModel(bibliotecaRN.listar());
-        Object o = TelaPesquisa.exibeTela(btm);
+        List<Biblioteca> bibliotecas = null;
+        if (tfNomeBiblioteca.getText() != null) {
+            bibliotecas = bibliotecaRN.pesquisaDescricaoLike(tfNomeBiblioteca.getText());
+        } else {
+            bibliotecas = bibliotecaRN.listar();
+        }
+        BibliotecaTableModel btm = new BibliotecaTableModel(bibliotecas);
+        Object o = TelaPesquisa.exibeTela(btm, "Biblioteca");
         biblioteca = new Biblioteca();
         if (o != null) {
             int id = (int) o;
@@ -192,13 +200,16 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (biblioteca != null) {
             if (biblioteca.getIdBiblioteca() != 0) {
-                if (bibliotecaRN.remove(biblioteca)) {
-                    JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                            + ", excluída com sucesso!", "Biblioteca", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a Biblioteca "
-                            + biblioteca.getDescricao(),
-                            "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a biblioteca " + biblioteca.getDescricao()
+                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if (bibliotecaRN.remove(biblioteca)) {
+                        JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
+                                + ", excluída com sucesso!", "Biblioteca", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a Biblioteca "
+                                + biblioteca.getDescricao(),
+                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }

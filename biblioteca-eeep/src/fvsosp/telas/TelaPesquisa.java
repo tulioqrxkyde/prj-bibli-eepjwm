@@ -4,6 +4,7 @@
  */
 package fvsosp.telas;
 
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.table.AbstractTableModel;
 
@@ -14,27 +15,29 @@ import javax.swing.table.AbstractTableModel;
 public class TelaPesquisa extends javax.swing.JDialog {
 
     private static Object o;
-    
-    public static Object exibeTela(AbstractTableModel atm){        
-        TelaPesquisa tp = new TelaPesquisa(atm);
+
+    public static Object exibeTela(AbstractTableModel atm, String titulo) {
+        TelaPesquisa tp = new TelaPesquisa(atm, titulo);
         tp.setVisible(true);
-        return o; 
+        return o;
     }
-    
+
     /**
      * Creates new form TelaPesquisa
      */
-    private TelaPesquisa(AbstractTableModel atm) {
+    private TelaPesquisa(AbstractTableModel atm, String titulo) {
         initComponents();
         tbPesquisa.setAutoCreateRowSorter(true);
-        tbPesquisa.setModel(atm);  
+        tbPesquisa.setModel(atm);
         setLocationRelativeTo(null);
         setModal(true);
-        
+        setTitle("OSBilio - Pesquisa de " + titulo);
+        lbTexto.setText("Pesquisa de " + titulo);
+
     }
-    
+
     private TelaPesquisa() {
-        initComponents();     
+        initComponents();
         setLocationRelativeTo(null);
         setModal(true);
     }
@@ -48,12 +51,29 @@ public class TelaPesquisa extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPanel4 = new javax.swing.JPanel();
+        lbTexto = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
         btSelecionar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
 
         setTitle("Tela de Pesquisa");
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanel4.setBackground(new java.awt.Color(59, 89, 152));
+        jPanel4.setLayout(null);
+
+        lbTexto.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lbTexto.setForeground(new java.awt.Color(255, 255, 255));
+        lbTexto.setText("Pesquisa");
+        jPanel4.add(lbTexto);
+        lbTexto.setBounds(0, 0, 390, 30);
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 35));
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
         tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -66,47 +86,59 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbPesquisa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPesquisaMouseClicked(evt);
+            }
+        });
+        tbPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbPesquisaKeyPressed(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbPesquisa);
 
-        btSelecionar.setText("Selecionar");
+        btSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/confi.gif"))); // NOI18N
+        btSelecionar.setToolTipText("Selecionar");
         btSelecionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btSelecionarActionPerformed(evt);
             }
         });
 
-        btCancelar.setText("Cancelar");
+        btCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
+        btCancelar.setToolTipText("Sair");
         btCancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCancelarActionPerformed(evt);
             }
         });
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btSelecionar)
-                        .addGap(3, 3, 3)
-                        .addComponent(btCancelar)))
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(305, 305, 305)
+                .addComponent(btSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(15, Short.MAX_VALUE))
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(12, 12, 12)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                    .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btSelecionar)
-                    .addComponent(btCancelar))
-                .addContainerGap())
-        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 310));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -128,6 +160,18 @@ public class TelaPesquisa extends javax.swing.JDialog {
                     "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btSelecionarActionPerformed
+
+    private void tbPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPesquisaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btSelecionarActionPerformed(null);
+        }
+    }//GEN-LAST:event_tbPesquisaKeyPressed
+
+    private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked
+        // TODO add your handling code here:
+        btSelecionarActionPerformed(null);
+    }//GEN-LAST:event_tbPesquisaMouseClicked
 
     /**
      * @param args the command line arguments
@@ -166,7 +210,10 @@ public class TelaPesquisa extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
     private javax.swing.JButton btSelecionar;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lbTexto;
     private javax.swing.JTable tbPesquisa;
     // End of variables declaration//GEN-END:variables
 }

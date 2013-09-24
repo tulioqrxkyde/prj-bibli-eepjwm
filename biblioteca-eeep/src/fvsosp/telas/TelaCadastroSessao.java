@@ -8,6 +8,7 @@ import fvsosp.sessao.Sessao;
 import fvsosp.sessao.SessaoRN;
 import fvsosp.sessao.SessaoTableModel;
 import fvsosp.usuario.Usuario;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -54,6 +55,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         btSalvar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
 
+        setIconImage(null);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -174,8 +176,14 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        SessaoTableModel stm = new SessaoTableModel(sessaoRN.listar());
-        Object o = TelaPesquisa.exibeTela(stm);
+        List<Sessao> lista = null;
+        if(tfNomeSessao.getText()!=null){
+            lista = sessaoRN.pesquisarDescricaoLike(tfNomeSessao.getText());
+        } else {
+            lista = sessaoRN.listar();
+        }
+        SessaoTableModel stm = new SessaoTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(stm,"Sessão");
         sessao = new Sessao();
         if (o != null) {
             int id = (int) o;
@@ -189,6 +197,8 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (sessao != null) {
             if (sessao.getIdSessao() != 0) {
+                if(JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a sessão "+sessao.getDescricao()+
+                        "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)==JOptionPane.YES_OPTION){
                 if (sessaoRN.remove(sessao)) {
                     JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
                             + ", excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
@@ -197,6 +207,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
                             + sessao.getDescricao(),
                             "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
                 }
+            }
             }
         }
         limpaCampos();

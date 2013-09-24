@@ -39,7 +39,6 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
             usuario = (Usuario) getSessao().createCriteria(Usuario.class)
                     .add(Restrictions.eq("login", login)).uniqueResult();
             this.getTransacao().commit();
-            this.getSessao().close();
         } catch (Throwable t) {
             System.out.println("Não foi possível localizar o login.");
         } finally {
