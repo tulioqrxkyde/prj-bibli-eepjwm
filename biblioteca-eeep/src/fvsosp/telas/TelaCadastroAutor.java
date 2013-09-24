@@ -18,7 +18,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
      */
     public TelaCadastroAutor() {
         initComponents();
-        this.setTitle("OSBiblio - Biblioteca");
+        this.setTitle("OSBiblio - Autor");
         this.setLocationRelativeTo(null);
         btRemover.setEnabled(false);
         setModal(true);
