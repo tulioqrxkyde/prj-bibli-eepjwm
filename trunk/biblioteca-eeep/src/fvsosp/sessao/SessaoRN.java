@@ -39,6 +39,10 @@ public class SessaoRN {
     public Sessao pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
+    
+    public List<Sessao> pesquisarDescricaoLike(String descricao) {
+        return dao.pesquisarDescricaoLike(descricao);
+    }
 
     public List<Sessao> pesquisarAcervos(Acervo acervos) {
         return dao.pesquisarAcervos(acervos);

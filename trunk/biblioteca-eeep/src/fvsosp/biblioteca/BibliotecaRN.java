@@ -37,6 +37,10 @@ public class BibliotecaRN {
     public Biblioteca pesquisaDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
+    
+    public List<Biblioteca> pesquisaDescricaoLike(String descricao) {
+        return dao.pesquisarDescricaoLike(descricao);
+    }
 
     public Biblioteca pesquisarCodigo(int codigo) {
         return dao.pesquisarCodigo(codigo);
