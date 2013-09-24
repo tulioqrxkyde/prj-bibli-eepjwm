@@ -297,7 +297,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCadAlunoActionPerformed
 
     private void itemCadAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAutorActionPerformed
-        // Instancie sua Tela
+        new TelaCadastroAutor().setVisible(true);
     }//GEN-LAST:event_itemCadAutorActionPerformed
 
     private void itemCadBibliotecaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadBibliotecaActionPerformed
