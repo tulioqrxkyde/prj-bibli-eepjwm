@@ -70,6 +70,6 @@ public class Autor {
 
     /*** @seta e copia a lista de Acervos recebida para a lista da Classe ***/
     public void setAcervos(List<Acervo> acervos) {
-        this.acervo = acervo;
+        this.acervo = acervos;
     }
 }
