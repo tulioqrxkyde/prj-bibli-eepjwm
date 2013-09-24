@@ -62,5 +62,22 @@ public class AutorDAO extends GenericDAO<Autor> {
         }
         return autores;
     }
+    
+    public Autor pesquisarCodigo(int codigo) {
+        Autor autor = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            autor = (Autor) getSessao().createCriteria(Autor.class).
+                    add(Restrictions.eq("idAutor", codigo)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return autor;
+    }
 }
 

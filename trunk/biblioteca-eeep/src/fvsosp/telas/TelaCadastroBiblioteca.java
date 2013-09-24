@@ -23,12 +23,10 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
      */
     public TelaCadastroBiblioteca() {
         initComponents();
-        
         this.setTitle("OSBiblio - Biblioteca");
         this.setLocationRelativeTo(null);
         btRemover.setEnabled(false);
         setModal(true);
-
     }
 
     /**
@@ -196,11 +194,11 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
             if (biblioteca.getIdBiblioteca() != 0) {
                 if (bibliotecaRN.remove(biblioteca)) {
                     JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                        + ", excluída com sucesso!", "Biblioteca", JOptionPane.INFORMATION_MESSAGE);
+                            + ", excluída com sucesso!", "Biblioteca", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a Biblioteca "
-                        + biblioteca.getDescricao(),
-                        "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                            + biblioteca.getDescricao(),
+                            "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
                 }
             }
         }
@@ -218,10 +216,10 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         if (bibliotecaRN.salvar(biblioteca)) {
             if (idBiblioteca == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                    + ", cadastrada com sucesso!");
+                        + ", cadastrada com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                    + ", alterada com sucesso!");
+                        + ", alterada com sucesso!");
             }
             limpaCampos();
             btRemover.setEnabled(false);
@@ -233,6 +231,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         tfNomeBiblioteca.requestFocus();
         btRemover.setEnabled(false);
     }
+
     /**
      * @param args the command line arguments
      */
