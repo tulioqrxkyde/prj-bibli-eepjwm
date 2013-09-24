@@ -65,7 +65,7 @@ public class UsuarioRNTest {
         Usuario usuario = rn.pesquisaLogin("testeremover");
 
         if (usuario != null) {
-            assertEquals(rn.remover(usuario), true);
+            rn.remover(usuario);
         }
 
         //insere um usuario para remover
@@ -74,9 +74,15 @@ public class UsuarioRNTest {
         usuario.setSenha("testeremoversenha");
 
         rn.salvar(usuario, "testeremoversenha");
-
+        
+        if(usuario != null){
+             rn.remover(usuario);
+        }
         //verifica se conseguiu remover o usuario de login testeremover
-        assertEquals(rn.remover(usuario), true);
+       
+        
+        assertFalse(usuario.getLogin(), false);
+       
 
     }
 
