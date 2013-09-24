@@ -4,9 +4,16 @@
  */
 package fvsosp.telas;
 
+import java.awt.Component;
+import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableColumnModel;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -32,8 +39,9 @@ public class TelaPesquisa extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         setModal(true);
         setTitle("OSBilio - Pesquisa de " + titulo);
-        lbTexto.setText("Pesquisa de " + titulo);
-
+        //lbTexto.setText("Pesquisa de " + titulo);
+        tbPesquisa.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        packColumns(tbPesquisa, 1);
     }
 
     private TelaPesquisa() {
@@ -53,6 +61,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
 
         jPanel4 = new javax.swing.JPanel();
         lbTexto = new javax.swing.JLabel();
+        tfPesquisar = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
@@ -69,12 +78,22 @@ public class TelaPesquisa extends javax.swing.JDialog {
         lbTexto.setForeground(new java.awt.Color(255, 255, 255));
         lbTexto.setText("Pesquisa");
         jPanel4.add(lbTexto);
-        lbTexto.setBounds(0, 0, 390, 30);
+        lbTexto.setBounds(0, 0, 130, 40);
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 35));
+        tfPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyPressed(evt);
+            }
+        });
+        jPanel4.add(tfPesquisar);
+        tfPesquisar.setBounds(130, 10, 260, 22);
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 40));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
+        tbPesquisa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tbPesquisa.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -119,9 +138,9 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(305, 305, 305)
+                .addGap(309, 309, 309)
                 .addComponent(btSelecionar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -129,24 +148,26 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(12, 12, 12)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addGap(20, 20, 20)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 310));
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
         // TODO add your handling code here:
+
         o = null;
         dispose();
+
     }//GEN-LAST:event_btCancelarActionPerformed
 
     private void btSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarActionPerformed
@@ -168,10 +189,30 @@ public class TelaPesquisa extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbPesquisaKeyPressed
 
+    private void procuraTable(String nome) {
+        int tamanho = nome.length();
+        for (int linha = 0; linha < tbPesquisa.getRowCount(); linha++) {
+            String nomeTabela = String.valueOf(tbPesquisa.getValueAt(linha, 1));
+            if (nomeTabela.substring(0, tamanho).equalsIgnoreCase(nome)) {
+                tbPesquisa.setRowSelectionInterval(linha, linha);
+                break;
+            }
+
+        }
+
+    }
+
     private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked
         // TODO add your handling code here:
-        btSelecionarActionPerformed(null);
     }//GEN-LAST:event_tbPesquisaMouseClicked
+
+    private void tfPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyPressed
+        // TODO add your handling code here:
+        procuraTable(tfPesquisar.getText());
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btSelecionarActionPerformed(null);
+        }
+    }//GEN-LAST:event_tfPesquisarKeyPressed
 
     /**
      * @param args the command line arguments
@@ -215,5 +256,38 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbTexto;
     private javax.swing.JTable tbPesquisa;
+    private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
+
+    public void packColumns(JTable table, int margin) {
+        for (int c = 0; c < table.getColumnCount(); c++) {
+            packColumn(table, c, 2);
+        }
+    }    // Ajusta a largura preferida da coluna visível especificada pelo vColIndex.
+// A coluna será larga o bastante para mostrar o cabeçalho da coluna e a
+// célula de maior conteúdo.
+
+    public void packColumn(JTable table, int vColIndex, int margin) {
+        TableModel model = table.getModel();
+        DefaultTableColumnModel colModel = (DefaultTableColumnModel) table.
+                getColumnModel();
+        TableColumn col = colModel.getColumn(vColIndex);
+        int width = 0;            // Obtém a largura do cabeçalho da coluna
+        TableCellRenderer renderer = col.getHeaderRenderer();
+        if (renderer == null) {
+            renderer = table.getTableHeader().getDefaultRenderer();
+        }
+        Component comp = renderer.getTableCellRendererComponent(
+                table, col.getHeaderValue(), false, false, 0, 0);
+        width = comp.getPreferredSize().width;            // Obtém a largura maxima da coluna de dados
+        for (int r = 0; r < table.getRowCount(); r++) {
+            renderer = table.getCellRenderer(r, vColIndex);
+            comp = renderer.getTableCellRendererComponent(
+                    table, table.getValueAt(r, vColIndex), false, false, r,
+                    vColIndex);
+            width = Math.max(width, comp.getPreferredSize().width);
+        }
+        width += 2 * margin;            // Configura a largura
+        col.setPreferredWidth(width);
+    }
 }
