@@ -33,7 +33,7 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
             this.setTransacao(getSessao().beginTransaction());
 
             descricaoPesquisa = (List<GruposLeitores>) getSessao().createCriteria(GruposLeitores.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {
@@ -42,5 +42,43 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
             this.getSessao().close();
         }
         return descricaoPesquisa;
+    }
+    
+        public List<GruposLeitores> pesquisarDescricaoLike(String descricao) {
+        List<GruposLeitores> gruposleitores = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            gruposleitores = (List<GruposLeitores>) getSessao().createCriteria(GruposLeitores.class).
+                    add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).
+                    addOrder(Order.asc("descricao")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+            
+        return gruposleitores;
+
+    }
+
+    public GruposLeitores pesquisarCodigo(int codigo) {
+        GruposLeitores gruposleitores = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            gruposleitores = (GruposLeitores) getSessao().createCriteria(GruposLeitores.class).
+                    add(Restrictions.ilike("descricao", String.valueOf(codigo), MatchMode.ANYWHERE)).
+                    addOrder(Order.asc("descricao")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return gruposleitores;
     }
 }
