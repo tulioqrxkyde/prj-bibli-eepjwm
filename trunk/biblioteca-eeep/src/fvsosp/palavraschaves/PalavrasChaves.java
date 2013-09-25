@@ -11,7 +11,8 @@ import javax.persistence.*;
 public class PalavrasChaves implements Serializable{
 
     @Id // campo chave primária
-    private int idPalavrasChaves;
+    @GeneratedValue
+    private short idPalavrasChaves;
 
     @Override
     public int hashCode() {
@@ -61,11 +62,11 @@ public class PalavrasChaves implements Serializable{
 
     
     /*** @retorna o id da Palavra Chave  ***/  
-    public int getIdPalavrasChaves() {
+    public short getIdPalavrasChaves() {
         return idPalavrasChaves;
     }
     /*** @seta o id da Palavra Chave ***/
-    public void setIdPalavrasChaves(int idPalavrasChaves) {
+    public void setIdPalavrasChaves(short idPalavrasChaves) {
         this.idPalavrasChaves = idPalavrasChaves;
     }
     /*** @retorna a descrição ***/

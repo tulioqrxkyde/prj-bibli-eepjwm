@@ -34,7 +34,7 @@ public class Acervo implements Serializable{
 
     @Id
     @GeneratedValue
-    private int idAcervo;
+    private short idAcervo;
 
     @Override
     public int hashCode() {
@@ -181,12 +181,12 @@ public class Acervo implements Serializable{
     private static long serialVersionUID = -8256983727176831230L;
 
     /*** @retorna o id do Acervo ***/
-    public int getIdAcervo() {
+    public short getIdAcervo() {
         return idAcervo;
     }
 
     /*** @seta idAcervo the idAcervo to set ***/
-    public void setIdAcervo(int idAcervo) {
+    public void setIdAcervo(short idAcervo) {
         this.idAcervo = idAcervo;
     }
 

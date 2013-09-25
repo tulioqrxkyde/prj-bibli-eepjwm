@@ -45,7 +45,7 @@ public class AutorRN {
         return dao.pesquisarsobreOAutor(sobreOAutor);
     }
 
-    public Autor pesquisarCodigo(int codigo) {
+    public Autor pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }
 }

@@ -36,7 +36,7 @@ public class ExemplarRN {
         return dao.listar();
     }
 
-    public Exemplar pesquisarTombo(int tombo) {
+    public Exemplar pesquisarTombo(short tombo) {
         return dao.pesquisarTombo(tombo);
     }
 

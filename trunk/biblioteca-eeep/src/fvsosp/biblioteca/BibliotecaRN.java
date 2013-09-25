@@ -42,7 +42,7 @@ public class BibliotecaRN {
         return dao.pesquisarDescricaoLike(descricao);
     }
 
-    public Biblioteca pesquisarCodigo(int codigo) {
+    public Biblioteca pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }
 }

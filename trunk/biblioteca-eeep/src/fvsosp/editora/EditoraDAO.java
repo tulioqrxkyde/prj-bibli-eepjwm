@@ -54,4 +54,21 @@ public class EditoraDAO extends GenericDAO<Editora> {
         }
         return acervos;
     }
+    
+    public Editora pesquisarCodigo(short codigo) {
+        Editora editora = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            editora = (Editora) getSessao().createCriteria(Editora.class).
+                    add(Restrictions.eq("idEditora", codigo)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return editora;
+    }
 }

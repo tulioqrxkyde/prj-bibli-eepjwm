@@ -63,7 +63,7 @@ public class AutorDAO extends GenericDAO<Autor> {
         return autores;
     }
     
-    public Autor pesquisarCodigo(int codigo) {
+    public Autor pesquisarCodigo(short codigo) {
         Autor autor = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());

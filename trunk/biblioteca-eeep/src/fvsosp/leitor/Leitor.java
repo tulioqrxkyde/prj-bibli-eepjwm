@@ -24,7 +24,7 @@ public class Leitor implements Serializable{
 
     @Id
     @GeneratedValue
-    private int idLeitor;
+    private short idLeitor;
     
     @Column(nullable=false, length=100)
     private String nome;
@@ -91,14 +91,14 @@ public class Leitor implements Serializable{
     /**
      * @return the idLeitor
      */
-    public int getIdLeitor() {
+    public short getIdLeitor() {
         return idLeitor;
     }
 
     /**
      * @param idLeitor the idLeitor to set
      */
-    public void setIdLeitor(int idLeitor) {
+    public void setIdLeitor(short idLeitor) {
         this.idLeitor = idLeitor;
     }
 

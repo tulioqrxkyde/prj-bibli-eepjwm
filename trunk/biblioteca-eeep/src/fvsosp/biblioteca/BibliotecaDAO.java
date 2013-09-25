@@ -67,7 +67,7 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
         return bibliotecas;
     }
 
-    public Biblioteca pesquisarCodigo(int codigo) {
+    public Biblioteca pesquisarCodigo(short codigo) {
         Biblioteca biblioteca = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());

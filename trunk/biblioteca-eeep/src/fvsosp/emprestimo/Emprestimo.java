@@ -49,7 +49,7 @@ public class Emprestimo implements Serializable {
     }
     @Id // campo chave primária
     @GeneratedValue // campo auto-incremento
-    private int idEmprestimo;
+    private short idEmprestimo;
     @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
     private Date dataEmprestimo;
     @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
@@ -86,14 +86,14 @@ public class Emprestimo implements Serializable {
     /**
      * * @retorna o id do Empréstimo **
      */
-    public int getIdEmprestimo() {
+    public short getIdEmprestimo() {
         return idEmprestimo;
     }
 
     /**
      * * @seta o id do Empréstimo **
      */
-    public void setIdEmprestimo(int idEmprestimo) {
+    public void setIdEmprestimo(short idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
