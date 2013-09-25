@@ -49,6 +49,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadAutor = new javax.swing.JMenuItem();
         itemCadBiblioteca = new javax.swing.JMenuItem();
         itemCadCidade = new javax.swing.JMenuItem();
+        itemCadEditora = new javax.swing.JMenuItem();
         itemCadGrupoLeitores = new javax.swing.JMenuItem();
         itemCadLeitor = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
@@ -182,6 +183,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         menuCadastrado.add(itemCadCidade);
+
+        itemCadEditora.setText("Editora");
+        itemCadEditora.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadEditoraActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadEditora);
 
         itemCadGrupoLeitores.setText("Grupo Leitores");
         itemCadGrupoLeitores.addActionListener(new java.awt.event.ActionListener() {
@@ -329,6 +338,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tcadCidade.setVisible(true);
     }//GEN-LAST:event_itemCadCidadeActionPerformed
 
+    private void itemCadEditoraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadEditoraActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroEditora tcadEditora = new TelaCadastroEditora();
+        tcadEditora.setVisible(true);
+    }//GEN-LAST:event_itemCadEditoraActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -370,6 +385,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadAutor;
     private javax.swing.JMenuItem itemCadBiblioteca;
     private javax.swing.JMenuItem itemCadCidade;
+    private javax.swing.JMenuItem itemCadEditora;
     private javax.swing.JMenuItem itemCadGrupoLeitores;
     private javax.swing.JMenuItem itemCadLeitor;
     private javax.swing.JMenuItem itemCadSessao;

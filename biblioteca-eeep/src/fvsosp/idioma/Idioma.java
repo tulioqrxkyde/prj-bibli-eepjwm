@@ -42,7 +42,7 @@ public class Idioma implements Serializable{
 
     @Id // campo chave primária
     @GeneratedValue //campo auto incremento
-    private int idIdioma;
+    private short idIdioma;
     
     @Column(length = 40, nullable = false, columnDefinition = "varchar(40) default ''")
     private String descricao;
@@ -55,12 +55,12 @@ public class Idioma implements Serializable{
     private List<Acervo> acervo;
 
     /*** @retorna o id do Idioma ***/
-    public int getIdIdioma() {
+    public short getIdIdioma() {
         return idIdioma;
     }
 
     /*** @seta o id do Idioma ***/
-    public void setIdIdioma(int idIdioma) {
+    public void setIdIdioma(short idIdioma) {
         this.idIdioma = idIdioma;
     }
 

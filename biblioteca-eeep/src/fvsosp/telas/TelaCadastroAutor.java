@@ -194,7 +194,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(itm, "Autor");
         autor = new Autor();
         if (o != null) {
-            int id = (int) o;
+            short id = (short) o;
             autor = autorRN.pesquisarCodigo(id);
             tfNomeAutor.setText(autor.getNome().toString());
             tfSobreAutor.setText(autor.getSobreOAutor().toString());

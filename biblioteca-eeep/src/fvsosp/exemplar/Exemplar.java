@@ -26,7 +26,7 @@ public class Exemplar {
     
    @Id
    @GeneratedValue
-   private int tombo;
+   private short tombo;
    
    @Column(length = 20, nullable=false)
    private short exemplar;
@@ -67,14 +67,14 @@ public class Exemplar {
     /**
      * @return the tombo
      */
-    public int getTombo() {
+    public short getTombo() {
         return tombo;
     }
 
     /**
      * @param tombo the tombo to set
      */
-    public void setTombo(int tombo) {
+    public void setTombo(short tombo) {
         this.tombo = tombo;
     }
 

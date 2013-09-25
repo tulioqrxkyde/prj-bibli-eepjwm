@@ -22,7 +22,7 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
         super(Exemplar.class);
     }
     
-    public Exemplar pesquisarTombo(int tombo) {
+    public Exemplar pesquisarTombo(short tombo) {
         Exemplar exemplar = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());

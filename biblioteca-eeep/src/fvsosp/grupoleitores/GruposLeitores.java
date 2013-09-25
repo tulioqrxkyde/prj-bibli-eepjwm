@@ -72,7 +72,7 @@ public class GruposLeitores implements Serializable{
     @OneToMany(mappedBy = "gruposLeitores")
     private List <Leitor> leitores;
 
-    public int getIdGruposLeitores() {
+    public short getIdGruposLeitores() {
         return idGruposLeitores;
     }
     
