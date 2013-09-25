@@ -5,6 +5,8 @@
 package fvsosp.telas;
 
 import fvsosp.usuario.Usuario;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 
 /**
  *
@@ -20,6 +22,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //setExtendedState( MAXIMIZED_BOTH ); ;   //( iniciar tela cheia )
         setTitle("OSBiblio");
         setLocationRelativeTo(null);
+        
     }
 
     public void setInformacoesPrincipal(Usuario usuario) {

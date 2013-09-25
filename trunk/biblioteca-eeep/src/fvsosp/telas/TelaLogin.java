@@ -7,6 +7,7 @@ package fvsosp.telas;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.util.Util;
+import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -15,19 +16,20 @@ import javax.swing.UnsupportedLookAndFeelException;
  *
  * @author Pedro Saraiva
  */
-public class Login extends javax.swing.JFrame {
+public class TelaLogin extends javax.swing.JFrame {
     
     Util utilidades = new Util();
 
     /**
      * Creates new form Login
      */
-    public Login() {
+    public TelaLogin() {
         initComponents();
         /*
          * Deixa a tela posicionada
          */
         this.setLocationRelativeTo(null);
+        
     }
 
     /**
@@ -286,7 +288,7 @@ public class Login extends javax.swing.JFrame {
                 } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | UnsupportedLookAndFeelException e) {
                     System.out.println("Erro: " + e.getMessage());
                 }
-                new Login().setVisible(true);
+                new TelaLogin().setVisible(true);
             }
         });
     }
