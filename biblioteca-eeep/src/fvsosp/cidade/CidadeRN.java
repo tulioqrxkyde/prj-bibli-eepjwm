@@ -43,4 +43,8 @@ public class CidadeRN {
     public List<Cidade> pesquisarUf(String uf) {
         return dao.pesquisarUf(uf);
     }
+    
+    public Cidade pesquisarIBGE(int ibge) {
+        return dao.pesquisarCodIbge(ibge);
+    }
 }
