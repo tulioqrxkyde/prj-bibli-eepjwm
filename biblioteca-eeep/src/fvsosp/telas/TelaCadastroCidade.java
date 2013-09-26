@@ -4,12 +4,24 @@
  */
 package fvsosp.telas;
 
+import fvsosp.autor.Autor;
+import fvsosp.autor.AutorRN;
+import fvsosp.autor.AutorTableModel;
+import fvsosp.cidade.Cidade;
+import fvsosp.cidade.CidadeRN;
+import fvsosp.cidade.CidadeTableModel;
+import java.util.List;
+
 /**
  *
  * @author Controle Avaliação
  */
 public class TelaCadastroCidade extends javax.swing.JDialog {
 
+    
+    
+     Cidade cidade;
+    CidadeRN cidadeRN = new CidadeRN();
     /**
      * Creates new form TelaCadastroidade
      */
@@ -157,7 +169,22 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        
+      List<Cidade> lista = null;
+        if (!tfCodIBGE.getText().equals("")) {
+            lista = cidadeRN.pesquisarDescricao(tfDescricao.getText());
+        } else {
+            lista = cidadeRN.listar();
+        }
+       CidadeTableModel itm = new CidadeTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(itm, "Cidade");
+        cidade = new Cidade();
+        if (o != null) {
+            int id = (int) o;
+            //erro cidade = cidadeRN.pesquisarDescricao(id);
+            tfCodIBGE.setText(cidade.getUf().toString());
+            tfDescricao.setText(cidade.getDescricao().toString());
+            btRemover.setEnabled(true);
+        }          
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     /**

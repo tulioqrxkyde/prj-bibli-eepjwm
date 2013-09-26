@@ -4,6 +4,7 @@
  */
 package fvsosp.cidade;
 
+import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
@@ -22,10 +23,10 @@ public class CidadeDAO extends GenericDAO<Cidade> {
     public CidadeDAO() {
         super(Cidade.class);
     }
-/*
- * Na classe GenericDAO já possui um método para carregar o
- * objeto a partir de sua chave primária
- */
+    /*
+     * Na classe GenericDAO já possui um método para carregar o
+     * objeto a partir de sua chave primária
+     */
 //    public Cidade pesquisarCodIbge(int codibge) {
 //        Cidade cidade = null;
 //        try {
@@ -78,5 +79,22 @@ public class CidadeDAO extends GenericDAO<Cidade> {
             this.getSessao().close();
         }
         return cidades;
+    }
+
+    public Cidade pesquisarCodigo(int codigo) {
+        Cidade cidade = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            cidade = (Cidade) getSessao().createCriteria(Autor.class).
+                    add(Restrictions.eq("idcidade", codigo)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return cidade;
     }
 }
