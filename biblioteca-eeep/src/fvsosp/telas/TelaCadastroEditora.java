@@ -56,8 +56,6 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         tfDescricao = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
-
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(432, 177));
 
