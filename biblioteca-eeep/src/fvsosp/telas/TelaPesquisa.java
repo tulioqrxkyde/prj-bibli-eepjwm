@@ -166,7 +166,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         // TODO add your handling code here:
 
         o = null;
-        System.exit(1);
+        dispose();
 
     }//GEN-LAST:event_btCancelarActionPerformed
 

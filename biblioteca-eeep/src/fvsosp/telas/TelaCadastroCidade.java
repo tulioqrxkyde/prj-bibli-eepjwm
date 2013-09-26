@@ -4,11 +4,20 @@
  */
 package fvsosp.telas;
 
+import fvsosp.cidade.Cidade;
+import fvsosp.cidade.CidadeRN;
+import fvsosp.cidade.CidadeTableModel;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Controle Avaliação
  */
 public class TelaCadastroCidade extends javax.swing.JDialog {
+
+    Cidade cidade;
+    CidadeRN cidadeRN = new CidadeRN();
 
     /**
      * Creates new form TelaCadastroidade
@@ -18,6 +27,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         setTitle("OSBiblio - Cidade");
         setLocationRelativeTo(null);
         setModal(true);
+        btRemover.setEnabled(false);
     }
 
     /**
@@ -116,7 +126,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(tfDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca1.setText("Cód.IBGE.:.:");
+        Descricao_Biblioteca1.setText("Cód.IBGE.:");
         jPanel1.add(Descricao_Biblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 29));
 
         tfCodIBGE.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -138,17 +148,50 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
-        
+        if (cidade == null) {
+            cidade = new Cidade();
+        }
+
+        cidade.setCodIBGE(Integer.parseInt(tfCodIBGE.getText().toString()));
+        cidade.setDescricao(tfDescricao.getText().toString());
+        cidade.setUf(cbUF.getSelectedItem().toString());
+        int idCidade = cidade.getIdCidade();
+        if (cidadeRN.salvar(cidade)) {
+            if (idCidade == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
+                        + ", cadastrada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
+                        + ", alterada com sucesso!");
+            }
+            limpaCampos();
+            btRemover.setEnabled(false);
+        }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
-       
+        if (cidade != null) {
+            if (cidade.getIdCidade() != 0) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a cidade " + cidade.getDescricao()
+                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if (cidadeRN.remover(cidade)) {
+                        JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
+                                + ", excluída com sucesso!", "Cidade", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a Cidade "
+                                + cidade.getDescricao(),
+                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+        limpaCampos();
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
-
+        limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -157,9 +200,33 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        
+        List<Cidade> lista = null;
+        if (!tfDescricao.getText().equals("")) {
+            lista = cidadeRN.pesquisarDescricao(tfDescricao.getText());
+        } else {
+            lista = cidadeRN.listar();
+        }
+        CidadeTableModel itm = new CidadeTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(itm, "Cidade");
+        cidade = new Cidade();
+        if (o != null) {
+            int id = (int) o;
+            cidade = cidadeRN.pesquisarIBGE(id);
+            tfCodIBGE.setText(String.valueOf(cidade.getCodIBGE()));
+            tfDescricao.setText(cidade.getDescricao().toString());
+            cbUF.setSelectedItem(cidade.getUf().toString());
+            btRemover.setEnabled(true);
+        }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
+    public void limpaCampos(){
+        tfCodIBGE.setText("");
+        tfDescricao.setText("");
+        cbUF.setSelectedIndex(0);
+        tfCodIBGE.requestFocus();
+        cidade = null;
+        btRemover.setEnabled(false);
+    }
     /**
      * @param args the command line arguments
      */
