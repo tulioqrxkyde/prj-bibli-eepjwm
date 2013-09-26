@@ -180,7 +180,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         cidade = new Cidade();
         if (o != null) {
             int id = (int) o;
-            //erro cidade = cidadeRN.pesquisarDescricao(id);
+            // erro cidade = cidadeRN.pesquisarDescricao(id);
             tfCodIBGE.setText(cidade.getUf().toString());
             tfDescricao.setText(cidade.getDescricao().toString());
             btRemover.setEnabled(true);
