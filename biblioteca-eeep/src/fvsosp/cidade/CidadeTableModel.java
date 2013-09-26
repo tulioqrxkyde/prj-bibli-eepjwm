@@ -10,16 +10,16 @@ import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- * 
+ *
  *
  * @author Controle Avaliação
  */
-public class CidadeTableModel extends AbstractTableModel{
-    
-     private String[] nomeColunas = {"CodIBGE", "Descrição", "UF"};
+public class CidadeTableModel extends AbstractTableModel {
+
+    private String[] nomeColunas = {"CodIBGE", "Descrição", "UF"};
     private List<Cidade> cidades;
-    
- public CidadeTableModel() {
+
+    public CidadeTableModel() {
         cidades = new ArrayList<Cidade>();
     }
 
@@ -45,13 +45,11 @@ public class CidadeTableModel extends AbstractTableModel{
         Cidade cidade = cidades.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                    return cidade.getIdCidade();
+                return cidade.getCodIBGE();
             case 1:
-                    return cidade.getCodIBGE();
+                return cidade.getDescricao();
             case 2:
-                    return cidade.getDescricao();
-                case 3:
-                    return cidade.getUf();
+                return cidade.getUf();
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet.");  
@@ -65,8 +63,6 @@ public class CidadeTableModel extends AbstractTableModel{
                 return nomeColunas[1];
             case 2:
                 return nomeColunas[2];
-                case 3:
-                    return nomeColunas[3];
         }
         return null;
     }

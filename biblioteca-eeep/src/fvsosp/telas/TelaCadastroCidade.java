@@ -170,7 +170,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
       List<Cidade> lista = null;
-        if (!tfCodIBGE.getText().equals("")) {
+        if (!tfDescricao.getText().equals("")) {
             lista = cidadeRN.pesquisarDescricao(tfDescricao.getText());
         } else {
             lista = cidadeRN.listar();
@@ -180,7 +180,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         cidade = new Cidade();
         if (o != null) {
             int id = (int) o;
-            // erro cidade = cidadeRN.pesquisarDescricao(id);
+           cidade = cidadeRN.pesquisarIBGE(id);
             tfCodIBGE.setText(cidade.getUf().toString());
             tfDescricao.setText(cidade.getDescricao().toString());
             btRemover.setEnabled(true);

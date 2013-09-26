@@ -28,22 +28,22 @@ public class CidadeDAO extends GenericDAO<Cidade> {
      * Na classe GenericDAO já possui um método para carregar o
      * objeto a partir de sua chave primária
      */
-//    public Cidade pesquisarCodIbge(int codibge) {
-//        Cidade cidade = null;
-//        try {
-//            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-//            this.setTransacao(getSessao().beginTransaction());
-//
-//            cidade = (Cidade) getSessao().createCriteria(Cidade.class).
-//                    add(Restrictions.eq("codibge", String.valueOf(codibge))).
-//                    addOrder(Order.asc("nome")).list();
-//
-//        } catch (HibernateException e) {
-//            System.out.println("Erro ao procurar por CodigoIbge: " + e.getMessage());
-//        }
-//        return cidade;
-//
-//    }
+    public Cidade pesquisarCodIbge(int codibge) {
+        Cidade cidade = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            cidade = (Cidade) getSessao().createCriteria(Cidade.class).
+                    add(Restrictions.eq("codibge", String.valueOf(codibge))).
+                    addOrder(Order.asc("nome")).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por CodigoIbge: " + e.getMessage());
+        }
+        return cidade;
+
+    }
 
     public List<Cidade> pesquisarDescricao(String descricao) {
         List<Cidade> cidades = null;
