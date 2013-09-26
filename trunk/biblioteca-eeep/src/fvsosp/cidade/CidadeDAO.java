@@ -35,12 +35,15 @@ public class CidadeDAO extends GenericDAO<Cidade> {
             this.setTransacao(getSessao().beginTransaction());
 
             cidade = (Cidade) getSessao().createCriteria(Cidade.class).
-                    add(Restrictions.eq("codibge", String.valueOf(codibge))).
-                    addOrder(Order.asc("nome")).list();
+                    add(Restrictions.eq("codIBGE", codibge)).
+                    addOrder(Order.asc("codIBGE")).uniqueResult();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por CodigoIbge: " + e.getMessage());
+        } finally {
+            getSessao().close();
         }
+            
         return cidade;
 
     }
