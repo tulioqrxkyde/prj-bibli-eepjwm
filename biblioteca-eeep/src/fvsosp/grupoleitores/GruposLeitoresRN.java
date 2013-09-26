@@ -45,7 +45,7 @@ public class GruposLeitoresRN {
         return dao.pesquisarDescricaoLike(descricao);
     }
 
-    public GruposLeitores pesquisarCodigo(int codigo) {
+    public GruposLeitores pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }
 }

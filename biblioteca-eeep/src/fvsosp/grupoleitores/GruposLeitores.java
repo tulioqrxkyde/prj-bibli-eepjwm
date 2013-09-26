@@ -13,7 +13,7 @@ public class GruposLeitores implements Serializable{
 
     @Id
     @GeneratedValue
-    private int idGruposLeitores;
+    private short idGruposLeitores;
 
     @Override
     public int hashCode() {
@@ -72,11 +72,11 @@ public class GruposLeitores implements Serializable{
     @OneToMany(mappedBy = "gruposLeitores")
     private List <Leitor> leitores;
 
-    public int getIdGruposLeitores() {
+    public short getIdGruposLeitores() {
         return idGruposLeitores;
     }
     
-    public void setIdGruposLeitores(int idGruposLeitores) {
+    public void setIdGruposLeitores(short idGruposLeitores) {
         this.idGruposLeitores = idGruposLeitores;
     }
 

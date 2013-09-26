@@ -64,15 +64,15 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
 
     }
 
-    public GruposLeitores pesquisarCodigo(int codigo) {
+    public GruposLeitores pesquisarCodigo(short codigo) {
         GruposLeitores gruposleitores = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
             gruposleitores = (GruposLeitores) getSessao().createCriteria(GruposLeitores.class).
-                    add(Restrictions.ilike("descricao", String.valueOf(codigo), MatchMode.ANYWHERE)).
-                    addOrder(Order.asc("descricao")).list();
+                    add(Restrictions.eq("idGruposLeitores", codigo)).
+                    addOrder(Order.asc("idGruposLeitores")).uniqueResult();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por código: " + e.getMessage());

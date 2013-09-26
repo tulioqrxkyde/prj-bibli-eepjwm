@@ -255,7 +255,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(stm, "Grupo de Leitores");
         gruposleitores = new GruposLeitores();
         if (o != null) {
-            int id = (int) o;
+            short id = (short) o;
             gruposleitores = gruposleitoresRN.pesquisarCodigo(id);
             tfNomeGruposLeitores.setText(gruposleitores.getDescricao().toString());
             tfMultaGruposLeitores.setText(String.valueOf(gruposleitores.getValorMultaDiaria()));
