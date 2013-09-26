@@ -294,6 +294,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemCadGrupoLeitoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadGrupoLeitoresActionPerformed
         // Instancie sua Tela
+        TelaCadastroGruposLeitores tGrupLeitores = new TelaCadastroGruposLeitores();
+        tGrupLeitores.setVisible(true);
     }//GEN-LAST:event_itemCadGrupoLeitoresActionPerformed
 
     private void itemCadSessaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadSessaoActionPerformed
