@@ -11,7 +11,12 @@ import fvsosp.grupoleitores.GruposLeitoresRN;
 import fvsosp.leitor.Leitor;
 import fvsosp.leitor.LeitorRN;
 import fvsosp.leitor.LeitorTableModel;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -336,23 +341,23 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         List<Leitor> lista = null;
-        if(tfNome.getText()!=null){
+        if (tfNome.getText() != null) {
             lista = leitorRN.pesquisaNome(tfNome.getText());
         } else {
             lista = leitorRN.listar();
         }
         LeitorTableModel stm = new LeitorTableModel(lista);
-        Object o = TelaPesquisa.exibeTela(stm,"leitor");
+        Object o = TelaPesquisa.exibeTela(stm, "leitor");
         leitor = new Leitor();
         if (o != null) {
             short id = (short) o;
             leitor = leitorRN.pesquisarCodigo(id);
             tfNome.setText(leitor.getNome().toString());
             tfMatricula.setText(leitor.getMatricula().toString());
-            ftDataNascimento.setText("");
-            if(leitor.getSexo()=='F'){
+            ftDataNascimento.setText(String.valueOf(leitor.getDataCadastro()));
+            if (leitor.getSexo() == 'F') {
                 rbFeminino.setSelected(true);
-            } else if(leitor.getSexo()=='M'){
+            } else if (leitor.getSexo() == 'M') {
                 rbMasculino.setSelected(true);
             }
             tfCPF.setText(leitor.getCpf().toString());
@@ -360,7 +365,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             tfEndereco.setText(leitor.getEndereco().toString());
             tfBairro.setText(leitor.getBairro().toString());
             tfCEP.setText(leitor.getCep().toString());
-            if(leitor.getCidade()!=null){
+            if (leitor.getCidade() != null) {
                 cbCidade.setSelectedItem(leitor.getCidade());
             } else {
                 cbCidade.setSelectedIndex(0);
@@ -370,12 +375,12 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             tfEmail.setText(leitor.getEmail().toString());
             tfNomePai.setText(leitor.getNomePai().toString());
             tfNomeMae.setText(leitor.getNomeMae().toString());
-            if(leitor.getGruposLeitores()!=null){
+            if (leitor.getGruposLeitores() != null) {
                 cbGrupoLeitores.setSelectedItem(leitor.getGruposLeitores());
             } else {
                 cbGrupoLeitores.setSelectedIndex(0);
             }
-            
+
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -386,18 +391,18 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         if (leitor != null) {
-            if (leitor.getIdLeitor()!= 0) {
-                if(JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o leitor "+leitor.getNome()+
-                        "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)==JOptionPane.YES_OPTION){
-                if (leitorRN.remove(leitor)) {
-                    JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
-                            + ", excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o leitor "
-                            + leitor.getNome(),
-                            "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+            if (leitor.getIdLeitor() != 0) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o leitor " + leitor.getNome()
+                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if (leitorRN.remove(leitor)) {
+                        JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
+                                + ", excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o leitor "
+                                + leitor.getNome(),
+                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            }
             }
         }
         limparCampos();
@@ -412,12 +417,22 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
         leitor.setNome(tfNome.getText().toString());
         leitor.setMatricula(tfMatricula.getText().toString());
-        leitor.setDataNascimento(null);
+        String dataString = ftDataNascimento.getText();
+        
+        try {
+            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+            java.util.Date data;
+            data = new java.util.Date(fmt.parse(dataString).getTime());
+            leitor.setDataNascimento(data);
+        } catch (ParseException ex) {
+            Logger.getLogger(TelaCadastroLeitor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if (rbFeminino.isSelected()) {
             leitor.setSexo('F');
         } else if (rbMasculino.isSelected()) {
             leitor.setSexo('M');
-        } 
+        }
         leitor.setCpf(tfCPF.getText().toString().replaceAll("\\D*", "")); //retira a máscara
         leitor.setRg(tfRG.getText().toString());
         leitor.setEndereco(tfEndereco.getText().toString());

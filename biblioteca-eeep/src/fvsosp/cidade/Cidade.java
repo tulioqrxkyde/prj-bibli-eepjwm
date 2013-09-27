@@ -4,7 +4,10 @@ import fvsosp.leitor.Leitor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
@@ -38,7 +41,7 @@ public class Cidade implements Serializable{
         hash = 19 * hash + this.getCodIBGE();
         hash = 19 * hash + Objects.hashCode(this.getDescricao());
         hash = 19 * hash + Objects.hashCode(this.getUf());
-        hash = 19 * hash + Objects.hashCode(this.getLeitores());
+       // hash = 19 * hash + Objects.hashCode(this.getLeitores());
         return hash;
     }
 
@@ -60,9 +63,9 @@ public class Cidade implements Serializable{
         if (!Objects.equals(this.uf, other.uf)) {
             return false;
         }
-        if (!Objects.equals(this.leitores, other.leitores)) {
-            return false;
-        }
+//        if (!Objects.equals(this.leitores, other.leitores)) {
+//            return false;
+//        }
         return true;
     }
     
@@ -76,8 +79,8 @@ public class Cidade implements Serializable{
      * quando uma cidade for criada já irá vir carregada com uma lista
      * de leitores pertencentes a ela
      */
-    @OneToMany(mappedBy = "cidade")
-    private List<Leitor> leitores;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade") 
+//    private List<Leitor> leitores;
 
     /*** @retorna o código do IBGE ***/
     public int getCodIBGE() {
@@ -110,9 +113,9 @@ public class Cidade implements Serializable{
     }
 
     /*** @retorna a lista de Leitores ***/
-    public List<Leitor> getLeitores() {
-        return leitores;
-    }
+//    public List<Leitor> getLeitores() {
+//        return leitores;
+//    }
 
      private static long serialVersionUID = -5660386351782012215L;
 
@@ -133,10 +136,10 @@ public class Cidade implements Serializable{
     /**
      * @param leitores the leitores to set
      */
-    public void setLeitores(List<Leitor> leitores) {
-        this.leitores = leitores;
-    }
-    
+//    public void setLeitores(List<Leitor> leitores) {
+//        this.leitores = leitores;
+//    }
+//    
     public String toString(){
         return descricao+"-"+uf;
     }
