@@ -4,6 +4,7 @@
  */
 package fvsosp.idioma;
 
+import fvsosp.sessao.Sessao;
 import java.util.List;
 
 /**
@@ -14,7 +15,8 @@ public class IdiomaRN {
 
     private IdiomaDAO dao = new IdiomaDAO();
 
-    public boolean adiciona(Idioma idioma) {
+    public boolean salvar (Idioma idioma) {
+        if (!idioma.getDescricao().isEmpty()){
         if (idioma.getIdIdioma() == 0) {
             if (idioma.getDescricao() != null) {
                 return dao.adicionar(idioma);
@@ -22,6 +24,7 @@ public class IdiomaRN {
             }
         } else {
             return dao.atualizar(idioma);
+        }
         }
         return false;
 
@@ -37,6 +40,12 @@ public class IdiomaRN {
     }
 
     public List<Idioma> pesquisaDescricao(String descricao) {
-        return dao.procuraDescricao(descricao);
+        return dao.pesquisarDescricao(descricao);
     }
+    public List<Idioma> pesquisarDescricaoLike(String descricao) {
+        return dao.pesquisarDescricaoLike(descricao);
+    }
+    public Idioma pesquisarCodigo(int codigo) {
+        return dao.pesquisarCodigo(codigo);
+ }
 }
