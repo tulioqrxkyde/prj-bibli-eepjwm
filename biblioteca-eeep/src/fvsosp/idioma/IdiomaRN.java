@@ -45,7 +45,7 @@ public class IdiomaRN {
     public List<Idioma> pesquisarDescricaoLike(String descricao) {
         return dao.pesquisarDescricaoLike(descricao);
     }
-    public Idioma pesquisarCodigo(int codigo) {
+    public Idioma pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
  }
 }

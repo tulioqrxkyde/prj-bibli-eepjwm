@@ -47,7 +47,7 @@ public class Leitor implements Serializable{
     @Column(length=20)
     private String celular;
     
-    @Column(length=50)
+    @Column(length=50, nullable=false)
     private String matricula;
     
     @Column(columnDefinition="boolean default 1")

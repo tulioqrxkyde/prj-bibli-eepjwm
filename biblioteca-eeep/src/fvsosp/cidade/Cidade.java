@@ -137,4 +137,8 @@ public class Cidade implements Serializable{
         this.leitores = leitores;
     }
     
+    public String toString(){
+        return descricao+"-"+uf;
+    }
+    
 }

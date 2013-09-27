@@ -26,7 +26,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
      */
     public TelaCadastroIdioma() {
         initComponents();
-        
+
         this.setTitle("OSBiblio - Idioma");
         this.setLocationRelativeTo(null);
         btRemover.setEnabled(false);
@@ -174,16 +174,16 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
         List<Idioma> lista = null;
-        if(tfNomeIdioma.getText()!=null){
+        if (tfNomeIdioma.getText() != null) {
             lista = idiomaRN.pesquisarDescricaoLike(tfNomeIdioma.getText());
         } else {
             lista = idiomaRN.listar();
         }
         IdiomaTableModel itm = new IdiomaTableModel(lista);
-        Object o = TelaPesquisa.exibeTela(itm,"Idioma");
+        Object o = TelaPesquisa.exibeTela(itm, "Idioma");
         idioma = new Idioma();
         if (o != null) {
-            int id = (int) o;
+            short id = (short) o;
             idioma = idiomaRN.pesquisarCodigo(id);
             tfNomeIdioma.setText(idioma.getDescricao().toString());
             btRemover.setEnabled(true);
@@ -202,14 +202,17 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
         if (idioma != null) {
-            if (idioma.getIdIdioma()!= 0) {
-                if (idiomaRN.remove(idioma)) {
-                    JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
-                        + ", excluída com sucesso!", "Idioma", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o Idioma "
-                        + idioma.getDescricao(),
-                        "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+            if (idioma.getIdIdioma() != 0) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o idioma " + idioma.getDescricao()
+                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if (idiomaRN.remove(idioma)) {
+                        JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
+                                + ", excluída com sucesso!", "Idioma", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o Idioma "
+                                + idioma.getDescricao(),
+                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         }
@@ -227,10 +230,10 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         if (idiomaRN.salvar(idioma)) {
             if (idIdioma == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
-                    + ", cadastrada com sucesso!");
+                        + ", cadastrada com sucesso!");
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
-                    + ", alterada com sucesso!");
+                        + ", alterada com sucesso!");
             }
             limpaCampos();
             btRemover.setEnabled(false);
@@ -242,6 +245,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         tfNomeIdioma.requestFocus();
         btRemover.setEnabled(false);
     }
+
     /**
      * @param args the command line arguments
      */

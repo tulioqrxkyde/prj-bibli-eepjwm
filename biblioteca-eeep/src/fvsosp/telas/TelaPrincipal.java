@@ -53,6 +53,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadCidade = new javax.swing.JMenuItem();
         itemCadEditora = new javax.swing.JMenuItem();
         itemCadGrupoLeitores = new javax.swing.JMenuItem();
+        itemCadIdioma = new javax.swing.JMenuItem();
         itemCadLeitor = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
@@ -206,6 +207,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastrado.add(itemCadGrupoLeitores);
 
+        itemCadIdioma.setText("Idioma");
+        itemCadIdioma.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadIdiomaActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadIdioma);
+
         itemCadLeitor.setText("Leitor");
         itemCadLeitor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -312,6 +321,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemCadLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadLeitorActionPerformed
         // Instancie sua Tela
+        TelaCadastroLeitor tCadLeitor = new TelaCadastroLeitor();
+        tCadLeitor.setVisible(true);
     }//GEN-LAST:event_itemCadLeitorActionPerformed
 
     private void itemCadCidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadCidadeActionPerformed
@@ -325,6 +336,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaCadastroEditora tcadEditora = new TelaCadastroEditora();
         tcadEditora.setVisible(true);
     }//GEN-LAST:event_itemCadEditoraActionPerformed
+
+    private void itemCadIdiomaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadIdiomaActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroIdioma tCadIdioma = new TelaCadastroIdioma();
+        tCadIdioma.setVisible(true);
+    }//GEN-LAST:event_itemCadIdiomaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -369,6 +386,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadCidade;
     private javax.swing.JMenuItem itemCadEditora;
     private javax.swing.JMenuItem itemCadGrupoLeitores;
+    private javax.swing.JMenuItem itemCadIdioma;
     private javax.swing.JMenuItem itemCadLeitor;
     private javax.swing.JMenuItem itemCadSessao;
     private javax.swing.JMenuItem itemCadUsuario;

@@ -194,4 +194,23 @@ public class LeitorDAO extends GenericDAO<Leitor> {
         return leitores;
 
     }
+    
+    public Leitor pesquisarCodigo(short id) {
+        Leitor leitor = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitor = (Leitor) getSessao().createCriteria(Leitor.class).
+                    add(Restrictions.eq("idLeitor", id)).
+                    addOrder(Order.asc("nome")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por leitor: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return leitor;
+
+    }
 }
