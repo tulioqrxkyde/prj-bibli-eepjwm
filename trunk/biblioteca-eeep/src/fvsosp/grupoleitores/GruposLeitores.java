@@ -5,7 +5,10 @@ import fvsosp.leitor.Leitor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table (name="gruposleitores")
@@ -23,7 +26,7 @@ public class GruposLeitores implements Serializable{
         hash = 41 * hash + (int) (Double.doubleToLongBits(this.valorMultaDiaria) ^ (Double.doubleToLongBits(this.valorMultaDiaria) >>> 32));
         hash = 41 * hash + this.quantMaxLivros;
         hash = 41 * hash + this.duracaoDiasEmprestimo;
-        hash = 41 * hash + Objects.hashCode(this.leitores);
+        //hash = 41 * hash + Objects.hashCode(this.leitores);
         return hash;
     }
     
@@ -51,9 +54,9 @@ public class GruposLeitores implements Serializable{
         if (this.duracaoDiasEmprestimo != other.duracaoDiasEmprestimo) {
             return false;
         }
-        if (!Objects.equals(this.leitores, other.leitores)) {
-            return false;
-        }
+//        if (!Objects.equals(this.leitores, other.leitores)) {
+//            return false;
+//        }
         return true;
     }
    
@@ -69,8 +72,8 @@ public class GruposLeitores implements Serializable{
     @Column(length = 2, nullable = false)
     private byte duracaoDiasEmprestimo;
     
-    @OneToMany(mappedBy = "gruposLeitores")
-    private List <Leitor> leitores;
+//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gruposLeitores")
+//    private List<Leitor> leitores;
 
     public short getIdGruposLeitores() {
         return idGruposLeitores;
@@ -112,13 +115,13 @@ public class GruposLeitores implements Serializable{
         this.duracaoDiasEmprestimo = duracaoDiasEmprestimo;
     }
 
-    public List<Leitor> getLeitores() {
-        return leitores;
-    }
-
-    public void setLeitores(List<Leitor> leitores) {
-        this.leitores = leitores;
-    }
+//    public List<Leitor> getLeitores() {
+//        return leitores;
+//    }
+//
+//    public void setLeitores(List<Leitor> leitores) {
+//        this.leitores = leitores;
+//    }
     private static final long serialVersionUID = -3510357413546466120L;  
     
     public String toString(){
