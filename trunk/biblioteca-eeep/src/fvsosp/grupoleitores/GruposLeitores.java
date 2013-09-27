@@ -119,5 +119,9 @@ public class GruposLeitores implements Serializable{
     public void setLeitores(List<Leitor> leitores) {
         this.leitores = leitores;
     }
-    private static final long serialVersionUID = -3510357413546466120L;    
+    private static final long serialVersionUID = -3510357413546466120L;  
+    
+    public String toString(){
+        return descricao+", Q.Dias: "+duracaoDiasEmprestimo+", Q.Livros: "+quantMaxLivros;
+    }
 }

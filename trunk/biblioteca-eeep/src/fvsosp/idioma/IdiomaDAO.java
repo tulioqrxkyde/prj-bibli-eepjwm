@@ -57,7 +57,7 @@ public class IdiomaDAO extends GenericDAO<Idioma> {
         return idioma;
     }
 
-    public Idioma pesquisarCodigo(int codigo) {
+    public Idioma pesquisarCodigo(short codigo) {
         Idioma idioma = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
