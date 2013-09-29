@@ -418,16 +418,18 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         leitor.setNome(tfNome.getText().toString());
         leitor.setMatricula(tfMatricula.getText().toString());
         String dataString = ftDataNascimento.getText();
-        
+
         try {
-            DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-            java.util.Date data;
-            data = new java.util.Date(fmt.parse(dataString).getTime());
-            leitor.setDataNascimento(data);
+            if (ftDataNascimento.getText().equals("  /  /    ")) {
+                DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                java.util.Date data;
+                data = new java.util.Date(fmt.parse(dataString).getTime());
+                leitor.setDataNascimento(data);
+            }
         } catch (ParseException ex) {
-            Logger.getLogger(TelaCadastroLeitor.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
-        
+
         if (rbFeminino.isSelected()) {
             leitor.setSexo('F');
         } else if (rbMasculino.isSelected()) {
