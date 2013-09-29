@@ -4,11 +4,10 @@
  */
 package fvsosp.telas;
 
-import fvsosp.idioma.Idioma;
-import fvsosp.idioma.IdiomaRN;
-import fvsosp.idioma.IdiomaTableModel;
-import fvsosp.sessao.Sessao;
-import fvsosp.sessao.SessaoTableModel;
+
+import fvsosp.tipoitem.TipoItem;
+import fvsosp.tipoitem.TipoItemRN;
+import fvsosp.tipoitem.TipoItemTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,8 +17,8 @@ import javax.swing.JOptionPane;
  */
 public class TelaCadastroTipoItem extends javax.swing.JDialog {
 
-    Idioma idioma;
-    IdiomaRN idiomaRN = new IdiomaRN();
+    TipoItem tipoItem;
+    TipoItemRN tipoItemRN = new TipoItemRN();
 
     /**
      * Creates new form TelaCadastroBiblioteca
@@ -178,19 +177,19 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        List<Idioma> lista = null;
+        List<TipoItem> lista = null;
         if (tfTipoItem.getText() != null) {
-            lista = idiomaRN.pesquisarDescricaoLike(tfTipoItem.getText());
+            lista = tipoItemRN.pesquisarDescricaoLike(tfTipoItem.getText());
         } else {
-            lista = idiomaRN.listar();
+            lista = tipoItemRN.listar();
         }
-        IdiomaTableModel itm = new IdiomaTableModel(lista);
-        Object o = TelaPesquisa.exibeTela(itm, "Idioma");
-        idioma = new Idioma();
+        TipoItemTableModel itm = new TipoItemTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(itm, "Tipo de Item");
+        tipoItem = new TipoItem();
         if (o != null) {
             short id = (short) o;
-            idioma = idiomaRN.pesquisarCodigo(id);
-            tfTipoItem.setText(idioma.getDescricao().toString());
+            tipoItem = tipoItemRN.pesquisarCodigo(id);
+            tfTipoItem.setText(tipoItem.getDescricao().toString());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -206,16 +205,16 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
-        if (idioma != null) {
-            if (idioma.getIdIdioma() != 0) {
-                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o idioma " + idioma.getDescricao()
+        if (tipoItem != null) {
+            if (tipoItem.getIdTipoItem() != 0) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o tipo de item " + tipoItem.getDescricao()
                         + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    if (idiomaRN.remove(idioma)) {
-                        JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
-                                + ", excluída com sucesso!", "Idioma", JOptionPane.INFORMATION_MESSAGE);
+                    if (tipoItemRN.remover(tipoItem)) {
+                        JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
+                                + ", excluída com sucesso!", "Tipo de Item", JOptionPane.INFORMATION_MESSAGE);
                     } else {
                         JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o Idioma "
-                                + idioma.getDescricao(),
+                                + tipoItem.getDescricao(),
                                 "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
                     }
                 }
@@ -226,18 +225,18 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
-        if (idioma == null) {
-            idioma = new Idioma();
+        if (tipoItem == null) {
+            tipoItem = new TipoItem();
         }
 
-        idioma.setDescricao(tfTipoItem.getText().toString());
-        int idIdioma = idioma.getIdIdioma();
-        if (idiomaRN.salvar(idioma)) {
+        tipoItem.setDescricao(tfTipoItem.getText().toString());
+        int idIdioma = tipoItem.getIdTipoItem();
+        if (tipoItemRN.salvar(tipoItem)) {
             if (idIdioma == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
+                JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
                         + ", cadastrada com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
+                JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
                         + ", alterada com sucesso!");
             }
             limpaCampos();
@@ -250,7 +249,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
     }//GEN-LAST:event_tfTipoItemActionPerformed
     public void limpaCampos() {
         tfTipoItem.setText("");
-        idioma = null;
+        tipoItem = null;
         tfTipoItem.requestFocus();
         btRemover.setEnabled(false);
     }

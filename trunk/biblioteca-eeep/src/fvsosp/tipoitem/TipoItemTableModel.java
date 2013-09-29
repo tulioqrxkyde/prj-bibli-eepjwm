@@ -14,7 +14,7 @@ import javax.swing.table.AbstractTableModel;
  */    
 public class TipoItemTableModel extends AbstractTableModel {
 
-     private String[] nomeColunas = {"Código", "Idioma"};
+     private String[] nomeColunas = {"Código", "Descrição"};
      private List<TipoItem> tipoitens;
      
      public TipoItemTableModel(){
