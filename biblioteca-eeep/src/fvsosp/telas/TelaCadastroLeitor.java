@@ -11,6 +11,7 @@ import fvsosp.grupoleitores.GruposLeitoresRN;
 import fvsosp.leitor.Leitor;
 import fvsosp.leitor.LeitorRN;
 import fvsosp.leitor.LeitorTableModel;
+import fvsosp.util.Util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -194,6 +195,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
                 tfCPFActionPerformed(evt);
             }
         });
+        tfCPF.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                tfCPFFocusLost(evt);
+            }
+        });
         pn1.add(tfCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, -1));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -222,6 +228,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         ftDataNascimento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        ftDataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                ftDataNascimentoFocusLost(evt);
+            }
+        });
         pn1.add(ftDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 150, -1));
 
         tfRG.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -485,6 +496,21 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private void tfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_tfCPFActionPerformed
+
+    private void ftDataNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftDataNascimentoFocusLost
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_ftDataNascimentoFocusLost
+
+    private void tfCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCPFFocusLost
+        // TODO add your handling code here:
+        
+        if(!Util.CPF(tfCPF.getText().toString().replaceAll("\\D*", ""))){
+            JOptionPane.showMessageDialog(rootPane, "CPF Inválido!", 
+                    "OSBiblio", JOptionPane.ERROR_MESSAGE);
+            tfCPF.setText("");
+        }
+    }//GEN-LAST:event_tfCPFFocusLost
 
     /**
      * @param args the command line arguments
