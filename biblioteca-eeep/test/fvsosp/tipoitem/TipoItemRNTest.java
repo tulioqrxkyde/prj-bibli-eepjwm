@@ -46,7 +46,7 @@ public class TipoItemRNTest {
         
         item.setDescricao("tipoItemDescrição");
         TipoItemRN rn = new TipoItemRN();
-        rn.adiciona(item);
+        rn.salvar(item);
         
         if (item != null){
             rn.remover(item);
@@ -78,11 +78,11 @@ public class TipoItemRNTest {
        TipoItemRN rn = new TipoItemRN();
        TipoItem item = new TipoItem();
         item.setDescricao("ListarDescriçãoTipoItem");
-        rn.adiciona(item);
+        rn.salvar(item);
         
         TipoItem item2 = new TipoItem();
         item2.setDescricao("ListarDescriçãoTipoItem2");
-        rn.adiciona(item2);
+        rn.salvar(item2);
         
         List<TipoItem> tipoItens = rn.listar();
         
@@ -101,7 +101,7 @@ public class TipoItemRNTest {
         
         item.setDescricao("tipoItemDescrição");
         TipoItemRN rn = new TipoItemRN();
-        rn.adiciona(item);
+        rn.salvar(item);
         
         assertTrue("tipoItemDescrição", true);
     }

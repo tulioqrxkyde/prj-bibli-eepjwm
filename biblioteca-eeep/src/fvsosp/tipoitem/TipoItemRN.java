@@ -20,7 +20,7 @@ public class TipoItemRN {
 
     }
 
-    public boolean adiciona(TipoItem tp) {
+    public boolean salvar(TipoItem tp) {
         if (tp.getIdTipoItem() == 0) {
             if (tp.getDescricao() != null) {
                 return dao.adicionar(tp);

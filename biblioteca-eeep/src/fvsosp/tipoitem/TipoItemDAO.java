@@ -53,7 +53,7 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            tipoitens = (List<TipoItem>) getSessao().createCriteria(Idioma.class).
+            tipoitens = (List<TipoItem>) getSessao().createCriteria(TipoItem.class).
                     add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).list();
 
         } catch (HibernateException e) {
@@ -70,7 +70,7 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            tipoitens = (TipoItem) getSessao().createCriteria(Idioma.class).
+            tipoitens = (TipoItem) getSessao().createCriteria(TipoItem.class).
                     add(Restrictions.eq("idTipoItem", codigo)).uniqueResult();
 
         } catch (HibernateException e) {

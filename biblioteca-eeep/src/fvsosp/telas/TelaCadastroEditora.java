@@ -18,6 +18,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
 
     private Editora editora;
     private EditoraRN editRN = new EditoraRN();
+
     /**
      * Creates new form TelaCadastroEditora
      */
@@ -28,7 +29,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         btRemover.setEnabled(false);
         setModal(true);
     }
-    
+
     public void limpaCampos() {
         tfDescricao.setText("");
         editora = null;
@@ -110,6 +111,11 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfDescricao.setToolTipText("Digite aqui a descrição do autor");
+        tfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfDescricaoKeyPressed(evt);
+            }
+        });
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Descrição.:");
@@ -189,7 +195,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
             tfDescricao.setText(editora.getNome().toString());
             btRemover.setEnabled(true);
         }
-        
+
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -240,6 +246,11 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         // TODO add your handling code here:
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
+
+    private void tfDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescricaoKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_tfDescricaoKeyPressed
 
     /**
      * @param args the command line arguments
