@@ -3,6 +3,7 @@ package fvsosp.leitor;
 import fvsosp.cidade.Cidade;
 import fvsosp.emprestimo.Emprestimo;
 import fvsosp.grupoleitores.GruposLeitores;
+import fvsosp.util.Util;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
@@ -338,7 +339,9 @@ public class Leitor implements Serializable{
      * @param cpf the cpf to set
      */
     public void setCpf(String cpf) {
+        if(Util.CPF(cpf)){
         this.cpf = cpf;
+        }
     }
 
     /**

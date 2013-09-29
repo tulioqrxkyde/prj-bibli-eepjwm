@@ -189,6 +189,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             ex.printStackTrace();
         }
         tfCPF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfCPF.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfCPFActionPerformed(evt);
+            }
+        });
         pn1.add(tfCPF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 150, -1));
 
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -476,6 +481,10 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         // TODO add your handling code here:
         limparCampos();
     }//GEN-LAST:event_btNovoActionPerformed
+
+    private void tfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCPFActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfCPFActionPerformed
 
     /**
      * @param args the command line arguments
