@@ -4,6 +4,7 @@
  */
 package fvsosp.tipoitem;
 
+import fvsosp.idioma.Idioma;
 import java.util.List;
 
 /**
@@ -38,4 +39,11 @@ public class TipoItemRN {
     public List<TipoItem> pesquisaDescricao(String descricao) {
         return dao.procuraDescricao(descricao);
     }
+    public List<TipoItem> pesquisarDescricaoLike(String descricao) {
+        return dao.pesquisarDescricaoLike(descricao);
+    }
+    public TipoItem pesquisarCodigo(short codigo) {
+        return dao.pesquisarCodigo(codigo);
+ }
 }
+
