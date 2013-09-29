@@ -5,6 +5,7 @@
 package fvsosp.telas;
 
 import fvsosp.usuario.Usuario;
+import fvsosp.util.UsuarioAtivo;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 
@@ -22,11 +23,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //setExtendedState( MAXIMIZED_BOTH ); ;   //( iniciar tela cheia )
         setTitle("OSBiblio");
         setLocationRelativeTo(null);
-        
-    }
-
-    public void setInformacoesPrincipal(Usuario usuario) {
-        jLabel1.setText(jLabel1.getText().replace("?",((!usuario.getLogin().isEmpty()) ? usuario.getLogin() : "?")));
+        jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?",((!UsuarioAtivo.getLogin().isEmpty()) ? UsuarioAtivo.getLogin() : "?")));
+        itemCadUsuario.setVisible(UsuarioAtivo.isAdministrador());
     }
 
     /**
@@ -42,7 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        jlUsuarioLogado = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         BarradeMenuPrincipal = new javax.swing.JMenuBar();
@@ -107,9 +105,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 159));
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Logado como: ?");
+        jlUsuarioLogado.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        jlUsuarioLogado.setForeground(new java.awt.Color(255, 255, 255));
+        jlUsuarioLogado.setText("Logado como: ?");
 
         jLabel3.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,14 +121,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 554, Short.MAX_VALUE)
-                .addComponent(jLabel1)
+                .addComponent(jlUsuarioLogado)
                 .addGap(121, 121, 121))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
+                    .addComponent(jlUsuarioLogado)
                     .addComponent(jLabel3))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -396,7 +394,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRelatorioEmprestimo;
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
@@ -405,6 +402,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JLabel jlUsuarioLogado;
     private javax.swing.JMenu menuCadastrado;
     private javax.swing.JMenu menuConsulta;
     // End of variables declaration//GEN-END:variables
