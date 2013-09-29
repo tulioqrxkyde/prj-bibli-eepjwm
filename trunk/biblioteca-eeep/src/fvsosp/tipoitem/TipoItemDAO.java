@@ -4,6 +4,7 @@
  */
 package fvsosp.tipoitem;
 
+import fvsosp.idioma.Idioma;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.List;
@@ -23,7 +24,7 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
     }
 
     public List<TipoItem> procuraDescricao(String descricao) {
-        List<TipoItem> tipoItens = null;
+        List<TipoItem> tipoitens = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
@@ -34,15 +35,49 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
              * pode ser encontrada em qualquer lugar, representa o '%descricao%', ordenando
              * de forma crescente por descicao
              */
-            tipoItens = (List<TipoItem>) getSessao().createCriteria(TipoItem.class).
+            tipoitens = (List<TipoItem>) getSessao().createCriteria(TipoItem.class).
                     add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
-                
+
         } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por Descrição: "+e.getMessage());
+            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
         } finally {
             this.getSessao().close();
         }
-        return tipoItens;
+        return tipoitens;
+    }
+
+    public List<TipoItem> pesquisarDescricaoLike(String descricao) {
+        List<TipoItem> tipoitens = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            tipoitens = (List<TipoItem>) getSessao().createCriteria(Idioma.class).
+                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return tipoitens;
+    }
+
+    public TipoItem pesquisarCodigo(short codigo) {
+         TipoItem tipoitens = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            tipoitens = (TipoItem) getSessao().createCriteria(Idioma.class).
+                    add(Restrictions.eq("idTipoItem", codigo)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return tipoitens;
     }
 }
