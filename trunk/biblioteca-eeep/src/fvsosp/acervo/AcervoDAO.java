@@ -221,4 +221,21 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         }
         return acervo;
     }
+
+    public Acervo pesquisarCodigo(short codigo) {
+        Acervo acervo = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            acervo = (Acervo) getSessao().createCriteria(Sessao.class).
+                    add(Restrictions.eq("idAcervo", codigo)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por código: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return acervo;
+    }
 }
