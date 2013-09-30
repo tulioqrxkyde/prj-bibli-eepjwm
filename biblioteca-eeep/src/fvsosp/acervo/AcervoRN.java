@@ -4,12 +4,12 @@
  */
 package fvsosp.acervo;
 
-import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
 import fvsosp.especificacoes.EspecificacoesTecnicas;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,21 +21,25 @@ public class AcervoRN {
 
     // Metódo que adiciona um livro no acervo, caso contrário retorna false
     public boolean salvar(Acervo acervo) {
-        if (acervo.getIdAcervo() == 0) {
-            if (acervo.getTituloObra() != null) {
+        if (!acervo.getTituloObra().isEmpty() && !acervo.getSubtituloObra().isEmpty() && !acervo.getIsbn().isEmpty()
+                && !acervo.getVolume().isEmpty() && !acervo.getEdicao().isEmpty() && acervo.getAnoEdicao() > 0
+                && !acervo.getInformacoesAdicionais().isEmpty() && !acervo.getLocalizacao().isEmpty() /*&& acervo.getAutor() != null
+                && acervo.getBiblioteca() != null && acervo.getEditora() != null && acervo.getEspecificacoesTecnicas() != null 
+                && acervo.getExemplares() != null && acervo.getIdioma() != null && acervo.getSessao() != null && acervo.getTipoItem() != null
+                * */) {
+            if (acervo.getIdAcervo() == 0) {
                 return dao.adicionar(acervo);
-
+            } else {
+                return dao.atualizar(acervo);
             }
-        } else {
-            return dao.atualizar(acervo);
         }
+        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.");
         return false;
     }
 
     // Metódo que remove
     public boolean remover(Acervo acervo) {
         return dao.remover(acervo);
-
     }
 
     // Metódo que faz um List de arcervos
@@ -89,5 +93,9 @@ public class AcervoRN {
 
     public List<Acervo> pesquisarSessao(Sessao sessao) {
         return dao.pesquisarSessao(sessao);
+    }
+
+    public Acervo pesquisarCodigo(short codigo) {
+        return dao.pesquisarCodigo(codigo);
     }
 }
