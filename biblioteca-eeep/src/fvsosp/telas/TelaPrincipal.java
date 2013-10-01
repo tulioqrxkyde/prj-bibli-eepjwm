@@ -54,6 +54,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadIdioma = new javax.swing.JMenuItem();
         itemCadLeitor = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
+        itemCadTipoItem = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
         itemEmprestar = new javax.swing.JMenu();
         jMenuItem1 = new javax.swing.JMenuItem();
@@ -229,6 +230,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastrado.add(itemCadSessao);
 
+        itemCadTipoItem.setText("Tipo Item");
+        itemCadTipoItem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCadTipoItemActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(itemCadTipoItem);
+
         itemCadUsuario.setText("Usuário");
         itemCadUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -341,6 +350,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tCadIdioma.setVisible(true);
     }//GEN-LAST:event_itemCadIdiomaActionPerformed
 
+    private void itemCadTipoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadTipoItemActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroTipoItem tCadTipoItem = new TelaCadastroTipoItem();
+        tCadTipoItem.setVisible(true);
+    }//GEN-LAST:event_itemCadTipoItemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -387,6 +402,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadIdioma;
     private javax.swing.JMenuItem itemCadLeitor;
     private javax.swing.JMenuItem itemCadSessao;
+    private javax.swing.JMenuItem itemCadTipoItem;
     private javax.swing.JMenuItem itemCadUsuario;
     private javax.swing.JMenuItem itemConsultarAcervo;
     private javax.swing.JMenu itemEmprestar;
