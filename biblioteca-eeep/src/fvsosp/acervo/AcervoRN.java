@@ -23,10 +23,10 @@ public class AcervoRN {
     public boolean salvar(Acervo acervo) {
         if (!acervo.getTituloObra().isEmpty() && !acervo.getSubtituloObra().isEmpty() && !acervo.getIsbn().isEmpty()
                 && !acervo.getVolume().isEmpty() && !acervo.getEdicao().isEmpty() && acervo.getAnoEdicao() > 0
-                && !acervo.getInformacoesAdicionais().isEmpty() && !acervo.getLocalizacao().isEmpty() /*&& acervo.getAutor() != null
-                && acervo.getBiblioteca() != null && acervo.getEditora() != null && acervo.getEspecificacoesTecnicas() != null 
-                && acervo.getExemplares() != null && acervo.getIdioma() != null && acervo.getSessao() != null && acervo.getTipoItem() != null
-                * */) {
+                && !acervo.getInformacoesAdicionais().isEmpty() && !acervo.getLocalizacao().isEmpty() && acervo.getAutor() != null
+                && acervo.getBiblioteca() != null && acervo.getEditora() != null /*&& acervo.getEspecificacoesTecnicas() != null 
+                /*&& acervo.getExemplares() != null*/ && acervo.getIdioma() != null && acervo.getSessao() != null && acervo.getTipoItem() != null
+                ) {
             if (acervo.getIdAcervo() == 0) {
                 return dao.adicionar(acervo);
             } else {
