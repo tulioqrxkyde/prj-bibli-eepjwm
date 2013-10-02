@@ -61,19 +61,19 @@ public class AcervoTableModel extends AbstractTableModel {
             case 8:
                 return acervo.getLocalizacao();
             case 9:
-                return acervo.getAutor().getNome();
+                return acervo.getAutor();
             case 10:
-                return acervo.getBiblioteca().getDescricao();
+                return acervo.getBiblioteca();
             case 11:
-                return acervo.getEditora().getNome();
-            case 12:
-                return acervo.getExemplares();
+                return acervo.getEditora();    
+            /* case 12:
+                return acervo.getExemplares(); */
             case 13:
-                return acervo.getIdioma().getDescricao();
+                return acervo.getIdioma();
             case 14:
-                return acervo.getSessao().getDescricao();
+                return acervo.getSessao();
             case 15:
-                return acervo.getTipoItem().getDescricao();
+                return acervo.getTipoItem();
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet.");  

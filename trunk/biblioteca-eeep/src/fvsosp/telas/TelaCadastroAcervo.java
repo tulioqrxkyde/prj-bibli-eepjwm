@@ -42,11 +42,11 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
      * Creates new form TelaCadastroAcervo
      */
     public TelaCadastroAcervo() {
+        initComponents();
         this.setTitle("OSBiblio - Acervo");
         this.setLocationRelativeTo(null);
         //btRemover.setEnabled(false);
         setModal(true);
-        initComponents();
         preencheAutor();
         preencheBiblioteca();
         preencheEditora();
@@ -86,13 +86,12 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tfEdicao = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
         tfVolume = new javax.swing.JTextField();
-        tfIsbn = new javax.swing.JTextField();
         tfInformacoesAdicionais = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         tfLocalizacao = new javax.swing.JTextField();
-        tfVolume1 = new javax.swing.JTextField();
         tffAnoEdicao = new javax.swing.JFormattedTextField();
+        tfIsbn1 = new javax.swing.JTextField();
         pn3 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         tfPalavrasChaves = new javax.swing.JTextField();
@@ -124,10 +123,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         cbSessao = new javax.swing.JComboBox();
         cbAutor = new javax.swing.JComboBox();
         jLabel7 = new javax.swing.JLabel();
-        cbTipoItem1 = new javax.swing.JComboBox();
+        cbTipoItem = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(460, 430));
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -236,12 +234,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, 29));
 
         tfVolume.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfVolume.setToolTipText("Digite aqui a o volume da obra");
+        tfVolume.setToolTipText("Digite aqui o ISBN da obra");
         pn1.add(tfVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 170, -1));
-
-        tfIsbn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfIsbn.setToolTipText("Digite aqui o ISBN da obra");
-        pn1.add(tfIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, -1));
 
         tfInformacoesAdicionais.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfInformacoesAdicionais.setToolTipText("Digite aqui as informações adicionais");
@@ -259,12 +253,12 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tfLocalizacao.setToolTipText("Digite aqui a localização");
         pn1.add(tfLocalizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 170, -1));
 
-        tfVolume1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfVolume1.setToolTipText("Digite aqui a descrição do autor");
-        pn1.add(tfVolume1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 170, -1));
-
         tffAnoEdicao.setToolTipText("Digite aqui o ano de edição");
         pn1.add(tffAnoEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, 20));
+
+        tfIsbn1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfIsbn1.setToolTipText("Digite aqui o ISBN da obra");
+        pn1.add(tfIsbn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, -1));
 
         tbLeitor.addTab("Obra", pn1);
 
@@ -476,8 +470,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         jLabel7.setText("Autor.:");
 
-        cbTipoItem1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        cbTipoItem1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cbTipoItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -509,7 +503,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(cbEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbTipoItem1, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbTipoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -540,7 +534,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbTipoItem1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbTipoItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(100, Short.MAX_VALUE))
         );
@@ -606,7 +600,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             acervo = acervoRN.pesquisarCodigo(id);
             tfTitulo.setText(acervo.getTituloObra().toString());
             tfSubTitulo.setText(acervo.getSubtituloObra().toString());
-            tfIsbn.setText(acervo.getIsbn().toString());
+            tfVolume.setText(acervo.getIsbn().toString());
             tfVolume.setText(acervo.getVolume().toString());
             tfEdicao.setText(acervo.getEdicao().toString());
             tffAnoEdicao.setText(String.valueOf(acervo.getAnoEdicao()));
@@ -639,9 +633,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 cbSessao.setSelectedIndex(0);
             }
             if (acervo.getTipoItem() != null) {
-                cbAutor.setSelectedItem(acervo.getTipoItem());
+                cbTipoItem.setSelectedItem(acervo.getTipoItem());
             } else {
-                cbAutor.setSelectedIndex(0);
+                cbTipoItem.setSelectedIndex(0);
             }
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -674,24 +668,19 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         if (acervo == null) {
             acervo = new Acervo();
         }
-        if (exemplar == null) {
-            exemplar = new Exemplar();
-        }
 
         if (!tffAnoEdicao.getText().isEmpty()) {
             Calendar data = Calendar.getInstance();
-            if (Integer.parseInt(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
+            if (Long.parseLong(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
                 JOptionPane.showMessageDialog(null, "Não é possível inserir um ano de edição superior ao ano atual. ");
-            }
+            } else
+                acervo.setAnoEdicao(Short.parseShort(tffAnoEdicao.getText()));
         }
         acervo.setTituloObra(tfTitulo.getText());
         acervo.setSubtituloObra(tfSubTitulo.getText());
-        acervo.setIsbn(tfIsbn.getText());
+        acervo.setIsbn(tfVolume.getText());
         acervo.setVolume(tfVolume.getText());
-        acervo.setEdicao(tffAnoEdicao.getText());
-        if (!tffAnoEdicao.getText().isEmpty()) {
-            acervo.setAnoEdicao(Short.parseShort(tffAnoEdicao.getText()));
-        }
+        acervo.setEdicao(tfEdicao.getText());
         acervo.setInformacoesAdicionais(tfInformacoesAdicionais.getText());
         acervo.setLocalizacao(tfLocalizacao.getText());
         if (!tfTombo.getText().isEmpty() && !tfExemplar.getText().isEmpty()) {
@@ -702,24 +691,23 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             acervo.setExemplares(exemplares);
         }
         if ((cbAutor.getSelectedIndex() > 0) && (cbBiblioteca.getSelectedIndex() > 0) && (cbEditora.getSelectedIndex() > 0)
-                && (cbIdioma.getSelectedIndex() > 0) && (cbSessao.getSelectedIndex() > 0) && (cbAutor.getSelectedIndex() > 0)) {
+                && (cbIdioma.getSelectedIndex() > 0) && (cbSessao.getSelectedIndex() > 0) && (cbTipoItem.getSelectedIndex() > 0)) {
             Autor autor = (Autor) cbAutor.getSelectedItem();
-            Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
-            Editora editora = (Editora) cbEditora.getSelectedItem();
-            Idioma idioma = (Idioma) cbIdioma.getSelectedItem();
-            Sessao sessao = (Sessao) cbSessao.getSelectedItem();
-            TipoItem tipoitem = (TipoItem) cbAutor.getSelectedItem();
             acervo.setAutor(autor);
+            Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
             acervo.setBiblioteca(biblioteca);
+            Editora editora = (Editora) cbEditora.getSelectedItem();
             acervo.setEditora(editora);
+            Idioma idioma = (Idioma) cbIdioma.getSelectedItem();
             acervo.setIdioma(idioma);
+            Sessao sessao = (Sessao) cbSessao.getSelectedItem();
             acervo.setSessao(sessao);
+            TipoItem tipoitem = (TipoItem) cbTipoItem.getSelectedItem();
             acervo.setTipoItem(tipoitem);
         } else {
             acervo.setAutor(null);
             acervo.setBiblioteca(null);
             acervo.setEditora(null);
-            acervo.setEspecificacoesTecnicas(null);
             acervo.setIdioma(null);
             acervo.setSessao(null);
             acervo.setTipoItem(null);
@@ -742,7 +730,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         AutorRN autRN = new AutorRN();
         List<Autor> autores = autRN.listar();
         for (Autor autor : autores) {
-            cbAutor.addItem(autor.getNome());
+            cbAutor.addItem(autor);
         }
     }
 
@@ -750,7 +738,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         BibliotecaRN bibRN = new BibliotecaRN();
         List<Biblioteca> bibliotecas = bibRN.listar();
         for (Biblioteca biblioteca : bibliotecas) {
-            cbBiblioteca.addItem(biblioteca.getDescricao());
+            cbBiblioteca.addItem(biblioteca);
         }
     }
 
@@ -758,7 +746,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         EditoraRN edtRN = new EditoraRN();
         List<Editora> editoras = edtRN.listar();
         for (Editora editora : editoras) {
-            cbEditora.addItem(editora.getNome());
+            cbEditora.addItem(editora);
         }
     }
 
@@ -766,7 +754,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         IdiomaRN idRN = new IdiomaRN();
         List<Idioma> idiomas = idRN.listar();
         for (Idioma idioma : idiomas) {
-            cbIdioma.addItem(idioma.getDescricao());
+            cbIdioma.addItem(idioma);
         }
     }
 
@@ -774,7 +762,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         SessaoRN sesRN = new SessaoRN();
         List<Sessao> sessoes = sesRN.listar();
         for (Sessao sessao : sessoes) {
-            cbSessao.addItem(sessao.getDescricao());
+            cbSessao.addItem(sessao);
         }
     }
 
@@ -782,14 +770,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         TipoItemRN tipRN = new TipoItemRN();
         List<TipoItem> tipoitens = tipRN.listar();
         for (TipoItem tipo : tipoitens) {
-            cbAutor.addItem(tipo.getDescricao());
+            cbTipoItem.addItem(tipo);
         }
     }
 
     public void limparCampos() {
         tfTitulo.setText("");
         tfSubTitulo.setText("");
-        tfIsbn.setText("");
+        tfVolume.setText("");
         tfVolume.setText("");
         tfEdicao.setText("");
         tffAnoEdicao.setText("");
@@ -800,7 +788,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         cbEditora.setSelectedIndex(0);
         cbIdioma.setSelectedIndex(0);
         cbSessao.setSelectedIndex(0);
-        cbAutor.setSelectedIndex(0);
+        cbTipoItem.setSelectedIndex(0);
         tfPalavrasChaves.setText("");
         tfTombo.setText("");
         tfExemplar.setText("");
@@ -887,7 +875,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JComboBox cbEditora;
     private javax.swing.JComboBox cbIdioma;
     private javax.swing.JComboBox cbSessao;
-    private javax.swing.JComboBox cbTipoItem1;
+    private javax.swing.JComboBox cbTipoItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
@@ -927,7 +915,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JTextField tfEdicao;
     private javax.swing.JTextField tfExemplar;
     private javax.swing.JTextField tfInformacoesAdicionais;
-    private javax.swing.JTextField tfIsbn;
+    private javax.swing.JTextField tfIsbn1;
     private javax.swing.JTextField tfLocalizacao;
     private javax.swing.JTextField tfPaginas;
     private javax.swing.JTextField tfPalavrasChaves;
@@ -936,7 +924,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JTextField tfTitulo;
     private javax.swing.JTextField tfTombo;
     private javax.swing.JTextField tfVolume;
-    private javax.swing.JTextField tfVolume1;
     private javax.swing.JFormattedTextField tffAnoEdicao;
     // End of variables declaration//GEN-END:variables
 }
