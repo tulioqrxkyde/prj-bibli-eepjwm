@@ -16,13 +16,12 @@ public class SessaoRN {
     private SessaoDAO dao = new SessaoDAO();
 
     public boolean salvar(Sessao sessao) {
-        if (!sessao.getDescricao().isEmpty()) {
-            if (sessao.getIdSessao() == 0) {
+        if (sessao.getIdSessao() == 0) {
+            if (sessao.getDescricao() != null) {
                 return dao.adicionar(sessao);
-            } else {
-                return dao.atualizar(sessao);
             }
-
+        } else {
+            return dao.atualizar(sessao);
         }
         return false;
     }
@@ -39,7 +38,7 @@ public class SessaoRN {
     public Sessao pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
-    
+
     public List<Sessao> pesquisarDescricaoLike(String descricao) {
         return dao.pesquisarDescricaoLike(descricao);
     }
