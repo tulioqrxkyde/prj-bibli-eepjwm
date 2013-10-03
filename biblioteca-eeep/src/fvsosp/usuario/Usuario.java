@@ -25,7 +25,7 @@ public class Usuario implements Serializable{
     private boolean administrador;
 
     /*** @retorna o id do Usuário ***/
-    public int getIdUsuario() {
+    public short getIdUsuario() {
         return idUsuario;
     }
 
@@ -77,7 +77,7 @@ public class Usuario implements Serializable{
         hash = 17 * hash + this.idUsuario;
         hash = 17 * hash + Objects.hashCode(this.login);
         hash = 17 * hash + Objects.hashCode(this.senha);
-        hash = 17 * hash + (this.administrador ? 1 : 0);
+        hash = 17 * hash + (this.isAdministrador() ? 1 : 0);
         return hash;
     }
 
@@ -99,7 +99,7 @@ public class Usuario implements Serializable{
         if (!Objects.equals(this.senha, other.senha)) {
             return false;
         }
-        if (this.administrador != other.administrador) {
+        if (this.isAdministrador() != other.isAdministrador()) {
             return false;
         }
         return true;

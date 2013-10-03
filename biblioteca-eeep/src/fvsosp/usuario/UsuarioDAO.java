@@ -46,6 +46,38 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
         }
         return usuario;
     }
+    
+    public Usuario pesquisarCodigo(short codigo) {
+        Usuario usuario = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(this.getSessao().beginTransaction());
+            usuario = (Usuario) getSessao().createCriteria(Usuario.class)
+                    .add(Restrictions.eq("idUsuario", codigo)).uniqueResult();
+            this.getTransacao().commit();
+        } catch (Throwable t) {
+            System.out.println("Não foi possível localizar o código.");
+        } finally {
+            this.getSessao().close();
+        }
+        return usuario;
+    }
+    
+    public List<Usuario> pesquisarLoginLike(String login) {
+        List<Usuario> usuario = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(this.getSessao().beginTransaction());
+            usuario = (List<Usuario>) getSessao().createCriteria(Usuario.class)
+                    .add(Restrictions.like("login", login, MatchMode.ANYWHERE)).list();
+            this.getTransacao().commit();
+        } catch (Throwable t) {
+            System.out.println("Não foi possível localizar o login.");
+        } finally {
+            this.getSessao().close();
+        }
+        return usuario;
+    }
 
     public Usuario pesquisaUsuario(Usuario usuario) {
         try {
