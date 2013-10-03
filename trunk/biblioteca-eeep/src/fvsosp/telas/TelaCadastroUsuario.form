@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JFrameFormInfo">
-  <Properties>
-    <Property name="defaultCloseOperation" type="int" value="3"/>
-  </Properties>
+<Form version="1.5" maxVersion="1.8" type="org.netbeans.modules.form.forminfo.JDialogFormInfo">
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
     <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
@@ -89,7 +86,7 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="86" max="32767" attributes="0"/>
                   <Component id="cbAdministrador" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="btNovo" min="-2" pref="40" max="-2" attributes="0"/>
@@ -105,13 +102,13 @@
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="lbLogin" min="-2" max="-2" attributes="0"/>
                       <Component id="lbSenha" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="tfLogin" min="-2" pref="201" max="-2" attributes="0"/>
-                      <Component id="tfSenha" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
-                      <Component id="tfConfirmaSenha" alignment="0" min="-2" pref="201" max="-2" attributes="0"/>
+                      <Component id="tfLogin" pref="201" max="32767" attributes="0"/>
+                      <Component id="tfSenha" alignment="0" pref="201" max="32767" attributes="0"/>
                       <Component id="lbSenha1" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="tfConfirmarSenha" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -130,9 +127,9 @@
                   <Component id="tfSenha" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="lbSenha1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
-                  <Component id="tfConfirmaSenha" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="11" max="32767" attributes="0"/>
+                  <EmptySpace pref="10" max="32767" attributes="0"/>
+                  <Component id="tfConfirmarSenha" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="cbAdministrador" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="btSalvar" min="-2" pref="33" max="-2" attributes="0"/>
@@ -184,6 +181,9 @@
               <Image iconType="3" name="/fvsosp/imagens/novo_1.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btNovoActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btSalvar">
           <Properties>
@@ -201,6 +201,9 @@
               <Image iconType="3" name="/fvsosp/imagens/remove_1.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btPesquisar">
           <Properties>
@@ -208,6 +211,9 @@
               <Image iconType="3" name="/fvsosp/imagens/procurar_1.png"/>
             </Property>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPesquisarActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btSair">
           <Properties>
@@ -219,8 +225,6 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btSairActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JPasswordField" name="tfConfirmaSenha">
-        </Component>
         <Component class="javax.swing.JLabel" name="lbSenha1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -228,6 +232,8 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Confirmar Senha.:"/>
           </Properties>
+        </Component>
+        <Component class="javax.swing.JPasswordField" name="tfConfirmarSenha">
         </Component>
       </SubComponents>
     </Container>

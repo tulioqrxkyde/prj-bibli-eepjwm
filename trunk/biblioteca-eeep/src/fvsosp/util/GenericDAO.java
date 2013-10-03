@@ -104,7 +104,7 @@ public abstract class GenericDAO<T> {
      * ao passar uma chave primária
      * ele retorna um objeto referente a chave primária
      */
-    public T carregaChavePrimaria(int chavePrimaria){
+    public T carregaChavePrimaria(short chavePrimaria){
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Object o = sessao.load(classe, chavePrimaria);

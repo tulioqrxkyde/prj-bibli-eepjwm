@@ -5,8 +5,11 @@
 package fvsosp.telas;
 
 import fvsosp.idioma.Idioma;
+import fvsosp.sessao.SessaoTableModel;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioRN;
+import fvsosp.usuario.UsuarioTableModel;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -14,9 +17,10 @@ import javax.swing.JOptionPane;
  * @author ADRIANO
  */
 public class TelaCadastroUsuario extends javax.swing.JDialog {
-    
+
     Usuario usuario;
     UsuarioRN usuarioRN = new UsuarioRN();
+
     /**
      * Creates new form TelaCadastroUsuario
      */
@@ -24,6 +28,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         initComponents();
         setTitle("OSBiblio - Usuario");
         setLocationRelativeTo(null);
+        setModal(true);
         btExcluir.setEnabled(false);
     }
 
@@ -49,10 +54,8 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         btExcluir = new javax.swing.JButton();
         btPesquisar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
-        tfConfirmaSenha = new javax.swing.JPasswordField();
         lbSenha1 = new javax.swing.JLabel();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        tfConfirmarSenha = new javax.swing.JPasswordField();
 
         jPanel1.setBackground(new java.awt.Color(51, 89, 152));
 
@@ -92,6 +95,11 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         });
 
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
+        btNovo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btNovoActionPerformed(evt);
+            }
+        });
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -101,8 +109,18 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         });
 
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
+        btExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btExcluirActionPerformed(evt);
+            }
+        });
 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar_1.png"))); // NOI18N
+        btPesquisar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPesquisarActionPerformed(evt);
+            }
+        });
 
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
         btSair.addActionListener(new java.awt.event.ActionListener() {
@@ -119,7 +137,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(86, Short.MAX_VALUE)
                 .addComponent(cbAdministrador)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -134,13 +152,13 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 .addGap(16, 16, 16))
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(lbLogin)
                     .addComponent(lbSenha)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lbSenha1))
+                    .addComponent(tfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                    .addComponent(lbSenha1)
+                    .addComponent(tfConfirmarSenha))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -156,9 +174,9 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbSenha1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfConfirmaSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addComponent(tfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cbAdministrador)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -197,7 +215,22 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         usuario.setSenha(tfSenha.getText().toString());
         usuario.setAdministrador(cbAdministrador.isSelected());
         int idUsario = usuario.getIdUsuario();
-        if (usuarioRN.salvar(usuario, tfConfirmaSenha.getText())) {
+        if (idUsario != 0) {
+            if (tfSenha.getText().equals(tfConfirmarSenha.getText())) {
+                String senhaAnterior = JOptionPane.showInputDialog(idUsario, "Informe a senha anterior: ");
+                if (usuarioRN.salvar(usuario, senhaAnterior) == true) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
+                            + ", alterado com sucesso!");
+                    limpaCampos();
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Senha anterior não confere!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Senha e Confirmar senha devem ser iguais!");
+            }
+
+
+        } else if (usuarioRN.salvar(usuario, tfConfirmarSenha.getText())) {
             if (idUsario == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
                         + ", cadastrado com sucesso!");
@@ -205,19 +238,72 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
                         + ", alterado com sucesso!");
             }
-           // limpaCampos();
+            // limpaCampos();
+            limpaCampos();
             btExcluir.setEnabled(false);
         }
-              // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-dispose();        // TODO add your handling code here:
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
+    public void limpaCampos() {
+        tfLogin.setText("");
+        tfSenha.setText("");
+        cbAdministrador.setSelected(false);
+        tfConfirmarSenha.setText("");
+        usuario = null;
+        btExcluir.setEnabled(false);
+    }
     private void cbAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAdministradorActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbAdministradorActionPerformed
+
+    private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
+        if (usuario != null) {
+            if (usuario.getIdUsuario() != 0) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o usuário " + usuario.getLogin()
+                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if (usuarioRN.remover(usuario)) {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
+                                + ", excluído com sucesso!", "Usuário", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o Usuário "
+                                + usuario.getLogin(),
+                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                    }
+                }
+            }
+        }
+        limpaCampos();
+
+    }//GEN-LAST:event_btExcluirActionPerformed
+
+    private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        // TODO add your handling code here:
+        List<Usuario> lista = null;
+        if (tfLogin.getText() != null) {
+            lista = usuarioRN.pesquisarLoginLike(tfLogin.getText());
+        } else {
+            lista = usuarioRN.listar();
+        }
+        UsuarioTableModel stm = new UsuarioTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(stm, "Sessão");
+        usuario = new Usuario();
+        if (o != null) {
+            short id = (short) o;
+            usuario = usuarioRN.pesquisarCodigo(id);
+            tfLogin.setText(usuario.getLogin().toString());
+            cbAdministrador.setSelected(usuario.isAdministrador());
+            btExcluir.setEnabled(true);
+        }
+    }//GEN-LAST:event_btPesquisarActionPerformed
+
+    private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        limpaCampos();        // TODO add your handling code here:
+    }//GEN-LAST:event_btNovoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -266,7 +352,7 @@ dispose();        // TODO add your handling code here:
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lbSenha1;
-    private javax.swing.JPasswordField tfConfirmaSenha;
+    private javax.swing.JPasswordField tfConfirmarSenha;
     private javax.swing.JTextField tfLogin;
     private javax.swing.JPasswordField tfSenha;
     // End of variables declaration//GEN-END:variables

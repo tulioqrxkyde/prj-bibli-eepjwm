@@ -53,7 +53,7 @@ public class UsuarioRN {
             }
         } else {
             //se altera tem que ter uma senha pra confirmar a senha anterior
-            Usuario usu = usuDAO.carregaChavePrimaria(usuario.getIdUsuario());
+            Usuario usu = usuDAO.pesquisarCodigo(usuario.getIdUsuario());
             if (usu.getSenha().equals(Util.md5(outraSenha))) {
                 return usuDAO.atualizar(usuario);
             }
@@ -68,4 +68,12 @@ public class UsuarioRN {
     public List<Usuario> listar() {
         return usuDAO.listar();
     }
+    
+    public List<Usuario> pesquisarLoginLike(String login) {
+        return usuDAO.pesquisarLoginLike(login);
+    }
+    
+     public Usuario pesquisarCodigo(short codigo) {
+         return usuDAO.pesquisarCodigo(codigo);
+     }
 }
