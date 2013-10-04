@@ -98,5 +98,7 @@ public class TipoItem implements Serializable{
     }
     private static final long serialVersionUID = 139376686869872414L;
     
-    
+    public String toString(){
+        return descricao;
+    }
 }
