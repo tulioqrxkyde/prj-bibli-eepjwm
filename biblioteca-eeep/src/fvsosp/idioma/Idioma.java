@@ -84,4 +84,8 @@ public class Idioma implements Serializable{
         this.acervo = acervo;
     }
     private static final long serialVersionUID = -3057265994106209062L;
+    
+    public String toString(){
+        return descricao;
+    }
 }

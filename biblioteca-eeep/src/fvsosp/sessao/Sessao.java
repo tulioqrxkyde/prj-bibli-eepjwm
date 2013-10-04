@@ -86,4 +86,8 @@ public class Sessao implements Serializable{
         this.acervos = acervos;
     }
     private static final long serialVersionUID = 2535742826332189587L;
+    
+    public String toString(){
+        return descricao;
+    }
 }

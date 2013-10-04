@@ -77,4 +77,8 @@ public class Editora implements Serializable {
         }
         return true;
     }
+    
+    public String toString(){
+        return nome;
+    }
 }

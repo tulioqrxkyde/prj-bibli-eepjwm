@@ -72,4 +72,8 @@ public class Autor {
     public void setAcervos(List<Acervo> acervos) {
         this.acervo = acervos;
     }
+    
+    public String toString(){
+        return nome;
+    }
 }
