@@ -1,5 +1,6 @@
 package fvsosp.cidade;
 
+import fvsosp.util.Util;
 import java.util.List;
 
 /**
@@ -11,15 +12,11 @@ public class CidadeRN {
     private CidadeDAO dao = new CidadeDAO();
 
     public boolean salvar(Cidade cidade) {
-        if (cidade.getIdCidade() == 0 && cidade.getDescricao() != null && cidade.getUf() != null) {
-            if ((cidade.getDescricao() != null)
-                    && (cidade.getUf() != null)) {
+        if (cidade.getIdCidade() == 0) {
                 return dao.adicionar(cidade);
-            }
         } else {
             return dao.atualizar(cidade);
         }
-        return false;
     }
 
     public boolean remover(Cidade cidade) {

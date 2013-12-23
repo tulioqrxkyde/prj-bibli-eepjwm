@@ -3,7 +3,10 @@ package fvsosp.telas;
 import fvsosp.cidade.Cidade;
 import fvsosp.cidade.CidadeRN;
 import fvsosp.cidade.CidadeTableModel;
+import fvsosp.util.Util;
+import java.text.NumberFormat;
 import java.util.List;
+import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 /**
@@ -43,9 +46,9 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         Descricao_Biblioteca = new javax.swing.JLabel();
         tfDescricao = new javax.swing.JTextField();
         Descricao_Biblioteca1 = new javax.swing.JLabel();
-        tfCodIBGE = new javax.swing.JTextField();
         Descricao_Biblioteca2 = new javax.swing.JLabel();
         cbUF = new javax.swing.JComboBox();
+        tfCodIBGE = new javax.swing.JFormattedTextField();
 
         setTitle("OSBiblio - Cidade");
         setModal(true);
@@ -124,18 +127,23 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         Descricao_Biblioteca1.setText("Cód.IBGE.:");
         jPanel1.add(Descricao_Biblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 29));
 
-        tfCodIBGE.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfCodIBGE.setToolTipText("Digite aqui o Código IBGE.");
-        jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 69, -1));
-
         Descricao_Biblioteca2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         Descricao_Biblioteca2.setText("Descrição.:");
         jPanel1.add(Descricao_Biblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         cbUF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- ", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbUF.setSelectedItem(cbUF);
         cbUF.setToolTipText("Selecione o Estado");
         jPanel1.add(cbUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 80, -1));
+
+        try {
+            tfCodIBGE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfCodIBGE.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 430, 240));
 
@@ -146,14 +154,16 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         if (cidade == null) {
             cidade = new Cidade();
         }
-        cidade.setCodIBGE(Integer.parseInt(tfCodIBGE.getText().toString()));
-        cidade.setDescricao(tfDescricao.getText().toString());
-        cidade.setUf(cbUF.getSelectedItem().toString());
-        short idCidade = cidade.getIdCidade();
-        if (cidadeRN.salvar(cidade)) {
-            JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
-                    + ", " + ((idCidade == 0) ? "cadastrada" : "alterada") + " com sucesso!");
-            limpaCampos();
+        if (Util.chkVazio(tfDescricao.getText(), tfCodIBGE.getText())) {
+            cidade.setCodIBGE(Integer.parseInt(tfCodIBGE.getText().replaceAll(" ", "")));
+            cidade.setDescricao(tfDescricao.getText());
+            cidade.setUf(cbUF.getSelectedItem().toString());
+            int id = cidade.getIdCidade();
+            if (cidadeRN.salvar(cidade)) {
+                JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
+                        + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
+                limpaCampos();
+            }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -250,7 +260,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField tfCodIBGE;
+    private javax.swing.JFormattedTextField tfCodIBGE;
     private javax.swing.JTextField tfDescricao;
     // End of variables declaration//GEN-END:variables
 }
