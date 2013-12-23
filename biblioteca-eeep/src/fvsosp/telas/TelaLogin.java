@@ -8,7 +8,6 @@ import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.util.UsuarioAtivo;
 import fvsosp.util.Util;
-import java.awt.Toolkit;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -71,6 +70,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel4.setText("Login");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/33_32x32.png"))); // NOI18N
+        jLabel3.setLabelFor(jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
 
