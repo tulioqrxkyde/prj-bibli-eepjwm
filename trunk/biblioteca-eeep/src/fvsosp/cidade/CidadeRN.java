@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.cidade;
 
 import java.util.List;
@@ -15,11 +11,10 @@ public class CidadeRN {
     private CidadeDAO dao = new CidadeDAO();
 
     public boolean salvar(Cidade cidade) {
-        if (cidade.getIdCidade() == 0) {
+        if (cidade.getIdCidade() == 0 && cidade.getDescricao() != null && cidade.getUf() != null) {
             if ((cidade.getDescricao() != null)
                     && (cidade.getUf() != null)) {
                 return dao.adicionar(cidade);
-
             }
         } else {
             return dao.atualizar(cidade);
@@ -29,7 +24,6 @@ public class CidadeRN {
 
     public boolean remover(Cidade cidade) {
         return dao.remover(cidade);
-
     }
 
     public List<Cidade> listar() {

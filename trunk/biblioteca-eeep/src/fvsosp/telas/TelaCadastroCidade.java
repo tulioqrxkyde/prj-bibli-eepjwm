@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.cidade.Cidade;
@@ -24,10 +20,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
      */
     public TelaCadastroCidade() {
         initComponents();
-        setTitle("OSBiblio - Cidade");
         setLocationRelativeTo(null);
-        setModal(true);
-        btRemover.setEnabled(false);
     }
 
     /**
@@ -54,7 +47,8 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         Descricao_Biblioteca2 = new javax.swing.JLabel();
         cbUF = new javax.swing.JComboBox();
 
-        setTitle("Cadastro Cidade");
+        setTitle("OSBiblio - Cidade");
+        setModal(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -83,6 +77,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -122,7 +117,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(Descricao_Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 29));
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDescricao.setToolTipText("Digite aqui a descrição da biblioteca");
+        tfDescricao.setToolTipText("Digite aqui a descrição da Cidade.");
         jPanel1.add(tfDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -130,7 +125,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(Descricao_Biblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 29));
 
         tfCodIBGE.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfCodIBGE.setToolTipText("Digite aqui a descrição da biblioteca");
+        tfCodIBGE.setToolTipText("Digite aqui o Código IBGE.");
         jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 69, -1));
 
         Descricao_Biblioteca2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -139,6 +134,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
 
         cbUF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- ", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        cbUF.setToolTipText("Selecione o Estado");
         jPanel1.add(cbUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 80, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 430, 240));
@@ -147,30 +143,21 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (cidade == null) {
             cidade = new Cidade();
         }
-
         cidade.setCodIBGE(Integer.parseInt(tfCodIBGE.getText().toString()));
         cidade.setDescricao(tfDescricao.getText().toString());
         cidade.setUf(cbUF.getSelectedItem().toString());
-        int idCidade = cidade.getIdCidade();
+        short idCidade = cidade.getIdCidade();
         if (cidadeRN.salvar(cidade)) {
-            if (idCidade == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
-                        + ", cadastrada com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
-                        + ", alterada com sucesso!");
-            }
+            JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
+                    + ", " + ((idCidade == 0) ? "cadastrada" : "alterada") + " com sucesso!");
             limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
         if (cidade != null) {
             if (cidade.getIdCidade() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a cidade " + cidade.getDescricao()
@@ -190,55 +177,44 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<Cidade> lista = null;
-        if (!tfDescricao.getText().equals("")) {
-            lista = cidadeRN.pesquisarDescricao(tfDescricao.getText());
-        } else {
-            lista = cidadeRN.listar();
-        }
+        List<Cidade> lista;
+        lista = !tfDescricao.getText().isEmpty() ? cidadeRN.pesquisarDescricao(tfDescricao.getText()) : cidadeRN.listar();
         CidadeTableModel itm = new CidadeTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Cidade");
-        cidade = new Cidade();
         if (o != null) {
-            int id = (int) o;
-            cidade = cidadeRN.pesquisarIBGE(id);
+            cidade = new Cidade();
+            cidade = cidadeRN.pesquisarIBGE((int) o);
             tfCodIBGE.setText(String.valueOf(cidade.getCodIBGE()));
-            tfDescricao.setText(cidade.getDescricao().toString());
+            tfDescricao.setText(cidade.getDescricao());
             cbUF.setSelectedItem(cidade.getUf().toString());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
-    public void limpaCampos(){
+    public void limpaCampos() {
+        cidade = null;
         tfCodIBGE.setText("");
         tfDescricao.setText("");
         cbUF.setSelectedIndex(0);
         tfCodIBGE.requestFocus();
-        cidade = null;
         btRemover.setEnabled(false);
     }
+
     /**
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
