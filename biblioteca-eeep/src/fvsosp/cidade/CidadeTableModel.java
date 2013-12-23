@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.cidade;
 
-import fvsosp.autor.Autor;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -14,13 +9,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Controle Avaliação
  */
+@SuppressWarnings("serial")
 public class CidadeTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"CodIBGE", "Descrição", "UF"};
     private List<Cidade> cidades;
 
     public CidadeTableModel() {
-        cidades = new ArrayList<Cidade>();
+        cidades = new ArrayList<>();
     }
 
     public CidadeTableModel(List<Cidade> lista) {
@@ -28,19 +24,19 @@ public class CidadeTableModel extends AbstractTableModel {
         this.cidades.clear();
         this.cidades.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
+    @Override
     public int getRowCount() {
         return cidades.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cidade cidade = cidades.get(rowIndex);
         switch (columnIndex) {
@@ -52,9 +48,9 @@ public class CidadeTableModel extends AbstractTableModel {
                 return cidade.getUf();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

@@ -1,33 +1,14 @@
 package fvsosp.cidade;
 
-import fvsosp.leitor.Leitor;
 import java.io.Serializable;
-import java.util.List;
 import java.util.Objects;
-import java.util.Set;
 import javax.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "cidade")
-public class Cidade implements Serializable{
+public class Cidade implements Serializable {
 
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
-    
     @Id // campo chave primária
     @GeneratedValue // campo auto incremento
     private short idCidade;
@@ -41,7 +22,6 @@ public class Cidade implements Serializable{
         hash = 19 * hash + this.getCodIBGE();
         hash = 19 * hash + Objects.hashCode(this.getDescricao());
         hash = 19 * hash + Objects.hashCode(this.getUf());
-       // hash = 19 * hash + Objects.hashCode(this.getLeitores());
         return hash;
     }
 
@@ -63,9 +43,6 @@ public class Cidade implements Serializable{
         if (!Objects.equals(this.uf, other.uf)) {
             return false;
         }
-//        if (!Objects.equals(this.leitores, other.leitores)) {
-//            return false;
-//        }
         return true;
     }
     
@@ -75,13 +52,13 @@ public class Cidade implements Serializable{
     @Column(length = 2, nullable = false, columnDefinition = "varchar(2) default ''")
     private String uf;
     
-    /*Uma cidade possui vários leitores
-     * quando uma cidade for criada já irá vir carregada com uma lista
-     * de leitores pertencentes a ela
-     */
-//    @OneToMany(fetch = FetchType.LAZY, mappedBy = "cidade") 
-//    private List<Leitor> leitores;
-
+    private static final long serialVersionUID = -670186122491242513L;
+    
+     /*** @retorna o id da Cidade ***/
+    public short getIdCidade() {
+        return idCidade;
+    }
+    
     /*** @retorna o código do IBGE ***/
     public int getCodIBGE() {
         return codIBGE;
@@ -112,36 +89,7 @@ public class Cidade implements Serializable{
         this.uf = uf;
     }
 
-    /*** @retorna a lista de Leitores ***/
-//    public List<Leitor> getLeitores() {
-//        return leitores;
-//    }
-
-     private static long serialVersionUID = -5660386351782012215L;
-
-    /**
-     * @return the idCidade
-     */
-    public short getIdCidade() {
-        return idCidade;
-    }
-
-    /**
-     * @param idCidade the idCidade to set
-     */
-    public void setIdCidade(short idCidade) {
-        this.idCidade = idCidade;
-    }
-
-    /**
-     * @param leitores the leitores to set
-     */
-//    public void setLeitores(List<Leitor> leitores) {
-//        this.leitores = leitores;
-//    }
-//    
     public String toString(){
         return descricao+"-"+uf;
     }
-    
 }
