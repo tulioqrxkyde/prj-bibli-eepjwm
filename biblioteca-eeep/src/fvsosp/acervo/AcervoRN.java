@@ -19,22 +19,14 @@ public class AcervoRN {
 
     private AcervoDAO dao = new AcervoDAO();
 
-    // Metódo que adiciona um livro no acervo, caso contrário retorna false
+    // Metódo que adiciona um livro no acervo
     public boolean salvar(Acervo acervo) {
-        if (!acervo.getTituloObra().isEmpty() && !acervo.getSubtituloObra().isEmpty() && !acervo.getIsbn().isEmpty()
-                && !acervo.getVolume().isEmpty() && !acervo.getEdicao().isEmpty() && acervo.getAnoEdicao() > 0
-                && !acervo.getInformacoesAdicionais().isEmpty() && !acervo.getLocalizacao().isEmpty() && acervo.getAutor() != null
-                && acervo.getBiblioteca() != null && acervo.getEditora() != null /*&& acervo.getEspecificacoesTecnicas() != null 
-                /*&& acervo.getExemplares() != null*/ && acervo.getIdioma() != null && acervo.getSessao() != null && acervo.getTipoItem() != null
-                ) {
+
             if (acervo.getIdAcervo() == 0) {
                 return dao.adicionar(acervo);
             } else {
                 return dao.atualizar(acervo);
             }
-        }
-        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.");
-        return false;
     }
 
     // Metódo que remove
@@ -55,7 +47,7 @@ public class AcervoRN {
         return dao.pesquisarSubTitulodaObra(subtitulo);
     }
 
-    public List<Acervo> pesquisarIsbn(String isbns) {
+    public Acervo pesquisarIsbn(String isbns) {
         return dao.pesquisarIsbn(isbns);
     }
 
@@ -95,7 +87,7 @@ public class AcervoRN {
         return dao.pesquisarSessao(sessao);
     }
 
-    public Acervo pesquisarCodigo(short codigo) {
+    public Acervo pesquisarCodigo(int codigo) {
         return dao.pesquisarCodigo(codigo);
     }
 }
