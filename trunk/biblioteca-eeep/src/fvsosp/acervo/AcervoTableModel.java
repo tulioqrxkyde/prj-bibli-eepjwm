@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.acervo;
 
 import java.util.*;
@@ -11,14 +7,15 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author TÚLIO
  */
+@SuppressWarnings("serial")
 public class AcervoTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Título", "Sub-Título", "ISBN", "Volume", "Edição", "Ano de Edição", "Informações Adicionais", "Localização", "Autor", "Biblioteca", "Editora", "Exemplar", "Idioma", "Sessão", "Tipo de Item"};
+    private String[] nomeColunas = {"Código", "Título", "Sub-Título", "ISBN", "Volume", "Edição", "Ano de Edição", "Informações Adicionais", "Localização", "Autor", "Biblioteca", "Editora", "Especificações Técnicas", "Exemplar", "Idioma", "Sessão", "Tipo de Item"};
     private List<Acervo> acervos;
 
     // construtor padrão criando um arraylist de alunos  
     public AcervoTableModel() {
-        acervos = new ArrayList<Acervo>();
+        acervos = new ArrayList<>();
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
@@ -31,12 +28,10 @@ public class AcervoTableModel extends AbstractTableModel {
 
     public int getRowCount() {
         return acervos.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -65,18 +60,19 @@ public class AcervoTableModel extends AbstractTableModel {
             case 10:
                 return acervo.getBiblioteca();
             case 11:
-                return acervo.getEditora();    
-            /* case 12:
-                return acervo.getExemplares(); */
+                return acervo.getEditora();
+            case 12:
+                return acervo.getEspecificacoesTecnicas();
             case 13:
-                return acervo.getIdioma();
+                return acervo.getExemplares();
             case 14:
-                return acervo.getSessao();
+                return acervo.getIdioma();
             case 15:
+                return acervo.getSessao();
+            case 16:
                 return acervo.getTipoItem();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public String getColumnName(int column) {
@@ -113,6 +109,8 @@ public class AcervoTableModel extends AbstractTableModel {
                 return nomeColunas[14];
             case 15:
                 return nomeColunas[15];
+            case 16:
+                return nomeColunas[16];
         }
         return null;
     }

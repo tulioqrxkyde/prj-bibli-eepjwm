@@ -14,7 +14,9 @@ import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.*;
 import org.hibernate.*;
-import org.hibernate.criterion.*;
+import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -54,12 +56,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public List<Acervo> pesquisarIsbn(String isbns) {
-        List<Acervo> acervo = null;
+    public Acervo pesquisarIsbn(String isbns) {
+        Acervo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("isbn", isbns, MatchMode.ANYWHERE)).addOrder(Order.asc("isbn")).list();
+            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("isbn", isbns, MatchMode.ANYWHERE)).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o isbn. Erro: " + e.getMessage());
         } finally {
@@ -222,15 +224,14 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public Acervo pesquisarCodigo(short codigo) {
+    public Acervo pesquisarCodigo(int codigo) {
         Acervo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            acervo = (Acervo) getSessao().createCriteria(Sessao.class).
+            acervo = (Acervo) getSessao().createCriteria(Acervo.class).
                     add(Restrictions.eq("idAcervo", codigo)).uniqueResult();
-
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por código: " + e.getMessage());
         } finally {

@@ -21,8 +21,13 @@ public class EspecificacoesTecnicas implements Serializable {
         hash = 23 * hash + this.peso;
         hash = 23 * hash + Objects.hashCode(this.acabamentoCapa);
         hash = 23 * hash + Objects.hashCode(this.acabamentoMiolo);
-        hash = 23 * hash + Objects.hashCode(this.acervo);
+       // hash = 23 * hash + Objects.hashCode(this.acervo);
         return hash;
+    }
+
+    @Override
+    public String toString() {
+        return "{" + "Nº Páginas=" + numeroPaginas + ", Peso=" + peso + ", AcabamentoCapa=" + acabamentoCapa + ", AcabamentoMiolo=" + acabamentoMiolo + '}';
     }
 
     @Override
@@ -49,9 +54,9 @@ public class EspecificacoesTecnicas implements Serializable {
         if (!Objects.equals(this.acabamentoMiolo, other.acabamentoMiolo)) {
             return false;
         }
-        if (!Objects.equals(this.acervo, other.acervo)) {
-            return false;
-        }
+  //      if (!Objects.equals(this.acervo, other.acervo)) {
+    //        return false;
+     //   }
         return true;
     }
 
@@ -73,11 +78,6 @@ public class EspecificacoesTecnicas implements Serializable {
     /*** @retorna o id das Especificações Técnicas ***/
     public short getIdEspecificacoesTecnicas() {
         return idEspecificacoesTecnicas;
-    }
-
-    /*** @seta o id das Especificações Técnicas ***/
-    public void setIdEspecificacoesTecnicas(short idEspecificacoesTecnicas) {
-        this.idEspecificacoesTecnicas = idEspecificacoesTecnicas;
     }
 
     /*** @retorna o Número de Páginas do livro ***/

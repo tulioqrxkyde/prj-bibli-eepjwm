@@ -12,50 +12,91 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
-import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="acervo")
-public class Acervo implements Serializable{
-
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
-
+public class Acervo implements Serializable {
+    private static final long serialVersionUID = -2476603341481709623L;
+    
     @Id
     @GeneratedValue
-    private short idAcervo;
+    private int idAcervo;
+      
+    @Column(nullable = false, length = 50)
+    private String tituloObra;
+    
+    @Column(nullable = false, length = 50)
+    private String subtituloObra;
+    
+    @Column(length = 14, columnDefinition = "varchar(14) default ''")
+    private String isbn;
+     
+    @Column(length = 4, nullable = false)
+    private String volume;
+    
+    @Column(length = 4, nullable = false)
+    private String edicao;
+    
+    @Column(length = 4, nullable = false)
+    private short anoEdicao;
+    
+    @Column(length = 70, nullable = false)
+    private String informacoesAdicionais;
+    
+    @Column(length = 50, nullable = false)
+    private String localizacao;
+    
+    @ManyToOne
+    @JoinColumn(name="idtipoitem")
+    private TipoItem tipoItem;
+    
+    @ManyToOne
+    @JoinColumn(name="idautor")
+    private Autor autor;
+    
+    @ManyToOne
+    @JoinColumn(name="ideditora")
+    private Editora editora;
+    
+    @ManyToOne
+    @JoinColumn(name="ididioma")
+    private Idioma idioma;
+    
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name="idEspecificacoesTecnicas")
+    private EspecificacoesTecnicas especificacoesTecnicas;
+    
+    @ManyToOne
+    @JoinColumn(name="idsessao")
+    private Sessao sessao;
+    
+    @ManyToOne
+    @JoinColumn(name="idbiblioteca")
+    private Biblioteca biblioteca;
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private List<Exemplar> exemplares;
 
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 79 * hash + this.idAcervo;
-        hash = 79 * hash + Objects.hashCode(this.tituloObra);
-        hash = 79 * hash + Objects.hashCode(this.subtituloObra);
-        hash = 79 * hash + Objects.hashCode(this.isbn);
-        hash = 79 * hash + Objects.hashCode(this.volume);
-        hash = 79 * hash + Objects.hashCode(this.edicao);
-        hash = 79 * hash + this.anoEdicao;
-        hash = 79 * hash + Objects.hashCode(this.informacoesAdicionais);
-        hash = 79 * hash + Objects.hashCode(this.localizacao);
-        hash = 79 * hash + Objects.hashCode(this.tipoItem);
-        hash = 79 * hash + Objects.hashCode(this.autor);
-        hash = 79 * hash + Objects.hashCode(this.editora);
-        hash = 79 * hash + Objects.hashCode(this.idioma);
-        hash = 79 * hash + Objects.hashCode(this.especificacoesTecnicas);
-        hash = 79 * hash + Objects.hashCode(this.sessao);
-        hash = 79 * hash + Objects.hashCode(this.biblioteca);
-        hash = 79 * hash + Objects.hashCode(this.exemplares);
+        hash = 23 * hash + this.idAcervo;
+        hash = 23 * hash + Objects.hashCode(this.tituloObra);
+        hash = 23 * hash + Objects.hashCode(this.subtituloObra);
+        hash = 23 * hash + Objects.hashCode(this.isbn);
+        hash = 23 * hash + Objects.hashCode(this.volume);
+        hash = 23 * hash + Objects.hashCode(this.edicao);
+        hash = 23 * hash + this.anoEdicao;
+        hash = 23 * hash + Objects.hashCode(this.informacoesAdicionais);
+        hash = 23 * hash + Objects.hashCode(this.localizacao);
+        hash = 23 * hash + Objects.hashCode(this.tipoItem);
+        hash = 23 * hash + Objects.hashCode(this.autor);
+        hash = 23 * hash + Objects.hashCode(this.editora);
+        hash = 23 * hash + Objects.hashCode(this.idioma);
+       // hash = 23 * hash + Objects.hashCode(this.especificacoesTecnicas);
+        hash = 23 * hash + Objects.hashCode(this.sessao);
+        hash = 23 * hash + Objects.hashCode(this.biblioteca);
+        hash = 23 * hash + Objects.hashCode(this.exemplares);
         return hash;
     }
 
@@ -107,9 +148,9 @@ public class Acervo implements Serializable{
         if (!Objects.equals(this.idioma, other.idioma)) {
             return false;
         }
-        if (!Objects.equals(this.especificacoesTecnicas, other.especificacoesTecnicas)) {
+        /*if (!Objects.equals(this.especificacoesTecnicas, other.especificacoesTecnicas)) {
             return false;
-        }
+        }*/
         if (!Objects.equals(this.sessao, other.sessao)) {
             return false;
         }
@@ -122,72 +163,9 @@ public class Acervo implements Serializable{
         return true;
     }
     
-      
-    @Column(nullable = false, length = 50)
-    private String tituloObra;
-    
-    @Column(nullable = false, length = 50)
-    private String subtituloObra;
-    
-    @Column(length = 14, columnDefinition = "varchar(14) default ''")
-    private String isbn;
-     
-    @Column(length = 4, nullable = false)
-    private String volume;
-    
-    @Column(length = 4, nullable = false)
-    private String edicao;
-    
-    @Column(length = 4, nullable = false)
-    private short anoEdicao;
-    
-    @Column(length = 70, nullable = false)
-    private String informacoesAdicionais;
-    
-    @Column(length = 50, nullable = false)
-    private String localizacao;
-    
-    @ManyToOne
-    @JoinColumn(name="idtipoitem")
-    private TipoItem tipoItem;
-    
-    @ManyToOne
-    @JoinColumn(name="idautor")
-    private Autor autor;
-    
-    @ManyToOne
-    @JoinColumn(name="ideditora")
-    private Editora editora;
-    
-    @ManyToOne
-    @JoinColumn(name="ididioma")
-    private Idioma idioma;
-    
-    @OneToOne
-    @JoinColumn(name="idespecificacoestecnicas",unique=true)
-    private EspecificacoesTecnicas especificacoesTecnicas;
-    
-    @ManyToOne
-    @JoinColumn(name="idsessao")
-    private Sessao sessao;
-    
-    @ManyToOne
-    @JoinColumn(name="idbiblioteca")
-    private Biblioteca biblioteca;
-    
-    @OneToMany(mappedBy="acervo")
-    private List<Exemplar> exemplares;
-    
-    private static long serialVersionUID = -8256983727176831230L;
-
     /*** @retorna o id do Acervo ***/
-    public short getIdAcervo() {
+    public int getIdAcervo() {
         return idAcervo;
-    }
-
-    /*** @seta idAcervo the idAcervo to set ***/
-    public void setIdAcervo(short idAcervo) {
-        this.idAcervo = idAcervo;
     }
 
     /*** @retorna o Título da Obra ***/
