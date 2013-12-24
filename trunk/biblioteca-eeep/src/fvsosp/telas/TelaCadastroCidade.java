@@ -4,15 +4,14 @@ import fvsosp.cidade.Cidade;
 import fvsosp.cidade.CidadeRN;
 import fvsosp.cidade.CidadeTableModel;
 import fvsosp.util.Util;
-import java.text.NumberFormat;
 import java.util.List;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Controle Avaliação
  */
+@SuppressWarnings("serial")
 public class TelaCadastroCidade extends javax.swing.JDialog {
 
     Cidade cidade;
