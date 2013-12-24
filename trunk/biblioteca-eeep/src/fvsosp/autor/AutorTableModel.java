@@ -18,7 +18,7 @@ public class AutorTableModel extends AbstractTableModel {
     private List<Autor> autores;
 
     public AutorTableModel() {
-        autores = new ArrayList<Autor>();
+        autores = new ArrayList<>();
     }
 
     public AutorTableModel(List<Autor> lista) {
@@ -31,12 +31,10 @@ public class AutorTableModel extends AbstractTableModel {
 
     public int getRowCount() {
         return autores.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public int getColumnCount() {
-        return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return nomeColunas.length;  
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
@@ -50,7 +48,6 @@ public class AutorTableModel extends AbstractTableModel {
                     return autor.getSobreOAutor();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public String getColumnName(int column) {

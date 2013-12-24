@@ -6,7 +6,6 @@ import java.util.List;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
-
 @Entity
 @Table(name="autor")
 public class Autor {
@@ -16,7 +15,7 @@ public class Autor {
     private short idAutor;
     
     // not null de tamanho 70 e valor padrão ''
-    @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 
+    @Column(nullable = false, length = 70) 
     private String nome;
     
     @Type(type="text")
@@ -36,11 +35,6 @@ public class Autor {
     /*** @retorna o id do Autor ***/
     public short getIdAutor() {
         return idAutor;
-    }
-
-    /*** @seta o id do Autor ***/
-    public void setIdAutor(short idAutor) {
-        this.idAutor = idAutor;
     }
 
     /*** @retorna o nome do Autor ***/
