@@ -1,17 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.grupoleitores.*;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author acer
+ * @author Tulio
  */
+@SuppressWarnings("serial")
 public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
     GruposLeitores gruposleitores;
@@ -22,13 +20,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
      */
     public TelaCadastroGruposLeitores() {
         initComponents();
-        this.setTitle("OSBiblio - Grupos de Leitores");
         this.setLocationRelativeTo(null);
-        /*desabilita o o botão remover, o mesmo deve ser habilitado
-         * quando for pesquisado algum item, 
-         */
-        btRemover.setEnabled(false);
-        setModal(true);
     }
 
     /**
@@ -50,14 +42,16 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         btSair = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         jLabel25 = new javax.swing.JLabel();
-        tfMultaGruposLeitores = new javax.swing.JTextField();
         jLabel26 = new javax.swing.JLabel();
-        tfQuantidadeGruposLeitores = new javax.swing.JTextField();
         jLabel27 = new javax.swing.JLabel();
         tfDiasGruposLeitores = new javax.swing.JTextField();
+        tfMultaGruposLeitores = new javax.swing.JFormattedTextField();
+        tfQuantidadeGruposLeitores = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Grupos de Leitores");
         setMaximumSize(new java.awt.Dimension(32767, 32767));
+        setModal(true);
         setPreferredSize(new java.awt.Dimension(432, 347));
         setResizable(false);
 
@@ -71,6 +65,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -78,7 +73,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         });
 
         tfNomeGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeGruposLeitores.setToolTipText("Digite aqui a descrição do grupo de leitores");
+        tfNomeGruposLeitores.setToolTipText("Digite aqui a descrição do Grupo de Leitores.");
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
         jPanel3.setLayout(null);
@@ -119,20 +114,28 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel25.setText("Multa Diária.:");
 
-        tfMultaGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfMultaGruposLeitores.setToolTipText("Digite aqui a multa diária");
-
         jLabel26.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel26.setText("Quantidade Máxima de Livros.:");
-
-        tfQuantidadeGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfQuantidadeGruposLeitores.setToolTipText("Digite aqui a quantidade máxima de livros");
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel27.setText("Duração em Dias do Empréstimo.:");
 
         tfDiasGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDiasGruposLeitores.setToolTipText("Digite aqui a duração em dias do empréstimo");
+        tfDiasGruposLeitores.setToolTipText("Digite aqui a duração em Dias do Empréstimo.");
+
+        try {
+            tfMultaGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfMultaGruposLeitores.setToolTipText("Digite aqui o valor da Multa Diária.");
+
+        try {
+            tfQuantidadeGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfQuantidadeGruposLeitores.setToolTipText("Digite aqui a Quantidade Máxima de Livros.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -140,30 +143,28 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel24)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(147, 147, 147)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSair))
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel25)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addComponent(tfQuantidadeGruposLeitores, javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel25)
-                                .addComponent(jLabel24)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(147, 147, 147)
-                                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(btSair))
-                                .addComponent(tfNomeGruposLeitores)
-                                .addComponent(tfMultaGruposLeitores)
-                                .addComponent(tfDiasGruposLeitores, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)))))
+                        .addComponent(tfDiasGruposLeitores, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfNomeGruposLeitores, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)))
                 .addGap(16, 16, 16))
         );
         layout.setVerticalGroup(
@@ -172,17 +173,17 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
+                .addGap(0, 0, 0)
                 .addComponent(tfNomeGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(tfQuantidadeGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel25)
+                .addGap(2, 2, 2)
+                .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel26)
+                .addGap(7, 7, 7)
+                .addComponent(tfQuantidadeGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(tfDiasGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,31 +201,24 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (gruposleitores == null) {
             gruposleitores = new GruposLeitores();
         }
-
-        gruposleitores.setDescricao(tfNomeGruposLeitores.getText().toString());
-        gruposleitores.setValorMultaDiaria(Float.parseFloat(tfMultaGruposLeitores.getText()));
-        gruposleitores.setQuantMaxLivros(Byte.parseByte(tfQuantidadeGruposLeitores.getText()));
-        gruposleitores.setDuracaoDiasEmprestimo(Byte.parseByte(tfDiasGruposLeitores.getText()));
-        
-        if (gruposleitoresRN.salvar(gruposleitores)) {
-            if (gruposleitores.getIdGruposLeitores() == 0) {
+        if (Util.chkVazio(tfNomeGruposLeitores.getText(), tfMultaGruposLeitores.getText(), tfQuantidadeGruposLeitores.getText(),
+                tfDiasGruposLeitores.getText())) {
+            gruposleitores.setDescricao(tfNomeGruposLeitores.getText());
+            gruposleitores.setValorMultaDiaria(Float.parseFloat(tfMultaGruposLeitores.getText().replaceAll((" "), (""))));
+            gruposleitores.setQuantMaxLivros(Byte.parseByte(tfQuantidadeGruposLeitores.getText().replaceAll((" "), (""))));
+            gruposleitores.setDuracaoDiasEmprestimo(Byte.parseByte(tfDiasGruposLeitores.getText().replaceAll((" "), (""))));
+            if (gruposleitoresRN.salvar(gruposleitores)) {
                 JOptionPane.showMessageDialog(rootPane, "Grupo de Leitores " + gruposleitores.getDescricao()
-                        + ", cadastrado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Grupo de Leitores " + gruposleitores.getDescricao()
-                        + ", alterada com sucesso!");
+                        + ", " + ((gruposleitores.getIdGruposLeitores() == 0) ? "cadastrada" : "alterada") + " com sucesso!");
+                limpaCampos();
             }
-            limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
         if (gruposleitores != null) {
             if (gruposleitores.getIdGruposLeitores() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o grupo de leitores " + gruposleitores.getDescricao()
@@ -244,44 +238,35 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<GruposLeitores> lista = null;
-        if (tfNomeGruposLeitores.getText() != null) {
-            lista = gruposleitoresRN.pesquisarDescricaoLike(tfNomeGruposLeitores.getText());
-        } else {
-            lista = gruposleitoresRN.listar();
-        }
+        List<GruposLeitores> lista;
+        lista = ((tfNomeGruposLeitores.getText() != null) ? gruposleitoresRN.pesquisarDescricaoLike(tfNomeGruposLeitores.getText()) : gruposleitoresRN.listar());
         GruposLeitoresTableModel stm = new GruposLeitoresTableModel(lista);
         Object o = TelaPesquisa.exibeTela(stm, "Grupo de Leitores");
-        gruposleitores = new GruposLeitores();
         if (o != null) {
-            short id = (short) o;
-            gruposleitores = gruposleitoresRN.pesquisarCodigo(id);
-            tfNomeGruposLeitores.setText(gruposleitores.getDescricao().toString());
+            gruposleitores = new GruposLeitores();
+            gruposleitores = gruposleitoresRN.pesquisarCodigo((short) o);
+            tfNomeGruposLeitores.setText(gruposleitores.getDescricao());
             tfMultaGruposLeitores.setText(String.valueOf(gruposleitores.getValorMultaDiaria()));
             tfQuantidadeGruposLeitores.setText(String.valueOf(gruposleitores.getQuantMaxLivros()));
             tfDiasGruposLeitores.setText(String.valueOf(gruposleitores.getDuracaoDiasEmprestimo()));
-            
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
-
     }//GEN-LAST:event_btNovoActionPerformed
 
     public void limpaCampos() {
+        gruposleitores = null;
         tfNomeGruposLeitores.setText("");
         tfMultaGruposLeitores.setText("");
         tfDiasGruposLeitores.setText("");
         tfQuantidadeGruposLeitores.setText("");
-        gruposleitores = null;
         tfNomeGruposLeitores.requestFocus();
         btRemover.setEnabled(false);
     }
@@ -290,11 +275,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {
@@ -333,8 +314,8 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField tfDiasGruposLeitores;
-    private javax.swing.JTextField tfMultaGruposLeitores;
+    private javax.swing.JFormattedTextField tfMultaGruposLeitores;
     private javax.swing.JTextField tfNomeGruposLeitores;
-    private javax.swing.JTextField tfQuantidadeGruposLeitores;
+    private javax.swing.JFormattedTextField tfQuantidadeGruposLeitores;
     // End of variables declaration//GEN-END:variables
 }

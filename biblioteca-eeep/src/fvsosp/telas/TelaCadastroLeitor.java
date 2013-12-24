@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.cidade.Cidade;
@@ -16,9 +12,8 @@ import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -34,11 +29,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
      */
     public TelaCadastroLeitor() {
         initComponents();
-        this.setTitle("OSBiblio - Leitor");
-        this.setLocationRelativeTo(null);
-        btRemover.setEnabled(false);
-        setModal(true);
-
+        setLocationRelativeTo(null);
         preencheCidade();
         preencheGrupoLeitores();
     }
@@ -73,13 +64,13 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         rbMasculino = new javax.swing.JRadioButton();
         rbFeminino = new javax.swing.JRadioButton();
         jLabel32 = new javax.swing.JLabel();
-        ftDataNascimento = new javax.swing.JFormattedTextField();
+        tfDataNascimento = new javax.swing.JFormattedTextField();
         tfRG = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         pn2 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         tfCEP = new javax.swing.JFormattedTextField();
-        ftCelular = new javax.swing.JFormattedTextField();
+        tfCelular = new javax.swing.JFormattedTextField();
         jLabel30 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         tfEmail = new javax.swing.JTextField();
@@ -88,7 +79,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         tfBairro = new javax.swing.JTextField();
         jLabel36 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
-        ftTelefone = new javax.swing.JFormattedTextField();
+        tfTelefone = new javax.swing.JFormattedTextField();
         jLabel34 = new javax.swing.JLabel();
         cbCidade = new javax.swing.JComboBox();
         pn3 = new javax.swing.JPanel();
@@ -99,6 +90,8 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         cbGrupoLeitores = new javax.swing.JComboBox();
         jLabel38 = new javax.swing.JLabel();
 
+        setTitle("OSBiblio - Leitor");
+        setModal(true);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -136,6 +129,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -223,17 +217,18 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 29));
 
         try {
-            ftDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
+            tfDataNascimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftDataNascimento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        ftDataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
+        tfDataNascimento.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        tfDataNascimento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfDataNascimento.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 ftDataNascimentoFocusLost(evt);
             }
         });
-        pn1.add(ftDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 150, -1));
+        pn1.add(tfDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 150, -1));
 
         tfRG.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfRG.setToolTipText("Digite aqui a descrição do autor");
@@ -261,12 +256,12 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn2.add(tfCEP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 150, -1));
 
         try {
-            ftCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            tfCelular.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftCelular.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        pn2.add(ftCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 150, -1));
+        tfCelular.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        pn2.add(tfCelular, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, 150, -1));
 
         jLabel30.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel30.setText("Celular.:");
@@ -301,12 +296,12 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn2.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 60, -1, 29));
 
         try {
-            ftTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+            tfTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        ftTelefone.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        pn2.add(ftTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 150, -1));
+        tfTelefone.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        pn2.add(tfTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 190, 150, -1));
 
         jLabel34.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel34.setText("Telefone.:");
@@ -355,54 +350,39 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<Leitor> lista = null;
-        if (tfNome.getText() != null) {
-            lista = leitorRN.pesquisaNome(tfNome.getText());
-        } else {
-            lista = leitorRN.listar();
-        }
+        List<Leitor> lista;
+        lista = ((tfNome.getText() != null) ? leitorRN.pesquisaNome(tfNome.getText()) : leitorRN.listar());
         LeitorTableModel stm = new LeitorTableModel(lista);
         Object o = TelaPesquisa.exibeTela(stm, "leitor");
-        leitor = new Leitor();
         if (o != null) {
-            short id = (short) o;
-            leitor = leitorRN.pesquisarCodigo(id);
-            tfNome.setText(leitor.getNome().toString());
+            leitor = new Leitor();
+            leitor = leitorRN.pesquisarCodigo((short) o);
+            tfNome.setText(leitor.getNome());
             tfMatricula.setText(leitor.getMatricula().toString());
-            ftDataNascimento.setText(String.valueOf(leitor.getDataCadastro()));
+            tfDataNascimento.setText(String.valueOf(leitor.getDataCadastro()));
             if (leitor.getSexo() == 'F') {
                 rbFeminino.setSelected(true);
             } else if (leitor.getSexo() == 'M') {
                 rbMasculino.setSelected(true);
             }
-            tfCPF.setText(leitor.getCpf().toString());
-            tfRG.setText(leitor.getRg().toString());
-            tfEndereco.setText(leitor.getEndereco().toString());
-            tfBairro.setText(leitor.getBairro().toString());
-            tfCEP.setText(leitor.getCep().toString());
-            if (leitor.getCidade() != null) {
-                cbCidade.setSelectedItem(leitor.getCidade());
-            } else {
-                cbCidade.setSelectedIndex(0);
-            }
-            ftTelefone.setText(leitor.getTelefone().toString());
-            ftCelular.setText(leitor.getCelular().toString());
+            tfCPF.setText(leitor.getCpf());
+            tfRG.setText(leitor.getRg());
+            tfEndereco.setText(leitor.getEndereco());
+            tfBairro.setText(leitor.getBairro());
+            tfCEP.setText(leitor.getCep());
+            cbCidade.setSelectedItem(((leitor.getCidade() != null) ? leitor.getCidade() : 0));
+            tfTelefone.setText(leitor.getTelefone().toString());
+            tfCelular.setText(leitor.getCelular().toString());
             tfEmail.setText(leitor.getEmail().toString());
             tfNomePai.setText(leitor.getNomePai().toString());
             tfNomeMae.setText(leitor.getNomeMae().toString());
-            if (leitor.getGruposLeitores() != null) {
-                cbGrupoLeitores.setSelectedItem(leitor.getGruposLeitores());
-            } else {
-                cbGrupoLeitores.setSelectedIndex(0);
-            }
-
-            btRemover.setEnabled(true);
+            cbGrupoLeitores.setSelectedItem(((leitor.getGruposLeitores() != null) ? leitor.getGruposLeitores() : 0));
+            limparCampos();
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
@@ -422,21 +402,17 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             }
         }
         limparCampos();
-
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (leitor == null) {
             leitor = new Leitor();
         }
-
-        leitor.setNome(tfNome.getText().toString());
-        leitor.setMatricula(tfMatricula.getText().toString());
-        String dataString = ftDataNascimento.getText();
-
+        leitor.setNome(tfNome.getText());
+        leitor.setMatricula(tfMatricula.getText());
+        String dataString = tfDataNascimento.getText();
         try {
-            if (ftDataNascimento.getText().equals("  /  /    ")) {
+            if (tfDataNascimento.getText().equals("  /  /    ")) {
                 DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
                 java.util.Date data;
                 data = new java.util.Date(fmt.parse(dataString).getTime());
@@ -445,53 +421,67 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         } catch (ParseException ex) {
             System.out.println(ex.getMessage());
         }
-
-        if (rbFeminino.isSelected()) {
-            leitor.setSexo('F');
-        } else if (rbMasculino.isSelected()) {
-            leitor.setSexo('M');
-        }
-        leitor.setCpf(tfCPF.getText().toString().replaceAll("\\D*", "")); //retira a máscara
-        leitor.setRg(tfRG.getText().toString());
-        leitor.setEndereco(tfEndereco.getText().toString());
-        leitor.setBairro(tfBairro.getText().toString());
-        leitor.setCep(tfCEP.getText().toString().replaceAll("\\D*", ""));
-        if ((cbCidade.getSelectedIndex() != -1) && (cbCidade.getSelectedIndex() != 0)) {
+        leitor.setSexo((rbFeminino.isSelected()) ? 'F' : 'M');
+        leitor.setCpf(tfCPF.getText().replaceAll("\\D*", "")); //retira a máscara
+        leitor.setRg(tfRG.getText());
+        leitor.setEndereco(tfEndereco.getText());
+        leitor.setBairro(tfBairro.getText());
+        leitor.setCep(tfCEP.getText().replaceAll("\\D*", ""));
+        if (cbCidade.getSelectedIndex() > 0) {
             Cidade cidade = (Cidade) cbCidade.getSelectedItem();
             leitor.setCidade(cidade);
         } else {
             leitor.setCidade(null);
         }
-        leitor.setTelefone(ftTelefone.getText().toString().replaceAll("\\D*", ""));
-        leitor.setCelular(ftCelular.getText().toString().replaceAll("\\D*", ""));
-        leitor.setEmail(tfEmail.getText().toString());
-        leitor.setNomeMae(tfNomeMae.getText().toString());
-        leitor.setNomePai(tfNomeMae.getText().toString());
-        if ((cbGrupoLeitores.getSelectedIndex() != -1) && (cbGrupoLeitores.getSelectedIndex() != 0)) {
+        leitor.setTelefone(tfTelefone.getText().replaceAll("\\D*", ""));
+        leitor.setCelular(tfCelular.getText().replaceAll("\\D*", ""));
+        leitor.setEmail(tfEmail.getText());
+        leitor.setNomeMae(tfNomeMae.getText());
+        leitor.setNomePai(tfNomeMae.getText());
+        if (cbGrupoLeitores.getSelectedIndex() > 0) {
             GruposLeitores grupoLeitores = (GruposLeitores) cbGrupoLeitores.getSelectedItem();
             leitor.setGruposLeitores(grupoLeitores);
         } else {
             leitor.setGruposLeitores(null);
         }
-
-        int tdLeitor = leitor.getIdLeitor();
+        short tdLeitor = leitor.getIdLeitor();
         if (leitorRN.salvar(leitor)) {
-            if (tdLeitor == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
-                        + ", cadastrado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
-                        + ", alterado com sucesso!");
-            }
+            JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
+                    + ", " + ((tdLeitor == 0) ? "cadastrado" : "alterado") + " com sucesso!");
             limparCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limparCampos();
     }//GEN-LAST:event_btNovoActionPerformed
+
+    private void preencheCidade() {
+        CidadeRN cidRN = new CidadeRN();
+        for (Cidade cidade : cidRN.listar()) {
+            cbCidade.addItem(cidade);
+        }
+    }
+
+    private void preencheGrupoLeitores() {
+        GruposLeitoresRN grRN = new GruposLeitoresRN();
+        for (GruposLeitores gruposLeitores : grRN.listar()) {
+            cbGrupoLeitores.addItem(gruposLeitores);
+        }
+    }
+
+    private void limparCampos() {
+        leitor = null;
+        btRemover.setEnabled(false);
+        JTextField[] tfs = {tfBairro, tfCPF, tfNome, tfEmail, tfEndereco, tfMatricula, tfNomeMae, tfNomePai, tfRG,
+            tfCelular, tfDataNascimento, tfCEP, tfTelefone};
+        for (int x = 0; x < tfs.length; x++) {
+            tfs[x].setText("");
+        }
+        cbCidade.setSelectedIndex(0);
+        cbGrupoLeitores.setSelectedIndex(0);
+        btGrSexo.clearSelection();
+    }
 
     private void tfCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfCPFActionPerformed
         // TODO add your handling code here:
@@ -511,7 +501,6 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             tfCPF.setText("");
         }
     }//GEN-LAST:event_tfCPFFocusLost
-
     /**
      * @param args the command line arguments
      */
@@ -523,7 +512,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -555,9 +544,6 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbCidade;
     private javax.swing.JComboBox cbGrupoLeitores;
-    private javax.swing.JFormattedTextField ftCelular;
-    private javax.swing.JFormattedTextField ftDataNascimento;
-    private javax.swing.JFormattedTextField ftTelefone;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
@@ -586,6 +572,8 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private javax.swing.JTextField tfBairro;
     private javax.swing.JFormattedTextField tfCEP;
     private javax.swing.JFormattedTextField tfCPF;
+    private javax.swing.JFormattedTextField tfCelular;
+    private javax.swing.JFormattedTextField tfDataNascimento;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEndereco;
     private javax.swing.JTextField tfMatricula;
@@ -593,42 +581,6 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private javax.swing.JTextField tfNomeMae;
     private javax.swing.JTextField tfNomePai;
     private javax.swing.JTextField tfRG;
+    private javax.swing.JFormattedTextField tfTelefone;
     // End of variables declaration//GEN-END:variables
-
-    private void preencheCidade() {
-        CidadeRN cidRN = new CidadeRN();
-        List<Cidade> cidades = cidRN.listar();
-        for (Cidade cidade : cidades) {
-            cbCidade.addItem(cidade);
-        }
-    }
-
-    private void preencheGrupoLeitores() {
-        GruposLeitoresRN grRN = new GruposLeitoresRN();
-        List<GruposLeitores> grupos = grRN.listar();
-        for (GruposLeitores gruposLeitores : grupos) {
-            cbGrupoLeitores.addItem(gruposLeitores);
-        }
-    }
-
-    private void limparCampos() {
-        leitor = null;
-        btRemover.setEnabled(false);
-        tfBairro.setText("");
-        tfCPF.setText("");
-        tfNome.setText("");
-        tfEmail.setText("");
-        tfEndereco.setText("");
-        tfMatricula.setText("");
-        tfNomeMae.setText("");
-        tfNomePai.setText("");
-        tfRG.setText("");
-        cbCidade.setSelectedIndex(0);
-        cbGrupoLeitores.setSelectedIndex(0);
-        ftCelular.setText("");
-        ftDataNascimento.setText("");
-        tfCEP.setText("");
-        ftTelefone.setText("");
-        btGrSexo.clearSelection();
-    }
 }

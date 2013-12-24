@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.acervo.*;
@@ -12,21 +8,20 @@ import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.editora.Editora;
 import fvsosp.editora.EditoraRN;
 import fvsosp.especificacoes.EspecificacoesTecnicas;
-import fvsosp.especificacoes.EspecificacoesTecnicasRN;
 import fvsosp.exemplar.Exemplar;
 import fvsosp.idioma.Idioma;
 import fvsosp.idioma.IdiomaRN;
-import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
 import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
-import java.awt.event.KeyEvent;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -37,16 +32,15 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     Acervo acervo;
     AcervoRN acervoRN = new AcervoRN();
     Exemplar exemplar;
+    List<Exemplar> exemplares;
+    EspecificacoesTecnicas especificacoes;
 
     /**
      * Creates new form TelaCadastroAcervo
      */
     public TelaCadastroAcervo() {
         initComponents();
-        this.setTitle("OSBiblio - Acervo");
         this.setLocationRelativeTo(null);
-        //btRemover.setEnabled(false);
-        setModal(true);
         preencheAutor();
         preencheBiblioteca();
         preencheEditora();
@@ -83,25 +77,23 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel28 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
-        tfEdicao = new javax.swing.JTextField();
         jLabel41 = new javax.swing.JLabel();
-        tfVolume = new javax.swing.JTextField();
         tfInformacoesAdicionais = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         tfLocalizacao = new javax.swing.JTextField();
-        tffAnoEdicao = new javax.swing.JFormattedTextField();
-        tfIsbn1 = new javax.swing.JTextField();
+        tfAnoEdicao = new javax.swing.JFormattedTextField();
+        tfEdicao = new javax.swing.JFormattedTextField();
+        tfISBN = new javax.swing.JFormattedTextField();
+        tfVolume = new javax.swing.JFormattedTextField();
         pn3 = new javax.swing.JPanel();
         jLabel39 = new javax.swing.JLabel();
         tfPalavrasChaves = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
         jPanel6 = new javax.swing.JPanel();
-        jLabel36 = new javax.swing.JLabel();
-        tfExemplar = new javax.swing.JTextField();
         jLabel37 = new javax.swing.JLabel();
-        tfTombo = new javax.swing.JTextField();
+        tfExemplar = new javax.swing.JFormattedTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         tfAcabamentoCapa = new javax.swing.JTextField();
@@ -109,8 +101,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tfAcabamentoMiolo = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
         jLabel44 = new javax.swing.JLabel();
-        tfPaginas = new javax.swing.JTextField();
-        tfPeso = new javax.swing.JTextField();
+        tfPeso = new javax.swing.JFormattedTextField();
+        tfPaginas = new javax.swing.JFormattedTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -126,6 +118,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         cbTipoItem = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Acervo");
+        setModal(true);
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -161,6 +155,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -202,7 +197,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 29));
 
         tfTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTitulo.setToolTipText("Digite aqui o título da obra");
+        tfTitulo.setToolTipText("Digite aqui o título da Obra.");
         pn1.add(tfTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 420, -1));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -210,55 +205,71 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         tfSubTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfSubTitulo.setToolTipText("Digite aqui o subtítulo da obra");
+        tfSubTitulo.setToolTipText("Digite aqui o subtítulo da Obra.");
         pn1.add(tfSubTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 420, -1));
 
         jLabel28.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel28.setText("ISBN.:");
-        pn1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 29));
+        pn1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, -1, 20));
 
         jLabel32.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel32.setText("Edição.:");
-        pn1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 29));
+        pn1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, -1, 20));
 
         jLabel33.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel33.setText("Ano edição.:");
-        pn1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, 29));
-
-        tfEdicao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfEdicao.setToolTipText("Digite aqui a edição da obra");
-        pn1.add(tfEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 170, -1));
+        pn1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, 20));
 
         jLabel41.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel41.setText("Volume.:");
-        pn1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, 29));
-
-        tfVolume.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfVolume.setToolTipText("Digite aqui o ISBN da obra");
-        pn1.add(tfVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 170, -1));
+        pn1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, -1, 20));
 
         tfInformacoesAdicionais.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfInformacoesAdicionais.setToolTipText("Digite aqui as informações adicionais");
-        pn1.add(tfInformacoesAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 170, -1));
+        tfInformacoesAdicionais.setToolTipText("Digite aqui as informações adicionais da Obra.");
+        pn1.add(tfInformacoesAdicionais, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 170, -1));
 
         jLabel42.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel42.setText("Informações Adicionais.:");
-        pn1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 29));
+        pn1.add(jLabel42, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 20));
 
         jLabel43.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel43.setText("Localização.:");
-        pn1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, 29));
+        pn1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, 20));
 
         tfLocalizacao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfLocalizacao.setToolTipText("Digite aqui a localização");
-        pn1.add(tfLocalizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 170, -1));
+        tfLocalizacao.setToolTipText("Digite aqui a localização da Obra.");
+        pn1.add(tfLocalizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 170, -1));
 
-        tffAnoEdicao.setToolTipText("Digite aqui o ano de edição");
-        pn1.add(tffAnoEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, 20));
+        tfAnoEdicao.setToolTipText("Digite aqui o ano de edição da Obra.");
+        tfAnoEdicao.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        pn1.add(tfAnoEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, 20));
 
-        tfIsbn1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfIsbn1.setToolTipText("Digite aqui o ISBN da obra");
-        pn1.add(tfIsbn1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, -1));
+        try {
+            tfEdicao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfEdicao.setToolTipText("Digite aqui a edição da Obra.");
+        tfEdicao.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        pn1.add(tfEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 170, 20));
+
+        try {
+            tfISBN.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfISBN.setToolTipText("Digite aqui o ISBN da Obra.");
+        tfISBN.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        pn1.add(tfISBN, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, 20));
+
+        try {
+            tfVolume.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfVolume.setToolTipText("Digite aqui o Volume.");
+        tfVolume.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        pn1.add(tfVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 170, 20));
 
         tbLeitor.addTab("Obra", pn1);
 
@@ -321,17 +332,16 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
-        jLabel36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel36.setText("Tombo.:");
-
-        tfExemplar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfExemplar.setToolTipText("Digite aqui o número do exemplar");
-
         jLabel37.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel37.setText("Número do Exemplar.:");
 
-        tfTombo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTombo.setToolTipText("Digite aqui o tombo");
+        try {
+            tfExemplar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("############")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfExemplar.setToolTipText("Digite aqui o Número do Exemplar.");
+        tfExemplar.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -340,24 +350,18 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36)
-                    .addComponent(tfExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel37)
-                    .addComponent(tfTombo, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(tfTombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(tfExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addContainerGap(216, Short.MAX_VALUE))
         );
 
         tbLeitor.addTab("Exemplar", jPanel6);
@@ -368,13 +372,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel34.setText("Acabamento da Capa.:");
 
         tfAcabamentoCapa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfAcabamentoCapa.setToolTipText("Digite aqui o acabamento da capa");
+        tfAcabamentoCapa.setToolTipText("Digite aqui o acabamento da Capa.");
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel27.setText("Acabamento do Miolo.:");
 
         tfAcabamentoMiolo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfAcabamentoMiolo.setToolTipText("Digite aqui o acabamento do miolo");
+        tfAcabamentoMiolo.setToolTipText("Digite aqui o acabamento do Miolo.");
 
         jLabel35.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel35.setText("Peso.:");
@@ -382,11 +386,21 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel44.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel44.setText("Número de Páginas.:");
 
-        tfPaginas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfPaginas.setToolTipText("Digite aqui o número de páginas");
+        try {
+            tfPeso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("###")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfPeso.setToolTipText("Digite o Peso.");
+        tfPeso.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
-        tfPeso.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfPeso.setToolTipText("Digite aqui o peso");
+        try {
+            tfPaginas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
+        tfPaginas.setToolTipText("Digite a quantidade de Páginas.");
+        tfPaginas.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -414,16 +428,16 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(129, 129, 129)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                .addContainerGap(119, Short.MAX_VALUE)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(0, 0, 0)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfPaginas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(114, 114, 114))
             .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel5Layout.createSequentialGroup()
                     .addGap(0, 6, Short.MAX_VALUE)
@@ -455,23 +469,29 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         cbBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbBiblioteca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbBiblioteca.setToolTipText("Selecione a Biblioteca.");
 
         cbEditora.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbEditora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbEditora.setToolTipText("Selecione a Editora.");
 
         cbIdioma.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbIdioma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbIdioma.setToolTipText("Selecione o Idioma.");
 
         cbSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbSessao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbSessao.setToolTipText("Selecione a Sessão.");
 
         cbAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbAutor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbAutor.setToolTipText("Selecione o Autor.");
 
         jLabel7.setText("Autor.:");
 
         cbTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbTipoItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbTipoItem.setToolTipText("Selecione o Tipo de Item.");
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -547,27 +567,21 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 460, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 430, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGap(30, 30, 30)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -585,63 +599,46 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<Acervo> lista = null;
-        if (tfTitulo.getText() != null) {
-            lista = acervoRN.pesquisarTitulodaObra(tfTitulo.getText());
-        } else {
-            lista = acervoRN.listar();
-        }
+        List<Acervo> lista;
+        lista = ((tfTitulo.getText() != null) ? acervoRN.pesquisarTitulodaObra(tfTitulo.getText()) : acervoRN.listar());
         AcervoTableModel atm = new AcervoTableModel(lista);
         Object o = TelaPesquisa.exibeTela(atm, "Acervo");
-        acervo = new Acervo();
+        AcervoDAO acr = new AcervoDAO();
         if (o != null) {
-            short id = (short) o;
+            int id = (int) o;
             acervo = acervoRN.pesquisarCodigo(id);
-            tfTitulo.setText(acervo.getTituloObra().toString());
-            tfSubTitulo.setText(acervo.getSubtituloObra().toString());
-            tfVolume.setText(acervo.getIsbn().toString());
-            tfVolume.setText(acervo.getVolume().toString());
-            tfEdicao.setText(acervo.getEdicao().toString());
-            tffAnoEdicao.setText(String.valueOf(acervo.getAnoEdicao()));
-            tfInformacoesAdicionais.setText(acervo.getInformacoesAdicionais().toString());
+            tfTitulo.setText(acervo.getTituloObra());
+            tfSubTitulo.setText(acervo.getSubtituloObra());
+            tfISBN.setText(acervo.getIsbn());
+            tfVolume.setText(acervo.getVolume());
+            tfEdicao.setText(acervo.getEdicao());
+            tfAnoEdicao.setText(String.valueOf(acervo.getAnoEdicao()));
+            tfInformacoesAdicionais.setText(acervo.getInformacoesAdicionais());
             tfLocalizacao.setText(acervo.getLocalizacao());
+            tfExemplar.setText("");
+            for(int k = 0; k < acervo.getExemplares().size(); k++)
+            tfExemplar.setText(String.valueOf(acervo.getExemplares().get(k).getExemplar()));
+            tfAcabamentoCapa.setText(acervo.getEspecificacoesTecnicas().getAcabamentoCapa());
+            tfAcabamentoMiolo.setText(acervo.getEspecificacoesTecnicas().getAcabamentoMiolo());
+            tfPaginas.setText(String.valueOf(acervo.getEspecificacoesTecnicas().getNumeroPaginas()));
+            tfPeso.setText(String.valueOf(acervo.getEspecificacoesTecnicas().getPeso()));
+            Object[] objects = {acervo.getAutor(), acervo.getBiblioteca(), acervo.getEditora(), acervo.getIdioma(),
+                acervo.getSessao(), acervo.getTipoItem()};
+            JComboBox[] cbs = {cbAutor, cbBiblioteca, cbEditora, cbIdioma, cbSessao, cbTipoItem};
+            for (int x = 0; x < objects.length; x++) {
+                if (cbs[x] != null) {
+                    cbs[x].removeAllItems();
+                    cbs[x].addItem(objects[x]);
+                } else {
+                    cbs[x].setSelectedIndex(0);
+                }
+            }
             btRemover.setEnabled(true);
-            if (acervo.getAutor() != null) {
-                cbAutor.setSelectedItem(acervo.getAutor());
-            } else {
-                cbAutor.setSelectedIndex(0);
-            }
-            if (acervo.getBiblioteca() != null) {
-                cbBiblioteca.setSelectedItem(acervo.getBiblioteca());
-            } else {
-                cbBiblioteca.setSelectedIndex(0);
-            }
-            if (acervo.getEditora() != null) {
-                cbEditora.setSelectedItem(acervo.getEditora());
-            } else {
-                cbEditora.setSelectedIndex(0);
-            }
-            if (acervo.getIdioma() != null) {
-                cbIdioma.setSelectedItem(acervo.getIdioma());
-            } else {
-                cbIdioma.setSelectedIndex(0);
-            }
-            if (acervo.getSessao() != null) {
-                cbSessao.setSelectedItem(acervo.getSessao());
-            } else {
-                cbSessao.setSelectedIndex(0);
-            }
-            if (acervo.getTipoItem() != null) {
-                cbTipoItem.setSelectedItem(acervo.getTipoItem());
-            } else {
-                cbTipoItem.setSelectedIndex(0);
-            }
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
@@ -664,65 +661,56 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (acervo == null) {
             acervo = new Acervo();
         }
-
-        if (!tffAnoEdicao.getText().isEmpty()) {
+        if (Util.chkVazio(tfTitulo.getText(), tfSubTitulo.getText(), tfISBN.getText(), tfVolume.getText(), tfEdicao.getText(),
+                tfAnoEdicao.getText(), tfInformacoesAdicionais.getText(), tfLocalizacao.getText(), tfExemplar.getText(), tfAcabamentoCapa.getText(),
+                tfAcabamentoMiolo.getText(), tfPaginas.getText(), tfPeso.getText()) && (cbAutor.getSelectedIndex() > 0)
+                && (cbBiblioteca.getSelectedIndex() > 0) && (cbEditora.getSelectedIndex() > 0) && (cbIdioma.getSelectedIndex() > 0)
+                && (cbSessao.getSelectedIndex() > 0) && (cbTipoItem.getSelectedIndex() > 0)) {
             Calendar data = Calendar.getInstance();
-            if (Long.parseLong(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
+            if (Long.parseLong(tfAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
                 JOptionPane.showMessageDialog(null, "Não é possível inserir um ano de edição superior ao ano atual. ");
-            } else
-                acervo.setAnoEdicao(Short.parseShort(tffAnoEdicao.getText()));
-        }
-        acervo.setTituloObra(tfTitulo.getText());
-        acervo.setSubtituloObra(tfSubTitulo.getText());
-        acervo.setIsbn(tfVolume.getText());
-        acervo.setVolume(tfVolume.getText());
-        acervo.setEdicao(tfEdicao.getText());
-        acervo.setInformacoesAdicionais(tfInformacoesAdicionais.getText());
-        acervo.setLocalizacao(tfLocalizacao.getText());
-        if (!tfTombo.getText().isEmpty() && !tfExemplar.getText().isEmpty()) {
-            exemplar.setTombo(Short.parseShort(tfTombo.getText()));
-            exemplar.setExemplar(Short.parseShort(tfExemplar.getText()));
-            List<Exemplar> exemplares = new ArrayList<>();
-            exemplares.add(exemplar);
-            acervo.setExemplares(exemplares);
-        }
-        if ((cbAutor.getSelectedIndex() > 0) && (cbBiblioteca.getSelectedIndex() > 0) && (cbEditora.getSelectedIndex() > 0)
-                && (cbIdioma.getSelectedIndex() > 0) && (cbSessao.getSelectedIndex() > 0) && (cbTipoItem.getSelectedIndex() > 0)) {
-            Autor autor = (Autor) cbAutor.getSelectedItem();
-            acervo.setAutor(autor);
-            Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
-            acervo.setBiblioteca(biblioteca);
-            Editora editora = (Editora) cbEditora.getSelectedItem();
-            acervo.setEditora(editora);
-            Idioma idioma = (Idioma) cbIdioma.getSelectedItem();
-            acervo.setIdioma(idioma);
-            Sessao sessao = (Sessao) cbSessao.getSelectedItem();
-            acervo.setSessao(sessao);
-            TipoItem tipoitem = (TipoItem) cbTipoItem.getSelectedItem();
-            acervo.setTipoItem(tipoitem);
-        } else {
-            acervo.setAutor(null);
-            acervo.setBiblioteca(null);
-            acervo.setEditora(null);
-            acervo.setIdioma(null);
-            acervo.setSessao(null);
-            acervo.setTipoItem(null);
-        }
-
-        int tdAcervo = acervo.getIdAcervo();
-        if (acervoRN.salvar(acervo)) {
-            if (tdAcervo == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra() + ", cadastrado com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
-                        + ", alterado com sucesso!");
+                acervo.setAnoEdicao(Short.parseShort(tfAnoEdicao.getText()));
+                acervo.setTituloObra(tfTitulo.getText());
+                acervo.setSubtituloObra(tfSubTitulo.getText());
+                acervo.setIsbn(tfISBN.getText().replaceAll((" "), ("")));
+                acervo.setVolume(tfVolume.getText().replaceAll((" "), ("")));
+                acervo.setEdicao(tfEdicao.getText().replaceAll((" "), ("")));
+                acervo.setInformacoesAdicionais(tfInformacoesAdicionais.getText());
+                acervo.setLocalizacao(tfLocalizacao.getText());
+                especificacoes = new EspecificacoesTecnicas();
+                especificacoes.setAcabamentoCapa(tfAcabamentoCapa.getText());
+                especificacoes.setAcabamentoMiolo(tfAcabamentoMiolo.getText());
+                especificacoes.setNumeroPaginas(Short.parseShort(tfPaginas.getText().replaceAll((" "), (""))));
+                especificacoes.setPeso(Short.parseShort(tfPeso.getText().replaceAll((" "), (""))));
+                acervo.setEspecificacoesTecnicas(especificacoes);
+                exemplar = new Exemplar();
+                exemplar.setExemplar(Short.parseShort(tfExemplar.getText().replaceAll((" "), (""))));
+                exemplares = new ArrayList<>();
+                exemplares.add(exemplar);
+                acervo.setExemplares(exemplares);
+                Autor autor = (Autor) cbAutor.getSelectedItem();
+                acervo.setAutor(autor);
+                Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
+                acervo.setBiblioteca(biblioteca);
+                Editora editora = (Editora) cbEditora.getSelectedItem();
+                acervo.setEditora(editora);
+                Idioma idioma = (Idioma) cbIdioma.getSelectedItem();
+                acervo.setIdioma(idioma);
+                Sessao sessao = (Sessao) cbSessao.getSelectedItem();
+                acervo.setSessao(sessao);
+                TipoItem tipoitem = (TipoItem) cbTipoItem.getSelectedItem();
+                acervo.setTipoItem(tipoitem);
+                int idAcervo = acervo.getIdAcervo();
+                if (acervoRN.salvar(acervo)) {
+                    JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra() + ", "
+                            + ((idAcervo == 0) ? "cadastrado" : "alterado") + " com sucesso!");
+                    limparCampos();
+                }
             }
-            limparCampos();
-            btRemover.setEnabled(false);
         }
     }
 
@@ -775,33 +763,25 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     }
 
     public void limparCampos() {
-        tfTitulo.setText("");
-        tfSubTitulo.setText("");
-        tfVolume.setText("");
-        tfVolume.setText("");
-        tfEdicao.setText("");
-        tffAnoEdicao.setText("");
-        tfInformacoesAdicionais.setText("");
-        tfLocalizacao.setText("");
+        acervo = null;
+        especificacoes = null;
+        exemplar = null;
+        exemplares = null;
+        JTextField[] tfs = {tfTitulo, tfSubTitulo, tfISBN, tfVolume, tfEdicao, tfAnoEdicao, tfInformacoesAdicionais, tfLocalizacao,
+            tfPalavrasChaves, tfExemplar, tfAcabamentoCapa, tfAcabamentoMiolo, tfPaginas, tfPeso};
+        for (int k = 0; k < tfs.length; k++) {
+            tfs[k].setText("");
+        }
         cbAutor.setSelectedIndex(0);
         cbBiblioteca.setSelectedIndex(0);
         cbEditora.setSelectedIndex(0);
         cbIdioma.setSelectedIndex(0);
         cbSessao.setSelectedIndex(0);
         cbTipoItem.setSelectedIndex(0);
-        tfPalavrasChaves.setText("");
-        tfTombo.setText("");
-        tfExemplar.setText("");
-        tfAcabamentoCapa.setText("");
-        tfAcabamentoMiolo.setText("");
-        tfPaginas.setText("");
-        tfPeso.setText("");
-        acervo = null;
         tfTitulo.requestFocus();
         btRemover.setEnabled(false);
     }//GEN-LAST:event_btSalvarActionPerformed
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limparCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
@@ -887,7 +867,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
-    private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -912,18 +891,17 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JTable tbPesquisa;
     private javax.swing.JTextField tfAcabamentoCapa;
     private javax.swing.JTextField tfAcabamentoMiolo;
-    private javax.swing.JTextField tfEdicao;
-    private javax.swing.JTextField tfExemplar;
+    private javax.swing.JFormattedTextField tfAnoEdicao;
+    private javax.swing.JFormattedTextField tfEdicao;
+    private javax.swing.JFormattedTextField tfExemplar;
+    private javax.swing.JFormattedTextField tfISBN;
     private javax.swing.JTextField tfInformacoesAdicionais;
-    private javax.swing.JTextField tfIsbn1;
     private javax.swing.JTextField tfLocalizacao;
-    private javax.swing.JTextField tfPaginas;
+    private javax.swing.JFormattedTextField tfPaginas;
     private javax.swing.JTextField tfPalavrasChaves;
-    private javax.swing.JTextField tfPeso;
+    private javax.swing.JFormattedTextField tfPeso;
     private javax.swing.JTextField tfSubTitulo;
     private javax.swing.JTextField tfTitulo;
-    private javax.swing.JTextField tfTombo;
-    private javax.swing.JTextField tfVolume;
-    private javax.swing.JFormattedTextField tffAnoEdicao;
+    private javax.swing.JFormattedTextField tfVolume;
     // End of variables declaration//GEN-END:variables
 }
