@@ -20,31 +20,8 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
     public BibliotecaDAO() {
         super(Biblioteca.class);
     }
-
-    public Biblioteca pesquisarDescricao(String descricao) {
-        Biblioteca bibliotecas = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            /*
-             * pesquisa uma biblioteca por descricao
-             * usando o like, o MatchMode.ANYWHERE quer dizer
-             * que a sequência de caracteres passada na String descricao
-             * pode ser encontrada em qualquer lugar, representa o '%descricao%', ordenando
-             * de forma crescente por descicao
-             */
-            bibliotecas = (Biblioteca) getSessao().createCriteria(Biblioteca.class).
-                    add(Restrictions.eq("descricao", descricao)).uniqueResult();
-
-        } catch (HibernateException e) {
-            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
-        } finally {
-            this.getSessao().close();
-        }
-        return bibliotecas;
-    }
     
-    public List<Biblioteca> pesquisarDescricaoLike(String descricao) {
+    public List<Biblioteca> pesquisarDescricao(String descricao) {
         List<Biblioteca> bibliotecas = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
@@ -57,7 +34,7 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
              * de forma crescente por descicao
              */
             bibliotecas = (List<Biblioteca>) getSessao().createCriteria(Biblioteca.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).list();
+                    add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
@@ -82,6 +59,5 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
             this.getSessao().close();
         }
         return biblioteca;
-
     }
 }

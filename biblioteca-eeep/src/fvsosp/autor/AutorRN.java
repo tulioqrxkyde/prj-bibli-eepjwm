@@ -16,14 +16,11 @@ public class AutorRN {
 
     // Metódo que adiciona um autor
     public boolean salvar(Autor autor) {
-        if (!autor.getNome().isEmpty() && !autor.getSobreOAutor().isEmpty()) {
             if (autor.getIdAutor() == 0) {
                 return dao.adicionar(autor);
             } else {
                 return dao.atualizar(autor);
             }
-        }
-        return false;
     }
     
     // Metódo que remove
