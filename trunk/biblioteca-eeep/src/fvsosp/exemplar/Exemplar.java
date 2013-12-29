@@ -16,8 +16,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 
 /**
  *
@@ -37,7 +35,7 @@ public class Exemplar implements Serializable {
 
     @Override
     public String toString() {
-        return "{" + "Nº exemplar=" + exemplar + '}';
+        return "Nº exemplar =" + exemplar;
     }
    
    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

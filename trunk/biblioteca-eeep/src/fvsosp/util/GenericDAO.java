@@ -17,16 +17,15 @@ import org.hibernate.Transaction;
  */
 @SuppressWarnings("unchecked")
 public abstract class GenericDAO<T> {
-    
+
     /*
      * Essa classe possui operações comuns a todas as classes persistentes
      * para utilizar-la deverá criar uma classe DAO específica para a classe
      * persistente e extends GenericDAO<T> onde T é a classe Persistente 
      */
-
     private Session sessao;
     private Transaction transacao;
-    private Class classe ;
+    private Class classe;
 
     public GenericDAO(Class classe) {
         this.classe = classe;
@@ -38,7 +37,6 @@ public abstract class GenericDAO<T> {
             this.setTransacao(getSessao().beginTransaction());
             this.getSessao().save(entity);
             this.getTransacao().commit();
-            
         } catch (HibernateException e) {
             System.out.println("Não foi possível inserir " + entity.getClass()
                     + ". Erro: " + e.getMessage());
@@ -64,7 +62,7 @@ public abstract class GenericDAO<T> {
             getSessao().close();
 
         }
-            return true;
+        return true;
     }
 
     public boolean remover(T entity) {
@@ -99,18 +97,18 @@ public abstract class GenericDAO<T> {
         }
         return lista;
     }
-    
+
     /*
      * ao passar uma chave primária
      * ele retorna um objeto referente a chave primária
      */
-    public T carregaChavePrimaria(int chavePrimaria){
+    public T carregaChavePrimaria(int chavePrimaria) {
         try {
             sessao = HibernateUtil.getSessionFactory().openSession();
             Object o = sessao.load(classe, chavePrimaria);
             return (T) o;
         } catch (HibernateException e) {
-            System.out.println("Erro ao carregar por chave primária: "+e.getMessage());
+            System.out.println("Erro ao carregar por chave primária: " + e.getMessage());
         } finally {
             sessao.close();
         }
