@@ -8,6 +8,7 @@ import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
 import fvsosp.especificacoes.EspecificacoesTecnicas;
+import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.util.GenericDAO;
@@ -190,6 +191,20 @@ public class AcervoDAO extends GenericDAO<Acervo> {
             acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("especificacoesTecnicas", escpecificacoestecnicas)).addOrder(Order.asc("especificacoesTecnicas")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar as Especificacões Técnicas. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return acervo;
+    }
+    
+    public List<Acervo> pesquisarPalavrasChaves(String palavras) {
+        List<Acervo> acervo = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("palavrasChaves", palavras)).addOrder(Order.asc("palavrasChaves")).list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar Palavras Chaves. Erro: " + e.getMessage());
         } finally {
             this.getSessao().close();
         }
