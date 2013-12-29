@@ -6,6 +6,7 @@ package fvsosp.acervo;
 
 import fvsosp.editora.Editora;
 import fvsosp.especificacoes.EspecificacoesTecnicas;
+import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.util.List;
@@ -83,6 +84,10 @@ public class AcervoRN {
         return dao.pesquisarEspecificacoesTecnicas(escpecificacoestecnicas);
     }
 
+    public List<Acervo> pesquisarPalavrasChaves(String palavras) {
+        return dao.pesquisarPalavrasChaves(palavras);
+    }
+    
     public List<Acervo> pesquisarSessao(Sessao sessao) {
         return dao.pesquisarSessao(sessao);
     }

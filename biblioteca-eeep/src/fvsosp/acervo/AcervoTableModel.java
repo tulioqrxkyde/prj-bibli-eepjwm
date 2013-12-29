@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class AcervoTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Título", "Sub-Título", "ISBN", "Volume", "Edição", "Ano de Edição", "Informações Adicionais", "Localização", "Autor", "Biblioteca", "Editora", "Especificações Técnicas", "Exemplar", "Idioma", "Sessão", "Tipo de Item"};
+    private String[] nomeColunas = {"Código", "Título", "Sub-Título", "ISBN", "Volume", "Edição", "Ano de Edição", "Informações Adicionais", "Localização", "Autor", "Biblioteca", "Editora", "Especificações Técnicas", "Exemplar", "Idioma", "Palavras Chaves", "Sessão", "Tipo de Item"};
     private List<Acervo> acervos;
 
     // construtor padrão criando um arraylist de alunos  
@@ -68,8 +68,10 @@ public class AcervoTableModel extends AbstractTableModel {
             case 14:
                 return acervo.getIdioma();
             case 15:
-                return acervo.getSessao();
+                return acervo.getPalavras();
             case 16:
+                return acervo.getSessao();
+            case 17:
                 return acervo.getTipoItem();
         }
         return null;
@@ -111,6 +113,8 @@ public class AcervoTableModel extends AbstractTableModel {
                 return nomeColunas[15];
             case 16:
                 return nomeColunas[16];
+            case 17:
+                return nomeColunas[17];
         }
         return null;
     }

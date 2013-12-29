@@ -6,17 +6,19 @@ import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
 import fvsosp.especificacoes.EspecificacoesTecnicas;
 import fvsosp.idioma.Idioma;
+import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 
 @Entity
 @Table(name="acervo")
 public class Acervo implements Serializable {
-    private static final long serialVersionUID = -2476603341481709623L;
     
     @Id
     @GeneratedValue
@@ -76,7 +78,11 @@ public class Acervo implements Serializable {
     
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private List<Exemplar> exemplares;
-
+    
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Fetch(FetchMode.SUBSELECT)
+    private List<PalavrasChaves> palavrasChaves;
+    
     @Override
     public int hashCode() {
         int hash = 7;
@@ -97,6 +103,7 @@ public class Acervo implements Serializable {
         hash = 23 * hash + Objects.hashCode(this.sessao);
         hash = 23 * hash + Objects.hashCode(this.biblioteca);
         hash = 23 * hash + Objects.hashCode(this.exemplares);
+        hash = 23 * hash + Objects.hashCode(this.palavrasChaves);
         return hash;
     }
 
@@ -158,6 +165,9 @@ public class Acervo implements Serializable {
             return false;
         }
         if (!Objects.equals(this.exemplares, other.exemplares)) {
+            return false;
+        }
+        if (!Objects.equals(this.palavrasChaves, other.palavrasChaves)) {
             return false;
         }
         return true;
@@ -331,4 +341,19 @@ public class Acervo implements Serializable {
     public void setExemplares(List<Exemplar> exemplares) {
         this.exemplares = exemplares;
     }
+
+    /**
+     * @return the palavras
+     */
+    public List<PalavrasChaves> getPalavras() {
+        return palavrasChaves;
+    }
+
+    /**
+     * @param palavras the palavras to set
+     */
+    public void setPalavras(List<PalavrasChaves> palavras) {
+        this.palavrasChaves = palavras;
+    }
+    private static final long serialVersionUID = -7350726495495684804L;
 }
