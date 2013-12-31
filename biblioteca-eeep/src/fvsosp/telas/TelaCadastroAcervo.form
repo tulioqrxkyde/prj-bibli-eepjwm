@@ -195,9 +195,6 @@
               </Constraints>
             </Component>
             <Container class="javax.swing.JTabbedPane" name="tbAcervo">
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbAcervoMouseClicked"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="10" width="460" height="310"/>
@@ -477,7 +474,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui as palavras chaves"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui as Palavras Chaves."/>
                       </Properties>
                       <Events>
                         <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPalavrasChavesKeyReleased"/>
@@ -573,15 +570,11 @@
                                 <Column editable="false" title="Palavras Chaves" type="java.lang.Object"/>
                               </Table>
                             </Property>
-                            <Property name="rowSelectionAllowed" type="boolean" value="false"/>
+                            <Property name="cellSelectionEnabled" type="boolean" value="true"/>
                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPalavrasMouseClicked"/>
-                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbPalavrasKeyPressed"/>
-                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
@@ -932,6 +925,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Selecione a Biblioteca."/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="BibliotecaRN bibRN = new BibliotecaRN();                  for (Biblioteca biblioteca : bibRN.listar()) {             cbBiblioteca.addItem(biblioteca);               }"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbEditora">
                       <Properties>
@@ -945,6 +941,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Selecione a Editora."/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="EditoraRN editoraRN = new EditoraRN();         for (Editora editora : editoraRN.listar()) {             cbEditora.addItem(editora);         }"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbIdioma">
                       <Properties>
@@ -958,6 +957,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Selecione o Idioma."/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="IdiomaRN idRN = new IdiomaRN();         List&lt;Idioma&gt; idiomas = idRN.listar();         for (Idioma idioma : idiomas) {             cbIdioma.addItem(idioma);         }"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbSessao">
                       <Properties>
@@ -971,6 +973,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Selecione a Sess&#xe3;o."/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SessaoRN sesRN = new SessaoRN();         List&lt;Sessao&gt; sessoes = sesRN.listar();         for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbAutor">
                       <Properties>
@@ -984,6 +989,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Selecione o Autor."/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="AutorRN autRN = new AutorRN();         List&lt;Autor&gt; autores = autRN.listar();         for (Autor autor : autores) {             cbAutor.addItem(autor);         }"/>
+                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel7">
                       <Properties>
@@ -1002,6 +1010,9 @@
                         </Property>
                         <Property name="toolTipText" type="java.lang.String" value="Selecione o Tipo de Item."/>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TipoItemRN tipRN = new TipoItemRN();         List&lt;TipoItem&gt; tipoitens = tipRN.listar();         for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
