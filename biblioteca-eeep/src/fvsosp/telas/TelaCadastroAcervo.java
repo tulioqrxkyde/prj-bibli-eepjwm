@@ -780,15 +780,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         for (int r = 0; r < listaAcervos.size(); r++) {
             for (int i = 0; i < listaAcervos.get(r).getPalavras().size(); i++) {
                 if (!tfPalavrasChaves.getText().isEmpty()) {
-                    if (listaAcervos.get(r).getPalavras().get(i).toString().regionMatches(true, 0,
-                            tfPalavrasChaves.getText(), 0, 1)
-                            && tfPalavrasChaves.getText().length() <= listaAcervos.get(r).getPalavras().get(i).toString().length()
-                            && !model.contains(tfPalavrasChaves.getText())) {
-                        model.addElement(listaAcervos.get(r).getPalavras().get(i));
+                    if (!(listaAcervos.get(r).getPalavras().get(i).getDescricao().regionMatches(true, 0,
+                            tfPalavrasChaves.getText(), 0, 1))
+                            || (tfPalavrasChaves.getText().length() > listaAcervos.get(r).getPalavras().get(i).getDescricao().length())
+                            || (model.contains(listaAcervos.get(r).getPalavras().get(i).getDescricao()))) {
+                        continue;
                     }
-                } else {
-                    model.addElement(listaAcervos.get(r).getPalavras().get(i));
                 }
+                model.add(model.getSize(), listaAcervos.get(r).getPalavras().get(i).getDescricao());
             }
         }
         listaPalavras.setModel(model);
@@ -817,9 +816,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         if (tbPalavras.getSelectedRow() > -1) {
             tbPalavras.setValueAt("", tbPalavras.getSelectedRow(), 0);
             palavrasChaves.remove(tbPalavras.getSelectedRow());
-        } else { 
-           tbPalavras.setValueAt("", rowValue, 0);
-           palavrasChaves.remove(rowValue);
+        } else {
+            tbPalavras.setValueAt("", rowValue, 0);
+            palavrasChaves.remove(rowValue);
         }
         rowValue--;
     }//GEN-LAST:event_removePalavraActionPerformed
@@ -843,8 +842,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
-
                 }
             }
         } catch (ClassNotFoundException ex) {
