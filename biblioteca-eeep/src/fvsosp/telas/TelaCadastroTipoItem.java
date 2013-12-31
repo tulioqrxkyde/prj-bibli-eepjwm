@@ -4,7 +4,6 @@
  */
 package fvsosp.telas;
 
-
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.tipoitem.TipoItemTableModel;
@@ -25,12 +24,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
      */
     public TelaCadastroTipoItem() {
         initComponents();
-
-        this.setTitle("OSBiblio - Idioma");
         this.setLocationRelativeTo(null);
-        btRemover.setEnabled(false);
-        setModal(true);
-
     }
 
     /**
@@ -54,6 +48,8 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         tfTipoItem = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Tipo de Item");
+        setModal(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -70,6 +66,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -113,12 +110,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Descrição.:");
 
         tfTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTipoItem.setToolTipText("Digite aqui a descrição do Tipo do Item");
-        tfTipoItem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                tfTipoItemActionPerformed(evt);
-            }
-        });
+        tfTipoItem.setToolTipText("Digite aqui a descrição do Tipo do Item.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -126,22 +118,25 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Descricao_Biblioteca)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSair))
-                    .addComponent(tfTipoItem))
+                .addContainerGap(179, Short.MAX_VALUE)
+                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSair)
                 .addGap(16, 16, 16))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Descricao_Biblioteca)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tfTipoItem))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -176,35 +171,26 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<TipoItem> lista = null;
-        if (tfTipoItem.getText() != null) {
-            lista = tipoItemRN.pesquisarDescricaoLike(tfTipoItem.getText());
-        } else {
-            lista = tipoItemRN.listar();
-        }
+        List<TipoItem> lista = ((tfTipoItem.getText() != null) ? tipoItemRN.pesquisarDescricaoLike(tfTipoItem.getText()) : tipoItemRN.listar());
         TipoItemTableModel itm = new TipoItemTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Tipo de Item");
-        tipoItem = new TipoItem();
         if (o != null) {
-            short id = (short) o;
-            tipoItem = tipoItemRN.pesquisarCodigo(id);
-            tfTipoItem.setText(tipoItem.getDescricao().toString());
+            tipoItem = new TipoItem();
+            tipoItem = tipoItemRN.pesquisarCodigo((short) o);
+            tfTipoItem.setText(tipoItem.getDescricao());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
         if (tipoItem != null) {
             if (tipoItem.getIdTipoItem() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o tipo de item " + tipoItem.getDescricao()
@@ -232,21 +218,11 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         tipoItem.setDescricao(tfTipoItem.getText().toString());
         int idIdioma = tipoItem.getIdTipoItem();
         if (tipoItemRN.salvar(tipoItem)) {
-            if (idIdioma == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
-                        + ", cadastrada com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
-                        + ", alterada com sucesso!");
-            }
+                        + ", " + ((tipoItem.getIdTipoItem() == 0) ? "cadastrada" : "alterada") + "com sucesso!");
             limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
-
-    private void tfTipoItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfTipoItemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tfTipoItemActionPerformed
     public void limpaCampos() {
         tfTipoItem.setText("");
         tipoItem = null;

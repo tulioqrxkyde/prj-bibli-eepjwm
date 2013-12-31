@@ -30,8 +30,6 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     public TelaCadastroLeitor() {
         initComponents();
         setLocationRelativeTo(null);
-        preencheCidade();
-        preencheGrupoLeitores();
     }
 
     /**
@@ -309,6 +307,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
         cbCidade.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        CidadeRN cidRN = new CidadeRN();         for (Cidade cidade : cidRN.listar()) {             cbCidade.addItem(cidade);         }
         pn2.add(cbCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 140, 230, -1));
 
         tbLeitor.addTab("Contato", pn2);
@@ -334,6 +333,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
         cbGrupoLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbGrupoLeitores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        GruposLeitoresRN grRN = new GruposLeitoresRN();         for (GruposLeitores gruposLeitores : grRN.listar()) {             cbGrupoLeitores.addItem(gruposLeitores);         }
         pn3.add(cbGrupoLeitores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 380, -1));
 
         jLabel38.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -456,27 +456,13 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         limparCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
-    private void preencheCidade() {
-        CidadeRN cidRN = new CidadeRN();
-        for (Cidade cidade : cidRN.listar()) {
-            cbCidade.addItem(cidade);
-        }
-    }
-
-    private void preencheGrupoLeitores() {
-        GruposLeitoresRN grRN = new GruposLeitoresRN();
-        for (GruposLeitores gruposLeitores : grRN.listar()) {
-            cbGrupoLeitores.addItem(gruposLeitores);
-        }
-    }
-
     private void limparCampos() {
         leitor = null;
         btRemover.setEnabled(false);
         JTextField[] tfs = {tfBairro, tfCPF, tfNome, tfEmail, tfEndereco, tfMatricula, tfNomeMae, tfNomePai, tfRG,
             tfCelular, tfDataNascimento, tfCEP, tfTelefone};
-        for (int x = 0; x < tfs.length; x++) {
-            tfs[x].setText("");
+        for (JTextField tf : tfs) {
+            tf.setText("");
         }
         cbCidade.setSelectedIndex(0);
         cbGrupoLeitores.setSelectedIndex(0);
