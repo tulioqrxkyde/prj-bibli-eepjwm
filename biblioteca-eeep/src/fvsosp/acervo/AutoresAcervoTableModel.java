@@ -2,31 +2,33 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fvsosp.autor;
+package fvsosp.acervo;
 
-import java.util.ArrayList;
-import java.util.List;
+import fvsosp.autor.Autor;
+import fvsosp.palavraschaves.PalavrasChaves;
+import java.util.*;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author acer
+ * @author TÚLIO
  */
-public class AutorTableModel extends AbstractTableModel {
+public class AutoresAcervoTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Autor", "Descrição"};
+    private String[] nomeColunas = {"Nome"};
     private List<Autor> autores;
 
-    public AutorTableModel() {
+    // construtor padrão criando um arraylist de alunos  
+    public AutoresAcervoTableModel() {
         autores = new ArrayList<Autor>();
     }
 
-    public AutorTableModel(List<Autor> lista) {
+    // construtor que adiciona a lista passada pelo método ao alunos  
+    public AutoresAcervoTableModel(Set<Autor> lista) {
         this();
         this.autores.clear();
         this.autores.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
     public int getRowCount() {
@@ -40,14 +42,11 @@ public class AutorTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Autor autor = autores.get(rowIndex);
+        List<Autor> outraLista = (List<Autor>) autores;
+        Autor autor = outraLista.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                    return autor.getIdAutor();
-            case 1:
-                    return autor.getNome();
-            case 2:
-                    return autor.getSobreOAutor();
+                return autor.getNome();
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet.");  
@@ -57,10 +56,6 @@ public class AutorTableModel extends AbstractTableModel {
         switch (column) {
             case 0:
                 return nomeColunas[0];
-            case 1:
-                return nomeColunas[1];
-            case 2:
-                return nomeColunas[2];
         }
         return null;
     }

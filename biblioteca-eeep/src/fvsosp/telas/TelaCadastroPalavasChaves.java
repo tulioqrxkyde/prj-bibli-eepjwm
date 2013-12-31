@@ -4,31 +4,36 @@
  */
 package fvsosp.telas;
 
-import fvsosp.biblioteca.Biblioteca;
-import fvsosp.biblioteca.BibliotecaRN;
-import fvsosp.biblioteca.BibliotecaTableModel;
-import fvsosp.sessao.SessaoRN;
+
+import fvsosp.palavraschaves.PalavrasChaves;
+import fvsosp.palavraschaves.PalavrasChavesRN;
+import fvsosp.palavraschaves.PalavrasChavesTableModel;
+import fvsosp.tipoitem.TipoItem;
+import fvsosp.tipoitem.TipoItemRN;
+import fvsosp.tipoitem.TipoItemTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
  *
- * @author TÚLIO
+ * @author Oziel
  */
-public class TelaCadastroBiblioteca extends javax.swing.JDialog {
+public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
 
-    Biblioteca biblioteca;
-    BibliotecaRN bibliotecaRN = new BibliotecaRN();
+    PalavrasChaves palavras;
+    PalavrasChavesRN palavrasRN = new PalavrasChavesRN();
 
     /**
      * Creates new form TelaCadastroBiblioteca
      */
-    public TelaCadastroBiblioteca() {
+    public TelaCadastroPalavasChaves() {
         initComponents();
-        this.setTitle("OSBiblio - Biblioteca");
+
+        this.setTitle("OSBiblio - Palavras Chaves");
         this.setLocationRelativeTo(null);
         btRemover.setEnabled(false);
         setModal(true);
+
     }
 
     /**
@@ -49,7 +54,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         Descricao_Biblioteca = new javax.swing.JLabel();
-        tfNomeBiblioteca = new javax.swing.JTextField();
+        tfDescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setResizable(false);
@@ -103,15 +108,20 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
         jLabel23.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Biblioteca");
+        jLabel23.setText("Palavras Chaves");
         jPanel3.add(jLabel23);
-        jLabel23.setBounds(0, 0, 170, 30);
+        jLabel23.setBounds(0, 0, 290, 30);
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         Descricao_Biblioteca.setText("Descrição.:");
 
-        tfNomeBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeBiblioteca.setToolTipText("Digite aqui a descrição da biblioteca");
+        tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfDescricao.setToolTipText("Digite aqui a descrição do Tipo do Item");
+        tfDescricao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tfDescricaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -133,7 +143,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
                         .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btSair))
-                    .addComponent(tfNomeBiblioteca))
+                    .addComponent(tfDescricao))
                 .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
@@ -143,7 +153,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(Descricao_Biblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
-                .addComponent(tfNomeBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSair)
@@ -170,19 +180,19 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         // TODO add your handling code here:
-        List<Biblioteca> bibliotecas = null;
-        if (tfNomeBiblioteca.getText() != null) {
-            bibliotecas = bibliotecaRN.pesquisaDescricaoLike(tfNomeBiblioteca.getText());
+        List<PalavrasChaves> lista = null;
+        if (tfDescricao.getText() != null) {
+            lista = palavrasRN.pesquisarDescricao(tfDescricao.getText());
         } else {
-            bibliotecas = bibliotecaRN.listar();
+            lista = palavrasRN.listar();
         }
-        BibliotecaTableModel btm = new BibliotecaTableModel(bibliotecas);
-        Object o = TelaPesquisa.exibeTela(btm, "Biblioteca");
-        biblioteca = new Biblioteca();
+        PalavrasChavesTableModel itm = new PalavrasChavesTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(itm, "Tipo de Item");
+        palavras = new PalavrasChaves();
         if (o != null) {
             short id = (short) o;
-            biblioteca = bibliotecaRN.pesquisarCodigo(id);
-            tfNomeBiblioteca.setText(biblioteca.getDescricao().toString());
+            palavras = palavrasRN.pesquisarCodigo(id);
+            tfDescricao.setText(palavras.getDescricao().toString());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -198,16 +208,16 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
         // TODO add your handling code here:
-        if (biblioteca != null) {
-            if (biblioteca.getIdBiblioteca() != 0) {
-                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a biblioteca " + biblioteca.getDescricao()
+        if (palavras != null) {
+            if (palavras.getIdPalavrasChaves() != 0) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a Palavra Chave " + palavras.getDescricao()
                         + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    if (bibliotecaRN.remove(biblioteca)) {
-                        JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                                + ", excluída com sucesso!", "Biblioteca", JOptionPane.INFORMATION_MESSAGE);
+                    if (palavrasRN.remove(palavras)) {
+                        JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + palavras.getDescricao()
+                                + ", excluída com sucesso!", "Tipo de Item", JOptionPane.INFORMATION_MESSAGE);
                     } else {
-                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a Biblioteca "
-                                + biblioteca.getDescricao(),
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a Palavra Chave "
+                                + palavras.getDescricao(),
                                 "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
                     }
                 }
@@ -218,28 +228,32 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
-        if (biblioteca == null) {
-            biblioteca = new Biblioteca();
+        if (palavras == null) {
+            palavras = new PalavrasChaves();
         }
 
-        biblioteca.setDescricao(tfNomeBiblioteca.getText().toString());
-        int idBiblioteca = biblioteca.getIdBiblioteca();
-        if (bibliotecaRN.salvar(biblioteca)) {
-            if (idBiblioteca == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
+        palavras.setDescricao(tfDescricao.getText().toString());
+        int idpalavra = palavras.getIdPalavrasChaves();
+        if (palavrasRN.adicionar(palavras)) {
+            if (idpalavra == 0) {
+                JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()
                         + ", cadastrada com sucesso!");
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
+                JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()
                         + ", alterada com sucesso!");
             }
             limpaCampos();
             btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
+
+    private void tfDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfDescricaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfDescricaoActionPerformed
     public void limpaCampos() {
-        tfNomeBiblioteca.setText("");
-        biblioteca = null;
-        tfNomeBiblioteca.requestFocus();
+        tfDescricao.setText("");
+        palavras = null;
+        tfDescricao.requestFocus();
         btRemover.setEnabled(false);
     }
 
@@ -260,14 +274,14 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaCadastroBiblioteca.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCadastroPalavasChaves.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaCadastroBiblioteca().setVisible(true);
+                new TelaCadastroPalavasChaves().setVisible(true);
             }
         });
     }
@@ -281,6 +295,6 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JTextField tfNomeBiblioteca;
+    private javax.swing.JTextField tfDescricao;
     // End of variables declaration//GEN-END:variables
 }

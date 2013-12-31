@@ -252,7 +252,7 @@
             <Property name="selectedItem" type="java.lang.Object" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection component="cbUF" type="bean"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Selecione o Estado:"/>
+            <Property name="toolTipText" type="java.lang.String" value="Selecione o Estado"/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -265,7 +265,6 @@
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
               <Format format="##########" subtype="-1" type="5"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Informe o c&#xf3;digo do IBGE."/>
             <Property name="focusLostBehavior" type="int" value="3"/>
           </Properties>
           <Constraints>

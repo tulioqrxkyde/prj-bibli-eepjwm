@@ -66,7 +66,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="btSair" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <Component id="tfNomeBiblioteca" alignment="0" max="32767" attributes="0"/>
+                      <Component id="tfDescricao" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               </Group>
@@ -79,7 +79,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="Descricao_Biblioteca" min="-2" pref="29" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                  <Component id="tfNomeBiblioteca" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfDescricao" min="-2" max="-2" attributes="0"/>
                   <EmptySpace pref="29" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btSair" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -168,11 +168,11 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="ff" green="ff" red="ff" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Biblioteca"/>
+                <Property name="text" type="java.lang.String" value="Palavras Chaves"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="0" width="170" height="30"/>
+                  <AbsoluteConstraints x="0" y="0" width="290" height="30"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -186,13 +186,16 @@
             <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o.:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfNomeBiblioteca">
+        <Component class="javax.swing.JTextField" name="tfDescricao">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o da biblioteca"/>
+            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o do Tipo do Item"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="tfDescricaoActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

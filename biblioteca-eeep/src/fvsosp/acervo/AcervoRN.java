@@ -5,8 +5,6 @@
 package fvsosp.acervo;
 
 import fvsosp.editora.Editora;
-import fvsosp.especificacoes.EspecificacoesTecnicas;
-import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.util.List;
@@ -20,14 +18,22 @@ public class AcervoRN {
 
     private AcervoDAO dao = new AcervoDAO();
 
-    // Metódo que adiciona um livro no acervo
+    // Metódo que adiciona um livro no acervo, caso contrário retorna false
     public boolean salvar(Acervo acervo) {
-
+        if (!acervo.getTituloObra().isEmpty() && !acervo.getSubtituloObra().isEmpty() && !acervo.getIsbn().isEmpty()
+                && !acervo.getVolume().isEmpty() && !acervo.getEdicao().isEmpty() && acervo.getAnoEdicao() > 0
+                && !acervo.getInformacoesAdicionais().isEmpty() && !acervo.getLocalizacao().isEmpty() && acervo.getAutor() != null
+                && acervo.getBiblioteca() != null && acervo.getEditora() != null /*&& acervo.getEspecificacoesTecnicas() != null 
+                /*&& acervo.getExemplares() != null*/ && acervo.getIdioma() != null && acervo.getSessao() != null && acervo.getTipoItem() != null
+                ) {
             if (acervo.getIdAcervo() == 0) {
                 return dao.adicionar(acervo);
             } else {
                 return dao.atualizar(acervo);
             }
+        }
+        JOptionPane.showMessageDialog(null, "Todos os campos devem ser preenchidos.");
+        return false;
     }
 
     // Metódo que remove
@@ -48,7 +54,7 @@ public class AcervoRN {
         return dao.pesquisarSubTitulodaObra(subtitulo);
     }
 
-    public Acervo pesquisarIsbn(String isbns) {
+    public List<Acervo> pesquisarIsbn(String isbns) {
         return dao.pesquisarIsbn(isbns);
     }
 
@@ -80,19 +86,11 @@ public class AcervoRN {
         return dao.pesquisarEditora(editora);
     }
 
-    public List<Acervo> pesquisarEspecificacoesTecnicas(EspecificacoesTecnicas escpecificacoestecnicas) {
-        return dao.pesquisarEspecificacoesTecnicas(escpecificacoestecnicas);
-    }
-
-    public List<Acervo> pesquisarPalavrasChaves(String palavras) {
-        return dao.pesquisarPalavrasChaves(palavras);
-    }
-    
     public List<Acervo> pesquisarSessao(Sessao sessao) {
         return dao.pesquisarSessao(sessao);
     }
 
-    public Acervo pesquisarCodigo(int codigo) {
+    public Acervo pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }
 }

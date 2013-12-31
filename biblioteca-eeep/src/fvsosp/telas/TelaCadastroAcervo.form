@@ -7,13 +7,10 @@
   </NonVisualComponents>
   <Properties>
     <Property name="defaultCloseOperation" type="int" value="2"/>
-    <Property name="title" type="java.lang.String" value="OSBiblio - Acervo"/>
-    <Property name="modal" type="boolean" value="true"/>
     <Property name="resizable" type="boolean" value="false"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
-    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -30,44 +27,20 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" pref="459" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Component id="jPanel1" min="-2" pref="404" max="-2" attributes="0"/>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JPanel" name="jPanel1">
 
-      <Layout>
-        <DimensionLayout dim="0">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel3" min="-2" pref="460" max="-2" attributes="0"/>
-                      <Component id="jPanel2" min="-2" pref="460" max="-2" attributes="0"/>
-                  </Group>
-              </Group>
-          </Group>
-        </DimensionLayout>
-        <DimensionLayout dim="1">
-          <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jPanel3" min="-2" pref="35" max="-2" attributes="0"/>
-                      <Group type="102" alignment="0" attributes="0">
-                          <EmptySpace min="30" pref="30" max="-2" attributes="0"/>
-                          <Component id="jPanel2" min="-2" pref="380" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
-                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-              </Group>
-          </Group>
-        </DimensionLayout>
+      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+        <Property name="useNullLayout" type="boolean" value="true"/>
       </Layout>
       <SubComponents>
         <Container class="javax.swing.JPanel" name="jPanel3">
@@ -76,6 +49,11 @@
               <Color blue="98" green="59" red="3b" type="rgb"/>
             </Property>
           </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="0" width="460" height="35"/>
+            </Constraint>
+          </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
             <Property name="useNullLayout" type="boolean" value="true"/>
@@ -108,6 +86,11 @@
               <Dimension value="[432, 177]"/>
             </Property>
           </Properties>
+          <Constraints>
+            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+              <AbsoluteConstraints x="0" y="30" width="460" height="390"/>
+            </Constraint>
+          </Constraints>
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
             <Property name="useNullLayout" type="boolean" value="false"/>
@@ -151,7 +134,6 @@
                   <Image iconType="3" name="/fvsosp/imagens/remove_1.png"/>
                 </Property>
                 <Property name="toolTipText" type="java.lang.String" value="Excluir"/>
-                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btRemoverActionPerformed"/>
@@ -194,7 +176,10 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Container class="javax.swing.JTabbedPane" name="tbAcervo">
+            <Container class="javax.swing.JTabbedPane" name="tbLeitor">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbLeitorMouseClicked"/>
+              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="0" y="10" width="460" height="310"/>
@@ -232,7 +217,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Titulo da Obra.:"/>
+                        <Property name="text" type="java.lang.String" value="Titulo da Obra.:*"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -245,7 +230,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o t&#xed;tulo da Obra."/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o t&#xed;tulo da obra"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -271,7 +256,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o subt&#xed;tulo da Obra."/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o subt&#xed;tulo da obra"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -288,7 +273,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="120" width="-1" height="20"/>
+                          <AbsoluteConstraints x="10" y="110" width="-1" height="29"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -297,11 +282,11 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Edi&#xe7;&#xe3;o.:"/>
+                        <Property name="text" type="java.lang.String" value="Edi&#xe7;&#xe3;o.:*"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="170" width="-1" height="20"/>
+                          <AbsoluteConstraints x="10" y="160" width="-1" height="29"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -314,7 +299,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="260" y="170" width="-1" height="20"/>
+                          <AbsoluteConstraints x="260" y="160" width="-1" height="29"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -323,11 +308,24 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Volume.:"/>
+                        <Property name="text" type="java.lang.String" value="Volume.:*"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="260" y="120" width="-1" height="20"/>
+                          <AbsoluteConstraints x="260" y="110" width="-1" height="29"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfVolume">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o ISBN da obra"/>
+                      </Properties>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="260" y="140" width="170" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -336,11 +334,11 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui as informa&#xe7;&#xf5;es adicionais da Obra."/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui as informa&#xe7;&#xf5;es adicionais"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="240" width="170" height="-1"/>
+                          <AbsoluteConstraints x="10" y="250" width="170" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -353,7 +351,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="220" width="-1" height="20"/>
+                          <AbsoluteConstraints x="10" y="220" width="-1" height="29"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -366,7 +364,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="260" y="220" width="-1" height="20"/>
+                          <AbsoluteConstraints x="260" y="220" width="-1" height="29"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -375,18 +373,20 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui a localiza&#xe7;&#xe3;o da Obra."/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui a localiza&#xe7;&#xe3;o"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="260" y="240" width="170" height="-1"/>
+                          <AbsoluteConstraints x="260" y="250" width="170" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfAnoEdicao">
+                    <Component class="javax.swing.JFormattedTextField" name="tffAnoEdicao">
                       <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o ano de edi&#xe7;&#xe3;o da Obra."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o ano de edi&#xe7;&#xe3;o"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
+                        </Property>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -394,45 +394,29 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfEdicao">
+                    <Component class="javax.swing.JTextField" name="tfIsbn1">
                       <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="###" subtype="-1" type="5"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui a edi&#xe7;&#xe3;o da Obra."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o ISBN da obra"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="190" width="170" height="20"/>
+                          <AbsoluteConstraints x="10" y="140" width="170" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfISBN">
+                    <Component class="javax.swing.JTextField" name="tfEdicao">
                       <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="##########" subtype="-1" type="5"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o ISBN da Obra."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui a edi&#xe7;&#xe3;o da obra"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="10" y="140" width="170" height="20"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfVolume">
-                      <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="###" subtype="-1" type="5"/>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o Volume."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="260" y="140" width="170" height="20"/>
+                          <AbsoluteConstraints x="10" y="190" width="170" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -456,111 +440,19 @@
                     <Property name="useNullLayout" type="boolean" value="false"/>
                   </Layout>
                   <SubComponents>
-                    <Component class="javax.swing.JLabel" name="jLabel39">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="12" style="0"/>
-                        </Property>
-                        <Property name="text" type="java.lang.String" value="Palavras Chaves.:"/>
-                      </Properties>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="30" y="10" width="-1" height="20"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JTextField" name="tfPalavrasChaves">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="12" style="0"/>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui as Palavras Chaves."/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfPalavrasChavesKeyReleased"/>
-                      </Events>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="30" y="30" width="380" height="20"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="addPalavra">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="+"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addPalavraActionPerformed"/>
-                      </Events>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="180" y="250" width="-1" height="-1"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Component class="javax.swing.JButton" name="removePalavra">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="-"/>
-                      </Properties>
-                      <Events>
-                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="removePalavraActionPerformed"/>
-                      </Events>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="230" y="250" width="-1" height="-1"/>
-                        </Constraint>
-                      </Constraints>
-                    </Component>
-                    <Container class="javax.swing.JScrollPane" name="scrollPalavras">
-                      <Properties>
-                        <Property name="requestFocusEnabled" type="boolean" value="false"/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
-                      </AuxValues>
-                      <Constraints>
-                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="30" y="50" width="380" height="30"/>
-                        </Constraint>
-                      </Constraints>
-
-                      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
-                      <SubComponents>
-                        <Component class="javax.swing.JList" name="listaPalavras">
-                          <Properties>
-                            <Property name="model" type="javax.swing.ListModel" editor="org.netbeans.modules.form.editors2.ListModelEditor">
-                              <StringArray count="4">
-                                <StringItem index="0" value=" "/>
-                                <StringItem index="1" value=" "/>
-                                <StringItem index="2" value=" "/>
-                                <StringItem index="3" value=" "/>
-                              </StringArray>
-                            </Property>
-                            <Property name="selectionMode" type="int" value="0"/>
-                            <Property name="visibleRowCount" type="int" value="5"/>
-                          </Properties>
-                          <AccessibilityProperties>
-                            <Property name="AccessibleContext.accessibleDescription" type="java.lang.String" value=""/>
-                          </AccessibilityProperties>
-                          <Events>
-                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="listaPalavrasMouseClicked"/>
-                          </Events>
-                        </Component>
-                      </SubComponents>
-                    </Container>
                     <Container class="javax.swing.JScrollPane" name="jScrollPane2">
                       <AuxValues>
                         <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
                       </AuxValues>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="30" y="100" width="380" height="140"/>
+                          <AbsoluteConstraints x="30" y="50" width="380" height="210"/>
                         </Constraint>
                       </Constraints>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
-                        <Component class="javax.swing.JTable" name="tbPalavras">
+                        <Component class="javax.swing.JTable" name="tbPalavrasChaves">
                           <Properties>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Verdana" size="12" style="0"/>
@@ -570,14 +462,53 @@
                                 <Column editable="false" title="Palavras Chaves" type="java.lang.Object"/>
                               </Table>
                             </Property>
-                            <Property name="cellSelectionEnabled" type="boolean" value="true"/>
+                            <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                              <TableColumnModel selectionModel="0">
+                                <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                  <Title/>
+                                  <Editor/>
+                                  <Renderer/>
+                                </Column>
+                              </TableColumnModel>
+                            </Property>
+                            <Property name="rowSelectionAllowed" type="boolean" value="false"/>
                             <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                               <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
                             </Property>
                           </Properties>
+                          <Events>
+                            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbPalavrasChavesMouseClicked"/>
+                            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbPalavrasChavesKeyPressed"/>
+                          </Events>
                         </Component>
                       </SubComponents>
                     </Container>
+                    <Component class="javax.swing.JButton" name="Excluir">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Excluir"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ExcluirActionPerformed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="100" y="20" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
+                    <Component class="javax.swing.JButton" name="jButton2">
+                      <Properties>
+                        <Property name="text" type="java.lang.String" value="Inserir"/>
+                      </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                      </Events>
+                      <Constraints>
+                        <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                          <AbsoluteConstraints x="30" y="20" width="-1" height="-1"/>
+                        </Constraint>
+                      </Constraints>
+                    </Component>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel6">
@@ -600,8 +531,10 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel36" min="-2" max="-2" attributes="0"/>
                                   <Component id="tfExemplar" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
+                                  <Component id="jLabel37" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfTombo" alignment="0" min="-2" pref="420" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace pref="25" max="32767" attributes="0"/>
                           </Group>
@@ -611,15 +544,35 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jLabel36" min="-2" pref="29" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
+                              <Component id="tfTombo" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jLabel37" min="-2" pref="29" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
                               <Component id="tfExemplar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace pref="216" max="32767" attributes="0"/>
+                              <EmptySpace pref="157" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
                   </Layout>
                   <SubComponents>
+                    <Component class="javax.swing.JLabel" name="jLabel36">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Tombo.:"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JTextField" name="tfExemplar">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
+                        </Property>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o n&#xfa;mero do exemplar"/>
+                      </Properties>
+                    </Component>
                     <Component class="javax.swing.JLabel" name="jLabel37">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -628,13 +581,12 @@
                         <Property name="text" type="java.lang.String" value="N&#xfa;mero do Exemplar.:"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfExemplar">
+                    <Component class="javax.swing.JTextField" name="tfTombo">
                       <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="############" subtype="-1" type="5"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o N&#xfa;mero do Exemplar."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o tombo"/>
                       </Properties>
                     </Component>
                   </SubComponents>
@@ -659,8 +611,8 @@
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel44" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfPaginas" min="-2" pref="170" max="-2" attributes="0"/>
+                                  <Component id="jLabel44" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfPaginas" alignment="0" min="-2" pref="170" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
@@ -685,18 +637,18 @@
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="1" attributes="0">
-                              <EmptySpace pref="119" max="32767" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel35" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                                   <Component id="jLabel44" alignment="3" min="-2" pref="29" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="0" pref="0" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="tfPeso" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="tfPaginas" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="tfPaginas" min="-2" max="-2" attributes="0"/>
+                                  <Component id="tfPeso" alignment="0" min="-2" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="114" max="-2" attributes="0"/>
+                              <EmptySpace pref="96" max="32767" attributes="0"/>
                           </Group>
                           <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
                               <Group type="102" attributes="0">
@@ -732,7 +684,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o acabamento da Capa."/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o acabamento da capa"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel27">
@@ -748,7 +700,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o acabamento do Miolo."/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o acabamento do miolo"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel35">
@@ -764,27 +716,145 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="N&#xfa;mero de P&#xe1;ginas.:"/>
+                        <Property name="text" type="java.lang.String" value="N&#xfa;mero de P&#xe1;ginas.:*"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfPeso">
+                    <Component class="javax.swing.JTextField" name="tfPaginas">
                       <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="###" subtype="-1" type="5"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite o Peso."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o n&#xfa;mero de p&#xe1;ginas"/>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JFormattedTextField" name="tfPaginas">
+                    <Component class="javax.swing.JTextField" name="tfPeso">
                       <Properties>
-                        <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-                          <Format format="####" subtype="-1" type="5"/>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Digite a quantidade de P&#xe1;ginas."/>
-                        <Property name="focusLostBehavior" type="int" value="3"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Digite aqui o peso"/>
                       </Properties>
                     </Component>
+                  </SubComponents>
+                </Container>
+                <Container class="javax.swing.JPanel" name="jPanel7">
+                  <Constraints>
+                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
+                      <JTabbedPaneConstraints tabName="Autores">
+                        <Property name="tabTitle" type="java.lang.String" value="Autores"/>
+                      </JTabbedPaneConstraints>
+                    </Constraint>
+                  </Constraints>
+
+                  <Layout>
+                    <DimensionLayout dim="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="455" max="32767" attributes="0"/>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="pn4" min="-2" pref="455" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                    <DimensionLayout dim="1">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <EmptySpace min="0" pref="282" max="32767" attributes="0"/>
+                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
+                              <Group type="102" attributes="0">
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  <Component id="pn4" min="-2" pref="282" max="-2" attributes="0"/>
+                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                              </Group>
+                          </Group>
+                      </Group>
+                    </DimensionLayout>
+                  </Layout>
+                  <SubComponents>
+                    <Container class="javax.swing.JPanel" name="pn4">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="ff" green="ff" red="ff" type="rgb"/>
+                        </Property>
+                      </Properties>
+
+                      <Layout class="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout">
+                        <Property name="useNullLayout" type="boolean" value="false"/>
+                      </Layout>
+                      <SubComponents>
+                        <Container class="javax.swing.JScrollPane" name="jScrollPane3">
+                          <AuxValues>
+                            <AuxValue name="autoScrollPane" type="java.lang.Boolean" value="true"/>
+                          </AuxValues>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="30" y="50" width="380" height="210"/>
+                            </Constraint>
+                          </Constraints>
+
+                          <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+                          <SubComponents>
+                            <Component class="javax.swing.JTable" name="tbAutores">
+                              <Properties>
+                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                                  <Font name="Verdana" size="12" style="0"/>
+                                </Property>
+                                <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+                                  <Table columnCount="1" rowCount="7">
+                                    <Column editable="false" title="Autores" type="java.lang.Object"/>
+                                  </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="false">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
+                                </Property>
+                                <Property name="rowSelectionAllowed" type="boolean" value="false"/>
+                                <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
+                                  <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
+                                </Property>
+                              </Properties>
+                              <Events>
+                                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="tbAutoresMouseClicked"/>
+                                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbAutoresKeyPressed"/>
+                              </Events>
+                            </Component>
+                          </SubComponents>
+                        </Container>
+                        <Component class="javax.swing.JButton" name="btExcluirAutor">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Excluir"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btExcluirAutorActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="100" y="20" width="-1" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                        <Component class="javax.swing.JButton" name="btInserirAutor">
+                          <Properties>
+                            <Property name="text" type="java.lang.String" value="Inserir"/>
+                          </Properties>
+                          <Events>
+                            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btInserirAutorActionPerformed"/>
+                          </Events>
+                          <Constraints>
+                            <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                              <AbsoluteConstraints x="30" y="20" width="-1" height="-1"/>
+                            </Constraint>
+                          </Constraints>
+                        </Component>
+                      </SubComponents>
+                    </Container>
                   </SubComponents>
                 </Container>
                 <Container class="javax.swing.JPanel" name="jPanel4">
@@ -809,35 +879,27 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbAutor" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                                           <Component id="cbBiblioteca" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
-                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                                           <Component id="jLabel1" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cbEditora" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
                                       </Group>
+                                      <EmptySpace pref="25" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="102" attributes="0">
-                                              <EmptySpace pref="25" max="32767" attributes="0"/>
-                                              <Group type="103" groupAlignment="0" attributes="0">
-                                                  <Group type="103" alignment="1" groupAlignment="0" attributes="0">
-                                                      <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
-                                                      <Component id="cbIdioma" min="-2" pref="205" max="-2" attributes="0"/>
-                                                      <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
-                                                  </Group>
-                                                  <Component id="cbSessao" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
-                                              </Group>
+                                          <Group type="103" alignment="1" groupAlignment="0" attributes="0">
+                                              <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
+                                              <Component id="cbIdioma" min="-2" pref="205" max="-2" attributes="0"/>
+                                              <Component id="jLabel5" alignment="0" min="-2" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="102" alignment="0" attributes="0">
-                                              <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
-                                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                          </Group>
+                                          <Component id="cbSessao" alignment="1" min="-2" pref="205" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="cbEditora" min="-2" pref="205" max="-2" attributes="0"/>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="cbTipoItem" min="-2" pref="205" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                                          <Component id="cbTipoItem" alignment="0" min="-2" pref="205" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
@@ -848,40 +910,32 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
                                       <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cbIdioma" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbAutor" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="cbSessao" alignment="3" min="-2" max="-2" attributes="0"/>
-                                          <Component id="cbBiblioteca" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
+                                      <Component id="cbIdioma" min="-2" max="-2" attributes="0"/>
                                   </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <EmptySpace min="-2" pref="1" max="-2" attributes="0"/>
-                                      <Component id="jLabel7" min="-2" max="-2" attributes="0"/>
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="cbEditora" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbTipoItem" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="cbEditora" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbSessao" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="cbBiblioteca" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="cbTipoItem" min="-2" max="-2" attributes="0"/>
                               <EmptySpace pref="100" max="32767" attributes="0"/>
                           </Group>
                       </Group>
@@ -890,17 +944,17 @@
                   <SubComponents>
                     <Component class="javax.swing.JLabel" name="jLabel1">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Biblioteca.:"/>
+                        <Property name="text" type="java.lang.String" value="Biblioteca.:*"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel2">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Editora.:"/>
+                        <Property name="text" type="java.lang.String" value="Editora.:*"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel4">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Idioma.:"/>
+                        <Property name="text" type="java.lang.String" value="Idioma.:*"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel5">
@@ -910,7 +964,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Tipo Item.:"/>
+                        <Property name="text" type="java.lang.String" value="Tipo Item.:*"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbBiblioteca">
@@ -923,11 +977,7 @@
                             <StringItem index="0" value="--"/>
                           </StringArray>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Selecione a Biblioteca."/>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="BibliotecaRN bibRN = new BibliotecaRN();                  for (Biblioteca biblioteca : bibRN.listar()) {             cbBiblioteca.addItem(biblioteca);               }"/>
-                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbEditora">
                       <Properties>
@@ -939,11 +989,7 @@
                             <StringItem index="0" value="--"/>
                           </StringArray>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Selecione a Editora."/>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="EditoraRN editoraRN = new EditoraRN();         for (Editora editora : editoraRN.listar()) {             cbEditora.addItem(editora);         }"/>
-                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbIdioma">
                       <Properties>
@@ -955,11 +1001,7 @@
                             <StringItem index="0" value="--"/>
                           </StringArray>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Selecione o Idioma."/>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="IdiomaRN idRN = new IdiomaRN();         List&lt;Idioma&gt; idiomas = idRN.listar();         for (Idioma idioma : idiomas) {             cbIdioma.addItem(idioma);         }"/>
-                      </AuxValues>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbSessao">
                       <Properties>
@@ -971,31 +1013,6 @@
                             <StringItem index="0" value="--"/>
                           </StringArray>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Selecione a Sess&#xe3;o."/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SessaoRN sesRN = new SessaoRN();         List&lt;Sessao&gt; sessoes = sesRN.listar();         for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }"/>
-                      </AuxValues>
-                    </Component>
-                    <Component class="javax.swing.JComboBox" name="cbAutor">
-                      <Properties>
-                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Verdana" size="12" style="0"/>
-                        </Property>
-                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="1">
-                            <StringItem index="0" value="--"/>
-                          </StringArray>
-                        </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Selecione o Autor."/>
-                      </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="AutorRN autRN = new AutorRN();         List&lt;Autor&gt; autores = autRN.listar();         for (Autor autor : autores) {             cbAutor.addItem(autor);         }"/>
-                      </AuxValues>
-                    </Component>
-                    <Component class="javax.swing.JLabel" name="jLabel7">
-                      <Properties>
-                        <Property name="text" type="java.lang.String" value="Autor.:"/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="cbTipoItem">
@@ -1008,11 +1025,7 @@
                             <StringItem index="0" value="--"/>
                           </StringArray>
                         </Property>
-                        <Property name="toolTipText" type="java.lang.String" value="Selecione o Tipo de Item."/>
                       </Properties>
-                      <AuxValues>
-                        <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TipoItemRN tipRN = new TipoItemRN();         List&lt;TipoItem&gt; tipoitens = tipRN.listar();         for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }"/>
-                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
