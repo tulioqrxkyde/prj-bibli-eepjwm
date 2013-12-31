@@ -7,17 +7,13 @@ package fvsosp.acervo;
 import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
-import fvsosp.especificacoes.EspecificacoesTecnicas;
-import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.*;
 import org.hibernate.*;
-import org.hibernate.criterion.MatchMode;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 
 /**
  *
@@ -57,12 +53,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public Acervo pesquisarIsbn(String isbns) {
-        Acervo acervo = null;
+    public List<Acervo> pesquisarIsbn(String isbns) {
+        List<Acervo> acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("isbn", isbns, MatchMode.ANYWHERE)).uniqueResult();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("isbn", isbns, MatchMode.ANYWHERE)).addOrder(Order.asc("isbn")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o isbn. Erro: " + e.getMessage());
         } finally {
@@ -183,34 +179,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public List<Acervo> pesquisarEspecificacoesTecnicas(EspecificacoesTecnicas escpecificacoestecnicas) {
-        List<Acervo> acervo = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("especificacoesTecnicas", escpecificacoestecnicas)).addOrder(Order.asc("especificacoesTecnicas")).list();
-        } catch (HibernateException e) {
-            System.out.println("Erro ao localizar as Especificacões Técnicas. Erro: " + e.getMessage());
-        } finally {
-            this.getSessao().close();
-        }
-        return acervo;
-    }
     
-    public List<Acervo> pesquisarPalavrasChaves(String palavras) {
-        List<Acervo> acervo = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("palavrasChaves", palavras)).addOrder(Order.asc("palavrasChaves")).list();
-        } catch (HibernateException e) {
-            System.out.println("Erro ao localizar Palavras Chaves. Erro: " + e.getMessage());
-        } finally {
-            this.getSessao().close();
-        }
-        return acervo;
-    }
-
     public List<Acervo> pesquisarSessao(Sessao sessao) {
         List<Acervo> acervo = null;
         try {
@@ -239,7 +208,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public Acervo pesquisarCodigo(int codigo) {
+    public Acervo pesquisarCodigo(short codigo) {
         Acervo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
@@ -247,6 +216,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
 
             acervo = (Acervo) getSessao().createCriteria(Acervo.class).
                     add(Restrictions.eq("idAcervo", codigo)).uniqueResult();
+
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por código: " + e.getMessage());
         } finally {

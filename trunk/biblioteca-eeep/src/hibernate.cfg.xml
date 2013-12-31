@@ -26,7 +26,6 @@
                 <mapping class="fvsosp.acervo.Acervo"/>
                 <mapping class="fvsosp.tipoitem.TipoItem"/>
                 <mapping class="fvsosp.editora.Editora"/>
-                <mapping class="fvsosp.especificacoes.EspecificacoesTecnicas"/>
                 <mapping class="fvsosp.leitor.Leitor"/>
                 <mapping class="fvsosp.grupoleitores.GruposLeitores"/>
                 <mapping class="fvsosp.exemplar.Exemplar"/>

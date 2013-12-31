@@ -101,7 +101,6 @@ public class Util {
     public static boolean chkVazio(String... campos) {
         for (String chk : campos) {
             if (chk.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
                 return false;
             }
         }

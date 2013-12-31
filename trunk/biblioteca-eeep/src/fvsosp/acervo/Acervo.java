@@ -4,7 +4,6 @@ import fvsosp.exemplar.Exemplar;
 import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.editora.Editora;
-import fvsosp.especificacoes.EspecificacoesTecnicas;
 import fvsosp.idioma.Idioma;
 import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.sessao.Sessao;
@@ -12,17 +11,120 @@ import fvsosp.tipoitem.TipoItem;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import javax.persistence.*;
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.IndexColumn;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="acervo")
-public class Acervo implements Serializable {
-    
+public class Acervo implements Serializable{
+
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+
     @Id
     @GeneratedValue
-    private int idAcervo;
+    private short idAcervo;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 79 * hash + this.getIdAcervo();
+        hash = 79 * hash + Objects.hashCode(this.getTituloObra());
+        hash = 79 * hash + Objects.hashCode(this.getSubtituloObra());
+        hash = 79 * hash + Objects.hashCode(this.getIsbn());
+        hash = 79 * hash + Objects.hashCode(this.getVolume());
+        hash = 79 * hash + Objects.hashCode(this.getEdicao());
+        hash = 79 * hash + this.getAnoEdicao();
+        hash = 79 * hash + Objects.hashCode(this.getInformacoesAdicionais());
+        hash = 79 * hash + Objects.hashCode(this.getLocalizacao());
+        hash = 79 * hash + Objects.hashCode(this.getTipoItem());
+        hash = 79 * hash + Objects.hashCode(this.getAutor());
+        hash = 79 * hash + Objects.hashCode(this.getEditora());
+        hash = 79 * hash + Objects.hashCode(this.getIdioma());
+        hash = 79 * hash + Objects.hashCode(this.getSessao());
+        hash = 79 * hash + Objects.hashCode(this.getBiblioteca());
+        hash = 79 * hash + Objects.hashCode(this.getExemplares());
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Acervo other = (Acervo) obj;
+        if (this.getIdAcervo() != other.getIdAcervo()) {
+            return false;
+        }
+        if (!Objects.equals(this.tituloObra, other.tituloObra)) {
+            return false;
+        }
+        if (!Objects.equals(this.subtituloObra, other.subtituloObra)) {
+            return false;
+        }
+        if (!Objects.equals(this.isbn, other.isbn)) {
+            return false;
+        }
+        if (!Objects.equals(this.volume, other.volume)) {
+            return false;
+        }
+        if (!Objects.equals(this.edicao, other.edicao)) {
+            return false;
+        }
+        if (this.getAnoEdicao() != other.getAnoEdicao()) {
+            return false;
+        }
+        if (!Objects.equals(this.informacoesAdicionais, other.informacoesAdicionais)) {
+            return false;
+        }
+        if (!Objects.equals(this.localizacao, other.localizacao)) {
+            return false;
+        }
+        if (!Objects.equals(this.tipoItem, other.tipoItem)) {
+            return false;
+        }
+        
+        if (!Objects.equals(this.editora, other.editora)) {
+            return false;
+        }
+        if (!Objects.equals(this.idioma, other.idioma)) {
+            return false;
+        }
+        
+        if (!Objects.equals(this.sessao, other.sessao)) {
+            return false;
+        }
+        if (!Objects.equals(this.biblioteca, other.biblioteca)) {
+            return false;
+        }
+        if (!Objects.equals(this.exemplares, other.exemplares)) {
+            return false;
+        }
+        return true;
+    }
+    
+    @ManyToMany(fetch = FetchType.EAGER,  cascade= CascadeType.ALL)
+    //@IndexColumn(name="palavraschaves")
+    @JoinTable(name = "PalavraschavesAcervo", 
+            joinColumns = @JoinColumn(name = "idAcervo"), 
+            inverseJoinColumns = @JoinColumn(name = "idPalavrasChaves"))
+    private Set<PalavrasChaves> palavrasChaves;
       
     @Column(nullable = false, length = 50)
     private String tituloObra;
@@ -42,140 +144,64 @@ public class Acervo implements Serializable {
     @Column(length = 4, nullable = false)
     private short anoEdicao;
     
-    @Column(length = 70, nullable = false)
+    @Column(length = 70)
     private String informacoesAdicionais;
     
-    @Column(length = 50, nullable = false)
+    @Column(length = 50)
     private String localizacao;
     
     @ManyToOne
-    @JoinColumn(name="idtipoitem")
+    @JoinColumn(name="idtipoitem", nullable=false)
     private TipoItem tipoItem;
+      
+    @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
+    //@IndexColumn(name="autor")
+    @JoinTable(name = "AutoresAcervo", 
+            joinColumns = @JoinColumn(name = "idAcervo"), 
+            inverseJoinColumns = @JoinColumn(name = "idAutor"))
+    private Set<Autor> autores;
     
     @ManyToOne
-    @JoinColumn(name="idautor")
-    private Autor autor;
-    
-    @ManyToOne
-    @JoinColumn(name="ideditora")
+    @JoinColumn(name="ideditora", nullable=false)
     private Editora editora;
     
     @ManyToOne
-    @JoinColumn(name="ididioma")
+    @JoinColumn(name="ididioma", nullable=false)
     private Idioma idioma;
-    
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name="idEspecificacoesTecnicas")
-    private EspecificacoesTecnicas especificacoesTecnicas;
-    
+      
     @ManyToOne
     @JoinColumn(name="idsessao")
     private Sessao sessao;
     
     @ManyToOne
-    @JoinColumn(name="idbiblioteca")
+    @JoinColumn(name="idbiblioteca", nullable=false)
     private Biblioteca biblioteca;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy="acervo")
     private List<Exemplar> exemplares;
     
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @Fetch(FetchMode.SUBSELECT)
-    private List<PalavrasChaves> palavrasChaves;
+    @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")
+    private short numeroPaginas;
+
+    @Column(length = 7, columnDefinition = "smallint default '0'")
+    private short peso;
+
+    @Column(length = 30, columnDefinition = "varchar(30) default ''")
+    private String acabamentoCapa;
+
+    @Column(length = 30, columnDefinition = "varchar(30) default ''")
+    private String acabamentoMiolo;
     
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 23 * hash + this.idAcervo;
-        hash = 23 * hash + Objects.hashCode(this.tituloObra);
-        hash = 23 * hash + Objects.hashCode(this.subtituloObra);
-        hash = 23 * hash + Objects.hashCode(this.isbn);
-        hash = 23 * hash + Objects.hashCode(this.volume);
-        hash = 23 * hash + Objects.hashCode(this.edicao);
-        hash = 23 * hash + this.anoEdicao;
-        hash = 23 * hash + Objects.hashCode(this.informacoesAdicionais);
-        hash = 23 * hash + Objects.hashCode(this.localizacao);
-        hash = 23 * hash + Objects.hashCode(this.tipoItem);
-        hash = 23 * hash + Objects.hashCode(this.autor);
-        hash = 23 * hash + Objects.hashCode(this.editora);
-        hash = 23 * hash + Objects.hashCode(this.idioma);
-       // hash = 23 * hash + Objects.hashCode(this.especificacoesTecnicas);
-        hash = 23 * hash + Objects.hashCode(this.sessao);
-        hash = 23 * hash + Objects.hashCode(this.biblioteca);
-        hash = 23 * hash + Objects.hashCode(this.exemplares);
-        hash = 23 * hash + Objects.hashCode(this.palavrasChaves);
-        return hash;
+    private static long serialVersionUID = -8256983727176831230L;
+
+    /*** @retorna o id do Acervo ***/
+    public short getIdAcervo() {
+        return idAcervo;
     }
 
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-        if (getClass() != obj.getClass()) {
-            return false;
-        }
-        final Acervo other = (Acervo) obj;
-        if (this.idAcervo != other.idAcervo) {
-            return false;
-        }
-        if (!Objects.equals(this.tituloObra, other.tituloObra)) {
-            return false;
-        }
-        if (!Objects.equals(this.subtituloObra, other.subtituloObra)) {
-            return false;
-        }
-        if (!Objects.equals(this.isbn, other.isbn)) {
-            return false;
-        }
-        if (!Objects.equals(this.volume, other.volume)) {
-            return false;
-        }
-        if (!Objects.equals(this.edicao, other.edicao)) {
-            return false;
-        }
-        if (this.anoEdicao != other.anoEdicao) {
-            return false;
-        }
-        if (!Objects.equals(this.informacoesAdicionais, other.informacoesAdicionais)) {
-            return false;
-        }
-        if (!Objects.equals(this.localizacao, other.localizacao)) {
-            return false;
-        }
-        if (!Objects.equals(this.tipoItem, other.tipoItem)) {
-            return false;
-        }
-        if (!Objects.equals(this.autor, other.autor)) {
-            return false;
-        }
-        if (!Objects.equals(this.editora, other.editora)) {
-            return false;
-        }
-        if (!Objects.equals(this.idioma, other.idioma)) {
-            return false;
-        }
-        /*if (!Objects.equals(this.especificacoesTecnicas, other.especificacoesTecnicas)) {
-            return false;
-        }*/
-        if (!Objects.equals(this.sessao, other.sessao)) {
-            return false;
-        }
-        if (!Objects.equals(this.biblioteca, other.biblioteca)) {
-            return false;
-        }
-        if (!Objects.equals(this.exemplares, other.exemplares)) {
-            return false;
-        }
-        if (!Objects.equals(this.palavrasChaves, other.palavrasChaves)) {
-            return false;
-        }
-        return true;
-    }
-    
-    /*** @retorna o id do Acervo ***/
-    public int getIdAcervo() {
-        return idAcervo;
+    /*** @seta idAcervo the idAcervo to set ***/
+    public void setIdAcervo(short idAcervo) {
+        this.idAcervo = idAcervo;
     }
 
     /*** @retorna o Título da Obra ***/
@@ -269,13 +295,13 @@ public class Acervo implements Serializable {
     }
 
     /*** @retorna o Autor ***/
-    public Autor getAutor() {
-        return autor;
+    public Set<Autor> getAutor() {
+        return getAutores();
     }
 
     /*** @seta e copia o Autor recebido para o Autor da Classe ***/
-    public void setAutor(Autor autor) {
-        this.autor = autor;
+    public void setAutor(Set<Autor> autores) {
+        this.setAutores(autores);
     }
 
     /*** @retorna a Editora ***/
@@ -296,16 +322,6 @@ public class Acervo implements Serializable {
     /*** @seta e copia o Idioma recebido para o Idioma da Classe ***/
     public void setIdioma(Idioma idioma) {
         this.idioma = idioma;
-    }
-
-    /*** @retorna uma Especificações Técnicas ***/
-    public EspecificacoesTecnicas getEspecificacoesTecnicas() {
-        return especificacoesTecnicas;
-    }
-
-    /*** @seta e copia as Especificações Técnicas recebidas para a Especificações Técnicas da Classe ***/
-    public void setEspecificacoesTecnicas(EspecificacoesTecnicas especificacoesTecnicas) {
-        this.especificacoesTecnicas = especificacoesTecnicas;
     }
 
     /*** @retorna a Sessão ***/
@@ -339,21 +355,92 @@ public class Acervo implements Serializable {
      * @param exemplares the exemplares to set
      */
     public void setExemplares(List<Exemplar> exemplares) {
-        this.exemplares = exemplares;
+        this.setExemplares(exemplares);
     }
 
     /**
-     * @return the palavras
+     * @return the palavrasChaves
      */
-    public List<PalavrasChaves> getPalavras() {
+    public Set<PalavrasChaves> getPalavrasChaves() {
         return palavrasChaves;
     }
 
     /**
-     * @param palavras the palavras to set
+     * @param palavrasChaves the palavrasChaves to set
      */
-    public void setPalavras(List<PalavrasChaves> palavras) {
-        this.palavrasChaves = palavras;
+    public void setPalavrasChaves(Set<PalavrasChaves> palavrasChaves) {
+        this.palavrasChaves = palavrasChaves;
     }
-    private static final long serialVersionUID = -7350726495495684804L;
+
+   
+    /**
+     * @return the autores
+     */
+    public Set<Autor> getAutores() {
+        return autores;
+    }
+
+    /**
+     * @param autores the autores to set
+     */
+    public void setAutores(Set<Autor> autores) {
+        this.autores = autores;
+    }
+
+    /**
+     * @return the numeroPaginas
+     */
+    public short getNumeroPaginas() {
+        return numeroPaginas;
+    }
+
+    /**
+     * @param numeroPaginas the numeroPaginas to set
+     */
+    public void setNumeroPaginas(short numeroPaginas) {
+        this.numeroPaginas = numeroPaginas;
+    }
+
+    /**
+     * @return the peso
+     */
+    public short getPeso() {
+        return peso;
+    }
+
+    /**
+     * @param peso the peso to set
+     */
+    public void setPeso(short peso) {
+        this.peso = peso;
+    }
+
+    /**
+     * @return the acabamentoCapa
+     */
+    public String getAcabamentoCapa() {
+        return acabamentoCapa;
+    }
+
+    /**
+     * @param acabamentoCapa the acabamentoCapa to set
+     */
+    public void setAcabamentoCapa(String acabamentoCapa) {
+        this.acabamentoCapa = acabamentoCapa;
+    }
+
+    /**
+     * @return the acabamentoMiolo
+     */
+    public String getAcabamentoMiolo() {
+        return acabamentoMiolo;
+    }
+
+    /**
+     * @param acabamentoMiolo the acabamentoMiolo to set
+     */
+    public void setAcabamentoMiolo(String acabamentoMiolo) {
+        this.acabamentoMiolo = acabamentoMiolo;
+    }
+
 }

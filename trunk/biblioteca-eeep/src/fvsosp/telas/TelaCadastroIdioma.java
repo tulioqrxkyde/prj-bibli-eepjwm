@@ -1,9 +1,14 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package fvsosp.telas;
 
 import fvsosp.idioma.Idioma;
 import fvsosp.idioma.IdiomaRN;
 import fvsosp.idioma.IdiomaTableModel;
-import fvsosp.util.Util;
+import fvsosp.sessao.Sessao;
+import fvsosp.sessao.SessaoTableModel;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -11,7 +16,6 @@ import javax.swing.JOptionPane;
  *
  * @author Oziel
  */
-@SuppressWarnings("serial")
 public class TelaCadastroIdioma extends javax.swing.JDialog {
 
     Idioma idioma;
@@ -22,7 +26,12 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
      */
     public TelaCadastroIdioma() {
         initComponents();
+
+        this.setTitle("OSBiblio - Idioma");
         this.setLocationRelativeTo(null);
+        btRemover.setEnabled(false);
+        setModal(true);
+
     }
 
     /**
@@ -46,8 +55,6 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         tfNomeIdioma = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("OSBiblio - Idioma");
-        setModal(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -64,7 +71,6 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
-        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -108,7 +114,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Descrição.:");
 
         tfNomeIdioma.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeIdioma.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfNomeIdioma.setToolTipText("Digite aqui a descrição do idioma");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -116,25 +122,22 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(179, Short.MAX_VALUE)
-                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSair)
-                .addGap(16, 16, 16))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap(32, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Descricao_Biblioteca)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(Descricao_Biblioteca)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                        .addGap(147, 147, 147)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSair))
                     .addComponent(tfNomeIdioma))
-                .addContainerGap())
+                .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,26 +172,35 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<Idioma> lista;
-        lista = ((tfNomeIdioma.getText() != null) ? idiomaRN.pesquisarDescricaoLike(tfNomeIdioma.getText()) : idiomaRN.listar());
+        // TODO add your handling code here:
+        List<Idioma> lista = null;
+        if (tfNomeIdioma.getText() != null) {
+            lista = idiomaRN.pesquisarDescricaoLike(tfNomeIdioma.getText());
+        } else {
+            lista = idiomaRN.listar();
+        }
         IdiomaTableModel itm = new IdiomaTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Idioma");
+        idioma = new Idioma();
         if (o != null) {
-            idioma = idiomaRN.pesquisarCodigo((short) o);
-            tfNomeIdioma.setText(idioma.getDescricao());
+            short id = (short) o;
+            idioma = idiomaRN.pesquisarCodigo(id);
+            tfNomeIdioma.setText(idioma.getDescricao().toString());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        // TODO add your handling code here:
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
+        // TODO add your handling code here:
         if (idioma != null) {
             if (idioma.getIdIdioma() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o idioma " + idioma.getDescricao()
@@ -208,22 +220,28 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // TODO add your handling code here:
         if (idioma == null) {
             idioma = new Idioma();
         }
-        if (Util.chkVazio(tfNomeIdioma.getText())) {
-            idioma.setDescricao(tfNomeIdioma.getText());
-            int id = idioma.getIdIdioma();
-            if (idiomaRN.salvar(idioma)) {
+
+        idioma.setDescricao(tfNomeIdioma.getText().toString());
+        int idIdioma = idioma.getIdIdioma();
+        if (idiomaRN.salvar(idioma)) {
+            if (idIdioma == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
-                        + ", " + ((id == 0) ? "cadastrado" : "alterado") + " com sucesso!");
-                limpaCampos();
+                        + ", cadastrada com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
+                        + ", alterada com sucesso!");
             }
+            limpaCampos();
+            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
     public void limpaCampos() {
-        idioma = null;
         tfNomeIdioma.setText("");
+        idioma = null;
         tfNomeIdioma.requestFocus();
         btRemover.setEnabled(false);
     }
@@ -232,6 +250,11 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
      * @param args the command line arguments
      */
     public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Windows".equals(info.getName())) {

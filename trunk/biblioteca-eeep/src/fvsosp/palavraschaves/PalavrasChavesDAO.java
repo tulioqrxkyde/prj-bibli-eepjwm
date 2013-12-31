@@ -41,6 +41,24 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
         }
         return PalavrasChavess;
     }
+    
+    public PalavrasChaves pesquisarCodigo(short id){
+    PalavrasChaves palavrasChavess = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            palavrasChavess = (PalavrasChaves) getSessao().createCriteria(PalavrasChaves.class).
+                    add(Restrictions.eq("idPalavrasChaves", id)).
+                    addOrder(Order.asc("descricao")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Palavra Chave: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return palavrasChavess;
+    }
 
     public List<PalavrasChaves> pesquisarAcervo(Acervo acervo) {
         List<PalavrasChaves> PalavrasChavess = null;

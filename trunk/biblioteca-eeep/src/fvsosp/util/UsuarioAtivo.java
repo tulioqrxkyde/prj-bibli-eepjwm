@@ -39,5 +39,9 @@ public class UsuarioAtivo {
      */
     public static void setAdministrador(boolean aAdministrador) {
         administrador = aAdministrador;
-    }   
+    }
+
+  
+    
+    
 }

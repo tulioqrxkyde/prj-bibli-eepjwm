@@ -59,6 +59,11 @@ public class Biblioteca implements Serializable{
         return idBiblioteca;
     }
 
+    /*** @seta o ID da Biblioteca ***/
+    public void setIdBiblioteca(short idBiblioteca) {
+        this.idBiblioteca = idBiblioteca;
+    }
+
     /*** @retorna a descricao ***/
     public String getDescricao() {
         return descricao;

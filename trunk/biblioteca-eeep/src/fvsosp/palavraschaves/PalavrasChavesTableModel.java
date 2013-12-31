@@ -2,35 +2,40 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package fvsosp.autor;
+package fvsosp.palavraschaves;
 
+import fvsosp.sessao.*;
+import fvsosp.sessao.Sessao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author acer
+ * @author PSaraiva
  */
-public class AutorTableModel extends AbstractTableModel {
+public class PalavrasChavesTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Autor", "Descrição"};
-    private List<Autor> autores;
+    private String[] nomeColunas = {"Código", "Descrição"};
+    private List<PalavrasChaves> palavras;
 
-    public AutorTableModel() {
-        autores = new ArrayList<Autor>();
+    // construtor padrão criando um arraylist de alunos  
+    public PalavrasChavesTableModel() {
+        palavras = new ArrayList<PalavrasChaves>();
+
     }
 
-    public AutorTableModel(List<Autor> lista) {
+    // construtor que adiciona a lista passada pelo método ao alunos  
+    public PalavrasChavesTableModel(List<PalavrasChaves> lista) {
         this();
-        this.autores.clear();
-        this.autores.addAll(lista);
+        this.palavras.clear();
+        this.palavras.addAll(lista);
         super.fireTableDataChanged();
 
     }
 
     public int getRowCount() {
-        return autores.size();
+        return palavras.size();
         //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
@@ -40,14 +45,12 @@ public class AutorTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        Autor autor = autores.get(rowIndex);
+        PalavrasChaves palavra = palavras.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                    return autor.getIdAutor();
+                return palavra.getIdPalavrasChaves();
             case 1:
-                    return autor.getNome();
-            case 2:
-                    return autor.getSobreOAutor();
+                return palavra.getDescricao();
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet.");  
@@ -59,8 +62,6 @@ public class AutorTableModel extends AbstractTableModel {
                 return nomeColunas[0];
             case 1:
                 return nomeColunas[1];
-            case 2:
-                return nomeColunas[2];
         }
         return null;
     }

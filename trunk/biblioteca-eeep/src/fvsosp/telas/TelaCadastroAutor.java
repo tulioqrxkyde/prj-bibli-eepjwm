@@ -1,7 +1,6 @@
 package fvsosp.telas;
 
 import fvsosp.autor.*;
-import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -19,7 +18,10 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
      */
     public TelaCadastroAutor() {
         initComponents();
+        this.setTitle("OSBiblio - Autor");
         this.setLocationRelativeTo(null);
+        btRemover.setEnabled(false);
+        setModal(true);
     }
 
     /**
@@ -46,8 +48,6 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         tfSobreAutor = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("OSBiblio - Autor");
-        setModal(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -71,7 +71,6 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
-        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -79,7 +78,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         });
 
         tfNomeAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeAutor.setToolTipText("Digite aqui a descrição do Autor.");
+        tfNomeAutor.setToolTipText("Digite aqui a descrição do autor");
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
@@ -114,7 +113,6 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
 
         tfSobreAutor.setColumns(20);
         tfSobreAutor.setRows(5);
-        tfSobreAutor.setToolTipText("Digite aqui as informações sobre o Autor.");
         jScrollPane1.setViewportView(tfSobreAutor);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -129,20 +127,23 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addComponent(jLabel25))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(tfNomeAutor)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 205, Short.MAX_VALUE)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSair)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1)
+                            .addComponent(tfNomeAutor))
+                        .addContainerGap())))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(215, Short.MAX_VALUE)
+                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSair)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -182,23 +183,31 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<Autor> lista;
-        lista = ((!tfNomeAutor.getText().isEmpty()) ? autorRN.pesquisarNome(tfNomeAutor.getText()) : autorRN.listar());
+        // TODO add your handling code here:
+        List<Autor> lista = null;
+        if (!tfNomeAutor.getText().equals("")) {
+            lista = autorRN.pesquisarNome(tfNomeAutor.getText());
+        } else {
+            lista = autorRN.listar();
+        }
         AutorTableModel itm = new AutorTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Autor");
+        autor = new Autor();
         if (o != null) {
-            autor = autorRN.pesquisarCodigo((short) o);
-            tfNomeAutor.setText(autor.getNome());
-            tfSobreAutor.setText(autor.getSobreOAutor());
+            short id = (short) o;
+            autor = autorRN.pesquisarCodigo(id);
+            tfNomeAutor.setText(autor.getNome().toString());
+            tfSobreAutor.setText(autor.getSobreOAutor().toString());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();
+        dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
+        // TODO add your handling code here:
         if (autor != null) {
             if (autor.getIdAutor() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o Autor " + autor.getNome()
@@ -218,29 +227,37 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
+        // TODO add your handling code here:
         if (autor == null) {
             autor = new Autor();
         }
-        if (Util.chkVazio(tfNomeAutor.getText(), tfSobreAutor.getText())) {
-            autor.setNome(tfNomeAutor.getText());
-            autor.setSobreOAutor(tfSobreAutor.getText());
-            int id = autor.getIdAutor();
-            if (autorRN.salvar(autor)) {
+
+        autor.setNome(tfNomeAutor.getText().toString());
+        autor.setSobreOAutor(tfSobreAutor.getText().toString());
+        int idAutor = autor.getIdAutor();
+        if (autorRN.salvar(autor)) {
+            if (idAutor == 0) {
                 JOptionPane.showMessageDialog(rootPane, "Autor " + autor.getNome()
-                        + ", " + ((id == 0) ? "cadastrado" : "alterado") + " com sucesso!");
-                limpaCampos();
+                        + ", cadastrado com sucesso!");
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Autor " + autor.getNome()
+                        + ", alterado com sucesso!");
             }
+            limpaCampos();
+            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
+        // TODO add your handling code here:
         limpaCampos();
+
     }//GEN-LAST:event_btNovoActionPerformed
 
     public void limpaCampos() {
-        autor = null;
         tfNomeAutor.setText("");
         tfSobreAutor.setText("");
+        autor = null;
         tfNomeAutor.requestFocus();
         btRemover.setEnabled(false);
     }

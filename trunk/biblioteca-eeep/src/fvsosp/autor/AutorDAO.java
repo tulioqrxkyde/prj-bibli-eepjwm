@@ -1,5 +1,10 @@
+/*
+ * To change this template, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package fvsosp.autor;
 
+import fvsosp.editora.Editora;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.List;
@@ -20,12 +25,16 @@ public class AutorDAO extends GenericDAO<Autor> {
 
     public List<Autor> pesquisarNome(String nome) {
         List<Autor> autores = null;
+
         try {
+
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
+
             autores = (List<Autor>) getSessao().createCriteria(Autor.class).
-                    add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).
+                    add(Restrictions.like("nome", nome, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
+
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por nome: " + e.getMessage());
         } finally {
@@ -36,11 +45,14 @@ public class AutorDAO extends GenericDAO<Autor> {
 
     public List<Autor> pesquisarsobreOAutor(String sobreOAutor) {
         List<Autor> autores = null;
+
         try {
+
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
+
             autores = (List<Autor>) getSessao().createCriteria(Autor.class).
-                    add(Restrictions.ilike("sobreOAutor", sobreOAutor, MatchMode.ANYWHERE)).
+                    add(Restrictions.like("sobreOAutor", sobreOAutor, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("sobreOAutor")).list();
 
         } catch (HibernateException e) {
@@ -50,7 +62,7 @@ public class AutorDAO extends GenericDAO<Autor> {
         }
         return autores;
     }
-
+    
     public Autor pesquisarCodigo(short codigo) {
         Autor autor = null;
         try {
@@ -68,3 +80,4 @@ public class AutorDAO extends GenericDAO<Autor> {
         return autor;
     }
 }
+
