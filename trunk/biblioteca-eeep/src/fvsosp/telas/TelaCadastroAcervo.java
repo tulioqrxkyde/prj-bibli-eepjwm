@@ -17,18 +17,13 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.Util;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JComboBox;
-import javax.swing.JList;
 import javax.swing.JOptionPane;
-import javax.swing.JScrollPane;
 import javax.swing.JTextField;
-import javax.swing.ListSelectionModel;
 
 /**
  *
@@ -42,7 +37,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private List<Acervo> listaAcervos = acervoRN.listar();
     private List<Exemplar> exemplares;
     private List<PalavrasChaves> palavrasChaves;
-    private List<String> listaPalavrasChaves;
     private EspecificacoesTecnicas especificacoes;
     private PalavrasChaves palavras;
     private static int rowValue = 0;
@@ -53,13 +47,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     public TelaCadastroAcervo() {
         initComponents();
         this.setLocationRelativeTo(null);
-        // insertPalavrasChaves.setVisible(false);
-        preencheAutor();
-        preencheBiblioteca();
-        preencheEditora();
-        preencheIdioma();
-        preencheSessao();
-        preencheTipoItem();
         scrollPalavras.setVisible(false);
         listaPalavras.setVisible(false);
     }
@@ -200,12 +187,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         });
         jPanel2.add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 42, 33));
 
-        tbAcervo.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbAcervoMouseClicked(evt);
-            }
-        });
-
         pn1.setBackground(new java.awt.Color(255, 255, 255));
         pn1.setMinimumSize(new java.awt.Dimension(430, 300));
         pn1.setPreferredSize(new java.awt.Dimension(430, 300));
@@ -300,7 +281,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 10, -1, 20));
 
         tfPalavrasChaves.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfPalavrasChaves.setToolTipText("Digite aqui as palavras chaves");
+        tfPalavrasChaves.setToolTipText("Digite aqui as Palavras Chaves.");
         tfPalavrasChaves.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfPalavrasChavesKeyReleased(evt);
@@ -366,17 +347,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tbPalavras.setRowSelectionAllowed(false);
-        tbPalavras.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbPalavrasMouseClicked(evt);
-            }
-        });
-        tbPalavras.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbPalavrasKeyPressed(evt);
-            }
-        });
+        tbPalavras.setCellSelectionEnabled(true);
         jScrollPane2.setViewportView(tbPalavras);
 
         pn3.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 380, 140));
@@ -523,28 +494,34 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         cbBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbBiblioteca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
         cbBiblioteca.setToolTipText("Selecione a Biblioteca.");
+        BibliotecaRN bibRN = new BibliotecaRN();                  for (Biblioteca biblioteca : bibRN.listar()) {             cbBiblioteca.addItem(biblioteca);               }
 
         cbEditora.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbEditora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
         cbEditora.setToolTipText("Selecione a Editora.");
+        EditoraRN editoraRN = new EditoraRN();         for (Editora editora : editoraRN.listar()) {             cbEditora.addItem(editora);         }
 
         cbIdioma.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbIdioma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
         cbIdioma.setToolTipText("Selecione o Idioma.");
+        IdiomaRN idRN = new IdiomaRN();         List<Idioma> idiomas = idRN.listar();         for (Idioma idioma : idiomas) {             cbIdioma.addItem(idioma);         }
 
         cbSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbSessao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
         cbSessao.setToolTipText("Selecione a Sessão.");
+        SessaoRN sesRN = new SessaoRN();         List<Sessao> sessoes = sesRN.listar();         for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }
 
         cbAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbAutor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
         cbAutor.setToolTipText("Selecione o Autor.");
+        AutorRN autRN = new AutorRN();         List<Autor> autores = autRN.listar();         for (Autor autor : autores) {             cbAutor.addItem(autor);         }
 
         jLabel7.setText("Autor.:");
 
         cbTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbTipoItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
         cbTipoItem.setToolTipText("Selecione o Tipo de Item.");
+        TipoItemRN tipRN = new TipoItemRN();         List<TipoItem> tipoitens = tipRN.listar();         for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -652,11 +629,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<Acervo> lista;
-        lista = ((tfTitulo.getText() != null) ? acervoRN.pesquisarTitulodaObra(tfTitulo.getText()) : acervoRN.listar());
-        AcervoTableModel atm = new AcervoTableModel(lista);
+        listaAcervos = ((tfTitulo.getText() != null) ? acervoRN.pesquisarTitulodaObra(tfTitulo.getText()) : acervoRN.listar());
+        AcervoTableModel atm = new AcervoTableModel(listaAcervos);
         Object o = TelaPesquisa.exibeTela(atm, "Acervo");
-        AcervoDAO acr = new AcervoDAO();
         if (o != null) {
             int id = (int) o;
             acervo = acervoRN.pesquisarCodigo(id);
@@ -770,54 +745,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         }
     }
 
-    private void preencheAutor() {
-        AutorRN autRN = new AutorRN();
-        List<Autor> autores = autRN.listar();
-        for (Autor autor : autores) {
-            cbAutor.addItem(autor);
-        }
-    }
-
-    private void preencheBiblioteca() {
-        BibliotecaRN bibRN = new BibliotecaRN();
-        List<Biblioteca> bibliotecas = bibRN.listar();
-        for (Biblioteca biblioteca : bibliotecas) {
-            cbBiblioteca.addItem(biblioteca);
-        }
-    }
-
-    private void preencheEditora() {
-        EditoraRN edtRN = new EditoraRN();
-        List<Editora> editoras = edtRN.listar();
-        for (Editora editora : editoras) {
-            cbEditora.addItem(editora);
-        }
-    }
-
-    private void preencheIdioma() {
-        IdiomaRN idRN = new IdiomaRN();
-        List<Idioma> idiomas = idRN.listar();
-        for (Idioma idioma : idiomas) {
-            cbIdioma.addItem(idioma);
-        }
-    }
-
-    private void preencheSessao() {
-        SessaoRN sesRN = new SessaoRN();
-        List<Sessao> sessoes = sesRN.listar();
-        for (Sessao sessao : sessoes) {
-            cbSessao.addItem(sessao);
-        }
-    }
-
-    private void preencheTipoItem() {
-        TipoItemRN tipRN = new TipoItemRN();
-        List<TipoItem> tipoitens = tipRN.listar();
-        for (TipoItem tipo : tipoitens) {
-            cbTipoItem.addItem(tipo);
-        }
-    }
-
     public void limparCampos() {
         acervo = null;
         especificacoes = null;
@@ -830,6 +757,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         for (JTextField campos : tfs) {
             campos.setText("");
         }
+        for (int c = 0; c < tbPalavras.getRowCount(); c++) {
+            tbPalavras.setValueAt("", c, 0);
+        }
+        tbPalavras.clearSelection();
         cbAutor.setSelectedIndex(0);
         cbBiblioteca.setSelectedIndex(0);
         cbEditora.setSelectedIndex(0);
@@ -844,19 +775,21 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void tfPalavrasChavesKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPalavrasChavesKeyReleased
-        listaPalavrasChaves = new ArrayList<>();
+        palavrasChaves = new ArrayList<>();
+        DefaultListModel model = new DefaultListModel();
         for (int r = 0; r < listaAcervos.size(); r++) {
             for (int i = 0; i < listaAcervos.get(r).getPalavras().size(); i++) {
-        // Comentado Temporariamente if (!tfPalavrasChaves.getText().isEmpty() && listaAcervos.get(r).getPalavras().get(i).getDescricao().startsWith(tfPalavrasChaves.getText())) {
-                listaPalavrasChaves.add(listaAcervos.get(r).getPalavras().get(i).getDescricao());
-         //                  }
+                if (!tfPalavrasChaves.getText().isEmpty()) {
+                    if (listaAcervos.get(r).getPalavras().get(i).toString().regionMatches(true, 0,
+                            tfPalavrasChaves.getText(), 0, 1)
+                            && tfPalavrasChaves.getText().length() <= listaAcervos.get(r).getPalavras().get(i).toString().length()
+                            && !model.contains(tfPalavrasChaves.getText())) {
+                        model.addElement(listaAcervos.get(r).getPalavras().get(i));
+                    }
+                } else {
+                    model.addElement(listaAcervos.get(r).getPalavras().get(i));
+                }
             }
-        }
-        DefaultListModel model = new DefaultListModel();
-        int c = 0;
-        for (String palavra : listaPalavrasChaves) {
-            model.add(c, palavra);
-            c++;
         }
         listaPalavras.setModel(model);
         if (model.getSize() > 0) {
@@ -866,9 +799,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             scrollPalavras.setVisible(false);
         }
     }//GEN-LAST:event_tfPalavrasChavesKeyReleased
-
-    private void tbAcervoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAcervoMouseClicked
-    }//GEN-LAST:event_tbAcervoMouseClicked
 
     private void addPalavraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addPalavraActionPerformed
         if (palavrasChaves == null) {
@@ -884,21 +814,15 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     }//GEN-LAST:event_addPalavraActionPerformed
 
     private void removePalavraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removePalavraActionPerformed
-        palavrasChaves.remove(rowValue);
-        tbPalavras.setValueAt("", rowValue, 0);
+        if (tbPalavras.getSelectedRow() > -1) {
+            tbPalavras.setValueAt("", tbPalavras.getSelectedRow(), 0);
+            palavrasChaves.remove(tbPalavras.getSelectedRow());
+        } else { 
+           tbPalavras.setValueAt("", rowValue, 0);
+           palavrasChaves.remove(rowValue);
+        }
         rowValue--;
     }//GEN-LAST:event_removePalavraActionPerformed
-
-    private void tbPalavrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPalavrasMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbPalavrasMouseClicked
-
-    private void tbPalavrasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPalavrasKeyPressed
-        // TODO add your handling code here:
-        //if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-        //    btSelecionarActionPerformed(null);
-        // }
-    }//GEN-LAST:event_tbPalavrasKeyPressed
 
     private void listaPalavrasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaPalavrasMouseClicked
         tfPalavrasChaves.setText(listaPalavras.getSelectedValue().toString());
