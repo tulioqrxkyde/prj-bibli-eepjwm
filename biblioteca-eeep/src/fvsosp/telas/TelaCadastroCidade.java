@@ -4,15 +4,14 @@ import fvsosp.cidade.Cidade;
 import fvsosp.cidade.CidadeRN;
 import fvsosp.cidade.CidadeTableModel;
 import fvsosp.util.Util;
-import java.text.NumberFormat;
 import java.util.List;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author Controle Avaliação
  */
+@SuppressWarnings("serial")
 public class TelaCadastroCidade extends javax.swing.JDialog {
 
     Cidade cidade;
@@ -134,7 +133,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         cbUF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbUF.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-- ", "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         cbUF.setSelectedItem(cbUF);
-        cbUF.setToolTipText("Selecione o Estado");
+        cbUF.setToolTipText("Selecione o Estado:");
         jPanel1.add(cbUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 80, -1));
 
         try {
@@ -142,6 +141,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfCodIBGE.setToolTipText("Informe o código do IBGE.");
         tfCodIBGE.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, -1));
 

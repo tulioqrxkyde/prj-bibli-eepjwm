@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.biblioteca;
 
 import java.util.ArrayList;
@@ -12,13 +8,14 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author TÚLIO
  */
+@SuppressWarnings("serial")
 public class BibliotecaTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Biblioteca"};
     private List<Biblioteca> bibliotecas;
 
     public BibliotecaTableModel() {
-        bibliotecas = new ArrayList<Biblioteca>();
+        bibliotecas = new ArrayList<>();
 
     }
 
@@ -30,16 +27,17 @@ public class BibliotecaTableModel extends AbstractTableModel {
 
     }
 
+    @Override
     public int getRowCount() {
-        return bibliotecas.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return bibliotecas.size(); 
     }
 
+    @Override
     public int getColumnCount() {
-        return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return nomeColunas.length; 
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Biblioteca biblioteca = bibliotecas.get(rowIndex);
         switch (columnIndex) {
@@ -49,9 +47,9 @@ public class BibliotecaTableModel extends AbstractTableModel {
                 return biblioteca.getDescricao();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

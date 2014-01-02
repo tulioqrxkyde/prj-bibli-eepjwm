@@ -4,10 +4,7 @@
  */
 package fvsosp.telas;
 
-import fvsosp.usuario.Usuario;
 import fvsosp.util.UsuarioAtivo;
-import java.awt.Toolkit;
-import javax.swing.ImageIcon;
 
 /**
  *
@@ -23,7 +20,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //setExtendedState( MAXIMIZED_BOTH ); ;   //( iniciar tela cheia )
         setTitle("OSBiblio");
         setLocationRelativeTo(null);
-        jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?",((!UsuarioAtivo.getLogin().isEmpty()) ? UsuarioAtivo.getLogin() : "?")));
+        jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?",((UsuarioAtivo.getLogin() != null) ? UsuarioAtivo.getLogin() : "?")));
         itemCadUsuario.setVisible(UsuarioAtivo.isAdministrador());
     }
 
@@ -36,12 +33,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jlUsuarioLogado = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        labelVersao = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         BarradeMenuPrincipal = new javax.swing.JMenuBar();
         menuCadastrado = new javax.swing.JMenu();
@@ -53,7 +49,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadGrupoLeitores = new javax.swing.JMenuItem();
         itemCadIdioma = new javax.swing.JMenuItem();
         itemCadLeitor = new javax.swing.JMenuItem();
-        itemCadPalavrasChaves = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
         itemCadTipoItem = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
@@ -69,22 +64,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ItemSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("OSBiblio");
         setBackground(new java.awt.Color(255, 255, 255));
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-
-        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jPanel2.setBackground(new java.awt.Color(204, 204, 204));
 
@@ -111,9 +94,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jlUsuarioLogado.setForeground(new java.awt.Color(255, 255, 255));
         jlUsuarioLogado.setText("Logado como: ?");
 
-        jLabel3.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Versão: 1.0");
+        labelVersao.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
+        labelVersao.setForeground(new java.awt.Color(255, 255, 255));
+        labelVersao.setText("Versão: 1.0");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -121,7 +104,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel3)
+                .addComponent(labelVersao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 554, Short.MAX_VALUE)
                 .addComponent(jlUsuarioLogado)
                 .addGap(121, 121, 121))
@@ -131,7 +114,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlUsuarioLogado)
-                    .addComponent(jLabel3))
+                    .addComponent(labelVersao))
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
@@ -223,14 +206,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastrado.add(itemCadLeitor);
 
-        itemCadPalavrasChaves.setText("Palavras Chaves");
-        itemCadPalavrasChaves.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemCadPalavrasChavesActionPerformed(evt);
-            }
-        });
-        menuCadastrado.add(itemCadPalavrasChaves);
-
         itemCadSessao.setText("Sessão");
         itemCadSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -302,9 +277,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void itemCadAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAcervoActionPerformed
-        // Instancie sua Tela
-        TelaCadastroAcervo tCadAcervo = new TelaCadastroAcervo();
-        tCadAcervo.setVisible(true);
+        new TelaCadastroAcervo().setVisible(true);
     }//GEN-LAST:event_itemCadAcervoActionPerformed
 
     private void itemCadAlunoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadAlunoActionPerformed
@@ -367,12 +340,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tCadTipoItem.setVisible(true);
     }//GEN-LAST:event_itemCadTipoItemActionPerformed
 
-    private void itemCadPalavrasChavesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadPalavrasChavesActionPerformed
-        // TODO add your handling code here:
-        TelaCadastroPalavasChaves tCadPalChaves = new TelaCadastroPalavasChaves();
-        tCadPalChaves.setVisible(true);
-    }//GEN-LAST:event_itemCadPalavrasChavesActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -418,7 +385,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadGrupoLeitores;
     private javax.swing.JMenuItem itemCadIdioma;
     private javax.swing.JMenuItem itemCadLeitor;
-    private javax.swing.JMenuItem itemCadPalavrasChaves;
     private javax.swing.JMenuItem itemCadSessao;
     private javax.swing.JMenuItem itemCadTipoItem;
     private javax.swing.JMenuItem itemCadUsuario;
@@ -429,14 +395,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel jlUsuarioLogado;
+    private javax.swing.JLabel labelVersao;
     private javax.swing.JMenu menuCadastrado;
     private javax.swing.JMenu menuConsulta;
     // End of variables declaration//GEN-END:variables

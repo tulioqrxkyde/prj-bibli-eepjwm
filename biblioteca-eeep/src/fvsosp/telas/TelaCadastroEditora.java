@@ -1,12 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.editora.Editora;
 import fvsosp.editora.EditoraRN;
 import fvsosp.editora.EditoraTableModel;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -14,6 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author Pedro Saraiva
  */
+@SuppressWarnings("serial")
 public class TelaCadastroEditora extends javax.swing.JDialog {
 
     private Editora editora;
@@ -24,15 +22,12 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
      */
     public TelaCadastroEditora() {
         initComponents();
-        this.setTitle("OSBiblio - Editora");
         this.setLocationRelativeTo(null);
-        btRemover.setEnabled(false);
-        setModal(true);
     }
 
     public void limpaCampos() {
-        tfDescricao.setText("");
         editora = null;
+        tfDescricao.setText("");
         tfDescricao.requestFocus();
         btRemover.setEnabled(false);
     }
@@ -57,6 +52,9 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         tfDescricao = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
 
+        setTitle("OSBiblio - Editora");
+        setModal(true);
+
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(432, 177));
 
@@ -78,6 +76,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -110,12 +109,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         });
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDescricao.setToolTipText("Digite aqui a descrição do autor");
-        tfDescricao.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfDescricaoKeyPressed(evt);
-            }
-        });
+        tfDescricao.setToolTipText("Digite aqui a descrição da Editora.");
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Descrição.:");
@@ -178,28 +172,21 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<Editora> lista = null;
-        if (!tfDescricao.getText().equals("")) {
-            lista = editRN.pesquisarNomeEditora(tfDescricao.getText());
-        } else {
-            lista = editRN.listar();
-        }
+        List<Editora> lista;
+        lista = ((!tfDescricao.getText().isEmpty()) ? editRN.pesquisarNomeEditora(tfDescricao.getText()) : editRN.listar());
         EditoraTableModel itm = new EditoraTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Editora");
-        editora = new Editora();
-        short id;
         if (o != null) {
-            id = (short) o;
-            editora = editRN.pesquisarCodigo(id);
-            tfDescricao.setText(editora.getNome().toString());
+            editora = new Editora();
+            editora = editRN.pesquisarCodigo((short) o);
+            tfDescricao.setText(editora.getNome());
             btRemover.setEnabled(true);
         }
 
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
@@ -222,35 +209,23 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (editora == null) {
             editora = new Editora();
         }
-
-        editora.setNome(tfDescricao.getText().toString());
-        int idEditora = editora.getIdEditora();
-        if (editRN.salvar(editora)) {
-            if (idEditora == 0) {
+        if (Util.chkVazio(tfDescricao.getText())) {
+            editora.setNome(tfDescricao.getText());
+            int id = editora.getIdEditora();
+            if (editRN.salvar(editora)) {
                 JOptionPane.showMessageDialog(rootPane, "Editora " + editora.getNome()
-                        + ", cadastrado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Editora " + editora.getNome()
-                        + ", alterado com sucesso!");
+                        + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
+                limpaCampos();
             }
-            limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
-
-    private void tfDescricaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfDescricaoKeyPressed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_tfDescricaoKeyPressed
 
     /**
      * @param args the command line arguments
@@ -263,7 +238,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

@@ -236,8 +236,7 @@ public class TelaLogin extends javax.swing.JFrame {
              */
             Usuario usuario = new Usuario();
             usuario.setLogin(tfLogin.getText());
-            usuario.setSenha(tfSenha.getText());
-            
+            usuario.setSenha(tfSenha.getText());           
             UsuarioRN uRN = new UsuarioRN();
             if (uRN.autentica(usuario)) {
                 dispose();

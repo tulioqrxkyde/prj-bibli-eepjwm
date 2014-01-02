@@ -1,6 +1,5 @@
 package fvsosp.cidade;
 
-import fvsosp.util.Util;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public class CidadeRN {
 
     public boolean salvar(Cidade cidade) {
         if (cidade.getIdCidade() == 0) {
-                return dao.adicionar(cidade);
+            return dao.adicionar(cidade);
         } else {
             return dao.atualizar(cidade);
         }
@@ -34,7 +33,7 @@ public class CidadeRN {
     public List<Cidade> pesquisarUf(String uf) {
         return dao.pesquisarUf(uf);
     }
-    
+
     public Cidade pesquisarIBGE(int ibge) {
         return dao.pesquisarCodIbge(ibge);
     }
