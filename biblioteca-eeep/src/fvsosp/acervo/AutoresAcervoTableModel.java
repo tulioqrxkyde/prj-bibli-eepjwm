@@ -5,16 +5,17 @@
 package fvsosp.acervo;
 
 import fvsosp.autor.Autor;
-import fvsosp.palavraschaves.PalavrasChaves;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author TÚLIO
+ * @author Pedro Saraiva
  */
-public class AutoresAcervoTableModel extends AbstractTableModel {
-
+public class AutoresAcervoTableModel extends AbstractTableModel{
+    
     private String[] nomeColunas = {"Nome"};
     private List<Autor> autores;
 
@@ -59,4 +60,5 @@ public class AutoresAcervoTableModel extends AbstractTableModel {
         }
         return null;
     }
+    
 }
