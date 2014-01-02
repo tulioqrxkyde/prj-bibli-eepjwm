@@ -178,7 +178,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(itm, "Editora");
         if (o != null) {
             editora = new Editora();
-            editora = editRN.pesquisarCodigo((short) o);
+            editora = editRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfDescricao.setText(editora.getNome());
             btRemover.setEnabled(true);
         }

@@ -15,7 +15,6 @@ public class Idioma implements Serializable{
         int hash = 7;
         hash = 17 * hash + this.idIdioma;
         hash = 17 * hash + Objects.hashCode(this.descricao);
-        hash = 17 * hash + Objects.hashCode(this.acervo);
         return hash;
     }
 
@@ -34,9 +33,6 @@ public class Idioma implements Serializable{
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.acervo, other.acervo)) {
-            return false;
-        }
         return true;
     }
 
@@ -47,12 +43,6 @@ public class Idioma implements Serializable{
     @Column(length = 40, nullable = false, columnDefinition = "varchar(40) default ''")
     private String descricao;
 
-    /*Um idioma possui vários acervos
-     * quando um idioma for criado já irá vir carregado com uma lista
-     * de acervos pertencentes a ele
-     */
-    @OneToMany(mappedBy = "idioma")
-    private List<Acervo> acervo;
 
     /*** @retorna o id do Idioma ***/
     public short getIdIdioma() {
@@ -74,15 +64,6 @@ public class Idioma implements Serializable{
         this.descricao = descricao;
     }
 
-    /*** @retorna a lista de Acervos ***/
-    public List<Acervo> getAcervo() {
-        return acervo;
-    }
-
-    /*** @seta e copia a lista de Acervos recebida para a lista de Acervos da Classe ***/
-    public void setAcervo(List<Acervo> acervo) {
-        this.acervo = acervo;
-    }
     private static final long serialVersionUID = -3057265994106209062L;
     
     public String toString(){

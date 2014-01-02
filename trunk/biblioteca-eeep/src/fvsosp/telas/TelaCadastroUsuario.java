@@ -308,7 +308,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(stm, "Usuário");
         usuario = new Usuario();
         if (o != null) {
-            short id = (short) o;
+            short id = Short.valueOf(String.valueOf(o));
             usuario = usuarioRN.pesquisarCodigo(id);
             tfLogin.setText(usuario.getLogin().toString());
             cbAdministrador.setSelected(usuario.isAdministrador());

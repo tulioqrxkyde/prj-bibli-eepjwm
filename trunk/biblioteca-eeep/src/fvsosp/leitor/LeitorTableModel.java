@@ -5,6 +5,7 @@
 package fvsosp.leitor;
 
 import fvsosp.grupoleitores.*;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -45,9 +46,10 @@ public class LeitorTableModel extends AbstractTableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         Leitor leitor = leitores.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return leitor.getIdLeitor();
+                return df.format(leitor.getIdLeitor());
             case 1:
                 return leitor.getNome();
             case 2:

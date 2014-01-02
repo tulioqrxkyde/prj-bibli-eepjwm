@@ -70,11 +70,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         tfDiasGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfDiasGruposLeitores.setToolTipText("Digite aqui a duração em Dias do Empréstimo.");
 
-        try {
-            tfMultaGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfMultaGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         tfMultaGruposLeitores.setToolTipText("Digite aqui o valor da Multa Diária.");
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -89,11 +85,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Descrição.:");
 
-        try {
-            tfQuantidadeGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        tfQuantidadeGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         tfQuantidadeGruposLeitores.setToolTipText("Digite aqui a Quantidade Máxima de Livros.");
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -203,9 +195,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(0, 0, 0))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -269,7 +259,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(stm, "Grupo de Leitores");
         if (o != null) {
             gruposleitores = new GruposLeitores();
-            gruposleitores = gruposleitoresRN.pesquisarCodigo((short) o);
+            gruposleitores = gruposleitoresRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNomeGruposLeitores.setText(gruposleitores.getDescricao());
             tfMultaGruposLeitores.setText(String.valueOf(gruposleitores.getValorMultaDiaria()));
             tfQuantidadeGruposLeitores.setText(String.valueOf(gruposleitores.getQuantMaxLivros()));

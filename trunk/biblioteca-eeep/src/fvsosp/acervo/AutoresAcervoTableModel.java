@@ -5,6 +5,7 @@
 package fvsosp.acervo;
 
 import fvsosp.autor.Autor;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -16,7 +17,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class AutoresAcervoTableModel extends AbstractTableModel{
     
-    private String[] nomeColunas = {"Nome"};
+    private String[] nomeColunas = {"Código","Nome"};
     private List<Autor> autores;
 
     // construtor padrão criando um arraylist de alunos  
@@ -45,8 +46,11 @@ public class AutoresAcervoTableModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<Autor> outraLista = (List<Autor>) autores;
         Autor autor = outraLista.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
+                   return df.format(autor.getIdAutor());
+            case 1:
                 return autor.getNome();
         }
         return null;
@@ -57,6 +61,8 @@ public class AutoresAcervoTableModel extends AbstractTableModel{
         switch (column) {
             case 0:
                 return nomeColunas[0];
+            case 1:
+                return nomeColunas[1];
         }
         return null;
     }

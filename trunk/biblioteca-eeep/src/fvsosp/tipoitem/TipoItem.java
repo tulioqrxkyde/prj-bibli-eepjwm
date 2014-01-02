@@ -24,7 +24,6 @@ public class TipoItem implements Serializable{
         int hash = 7;
         hash = 67 * hash + this.idTipoItem;
         hash = 67 * hash + Objects.hashCode(this.descricao);
-        hash = 67 * hash + Objects.hashCode(this.acervos);
         return hash;
     }
 
@@ -43,17 +42,12 @@ public class TipoItem implements Serializable{
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.acervos, other.acervos)) {
-            return false;
-        }
         return true;
     }
     
     @Column(length=50, nullable=false, columnDefinition = "varchar(50) default ''")
     private String descricao;
-    
-    @OneToMany(mappedBy="tipoItem")
-    private List<Acervo> acervos;
+
 
     /**
      * @return the idTipoItem
@@ -83,19 +77,6 @@ public class TipoItem implements Serializable{
         this.descricao = descricao;
     }
 
-    /**
-     * @return the acervos
-     */
-    public List<Acervo> getAcervos() {
-        return acervos;
-    }
-
-    /**
-     * @param acervos the acervos to set
-     */
-    public void setAcervos(List<Acervo> acervos) {
-        this.acervos = acervos;
-    }
     private static final long serialVersionUID = 139376686869872414L;
     
     public String toString(){

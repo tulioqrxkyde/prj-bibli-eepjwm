@@ -176,7 +176,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(itm, "Tipo de Item");
         if (o != null) {
             tipoItem = new TipoItem();
-            tipoItem = tipoItemRN.pesquisarCodigo((short) o);
+            tipoItem = tipoItemRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfTipoItem.setText(tipoItem.getDescricao());
             btRemover.setEnabled(true);
         }

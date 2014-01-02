@@ -5,6 +5,7 @@
 package fvsosp.idioma;
 
 import fvsosp.sessao.Sessao;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -42,10 +43,11 @@ public class IdiomaTableModel extends AbstractTableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         Idioma idioma = idiomas.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
                                     
-                return idioma.getIdIdioma();
+                return df.format(idioma.getIdIdioma());
                 
             case 1:
                     return idioma.getDescricao();

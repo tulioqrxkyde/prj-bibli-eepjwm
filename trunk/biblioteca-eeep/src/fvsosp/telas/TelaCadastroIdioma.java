@@ -174,7 +174,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         IdiomaTableModel itm = new IdiomaTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Idioma");
         if (o != null) {
-            idioma = idiomaRN.pesquisarCodigo((short) o);
+            idioma = idiomaRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNomeIdioma.setText(idioma.getDescricao());
             btRemover.setEnabled(true);
         }

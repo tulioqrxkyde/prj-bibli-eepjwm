@@ -4,6 +4,7 @@
  */
 package fvsosp.usuario;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -44,9 +45,10 @@ public class UsuarioTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Usuario usuario = usuarios.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return usuario.getIdUsuario();
+                return df.format(usuario.getIdUsuario());
             case 1:
                 return usuario.getLogin();
         }
