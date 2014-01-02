@@ -175,7 +175,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(btm, "Biblioteca");
         if (o != null) {
             biblioteca = new Biblioteca();
-            biblioteca = bibliotecaRN.pesquisarCodigo((short) o);
+            biblioteca = bibliotecaRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNomeBiblioteca.setText(biblioteca.getDescricao());
             btRemover.setEnabled(true);
         }

@@ -19,7 +19,6 @@ public class Biblioteca implements Serializable{
         int hash = 5;
         hash = 11 * hash + this.idBiblioteca;
         hash = 11 * hash + Objects.hashCode(this.descricao);
-        hash = 11 * hash + Objects.hashCode(this.acervos);
         return hash;
     }
 
@@ -38,9 +37,6 @@ public class Biblioteca implements Serializable{
         if (!Objects.equals(this.descricao, other.descricao)) {
             return false;
         }
-        if (!Objects.equals(this.acervos, other.acervos)) {
-            return false;
-        }
         return true;
     }
 
@@ -51,8 +47,8 @@ public class Biblioteca implements Serializable{
      * quando uma biblioteca for criada já irá vir carregado com uma lista
      * de acervos pertencentes a ele
      */
-    @OneToMany(mappedBy = "biblioteca")
-    private List<Acervo> acervos;
+//    @OneToMany(mappedBy = "biblioteca")
+//    private List<Acervo> acervos;
 
     /*** @retorna o ID da Biblioteca ***/
     public short getIdBiblioteca() {
@@ -69,15 +65,6 @@ public class Biblioteca implements Serializable{
         this.descricao = descricao;
     }
 
-    /*** @retorna uma Lista de Acervos ***/
-    public List<Acervo> getAcervos() {
-        return acervos;
-    }
-
-    /*** @seta e copia uma lista de Acervos ***/
-    public void setAcervos(List<Acervo> acervos) {
-        this.acervos = acervos;
-    }
     private static final long serialVersionUID = 8467106441036780639L;
     
     public String toString(){

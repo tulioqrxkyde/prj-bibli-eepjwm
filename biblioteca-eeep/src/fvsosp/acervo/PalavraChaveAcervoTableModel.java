@@ -5,6 +5,7 @@
 package fvsosp.acervo;
 
 import fvsosp.palavraschaves.PalavrasChaves;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -14,9 +15,9 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Pedro Saraiva
  */
-public class PalavraChaveAcervoTableModel extends AbstractTableModel{
-    
-    private String[] nomeColunas = {"Descrição"};
+public class PalavraChaveAcervoTableModel extends AbstractTableModel {
+
+    private String[] nomeColunas = {"Código", "Descrição"};
     private List<PalavrasChaves> palavras;
 
     // construtor padrão criando um arraylist de alunos  
@@ -45,8 +46,11 @@ public class PalavraChaveAcervoTableModel extends AbstractTableModel{
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<PalavrasChaves> outraLitsa = (List<PalavrasChaves>) palavras;
         PalavrasChaves palavra = outraLitsa.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
+                return df.format(palavra.getIdPalavrasChaves());
+            case 1:
                 return palavra.getDescricao();
         }
         return null;
@@ -57,8 +61,9 @@ public class PalavraChaveAcervoTableModel extends AbstractTableModel{
         switch (column) {
             case 0:
                 return nomeColunas[0];
+            case 1:
+                return nomeColunas[1];
         }
         return null;
     }
-    
 }

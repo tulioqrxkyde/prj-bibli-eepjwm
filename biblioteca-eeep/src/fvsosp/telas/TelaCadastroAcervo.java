@@ -657,7 +657,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(atm, "Acervo");
         acervo = new Acervo();
         if (o != null) {
-            short id = (short) o;
+            short id = Short.valueOf(String.valueOf(o));
             acervo = acervoRN.pesquisarCodigo(id);
             tfTitulo.setText(acervo.getTituloObra().toString());
             tfSubTitulo.setText(acervo.getSubtituloObra().toString());
@@ -668,12 +668,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             tfInformacoesAdicionais.setText(acervo.getInformacoesAdicionais().toString());
             tfLocalizacao.setText(acervo.getLocalizacao());
             btRemover.setEnabled(true);
-            
-            if (acervo.getBiblioteca() != null) {
-                cbBiblioteca.setSelectedItem(acervo.getBiblioteca());
-            } else {
-                cbBiblioteca.setSelectedIndex(0);
-            }
+            cbBiblioteca.setSelectedItem(((acervo.getBiblioteca()!= null) ? acervo.getBiblioteca() : 0));
+          
             if (acervo.getEditora() != null) {
                 cbEditora.setSelectedItem(acervo.getEditora());
             } else {
@@ -895,8 +891,40 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private void tbLeitorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbLeitorMouseClicked
     }//GEN-LAST:event_tbLeitorMouseClicked
 
+    private PalavrasChaves pegaPalavaChaveSelecionado() {
+        int row = tbPalavrasChaves.getSelectedRow();
+        PalavrasChaves palavraChave = null;
+        if (row > -1) { //então tem ítem selecionado  
+            Object value = tbPalavrasChaves.getValueAt(row, 0);
+            palavraChave = new PalavrasChaves();
+            short id = Short.valueOf(String.valueOf(value));
+            PalavrasChavesRN dao = new PalavrasChavesRN();
+            try {
+                palavraChave = dao.pesquisarCodigo(id);
+            } catch (Exception ex) {
+                System.out.println("Erro: "+ex.getMessage());
+            }
+
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione a Linha!",
+                    "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return palavraChave;
+
+    }
+    
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-        // TODO add your handling code here:
+           // TODO add your handling code here:
+        PalavrasChaves p = pegaPalavaChaveSelecionado();
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir a Palavra Chave " + p.getDescricao() + "?",
+                "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+            palavrasChavesAcervo.remove(p);
+            
+            JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + p.getDescricao() + " Excluído com Sucesso!",
+                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        }
+        atualizaTabelaPalavrasChaves();
         
     }//GEN-LAST:event_ExcluirActionPerformed
 
@@ -910,7 +938,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         PalavrasChaves palavras = new PalavrasChaves();
         
         if (o != null) {
-            short id = (short) o;
+            short id = Short.valueOf(String.valueOf(o));
             palavras = palavrasRN.pesquisarCodigo(id);
             if(JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir a Palavra Chave: "+
                     palavras.getDescricao()+"?", "Inserir Palavra Chave", 
@@ -929,8 +957,40 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbAutoresKeyPressed
 
+    private Autor pegaAutorSelecionado() {
+        int row = tbAutores.getSelectedRow();
+        Autor autor = null;
+        if (row > -1) { //então tem ítem selecionado  
+            Object value = tbAutores.getValueAt(row, 0);
+            autor = new Autor();
+            short id = Short.valueOf(String.valueOf(value));
+            AutorRN dao = new AutorRN();
+            try {
+                autor = dao.pesquisarCodigo(id);
+            } catch (Exception ex) {
+                System.out.println("Erro: "+ex.getMessage());
+            }
+
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione a Linha!",
+                    "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return autor;
+
+    }
+    
     private void btExcluirAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirAutorActionPerformed
         // TODO add your handling code here:
+        Autor a = pegaAutorSelecionado();
+        if (JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir o Autor " + a.getNome() + "?",
+                "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
+            autoresAcervo.remove(a);
+            
+            JOptionPane.showMessageDialog(rootPane, "Autor " + a.getNome() + " Excluído com Sucesso!",
+                    "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+        }
+        atualizaTabelaAutores();
     }//GEN-LAST:event_btExcluirAutorActionPerformed
 
     private void btInserirAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAutorActionPerformed
@@ -943,7 +1003,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         Autor autor = new Autor();
         
         if (o != null) {
-            short id = (short) o;
+            short id = Short.valueOf(String.valueOf(o));
             autor = autorRN.pesquisarCodigo(id);
             if(JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir o Autor: "+
                     autor.getNome()+"?", "Inserir Autor", 

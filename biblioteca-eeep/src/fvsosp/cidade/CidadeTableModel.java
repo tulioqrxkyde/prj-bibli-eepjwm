@@ -1,5 +1,6 @@
 package fvsosp.cidade;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -39,9 +40,10 @@ public class CidadeTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cidade cidade = cidades.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return cidade.getCodIBGE();
+                return df.format(cidade.getCodIBGE());
             case 1:
                 return cidade.getDescricao();
             case 2:

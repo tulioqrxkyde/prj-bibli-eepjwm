@@ -11,6 +11,7 @@ import fvsosp.util.Util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -356,9 +357,15 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(stm, "leitor");
         if (o != null) {
             leitor = new Leitor();
-            leitor = leitorRN.pesquisarCodigo((short) o);
+            leitor = leitorRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNome.setText(leitor.getNome());
             tfMatricula.setText(leitor.getMatricula().toString());
+
+//            Date dtNascimento = leitor.getDataNascimento();
+//            SimpleDateFormat dfdtLancamento;
+//            dfdtLancamento = new SimpleDateFormat("dd/MM/yyyy");
+//            tfDataNascimento.setText(dfdtLancamento.format(dtNascimento));
+
             tfDataNascimento.setText(String.valueOf(leitor.getDataCadastro()));
             if (leitor.getSexo() == 'F') {
                 rbFeminino.setSelected(true);
@@ -377,7 +384,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             tfNomePai.setText(leitor.getNomePai().toString());
             tfNomeMae.setText(leitor.getNomeMae().toString());
             cbGrupoLeitores.setSelectedItem(((leitor.getGruposLeitores() != null) ? leitor.getGruposLeitores() : 0));
-            limparCampos();
+            //limparCampos();
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
@@ -475,14 +482,13 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
     private void ftDataNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftDataNascimentoFocusLost
         // TODO add your handling code here:
-        
     }//GEN-LAST:event_ftDataNascimentoFocusLost
 
     private void tfCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCPFFocusLost
         // TODO add your handling code here:
-        
-        if(!Util.CPF(tfCPF.getText().toString().replaceAll("\\D*", ""))){
-            JOptionPane.showMessageDialog(rootPane, "CPF Inválido!", 
+
+        if (!Util.CPF(tfCPF.getText().toString().replaceAll("\\D*", ""))) {
+            JOptionPane.showMessageDialog(rootPane, "CPF Inválido!",
                     "OSBiblio", JOptionPane.ERROR_MESSAGE);
             tfCPF.setText("");
         }

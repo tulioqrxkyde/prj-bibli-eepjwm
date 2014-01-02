@@ -3,6 +3,7 @@ package fvsosp.autor;
 import fvsosp.acervo.Acervo;
 
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
@@ -14,6 +15,36 @@ public class Autor {
     @Id // campo chave primária
     @GeneratedValue // campo autoincremento
     private short idAutor;
+
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 37 * hash + this.idAutor;
+        hash = 37 * hash + Objects.hashCode(this.nome);
+        hash = 37 * hash + Objects.hashCode(this.sobreOAutor);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final Autor other = (Autor) obj;
+        if (this.idAutor != other.idAutor) {
+            return false;
+        }
+        if (!Objects.equals(this.nome, other.nome)) {
+            return false;
+        }
+        if (!Objects.equals(this.sobreOAutor, other.sobreOAutor)) {
+            return false;
+        }
+        return true;
+    }
     
     // not null de tamanho 70 e valor padrão ''
     @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 

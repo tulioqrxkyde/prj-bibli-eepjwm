@@ -4,6 +4,7 @@
  */
 package fvsosp.autor;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -41,9 +42,10 @@ public class AutorTableModel extends AbstractTableModel {
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         Autor autor = autores.get(rowIndex);
+        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                    return autor.getIdAutor();
+                    return df.format(autor.getIdAutor());
             case 1:
                     return autor.getNome();
             case 2:

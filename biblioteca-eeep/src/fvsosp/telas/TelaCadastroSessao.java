@@ -176,7 +176,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         SessaoTableModel stm = new SessaoTableModel(lista);
         Object o = TelaPesquisa.exibeTela(stm, "Sessão");
         if (o != null) {
-            sessao = sessaoRN.pesquisarCodigo((short) o);
+            sessao = sessaoRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNomeSessao.setText(sessao.getDescricao());
             btRemover.setEnabled(true);
         }

@@ -190,7 +190,7 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         Object o = TelaPesquisa.exibeTela(itm, "Tipo de Item");
         palavras = new PalavrasChaves();
         if (o != null) {
-            short id = (short) o;
+            short id = Short.valueOf(String.valueOf(o));
             palavras = palavrasRN.pesquisarCodigo(id);
             tfDescricao.setText(palavras.getDescricao().toString());
             btRemover.setEnabled(true);
