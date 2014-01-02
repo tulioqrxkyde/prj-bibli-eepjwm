@@ -5,15 +5,17 @@
 package fvsosp.acervo;
 
 import fvsosp.palavraschaves.PalavrasChaves;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author TÚLIO
+ * @author Pedro Saraiva
  */
-public class PalavraChaveAcervoTableModel extends AbstractTableModel {
-
+public class PalavraChaveAcervoTableModel extends AbstractTableModel{
+    
     private String[] nomeColunas = {"Descrição"};
     private List<PalavrasChaves> palavras;
 
@@ -58,4 +60,5 @@ public class PalavraChaveAcervoTableModel extends AbstractTableModel {
         }
         return null;
     }
+    
 }
