@@ -197,9 +197,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 tbPesquisa.setRowSelectionInterval(linha, linha);
                 break;
             }
-
         }
-
     }
 
     private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked

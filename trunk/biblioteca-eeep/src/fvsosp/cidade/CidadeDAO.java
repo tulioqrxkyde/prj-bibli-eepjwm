@@ -42,7 +42,7 @@ public class CidadeDAO extends GenericDAO<Cidade> {
             this.setTransacao(getSessao().beginTransaction());
 
             cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {
@@ -61,7 +61,7 @@ public class CidadeDAO extends GenericDAO<Cidade> {
             this.setTransacao(getSessao().beginTransaction());
 
             cidades = (List<Cidade>) getSessao().createCriteria(Cidade.class).
-                    add(Restrictions.like("descricao", uf, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("descricao", uf, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {

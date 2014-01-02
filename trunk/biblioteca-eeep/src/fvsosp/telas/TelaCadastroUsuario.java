@@ -4,8 +4,6 @@
  */
 package fvsosp.telas;
 
-import fvsosp.idioma.Idioma;
-import fvsosp.sessao.SessaoTableModel;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.usuario.UsuarioTableModel;
@@ -16,6 +14,7 @@ import javax.swing.JOptionPane;
  *
  * @author ADRIANO
  */
+@SuppressWarnings("serial")
 public class TelaCadastroUsuario extends javax.swing.JDialog {
 
     Usuario usuario;
@@ -42,7 +41,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        labelUsuario = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         tfSenha = new javax.swing.JPasswordField();
         lbSenha = new javax.swing.JLabel();
@@ -59,22 +58,22 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(51, 89, 152));
 
-        jLabel1.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("Usuário");
+        labelUsuario.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        labelUsuario.setForeground(new java.awt.Color(255, 255, 255));
+        labelUsuario.setText("Usuário");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(labelUsuario)
                 .addGap(0, 343, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1)
+                .addComponent(labelUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -86,6 +85,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         lbLogin.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lbLogin.setText("Login.:");
 
+        cbAdministrador.setBackground(new java.awt.Color(255, 255, 255));
         cbAdministrador.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbAdministrador.setText("Administrador");
         cbAdministrador.addActionListener(new java.awt.event.ActionListener() {
@@ -109,6 +109,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         });
 
         btExcluir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
+        btExcluir.setEnabled(false);
         btExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btExcluirActionPerformed(evt);
@@ -137,29 +138,32 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(86, Short.MAX_VALUE)
-                .addComponent(cbAdministrador)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbLogin)
+                            .addComponent(lbSenha)
+                            .addComponent(tfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
+                            .addComponent(lbSenha1)
+                            .addComponent(tfConfirmarSenha))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(cbAdministrador)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSair, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(16, 16, 16))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(lbLogin)
-                    .addComponent(lbSenha)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(tfSenha, javax.swing.GroupLayout.DEFAULT_SIZE, 201, Short.MAX_VALUE)
-                    .addComponent(lbSenha1)
-                    .addComponent(tfConfirmarSenha))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,14 +175,15 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lbSenha)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbAdministrador))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lbSenha1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(tfConfirmarSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(cbAdministrador)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -198,7 +203,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(0, 0, 0)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
@@ -238,9 +243,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
                         + ", alterado com sucesso!");
             }
-            // limpaCampos();
             limpaCampos();
-            btExcluir.setEnabled(false);
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -258,7 +261,19 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         btExcluir.setEnabled(false);
     }
     private void cbAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAdministradorActionPerformed
-        // TODO add your handling code here:
+        String l = JOptionPane.showInputDialog(rootPane, "Informe seu usuário: ", "Autenticação", JOptionPane.PLAIN_MESSAGE),
+                p = JOptionPane.showInputDialog(rootPane, "Informe sua senha: ", "Autenticação", JOptionPane.PLAIN_MESSAGE);
+        if (JOptionPane.CANCEL_OPTION > 0) {
+            cbAdministrador.setSelected(false);
+        } else if ((usuario.getLogin() != null && !usuario.getLogin().equals(l)) || (usuario.getSenha() != null && !usuario.getSenha().equals(p))) {
+            JOptionPane.showMessageDialog(rootPane, "Dados " + usuario.getLogin()
+                    + ", incorretos!", "Autenticação", JOptionPane.INFORMATION_MESSAGE);
+            cbAdministrador.setSelected(false);
+        } else if (!usuario.isAdministrador()) {
+            JOptionPane.showMessageDialog(rootPane, "Somente usuários autorizados podem selecionar esta opção.", "Confirmação",
+                    JOptionPane.INFORMATION_MESSAGE);
+            cbAdministrador.setSelected(false);
+        }
     }//GEN-LAST:event_cbAdministradorActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed
@@ -290,7 +305,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
             lista = usuarioRN.listar();
         }
         UsuarioTableModel stm = new UsuarioTableModel(lista);
-        Object o = TelaPesquisa.exibeTela(stm, "Sessão");
+        Object o = TelaPesquisa.exibeTela(stm, "Usuário");
         usuario = new Usuario();
         if (o != null) {
             short id = (short) o;
@@ -316,7 +331,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }
@@ -346,9 +361,9 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSalvar;
     private javax.swing.JCheckBox cbAdministrador;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JLabel labelUsuario;
     private javax.swing.JLabel lbLogin;
     private javax.swing.JLabel lbSenha;
     private javax.swing.JLabel lbSenha1;

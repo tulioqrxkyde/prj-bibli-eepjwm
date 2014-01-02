@@ -1,13 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.biblioteca.Biblioteca;
 import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.biblioteca.BibliotecaTableModel;
-import fvsosp.sessao.SessaoRN;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -15,6 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author TÚLIO
  */
+@SuppressWarnings("serial")
 public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
     Biblioteca biblioteca;
@@ -25,10 +22,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
      */
     public TelaCadastroBiblioteca() {
         initComponents();
-        this.setTitle("OSBiblio - Biblioteca");
         this.setLocationRelativeTo(null);
-        btRemover.setEnabled(false);
-        setModal(true);
     }
 
     /**
@@ -52,6 +46,8 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         tfNomeBiblioteca = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Biblioteca");
+        setModal(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -68,6 +64,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -111,7 +108,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Descrição.:");
 
         tfNomeBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeBiblioteca.setToolTipText("Digite aqui a descrição da biblioteca");
+        tfNomeBiblioteca.setToolTipText("Digite aqui a descrição da Biblioteca.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -119,22 +116,25 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Descricao_Biblioteca)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSair))
-                    .addComponent(tfNomeBiblioteca))
+                .addContainerGap(179, Short.MAX_VALUE)
+                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSair)
                 .addGap(16, 16, 16))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNomeBiblioteca)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Descricao_Biblioteca)
+                        .addGap(0, 343, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,35 +169,27 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<Biblioteca> bibliotecas = null;
-        if (tfNomeBiblioteca.getText() != null) {
-            bibliotecas = bibliotecaRN.pesquisaDescricaoLike(tfNomeBiblioteca.getText());
-        } else {
-            bibliotecas = bibliotecaRN.listar();
-        }
+        List<Biblioteca> bibliotecas;
+        bibliotecas = ((tfNomeBiblioteca.getText() != null) ? bibliotecaRN.pesquisarDescricao(tfNomeBiblioteca.getText()) : bibliotecaRN.listar());
         BibliotecaTableModel btm = new BibliotecaTableModel(bibliotecas);
         Object o = TelaPesquisa.exibeTela(btm, "Biblioteca");
-        biblioteca = new Biblioteca();
         if (o != null) {
-            short id = (short) o;
-            biblioteca = bibliotecaRN.pesquisarCodigo(id);
-            tfNomeBiblioteca.setText(biblioteca.getDescricao().toString());
+            biblioteca = new Biblioteca();
+            biblioteca = bibliotecaRN.pesquisarCodigo((short) o);
+            tfNomeBiblioteca.setText(biblioteca.getDescricao());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
         if (biblioteca != null) {
             if (biblioteca.getIdBiblioteca() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a biblioteca " + biblioteca.getDescricao()
@@ -217,28 +209,22 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (biblioteca == null) {
             biblioteca = new Biblioteca();
         }
-
-        biblioteca.setDescricao(tfNomeBiblioteca.getText().toString());
-        int idBiblioteca = biblioteca.getIdBiblioteca();
-        if (bibliotecaRN.salvar(biblioteca)) {
-            if (idBiblioteca == 0) {
+        if (Util.chkVazio(tfNomeBiblioteca.getText())) {
+            biblioteca.setDescricao(tfNomeBiblioteca.getText());
+            int id = biblioteca.getIdBiblioteca();
+            if (bibliotecaRN.salvar(biblioteca)) {
                 JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                        + ", cadastrada com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
-                        + ", alterada com sucesso!");
+                        + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
+                limpaCampos();
             }
-            limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
     public void limpaCampos() {
-        tfNomeBiblioteca.setText("");
         biblioteca = null;
+        tfNomeBiblioteca.setText("");
         tfNomeBiblioteca.requestFocus();
         btRemover.setEnabled(false);
     }

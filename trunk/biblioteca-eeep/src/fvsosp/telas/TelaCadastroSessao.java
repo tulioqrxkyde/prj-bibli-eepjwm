@@ -1,13 +1,9 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.telas;
 
 import fvsosp.sessao.Sessao;
 import fvsosp.sessao.SessaoRN;
 import fvsosp.sessao.SessaoTableModel;
-import fvsosp.usuario.Usuario;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -15,6 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author TULIO
  */
+@SuppressWarnings("serial")
 public class TelaCadastroSessao extends javax.swing.JDialog {
 
     private Sessao sessao;
@@ -25,14 +22,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
      */
     public TelaCadastroSessao() {
         initComponents();
-        this.setTitle("OSBiblio - Sessão");
         this.setLocationRelativeTo(null);
-        /*desabilita o o botão remover, o mesmo deve ser habilitado
-         * quando for pesquisado algum item, 
-         */
-        btRemover.setEnabled(false);
-        setModal(true);
-
     }
 
     /**
@@ -55,7 +45,9 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         btSalvar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
 
+        setTitle("OSBiblio - Sessão");
         setIconImage(null);
+        setModal(true);
         setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
@@ -64,7 +56,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         jLabel24.setText("Descrição.:");
 
         tfNomeSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeSessao.setToolTipText("Digite aqui a descrição da sessão");
+        tfNomeSessao.setToolTipText("Digite aqui a descrição da Sessão.");
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
         jPanel3.setLayout(null);
@@ -93,6 +85,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -121,22 +114,25 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel24)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(147, 147, 147)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSair))
-                    .addComponent(tfNomeSessao))
+                .addContainerGap(179, Short.MAX_VALUE)
+                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btSair)
                 .addGap(16, 16, 16))
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(tfNomeSessao))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -171,79 +167,62 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        // TODO add your handling code here:
-        List<Sessao> lista = null;
-        if(tfNomeSessao.getText()!=null){
-            lista = sessaoRN.pesquisarDescricaoLike(tfNomeSessao.getText());
-        } else {
-            lista = sessaoRN.listar();
-        }
+        List<Sessao> lista;
+        lista = ((tfNomeSessao.getText() != null) ? sessaoRN.pesquisarDescricaoLike(tfNomeSessao.getText()) : sessaoRN.listar());
         SessaoTableModel stm = new SessaoTableModel(lista);
-        Object o = TelaPesquisa.exibeTela(stm,"Sessão");
-        sessao = new Sessao();
+        Object o = TelaPesquisa.exibeTela(stm, "Sessão");
         if (o != null) {
-            short id = (short) o;
-            sessao = sessaoRN.pesquisarCodigo(id);
-            tfNomeSessao.setText(sessao.getDescricao().toString());
+            sessao = sessaoRN.pesquisarCodigo((short) o);
+            tfNomeSessao.setText(sessao.getDescricao());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
         if (sessao != null) {
             if (sessao.getIdSessao() != 0) {
-                if(JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a sessão "+sessao.getDescricao()+
-                        "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE)==JOptionPane.YES_OPTION){
-                if (sessaoRN.remove(sessao)) {
-                    JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
-                            + ", excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a sessão "
-                            + sessao.getDescricao(),
-                            "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir a sessão " + sessao.getDescricao()
+                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
+                    if (sessaoRN.remove(sessao)) {
+                        JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
+                                + ", excluída com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir a sessão "
+                                + sessao.getDescricao(),
+                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
-            }
             }
         }
         limpaCampos();
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (sessao == null) {
             sessao = new Sessao();
         }
-
-
-        sessao.setDescricao(tfNomeSessao.getText().toString());
-        int idSessao = sessao.getIdSessao();
-        if (sessaoRN.salvar(sessao)) {
-            if (idSessao == 0) {
+        if (Util.chkVazio(tfNomeSessao.getText())) {
+            sessao.setDescricao(tfNomeSessao.getText());
+            int id = sessao.getIdSessao();
+            if (sessaoRN.salvar(sessao)) {
                 JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
-                        + ", cadastrada com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
-                        + ", alterada com sucesso!");
+                        + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
+                limpaCampos();
             }
-            limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
-        
     }//GEN-LAST:event_btNovoActionPerformed
 
     public void limpaCampos() {
-        tfNomeSessao.setText("");
         sessao = null;
+        tfNomeSessao.setText("");
         tfNomeSessao.requestFocus();
         btRemover.setEnabled(false);
     }
