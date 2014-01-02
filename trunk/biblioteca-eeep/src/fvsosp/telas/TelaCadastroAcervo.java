@@ -59,7 +59,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         preencheIdioma();
         preencheSessao();
         preencheTipoItem();
-       
+
     }
 
     /**
@@ -668,28 +668,11 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             tfInformacoesAdicionais.setText(acervo.getInformacoesAdicionais().toString());
             tfLocalizacao.setText(acervo.getLocalizacao());
             btRemover.setEnabled(true);
-            cbBiblioteca.setSelectedItem(((acervo.getBiblioteca()!= null) ? acervo.getBiblioteca() : 0));
-          
-            if (acervo.getEditora() != null) {
-                cbEditora.setSelectedItem(acervo.getEditora());
-            } else {
-                cbEditora.setSelectedIndex(0);
-            }
-            if (acervo.getIdioma() != null) {
-                cbIdioma.setSelectedItem(acervo.getIdioma());
-            } else {
-                cbIdioma.setSelectedIndex(0);
-            }
-            if (acervo.getSessao() != null) {
-                cbSessao.setSelectedItem(acervo.getSessao());
-            } else {
-                cbSessao.setSelectedIndex(0);
-            }
-            if (acervo.getTipoItem() != null) {
-                cbTipoItem.setSelectedItem(acervo.getTipoItem());
-            } else {
-                cbTipoItem.setSelectedIndex(0);
-            }
+            cbBiblioteca.setSelectedItem(((acervo.getBiblioteca() != null) ? acervo.getBiblioteca() : 0));
+            cbEditora.setSelectedItem(((acervo.getEditora() != null) ? acervo.getEditora() : 0));
+            cbIdioma.setSelectedItem(((acervo.getIdioma() != null) ? acervo.getIdioma() : 0));
+            cbSessao.setSelectedItem(((acervo.getSessao() != null) ? acervo.getSessao() : 0));
+            cbTipoItem.setSelectedItem(((acervo.getTipoItem() != null) ? acervo.getTipoItem() : 0));
             palavrasChavesAcervo = acervo.getPalavrasChaves();
             autoresAcervo = acervo.getAutor();
             atualizaTabelaAutores();
@@ -735,8 +718,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             Calendar data = Calendar.getInstance();
             if (Long.parseLong(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
                 JOptionPane.showMessageDialog(null, "Não é possível inserir um ano de edição superior ao ano atual. ");
-            } else
+            } else {
                 acervo.setAnoEdicao(Short.parseShort(tffAnoEdicao.getText()));
+            }
         }
         acervo.setTituloObra(tfTitulo.getText());
         acervo.setSubtituloObra(tfSubTitulo.getText());
@@ -754,7 +738,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 //        }
         if ((cbBiblioteca.getSelectedIndex() > 0) && (cbEditora.getSelectedIndex() > 0)
                 && (cbIdioma.getSelectedIndex() > 0) && (cbSessao.getSelectedIndex() > 0) && (cbTipoItem.getSelectedIndex() > 0)) {
-           //    Autor autor = (Autor) cbAutor.getSelectedItem();
+            //    Autor autor = (Autor) cbAutor.getSelectedItem();
             //acervo.setAutor(autor);
             Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
             acervo.setBiblioteca(biblioteca);
@@ -800,7 +784,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 //            cbAutor.addItem(autor);
 //        }
 //    }
-
     private void preencheBiblioteca() {
         BibliotecaRN bibRN = new BibliotecaRN();
         List<Biblioteca> bibliotecas = bibRN.listar();
@@ -902,7 +885,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             try {
                 palavraChave = dao.pesquisarCodigo(id);
             } catch (Exception ex) {
-                System.out.println("Erro: "+ex.getMessage());
+                System.out.println("Erro: " + ex.getMessage());
             }
 
 
@@ -913,40 +896,40 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         return palavraChave;
 
     }
-    
+
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
-           // TODO add your handling code here:
+        // TODO add your handling code here:
         PalavrasChaves p = pegaPalavaChaveSelecionado();
         if (JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir a Palavra Chave " + p.getDescricao() + "?",
                 "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             palavrasChavesAcervo.remove(p);
-            
+
             JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + p.getDescricao() + " Excluído com Sucesso!",
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
         atualizaTabelaPalavrasChaves();
-        
+
     }//GEN-LAST:event_ExcluirActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         PalavrasChavesRN palavrasRN = new PalavrasChavesRN();
         List<PalavrasChaves> lista = palavrasRN.listar();
-        
+
         PalavrasChavesTableModel itm = new PalavrasChavesTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Palavras Chaves");
         PalavrasChaves palavras = new PalavrasChaves();
-        
+
         if (o != null) {
             short id = Short.valueOf(String.valueOf(o));
             palavras = palavrasRN.pesquisarCodigo(id);
-            if(JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir a Palavra Chave: "+
-                    palavras.getDescricao()+"?", "Inserir Palavra Chave", 
-                    JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE)==JOptionPane.YES_OPTION){
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir a Palavra Chave: "
+                    + palavras.getDescricao() + "?", "Inserir Palavra Chave",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
                 palavrasChavesAcervo.add(palavras);
                 atualizaTabelaPalavrasChaves();
-            }            
-        }   
+            }
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void tbAutoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAutoresMouseClicked
@@ -968,7 +951,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             try {
                 autor = dao.pesquisarCodigo(id);
             } catch (Exception ex) {
-                System.out.println("Erro: "+ex.getMessage());
+                System.out.println("Erro: " + ex.getMessage());
             }
 
 
@@ -979,14 +962,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         return autor;
 
     }
-    
+
     private void btExcluirAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirAutorActionPerformed
         // TODO add your handling code here:
         Autor a = pegaAutorSelecionado();
         if (JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir o Autor " + a.getNome() + "?",
                 "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             autoresAcervo.remove(a);
-            
+
             JOptionPane.showMessageDialog(rootPane, "Autor " + a.getNome() + " Excluído com Sucesso!",
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
@@ -997,22 +980,22 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         // TODO add your handling code here:
         AutorRN autorRN = new AutorRN();
         List<Autor> lista = autorRN.listar();
-        
+
         AutorTableModel itm = new AutorTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Autor");
         Autor autor = new Autor();
-        
+
         if (o != null) {
             short id = Short.valueOf(String.valueOf(o));
             autor = autorRN.pesquisarCodigo(id);
-            if(JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir o Autor: "+
-                    autor.getNome()+"?", "Inserir Autor", 
-                    JOptionPane.YES_NO_OPTION,JOptionPane.INFORMATION_MESSAGE)==JOptionPane.YES_OPTION){
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir o Autor: "
+                    + autor.getNome() + "?", "Inserir Autor",
+                    JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
                 autoresAcervo.add(autor);
                 atualizaTabelaAutores();
             }
-            
-        }   
+
+        }
     }//GEN-LAST:event_btInserirAutorActionPerformed
 
     private void atualizaTabelaPalavrasChaves() {
@@ -1020,25 +1003,25 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         try {
             atm = new PalavraChaveAcervoTableModel(palavrasChavesAcervo);
             tbPalavrasChaves.setModel(atm);
-            
+
         } catch (Exception ex) {
-            System.out.println("Erro: "+ex.getMessage());
-        }      
-          
+            System.out.println("Erro: " + ex.getMessage());
+        }
+
     }
-    
+
     private void atualizaTabelaAutores() {
         AutoresAcervoTableModel atm;
         try {
             atm = new AutoresAcervoTableModel(autoresAcervo);
             tbAutores.setModel(atm);
-            
+
         } catch (Exception ex) {
-            System.out.println("Erro: "+ex.getMessage());
-        }      
-          
+            System.out.println("Erro: " + ex.getMessage());
+        }
+
     }
-    
+
     /**
      * @param args the command line arguments
      */
