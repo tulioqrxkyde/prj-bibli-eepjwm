@@ -7,6 +7,7 @@ package fvsosp.acervo;
 import fvsosp.palavraschaves.PalavrasChaves;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import javax.swing.table.AbstractTableModel;
@@ -30,6 +31,7 @@ public class PalavraChaveAcervoTableModel extends AbstractTableModel {
         this();
         this.palavras.clear();
         this.palavras.addAll(lista);
+        Collections.sort(palavras);
         super.fireTableDataChanged();
     }
 

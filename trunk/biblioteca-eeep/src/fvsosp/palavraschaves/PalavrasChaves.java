@@ -8,7 +8,12 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "palavraschaves")
-public class PalavrasChaves implements Serializable{
+public class PalavrasChaves implements Serializable, Comparable<PalavrasChaves> {
+    
+    @Override
+    public int compareTo(PalavrasChaves o) {        
+        return descricao.compareTo(o.descricao);            
+    }
 
     @Id // campo chave primária
     @GeneratedValue

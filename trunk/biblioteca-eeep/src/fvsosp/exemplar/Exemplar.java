@@ -22,25 +22,30 @@ import javax.persistence.Table;
  * @author Pedro Saraiva
  */
 @Entity
-@Table(name="exemplar")
-public class Exemplar implements Serializable {
-    private static final long serialVersionUID = -6137808136410511086L;
+@Table(name = "exemplar")
+public class Exemplar implements Serializable, Comparable<Exemplar> {
+
+    @Override
+    public int compareTo(Exemplar o) {
+        Short exemplar2 = exemplar;
+        Short exemplarO2 = o.exemplar;
+        return exemplar2.compareTo(exemplarO2);            
+    }
     
-   @Id
-   @GeneratedValue
-   private short tombo;
-   
-   @Column(length = 20, nullable=false)
-   private short exemplar;
+    private static final long serialVersionUID = -6137808136410511086L;
+    @Id
+    @GeneratedValue
+    private short tombo;
+    @Column(length = 20, nullable = false)
+    private short exemplar;
 
     @Override
     public String toString() {
         return "Nº exemplar =" + exemplar;
     }
-   
-   @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name="idAcervo")
-   private Acervo acervo;
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "idAcervo")
+    private Acervo acervo;
 
     @Override
     public int hashCode() {
@@ -112,5 +117,5 @@ public class Exemplar implements Serializable {
      */
     public void setAcervo(Acervo acervo) {
         this.acervo = acervo;
-    }   
+    }
 }

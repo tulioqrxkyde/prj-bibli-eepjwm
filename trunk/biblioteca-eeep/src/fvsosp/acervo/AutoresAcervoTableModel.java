@@ -7,6 +7,7 @@ package fvsosp.acervo;
 import fvsosp.autor.Autor;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 import javax.swing.table.AbstractTableModel;
@@ -30,6 +31,7 @@ public class AutoresAcervoTableModel extends AbstractTableModel{
         this();
         this.autores.clear();
         this.autores.addAll(lista);
+        Collections.sort(autores);
         super.fireTableDataChanged();
     }
 
