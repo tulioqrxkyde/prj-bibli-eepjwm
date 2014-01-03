@@ -8,6 +8,7 @@ import fvsosp.exemplar.Exemplar;
 import fvsosp.palavraschaves.PalavrasChaves;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -33,6 +34,7 @@ public class ExemplarAcervoTableModel extends AbstractTableModel {
 //        this.exemplares.clear();
 //        this.exemplares.addAll(lista);
         exemplares = new ArrayList(new HashSet(lista));
+        Collections.sort(exemplares);
         super.fireTableDataChanged();
     }
 

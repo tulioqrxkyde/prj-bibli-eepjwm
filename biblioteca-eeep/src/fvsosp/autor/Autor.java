@@ -1,6 +1,7 @@
 package fvsosp.autor;
 
 import fvsosp.acervo.Acervo;
+import java.io.Serializable;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,8 +11,13 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="autor")
-public class Autor {
+public class Autor implements Comparable<Autor> {
 
+     @Override
+    public int compareTo(Autor o) {        
+        return nome.compareTo(o.nome);            
+    }
+    
     @Id // campo chave primária
     @GeneratedValue // campo autoincremento
     private short idAutor;
