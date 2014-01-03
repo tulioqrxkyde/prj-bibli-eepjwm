@@ -177,7 +177,7 @@ public class Acervo implements Serializable{
     @JoinColumn(name="idbiblioteca", nullable=false)
     private Biblioteca biblioteca;
     
-    @OneToMany(mappedBy="acervo")
+    @OneToMany(mappedBy="acervo",fetch = FetchType.EAGER)
     private List<Exemplar> exemplares;
     
     @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")

@@ -44,9 +44,10 @@ public class Exemplar implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 41 * hash + this.getExemplar();
-        hash = 41 * hash + Objects.hashCode(this.getAcervo());
+        int hash = 3;
+        hash = 73 * hash + this.tombo;
+        hash = 73 * hash + this.exemplar;
+        hash = 73 * hash + Objects.hashCode(this.acervo);
         return hash;
     }
 
@@ -59,10 +60,10 @@ public class Exemplar implements Serializable {
             return false;
         }
         final Exemplar other = (Exemplar) obj;
-        if (this.getTombo() != other.getTombo()) {
+        if (this.tombo != other.tombo) {
             return false;
         }
-        if (this.getExemplar() != other.getExemplar()) {
+        if (this.exemplar != other.exemplar) {
             return false;
         }
         if (!Objects.equals(this.acervo, other.acervo)) {

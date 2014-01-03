@@ -13,6 +13,7 @@ import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.editora.Editora;
 import fvsosp.editora.EditoraRN;
 import fvsosp.exemplar.Exemplar;
+import fvsosp.exemplar.ExemplarRN;
 import fvsosp.idioma.Idioma;
 import fvsosp.idioma.IdiomaRN;
 import fvsosp.palavraschaves.PalavrasChaves;
@@ -22,6 +23,7 @@ import fvsosp.sessao.Sessao;
 import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
+import fvsosp.util.FormataTamanhoColunasJTable;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -43,6 +45,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     Exemplar exemplar;
     Set<PalavrasChaves> palavrasChavesAcervo = new HashSet<PalavrasChaves>();
     Set<Autor> autoresAcervo = new HashSet<Autor>();
+    List<Exemplar> exemplaresAcervo = new ArrayList<Exemplar>();
 
     /**
      * Creates new form TelaCadastroAcervo
@@ -59,6 +62,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         preencheIdioma();
         preencheSessao();
         preencheTipoItem();
+
+
 
     }
 
@@ -104,11 +109,12 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tbPalavrasChaves = new javax.swing.JTable();
         Excluir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
+        jpExemplar = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        tfExemplar = new javax.swing.JTextField();
-        jLabel37 = new javax.swing.JLabel();
-        tfTombo = new javax.swing.JTextField();
+        qtdExemplar = new javax.swing.JFormattedTextField();
+        jButton3 = new javax.swing.JButton();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        tbExemplares = new javax.swing.JTable();
         jPanel5 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         tfAcabamentoCapa = new javax.swing.JTextField();
@@ -267,7 +273,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         tffAnoEdicao.setToolTipText("Digite aqui o ano de edição");
         tffAnoEdicao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        pn1.add(tffAnoEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, 20));
+        pn1.add(tffAnoEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, -1));
 
         tfIsbn1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfIsbn1.setToolTipText("Digite aqui o ISBN da obra");
@@ -339,48 +345,91 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         tbLeitor.addTab("Palavras Chaves", pn3);
 
-        jPanel6.setBackground(new java.awt.Color(255, 255, 255));
+        jpExemplar.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel36.setText("Tombo.:");
+        jLabel36.setText("Qtd Exemplar a Gerar.:");
 
-        tfExemplar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfExemplar.setToolTipText("Digite aqui o número do exemplar");
+        qtdExemplar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat(""))));
+        qtdExemplar.setToolTipText("Digite aqui o ano de edição");
+        qtdExemplar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
-        jLabel37.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel37.setText("Número do Exemplar.:");
+        jButton3.setText("Gerar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
-        tfTombo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTombo.setToolTipText("Digite aqui o tombo");
+        tbExemplares.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tbExemplares.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Exemplares"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false
+            };
 
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel36)
-                    .addComponent(tfExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel37)
-                    .addComponent(tfTombo, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(25, Short.MAX_VALUE))
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        tbExemplares.setRowSelectionAllowed(false);
+        tbExemplares.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbExemplaresMouseClicked(evt);
+            }
+        });
+        tbExemplares.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbExemplaresKeyPressed(evt);
+            }
+        });
+        jScrollPane4.setViewportView(tbExemplares);
+        tbExemplares.getColumnModel().getColumn(0).setResizable(false);
+
+        javax.swing.GroupLayout jpExemplarLayout = new javax.swing.GroupLayout(jpExemplar);
+        jpExemplar.setLayout(jpExemplarLayout);
+        jpExemplarLayout.setHorizontalGroup(
+            jpExemplarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExemplarLayout.createSequentialGroup()
+                .addGroup(jpExemplarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jpExemplarLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel36)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(qtdExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3))
+                    .addGroup(jpExemplarLayout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(45, Short.MAX_VALUE))
         );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
+        jpExemplarLayout.setVerticalGroup(
+            jpExemplarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jpExemplarLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(tfTombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel37, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, 0)
-                .addComponent(tfExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(157, Short.MAX_VALUE))
+                .addGroup(jpExemplarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(qtdExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton3))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(14, Short.MAX_VALUE))
         );
 
-        tbLeitor.addTab("Exemplar", jPanel6);
+        tbLeitor.addTab("Exemplar", jpExemplar);
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -675,8 +724,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             cbTipoItem.setSelectedItem(((acervo.getTipoItem() != null) ? acervo.getTipoItem() : 0));
             palavrasChavesAcervo = acervo.getPalavrasChaves();
             autoresAcervo = acervo.getAutor();
+            exemplaresAcervo = acervo.getExemplares();
             atualizaTabelaAutores();
             atualizaTabelaPalavrasChaves();
+            atualizaTabelaExemplares();
             tfAcabamentoCapa.setText(acervo.getAcabamentoCapa());
             tfAcabamentoMiolo.setText(acervo.getAcabamentoMiolo());
             tfPeso.setText(String.valueOf(acervo.getPeso()));
@@ -764,6 +815,17 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         acervo.setAcabamentoMiolo(tfAcabamentoMiolo.getText());
         acervo.setNumeroPaginas(Short.parseShort(tfPaginas.getText()));
         acervo.setPeso(Short.parseShort(tfPeso.getText()));
+
+        if(acervo.getIdAcervo()!=0){
+            ExemplarRN exmRN = new ExemplarRN();
+            for (int i = 0; i < exemplaresAcervo.size(); i++) {
+                if (exemplaresAcervo.get(i).getTombo() == 0) {
+                    exemplaresAcervo.get(i).setAcervo(acervo);
+                    exmRN.adiciona(exemplaresAcervo.get(i));
+                }
+            }
+        }
+
         int tdAcervo = acervo.getIdAcervo();
         if (acervoRN.salvar(acervo)) {
             if (tdAcervo == 0) {
@@ -772,6 +834,18 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
                         + ", alterado com sucesso!");
             }
+
+            /*
+             * Cadastro de exemplares
+             */
+            ExemplarRN exmRN = new ExemplarRN();
+            for (int i = 0; i < exemplaresAcervo.size(); i++) {
+                if (exemplaresAcervo.get(i).getTombo() == 0) {
+                    exemplaresAcervo.get(i).setAcervo(acervo);
+                    exmRN.adiciona(exemplaresAcervo.get(i));
+                }
+            }
+
             limparCampos();
             btRemover.setEnabled(false);
         }
@@ -841,8 +915,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         cbSessao.setSelectedIndex(0);
         cbTipoItem.setSelectedIndex(0);
         //tfPalavrasChaves.setText("");
-        tfTombo.setText("");
-        tfExemplar.setText("");
+        qtdExemplar.setText("");
         tfAcabamentoCapa.setText("");
         tfAcabamentoMiolo.setText("");
         tfPaginas.setText("");
@@ -852,8 +925,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         btRemover.setEnabled(false);
         palavrasChavesAcervo = new HashSet<PalavrasChaves>();
         autoresAcervo = new HashSet<Autor>();
+        exemplaresAcervo = new ArrayList<Exemplar>();
         atualizaTabelaAutores();
         atualizaTabelaPalavrasChaves();
+        atualizaTabelaExemplares();
     }//GEN-LAST:event_btSalvarActionPerformed
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
@@ -998,6 +1073,49 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btInserirAutorActionPerformed
 
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        if (qtdExemplar.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Preencha a Quantidade de Exemplares a serem gerados!",
+                    "ERRO", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir " + qtdExemplar.getText()
+                    + " Exemplares para Este Acervo?", "Exemplares", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                int qtd = Integer.parseInt(qtdExemplar.getText().toString());
+                Exemplar exemplar;
+                for (int i = 0; i < qtd; i++) {
+                    exemplar = new Exemplar();
+
+                    if ((acervo == null) && (exemplaresAcervo.size() == 0)) {
+                        exemplar.setExemplar(Short.valueOf(String.valueOf(i + 1)));
+                    } else {                        
+                        short numexemplar=1;
+                        if(exemplaresAcervo.size()==0){
+                            
+                        } else {
+                            int tamanhoListaExmeplares=0;
+                            tamanhoListaExmeplares = exemplaresAcervo.size() - 1;
+                            numexemplar = Short.valueOf(String.valueOf(exemplaresAcervo.get(tamanhoListaExmeplares).getExemplar() + 1));
+                        }
+                        
+                        exemplar.setExemplar(numexemplar);
+                    }
+                    exemplaresAcervo.add(exemplar);
+                }
+                atualizaTabelaExemplares();
+                qtdExemplar.setText("");
+            }
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void tbExemplaresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbExemplaresMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbExemplaresMouseClicked
+
+    private void tbExemplaresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbExemplaresKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbExemplaresKeyPressed
+
     private void atualizaTabelaPalavrasChaves() {
         PalavraChaveAcervoTableModel atm;
         try {
@@ -1007,7 +1125,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
-
+        FormataTamanhoColunasJTable.packColumns(tbPalavrasChaves, 1);
     }
 
     private void atualizaTabelaAutores() {
@@ -1019,6 +1137,22 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
+        FormataTamanhoColunasJTable.packColumns(tbAutores, 1);
+
+
+    }
+
+    private void atualizaTabelaExemplares() {
+        ExemplarAcervoTableModel atm;
+        try {
+            atm = new ExemplarAcervoTableModel(exemplaresAcervo);
+            tbExemplares.setModel(atm);
+
+        } catch (Exception ex) {
+            System.out.println("Erro: " + ex.getMessage());
+        }
+        FormataTamanhoColunasJTable.packColumns(tbExemplares, 1);
+
 
     }
 
@@ -1077,6 +1211,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JComboBox cbSessao;
     private javax.swing.JComboBox cbTipoItem;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
@@ -1089,7 +1224,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
-    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
@@ -1102,21 +1236,23 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JPanel jpExemplar;
     private javax.swing.JPanel pn1;
     private javax.swing.JPanel pn3;
     private javax.swing.JPanel pn4;
+    private javax.swing.JFormattedTextField qtdExemplar;
     private javax.swing.JTable tbAutores;
+    private javax.swing.JTable tbExemplares;
     private javax.swing.JTabbedPane tbLeitor;
     private javax.swing.JTable tbPalavrasChaves;
     private javax.swing.JTextField tfAcabamentoCapa;
     private javax.swing.JTextField tfAcabamentoMiolo;
     private javax.swing.JTextField tfEdicao;
-    private javax.swing.JTextField tfExemplar;
     private javax.swing.JTextField tfInformacoesAdicionais;
     private javax.swing.JTextField tfIsbn1;
     private javax.swing.JTextField tfLocalizacao;
@@ -1124,7 +1260,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JTextField tfPeso;
     private javax.swing.JTextField tfSubTitulo;
     private javax.swing.JTextField tfTitulo;
-    private javax.swing.JTextField tfTombo;
     private javax.swing.JTextField tfVolume;
     private javax.swing.JFormattedTextField tffAnoEdicao;
     // End of variables declaration//GEN-END:variables
