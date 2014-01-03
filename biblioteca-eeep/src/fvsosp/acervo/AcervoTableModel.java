@@ -20,14 +20,15 @@ public class AcervoTableModel extends AbstractTableModel {
 
     // construtor padrão criando um arraylist de alunos  
     public AcervoTableModel() {
-        acervos = new ArrayList<Acervo>();
+        //acervos = new LinkedList<Acervo>();
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
     public AcervoTableModel(List<Acervo> lista) {
-        this();
-        this.acervos.clear();
-        this.acervos.addAll(lista);
+        //this();
+        acervos = new ArrayList(new HashSet(lista));
+        //this.acervos.clear();
+        //this.acervos.addAll(lista);
         super.fireTableDataChanged();
     }
 
