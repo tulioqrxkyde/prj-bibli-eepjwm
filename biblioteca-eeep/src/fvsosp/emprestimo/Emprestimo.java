@@ -1,6 +1,7 @@
 package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.exemplar.Exemplar;
 import fvsosp.leitor.Leitor;
 import java.io.Serializable;
 import java.util.*;
@@ -16,7 +17,7 @@ public class Emprestimo implements Serializable {
         hash = 53 * hash + this.idEmprestimo;
         hash = 53 * hash + Objects.hashCode(this.dataEmprestimo);
         hash = 53 * hash + Objects.hashCode(this.dataDevolucao);
-        hash = 53 * hash + Objects.hashCode(this.acervos);
+        hash = 53 * hash + Objects.hashCode(this.exemplares);
         hash = 53 * hash + Objects.hashCode(this.leitor);
         return hash;
     }
@@ -39,7 +40,7 @@ public class Emprestimo implements Serializable {
         if (!Objects.equals(this.dataDevolucao, other.dataDevolucao)) {
             return false;
         }
-        if (!Objects.equals(this.acervos, other.acervos)) {
+        if (!Objects.equals(this.exemplares, other.exemplares)) {
             return false;
         }
         if (!Objects.equals(this.leitor, other.leitor)) {
@@ -64,13 +65,13 @@ public class Emprestimo implements Serializable {
      * todos os itens da tabela acervoemprestimos que façam referência 
      * ao emprestimo excluído será deletado também
      */
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "AcervoEmprestimos",
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "ExemplarEmprestimos",
             joinColumns =
             @JoinColumn(name = "idEmprestimo"),
             inverseJoinColumns =
-            @JoinColumn(name = "idAcervo"))
-    private Set<Acervo> acervos = new HashSet<Acervo>();
+            @JoinColumn(name = "idExemplar"))
+    private Set<Exemplar> exemplares = new HashSet<>();
     /*set não aceita valores duplicados, 
      * ou seja um mesmo livro não poderá ser emprestado ao 
      * mesmo emprestimo
@@ -107,8 +108,8 @@ public class Emprestimo implements Serializable {
     /**
      * * @seta a Data do Empréstimo **
      */
-    public void setDataEmrepstimo(Date dataEmrepstimo) {
-        this.dataEmprestimo = dataEmrepstimo;
+    public void setDataEmprestimo(Date dataEmprestimo) {
+        this.dataEmprestimo = dataEmprestimo;
     }
 
     /**
@@ -126,18 +127,18 @@ public class Emprestimo implements Serializable {
     }
 
     /**
-     * * @retorna a lista de Acervos **
+     * * @retorna a lista de Exemplares **
      */
-    public Set<Acervo> getAcervos() {
-        return acervos;
+    public Set<Exemplar> getExemplares() {
+        return exemplares;
     }
 
     /**
      * * @seta e copia a lista de Acervos recebida para a lista de Acervos da
      * Classe **
      */
-    public void setAcervos(Set<Acervo> acervos) {
-        this.acervos = acervos;
+    public void setExemplares(Set<Exemplar> exemplares) {
+        this.exemplares = exemplares;
     }
 
     /**

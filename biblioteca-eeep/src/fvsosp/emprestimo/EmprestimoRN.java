@@ -13,7 +13,7 @@ public class EmprestimoRN {
 
     public boolean adiciona(Emprestimo em) {
         if (em.getIdEmprestimo() == 0) {
-            if ((!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getAcervos().isEmpty())) {
+            if ((!em.getDataEmprestimo().toString().isEmpty()) && (em.getLeitor() != null) && (!em.getExemplares().isEmpty())) {
                 return dao.adicionar(em);
 
             }
@@ -30,6 +30,10 @@ public class EmprestimoRN {
 
     public List<Emprestimo> listar() {
         return dao.listar();
+    }
+    
+    public Emprestimo pesquisarCodigo(int codigo) {
+        return dao.pesquisarCodigo(codigo);
     }
 
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
