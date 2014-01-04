@@ -16,13 +16,31 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
     public EmprestimoDAO() {
         super(Emprestimo.class);
     }
+    
+    public Emprestimo pesquisarCodigo(int codigo) {
+        Emprestimo emprestimo = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            emprestimo = (Emprestimo) getSessao().createCriteria(Emprestimo.class).
+                    add(Restrictions.eq("idEmprestimo", codigo)).
+                    addOrder(Order.asc("idEmprestimo")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar pelo Código do Empréstimo: " + e.getMessage());
+        } finally {
+            getSessao().close();
+        }           
+        return emprestimo;
+    }
 
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
         List<Emprestimo> emprestimo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            emprestimo = (List<Emprestimo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.ilike("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
+            emprestimo = (List<Emprestimo>) getSessao().createCriteria(Emprestimo.class).add(Restrictions.eq("dataEmprestimo", data)).addOrder(Order.asc("dataEmprestimo")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Data de Emprestimo. Erro: " + e.getMessage());
         } finally {

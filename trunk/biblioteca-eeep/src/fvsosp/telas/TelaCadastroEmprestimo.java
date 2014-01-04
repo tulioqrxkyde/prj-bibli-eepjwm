@@ -2,10 +2,20 @@ package fvsosp.telas;
 
 import fvsosp.emprestimo.Emprestimo;
 import fvsosp.emprestimo.EmprestimoRN;
+import fvsosp.leitor.Leitor;
+import fvsosp.leitor.LeitorRN;
+import fvsosp.acervo.Acervo;
+import fvsosp.acervo.AcervoRN;
+import fvsosp.emprestimo.EmprestimoTableModel;
 import fvsosp.util.Util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 import javax.swing.JOptionPane;
 
 /**
@@ -23,6 +33,7 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
      */
     public TelaCadastroEmprestimo() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -35,15 +46,27 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        tfDataEmprestimo = new javax.swing.JFormattedTextField();
+        tfDataEmprestimoDia = new javax.swing.JFormattedTextField();
         labelDataEmprestimo = new javax.swing.JLabel();
-        tfDataDevolucao = new javax.swing.JFormattedTextField();
         labelDataDevolucao = new javax.swing.JLabel();
         btSalvar = new javax.swing.JButton();
         btRemover = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btPesquisar = new javax.swing.JButton();
+        tfDataEmprestimoMes = new javax.swing.JFormattedTextField();
+        tfDataEmprestimoAno = new javax.swing.JFormattedTextField();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        tfDataDevolucaoMes = new javax.swing.JFormattedTextField();
+        tfDataDevolucaoAno = new javax.swing.JFormattedTextField();
+        jLabel3 = new javax.swing.JLabel();
+        tfDataDevolucaoDia = new javax.swing.JFormattedTextField();
+        jLabel4 = new javax.swing.JLabel();
+        labelDataDevolucao1 = new javax.swing.JLabel();
+        labelDataDevolucao2 = new javax.swing.JLabel();
+        cbAcervo = new javax.swing.JComboBox();
+        cbLeitor = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         labelEmprestimo = new javax.swing.JLabel();
 
@@ -53,16 +76,12 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tfDataEmprestimo.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        tfDataEmprestimo.setText("  /  /");
-        tfDataEmprestimo.setToolTipText("Digite aqui a data de Empréstimo.");
+        tfDataEmprestimoDia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        tfDataEmprestimoDia.setToolTipText("Digite aqui o dia do Empréstimo.");
+        tfDataEmprestimoDia.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         labelDataEmprestimo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         labelDataEmprestimo.setText("Data de Empréstimo.:");
-
-        tfDataDevolucao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
-        tfDataDevolucao.setText("  /  /");
-        tfDataDevolucao.setToolTipText("Digite aqui a Data de Devolução.");
 
         labelDataDevolucao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         labelDataDevolucao.setText("Data de Devolução.:");
@@ -108,6 +127,46 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
             }
         });
 
+        tfDataEmprestimoMes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##"))));
+        tfDataEmprestimoMes.setToolTipText("Digite aqui o mês de Empréstimo.");
+        tfDataEmprestimoMes.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+
+        tfDataEmprestimoAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##"))));
+        tfDataEmprestimoAno.setToolTipText("Digite aqui o ano de Empréstimo.");
+        tfDataEmprestimoAno.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+
+        jLabel1.setText("/");
+
+        jLabel2.setText("/");
+
+        tfDataDevolucaoMes.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##"))));
+        tfDataDevolucaoMes.setToolTipText("Digite aqui o mês de Devolução.");
+        tfDataDevolucaoMes.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+
+        tfDataDevolucaoAno.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##"))));
+        tfDataDevolucaoAno.setToolTipText("Digite aqui o ano de Devolução.");
+        tfDataDevolucaoAno.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+
+        jLabel3.setText("/");
+
+        tfDataDevolucaoDia.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("##"))));
+        tfDataDevolucaoDia.setToolTipText("Digite aqui o dia de Devolução.");
+        tfDataDevolucaoDia.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+
+        jLabel4.setText("/");
+
+        labelDataDevolucao1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        labelDataDevolucao1.setText("Acervo.:");
+
+        labelDataDevolucao2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        labelDataDevolucao2.setText("Leitor.:");
+
+        cbAcervo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        AcervoRN acvRN = new AcervoRN();         for (Acervo acervo : acvRN.listar()) {             cbAcervo.addItem(acervo);         }
+
+        cbLeitor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        LeitorRN leiRN = new LeitorRN();         for (Leitor leitor : leiRN.listar()) {             cbLeitor.addItem(leitor);         }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -115,26 +174,45 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfDataEmprestimo)
+                    .addComponent(labelDataDevolucao)
+                    .addComponent(labelDataEmprestimo)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(labelDataDevolucao, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelDataEmprestimo, javax.swing.GroupLayout.Alignment.LEADING))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tfDataDevolucao, javax.swing.GroupLayout.Alignment.TRAILING))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(117, Short.MAX_VALUE)
-                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSair)
-                .addGap(46, 46, 46))
+                        .addComponent(tfDataEmprestimoDia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfDataEmprestimoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfDataEmprestimoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(tfDataDevolucaoDia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel3)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(tfDataDevolucaoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(6, 6, 6)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(btSair))
+                            .addComponent(tfDataDevolucaoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(labelDataDevolucao1)
+                    .addComponent(labelDataDevolucao2)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(cbLeitor, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(cbAcervo, javax.swing.GroupLayout.Alignment.LEADING, 0, 200, Short.MAX_VALUE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -142,19 +220,39 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addComponent(labelDataEmprestimo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfDataEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfDataEmprestimoDia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfDataEmprestimoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfDataEmprestimoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(labelDataDevolucao)
+                .addGap(6, 6, 6)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(tfDataDevolucaoDia, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfDataDevolucaoAno, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tfDataDevolucaoMes, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tfDataDevolucao, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addComponent(labelDataDevolucao1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbAcervo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelDataDevolucao2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cbLeitor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSair)
                     .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -178,7 +276,7 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -188,24 +286,32 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
         if (emprestimo == null) {
             emprestimo = new Emprestimo();
         }
-        if (Util.chkVazio(tfDataEmprestimo.getText().toString().replaceAll("/", ""), tfDataDevolucao.getText().toString().replaceAll("/", ""))) {
-            try {
-                if (tfDataEmprestimo.getText().equals("  /  /    ") && tfDataDevolucao.getText().equals("  /  /    ")) {
+        if (Util.chkVazio(tfDataEmprestimoDia.getText(), tfDataEmprestimoMes.getText(), tfDataEmprestimoAno.getText(),
+                tfDataDevolucaoDia.getText(), tfDataDevolucaoMes.getText(), tfDataDevolucaoAno.getText())
+                && cbAcervo.getSelectedIndex() != 0 && cbLeitor.getSelectedIndex() != 0) {
+            String dataEmprestimo = tfDataEmprestimoDia.getText() + "/" + tfDataEmprestimoMes.getText() + "/" + tfDataEmprestimoAno.getText(),
+                    dataDevolucao = tfDataDevolucaoDia.getText() + "/" + tfDataDevolucaoMes.getText() + "/" + tfDataDevolucaoAno.getText();
+            if (dataEmprestimo.replaceAll("/", "").length() < 8 || dataDevolucao.replaceAll("/", "").length() < 8) {
+                JOptionPane.showMessageDialog(rootPane, "Preencha os campos no formato dd/mm/aaaa");
+            } else {
+                try {
                     DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-                    java.util.Date data;
-                    data = new java.util.Date(fmt.parse(tfDataEmprestimo.getText()).getTime());
-                    emprestimo.setDataEmrepstimo(data);
-                    data = new java.util.Date(fmt.parse(tfDataDevolucao.getText()).getTime());
-                    emprestimo.setDataDevolucao(data);
+                    emprestimo.setDataEmprestimo(new Date(fmt.parse(dataEmprestimo).getTime()));
+                    emprestimo.setDataDevolucao(new Date(fmt.parse(dataDevolucao).getTime()));
+                    Set<Acervo> acr = new HashSet<>();
+                    acr.add((Acervo) cbAcervo.getSelectedItem());
+                    emprestimo.setAcervos(acr);
+                    emprestimo.setLeitor((Leitor) cbLeitor.getSelectedItem());
+                } catch (ParseException ex) {
+                    System.out.println(ex.getMessage());
                 }
-            } catch (ParseException ex) {
-                System.out.println(ex.getMessage());
             }
-        }
-        if (emprestimoRN.adiciona(emprestimo)) {
-            JOptionPane.showMessageDialog(rootPane, "Empréstimo " + emprestimo.getIdEmprestimo()
-                    + ", " + ((emprestimo.getIdEmprestimo() == 0) ? "cadastrado" : "alterado") + " com sucesso!");
-            limpaCampos();
+            int id = emprestimo.getIdEmprestimo();
+            if (emprestimoRN.adiciona(emprestimo)) {
+                JOptionPane.showMessageDialog(rootPane, "Empréstimo " + ((id == 0) ? "cadastrado" : "alterado")
+                        + " com sucesso!");
+                limpaCampos();
+            }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
@@ -237,13 +343,45 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
     }//GEN-LAST:event_btNovoActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
+        List<Emprestimo> lista = new ArrayList<>();
+        String dataEmprestimo = tfDataEmprestimoDia.getText() + "/" + tfDataEmprestimoMes.getText() + "/" + tfDataEmprestimoAno.getText(),
+                dataDevolucao = tfDataDevolucaoDia.getText() + "/" + tfDataDevolucaoMes.getText() + "/" + tfDataDevolucaoAno.getText();
+        DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+        Date emprestimos = null;
+        try {
+            emprestimos = new Date(fmt.parse(dataEmprestimo).getTime());
+        } catch (ParseException ex) {
+            System.out.println(ex.getMessage());
+        }
+        lista = emprestimoRN.listar();
+        EmprestimoTableModel itm = new EmprestimoTableModel(lista);
+        Object o = TelaPesquisa.exibeTela(itm, "Empréstimo");
+        if (o != null) {
+            emprestimo = new Emprestimo();
+            emprestimo = emprestimoRN.pesquisarCodigo((int) o);
+            tfDataEmprestimoDia.setText(emprestimo.getDataEmprestimo().toString().substring(0, 2));
+            tfDataEmprestimoMes.setText(emprestimo.getDataEmprestimo().toString().substring(2, 4));
+            tfDataEmprestimoAno.setText(emprestimo.getDataEmprestimo().toString().substring(4, 6));
+            tfDataDevolucaoDia.setText(emprestimo.getDataDevolucao().toString().substring(0, 2));
+            tfDataDevolucaoMes.setText(emprestimo.getDataDevolucao().toString().substring(2, 4));
+            tfDataDevolucaoMes.setText(emprestimo.getDataDevolucao().toString().substring(4, 6));
+            cbAcervo.setSelectedItem((emprestimo.getAcervos() != null) ? emprestimo.getAcervos() : 0);
+            cbLeitor.setSelectedItem((emprestimo.getLeitor() != null) ? emprestimo.getLeitor() : 0);
+            btRemover.setEnabled(true);
+        }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     public void limpaCampos() {
         emprestimo = null;
-        tfDataEmprestimo.setText("");
-        tfDataDevolucao.setText("");
-        tfDataEmprestimo.requestFocus();
+        tfDataEmprestimoDia.setText("");
+        tfDataEmprestimoMes.setText("");
+        tfDataEmprestimoAno.setText("");
+        tfDataDevolucaoDia.setText("");
+        tfDataDevolucaoMes.setText("");
+        tfDataDevolucaoAno.setText("");
+        cbAcervo.setSelectedIndex(0);
+        cbLeitor.setSelectedIndex(0);
+        tfDataEmprestimoDia.requestFocus();
         btRemover.setEnabled(false);
     }
 
@@ -278,12 +416,6 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 TelaCadastroEmprestimo dialog = new TelaCadastroEmprestimo();
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
                 dialog.setVisible(true);
             }
         });
@@ -294,12 +426,24 @@ public class TelaCadastroEmprestimo extends javax.swing.JDialog {
     private javax.swing.JButton btRemover;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox cbAcervo;
+    private javax.swing.JComboBox cbLeitor;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel labelDataDevolucao;
+    private javax.swing.JLabel labelDataDevolucao1;
+    private javax.swing.JLabel labelDataDevolucao2;
     private javax.swing.JLabel labelDataEmprestimo;
     private javax.swing.JLabel labelEmprestimo;
-    private javax.swing.JFormattedTextField tfDataDevolucao;
-    private javax.swing.JFormattedTextField tfDataEmprestimo;
+    private javax.swing.JFormattedTextField tfDataDevolucaoAno;
+    private javax.swing.JFormattedTextField tfDataDevolucaoDia;
+    private javax.swing.JFormattedTextField tfDataDevolucaoMes;
+    private javax.swing.JFormattedTextField tfDataEmprestimoAno;
+    private javax.swing.JFormattedTextField tfDataEmprestimoDia;
+    private javax.swing.JFormattedTextField tfDataEmprestimoMes;
     // End of variables declaration//GEN-END:variables
 }
