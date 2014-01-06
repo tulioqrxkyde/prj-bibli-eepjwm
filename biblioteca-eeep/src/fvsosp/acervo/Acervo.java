@@ -120,8 +120,7 @@ public class Acervo implements Serializable{
         return true;
     }
     
-    @ManyToMany(fetch = FetchType.EAGER,  cascade= CascadeType.ALL)
-    @Cascade({org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PalavraschavesAcervo", 
             joinColumns = @JoinColumn(name = "idAcervo"), 
             inverseJoinColumns = @JoinColumn(name = "idPalavrasChaves"))
@@ -155,8 +154,7 @@ public class Acervo implements Serializable{
     @JoinColumn(name="idtipoitem", nullable=false)
     private TipoItem tipoItem;
       
-    @ManyToMany(fetch = FetchType.EAGER, cascade= CascadeType.ALL)
-    @Cascade({org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "AutoresAcervo", 
             joinColumns = @JoinColumn(name = "idAcervo"), 
             inverseJoinColumns = @JoinColumn(name = "idAutor"))
@@ -178,8 +176,7 @@ public class Acervo implements Serializable{
     @JoinColumn(name="idbiblioteca", nullable=false)
     private Biblioteca biblioteca;
     
-    @OneToMany(mappedBy="acervo",fetch = FetchType.EAGER, cascade= CascadeType.ALL)
-    @Cascade({org.hibernate.annotations.CascadeType.DELETE_ORPHAN})
+    @OneToMany(mappedBy="acervo",fetch = FetchType.EAGER)
     private List<Exemplar> exemplares;
     
     @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")

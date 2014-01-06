@@ -27,6 +27,7 @@ import fvsosp.util.FormataTamanhoColunasJTable;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -45,7 +46,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     Exemplar exemplar;
     Set<PalavrasChaves> palavrasChavesAcervo = new HashSet<PalavrasChaves>();
     Set<Autor> autoresAcervo = new HashSet<Autor>();
-    List<Exemplar> exemplaresAcervo = new ArrayList<Exemplar>();
+    List<Exemplar> exemplaresAcervo = new ArrayList <Exemplar>();
 
     /**
      * Creates new form TelaCadastroAcervo
@@ -83,7 +84,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jPanel2 = new javax.swing.JPanel();
         btPesquisar = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
-        btRemover = new javax.swing.JButton();
         btSalvar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         tbLeitor = new javax.swing.JTabbedPane();
@@ -181,15 +181,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         });
         jPanel2.add(btSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 330, -1, -1));
 
-        btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
-        btRemover.setToolTipText("Excluir");
-        btRemover.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btRemoverActionPerformed(evt);
-            }
-        });
-        jPanel2.add(btRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 330, 37, 33));
-
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
         btSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +188,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 btSalvarActionPerformed(evt);
             }
         });
-        jPanel2.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 40, 33));
+        jPanel2.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 330, 40, 33));
 
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
         btNovo.setToolTipText("Novo");
@@ -206,7 +197,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 btNovoActionPerformed(evt);
             }
         });
-        jPanel2.add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 330, 42, 33));
+        jPanel2.add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 330, 42, 33));
 
         tbLeitor.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -716,7 +707,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             tffAnoEdicao.setText(String.valueOf(acervo.getAnoEdicao()));
             tfInformacoesAdicionais.setText(acervo.getInformacoesAdicionais().toString());
             tfLocalizacao.setText(acervo.getLocalizacao());
-            btRemover.setEnabled(true);
+            //btRemover.setEnabled(true);
             cbBiblioteca.setSelectedItem(((acervo.getBiblioteca() != null) ? acervo.getBiblioteca() : 0));
             cbEditora.setSelectedItem(((acervo.getEditora() != null) ? acervo.getEditora() : 0));
             cbIdioma.setSelectedItem(((acervo.getIdioma() != null) ? acervo.getIdioma() : 0));
@@ -724,7 +715,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             cbTipoItem.setSelectedItem(((acervo.getTipoItem() != null) ? acervo.getTipoItem() : 0));
             palavrasChavesAcervo = acervo.getPalavrasChaves();
             autoresAcervo = acervo.getAutor();
-            exemplaresAcervo = acervo.getExemplares();
+            exemplaresAcervo = new ArrayList(new HashSet(acervo.getExemplares()));
             atualizaTabelaAutores();
             atualizaTabelaPalavrasChaves();
             atualizaTabelaExemplares();
@@ -739,25 +730,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_btSairActionPerformed
-
-    private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        if (acervo != null) {
-            if (acervo.getIdAcervo() != 0) {
-                if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o acervo " + acervo.getTituloObra()
-                        + "?", "OSBiblio", JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
-                    if (acervoRN.remover(acervo)) {
-                        JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
-                                + ", excluído com sucesso!", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Não foi possível excluir o acervo "
-                                + acervo.getTituloObra(),
-                                "Erro ao Excluir", JOptionPane.ERROR_MESSAGE);
-                    }
-                }
-            }
-        }
-        limparCampos();
-    }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
@@ -847,7 +819,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             }
 
             limparCampos();
-            btRemover.setEnabled(false);
+            //btRemover.setEnabled(false);
         }
     }
 
@@ -922,7 +894,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tfPeso.setText("");
         acervo = null;
         tfTitulo.requestFocus();
-        btRemover.setEnabled(false);
+        //btRemover.setEnabled(false);
         palavrasChavesAcervo = new HashSet<PalavrasChaves>();
         autoresAcervo = new HashSet<Autor>();
         exemplaresAcervo = new ArrayList<Exemplar>();
@@ -1095,6 +1067,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                         } else {
                             int tamanhoListaExmeplares=0;
                             tamanhoListaExmeplares = exemplaresAcervo.size() - 1;
+                            Collections.sort(exemplaresAcervo);
                             numexemplar = Short.valueOf(String.valueOf(exemplaresAcervo.get(tamanhoListaExmeplares).getExemplar() + 1));
                         }
                         
@@ -1202,7 +1175,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JButton btInserirAutor;
     private javax.swing.JButton btNovo;
     private javax.swing.JButton btPesquisar;
-    private javax.swing.JButton btRemover;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbBiblioteca;
