@@ -49,6 +49,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadGrupoLeitores = new javax.swing.JMenuItem();
         itemCadIdioma = new javax.swing.JMenuItem();
         itemCadLeitor = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
         itemCadSessao = new javax.swing.JMenuItem();
         itemCadTipoItem = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
@@ -206,6 +207,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         menuCadastrado.add(itemCadLeitor);
 
+        jMenuItem2.setText("Palavras Chaves");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        menuCadastrado.add(jMenuItem2);
+
         itemCadSessao.setText("Sessão");
         itemCadSessao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -232,10 +241,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         BarradeMenuPrincipal.add(menuCadastrado);
 
-        itemEmprestar.setText("Emprestimos");
+        itemEmprestar.setText("Movimentação");
 
-        jMenuItem1.setText("Emprestar");
+        jMenuItem1.setText("Empréstimo/Devolução");
         jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
         itemEmprestar.add(jMenuItem1);
 
         BarradeMenuPrincipal.add(itemEmprestar);
@@ -340,6 +354,18 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tCadTipoItem.setVisible(true);
     }//GEN-LAST:event_itemCadTipoItemActionPerformed
 
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroPalavasChaves tCPC = new TelaCadastroPalavasChaves();
+        tCPC.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroEmprestimos TCE = new TelaCadastroEmprestimos();
+        TCE.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -396,6 +422,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

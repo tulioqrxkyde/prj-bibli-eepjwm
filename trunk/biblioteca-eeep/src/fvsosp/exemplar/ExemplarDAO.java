@@ -5,6 +5,7 @@
 package fvsosp.exemplar;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.leitor.Leitor;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.List;
@@ -27,8 +28,8 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            exemplar = (Exemplar) getSessao().createCriteria(Acervo.class).
-                    add(Restrictions.eq("tombo", tombo)).addOrder(Order.asc("exemplar")).list();
+            exemplar = (Exemplar) getSessao().createCriteria(Exemplar.class).
+                    add(Restrictions.eq("tombo", tombo)).addOrder(Order.asc("exemplar")).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Tombo. Erro: " + e.getMessage());
         } finally {
@@ -44,6 +45,22 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
             this.setTransacao(getSessao().beginTransaction());
             exemplar = (List<Exemplar>) getSessao().createCriteria(Acervo.class).
                     add(Restrictions.eq("acervo", acervo)).addOrder(Order.asc("exemplar")).list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return exemplar;
+    }
+    
+    public List<Exemplar> pesquisarSituacao(Leitor leitor, int situcao) {
+        List<Exemplar> exemplar = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            exemplar = (List<Exemplar>) getSessao().createCriteria(Exemplar.class).
+                    add(Restrictions.eq("", leitor)).add(Restrictions.eq("situcao", situcao))
+                    .addOrder(Order.asc("exemplar")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
         } finally {

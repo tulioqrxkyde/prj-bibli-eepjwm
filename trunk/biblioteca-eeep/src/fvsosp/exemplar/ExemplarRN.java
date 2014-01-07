@@ -6,6 +6,7 @@ package fvsosp.exemplar;
 
 import fvsosp.acervo.Acervo;
 import fvsosp.acervo.AcervoDAO;
+import fvsosp.leitor.Leitor;
 import java.util.List;
 
 /**
@@ -42,5 +43,9 @@ public class ExemplarRN {
 
     public List<Exemplar> pesquisarAcervo(Acervo acervo) {
         return dao.pesquisarAcervo(acervo);
+    }
+    
+    public List<Exemplar> pesquisarSituacao(Leitor leitor, int situcao) {
+        return dao.pesquisarSituacao(leitor, situcao);
     }
 }

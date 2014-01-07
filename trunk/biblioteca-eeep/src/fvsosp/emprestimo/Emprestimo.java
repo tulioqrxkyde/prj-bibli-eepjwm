@@ -3,6 +3,7 @@ package fvsosp.emprestimo;
 import fvsosp.acervo.Acervo;
 import fvsosp.exemplar.Exemplar;
 import fvsosp.leitor.Leitor;
+import fvsosp.usuario.Usuario;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
@@ -11,14 +12,28 @@ import javax.persistence.*;
 @Table(name = "emprestimo")
 public class Emprestimo implements Serializable {
 
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+
     @Override
     public int hashCode() {
         int hash = 3;
-        hash = 53 * hash + this.idEmprestimo;
-        hash = 53 * hash + Objects.hashCode(this.dataEmprestimo);
-        hash = 53 * hash + Objects.hashCode(this.dataDevolucao);
-        hash = 53 * hash + Objects.hashCode(this.exemplares);
-        hash = 53 * hash + Objects.hashCode(this.leitor);
+        hash = 53 * hash + this.getIdEmprestimo();
+        hash = 53 * hash + Objects.hashCode(this.getDataEmprestimo());
+        hash = 53 * hash + Objects.hashCode(this.getDataDevolucao());
+        hash = 53 * hash + Objects.hashCode(this.getExemplares());
+        hash = 53 * hash + Objects.hashCode(this.getLeitor());
         return hash;
     }
 
@@ -31,7 +46,7 @@ public class Emprestimo implements Serializable {
             return false;
         }
         final Emprestimo other = (Emprestimo) obj;
-        if (this.idEmprestimo != other.idEmprestimo) {
+        if (this.getIdEmprestimo() != other.getIdEmprestimo()) {
             return false;
         }
         if (!Objects.equals(this.dataEmprestimo, other.dataEmprestimo)) {
@@ -65,13 +80,13 @@ public class Emprestimo implements Serializable {
      * todos os itens da tabela acervoemprestimos que façam referência 
      * ao emprestimo excluído será deletado também
      */
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "ExemplarEmprestimos",
             joinColumns =
             @JoinColumn(name = "idEmprestimo"),
             inverseJoinColumns =
             @JoinColumn(name = "idExemplar"))
-    private Set<Exemplar> exemplares = new HashSet<>();
+    private Set<Exemplar> exemplares = new HashSet<Exemplar>();
     /*set não aceita valores duplicados, 
      * ou seja um mesmo livro não poderá ser emprestado ao 
      * mesmo emprestimo
@@ -83,6 +98,10 @@ public class Emprestimo implements Serializable {
     @ManyToOne
     @JoinColumn(name = "idLeitor")
     private Leitor leitor;
+    
+    @ManyToOne
+    @JoinColumn(name = "idUsuario")
+    private Usuario usuario;
 
     /**
      * * @retorna o id do Empréstimo **
@@ -134,14 +153,6 @@ public class Emprestimo implements Serializable {
     }
 
     /**
-     * * @seta e copia a lista de Acervos recebida para a lista de Acervos da
-     * Classe **
-     */
-    public void setExemplares(Set<Exemplar> exemplares) {
-        this.exemplares = exemplares;
-    }
-
-    /**
      * * @retorna o Leitor **
      */
     public Leitor getLeitor() {
@@ -154,5 +165,28 @@ public class Emprestimo implements Serializable {
     public void setLeitor(Leitor leitor) {
         this.leitor = leitor;
     }
-    private static final long serialVersionUID = -326568673743692245L;
+    private static long serialVersionUID = -326568673743692245L;
+
+
+
+    /**
+     * @return the usuario
+     */
+    public Usuario getUsuario() {
+        return usuario;
+    }
+
+    /**
+     * @param usuario the usuario to set
+     */
+    public void setUsuario(Usuario usuario) {
+        this.usuario = usuario;
+    }
+
+    /**
+     * @param exemplares the exemplares to set
+     */
+    public void setExemplares(Set<Exemplar> exemplares) {
+        this.exemplares = exemplares;
+    }
 }

@@ -109,6 +109,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tbPalavrasChaves = new javax.swing.JTable();
         Excluir = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
         jpExemplar = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         qtdExemplar = new javax.swing.JFormattedTextField();
@@ -130,6 +131,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tbAutores = new javax.swing.JTable();
         btExcluirAutor = new javax.swing.JButton();
         btInserirAutor = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -333,6 +335,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             }
         });
         pn3.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jButton1.setText("Novo");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        pn3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         tbLeitor.addTab("Palavras Chaves", pn3);
 
@@ -558,6 +568,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             }
         });
         pn4.add(btInserirAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, -1));
+
+        jButton4.setText("Novo");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        pn4.add(jButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1089,6 +1107,18 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbExemplaresKeyPressed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroPalavasChaves tCPC = new TelaCadastroPalavasChaves();
+        tCPC.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        TelaCadastroAutor tCA = new TelaCadastroAutor();
+        tCA.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     private void atualizaTabelaPalavrasChaves() {
         PalavraChaveAcervoTableModel atm;
         try {
@@ -1182,8 +1212,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JComboBox cbIdioma;
     private javax.swing.JComboBox cbSessao;
     private javax.swing.JComboBox cbTipoItem;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
