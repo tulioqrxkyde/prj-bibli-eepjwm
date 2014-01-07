@@ -5,6 +5,8 @@ import fvsosp.leitor.Leitor;
 import fvsosp.util.*;
 import java.util.*;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
+import org.hibernate.SQLQuery;
 import org.hibernate.criterion.*;
 
 /**
@@ -16,8 +18,8 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
     public EmprestimoDAO() {
         super(Emprestimo.class);
     }
-    
-    public Emprestimo pesquisarCodigo(int codigo) {
+
+    public Emprestimo pesquisarCodigo(short codigo) {
         Emprestimo emprestimo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
@@ -31,7 +33,7 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             System.out.println("Erro ao procurar pelo Código do Empréstimo: " + e.getMessage());
         } finally {
             getSessao().close();
-        }           
+        }
         return emprestimo;
     }
 
@@ -89,5 +91,25 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             this.getSessao().close();
         }
         return leitor;
+    }
+
+    public int pesquisarSituacao(Leitor leitor, int situcao) {
+        String text = "select e.idLeitor from exemplaremprestimos ee  "
+                + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
+                + "inner join exemplar exe on exe.tombo=ee.idExemplar "
+                + "where e.idLeitor=" + leitor.getIdLeitor() + " and exe.situacao=" + situcao;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery query = getSessao()
+                    .createSQLQuery(text);
+            return query.list().size();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return 0;
+
     }
 }

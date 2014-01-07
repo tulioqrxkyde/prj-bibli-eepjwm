@@ -25,14 +25,28 @@ import javax.persistence.Table;
 @Table(name = "exemplar")
 public class Exemplar implements Serializable, Comparable<Exemplar> {
 
+    /**
+     * @return the serialVersionUID
+     */
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
+
+    /**
+     * @param aSerialVersionUID the serialVersionUID to set
+     */
+    public static void setSerialVersionUID(long aSerialVersionUID) {
+        serialVersionUID = aSerialVersionUID;
+    }
+
     @Override
     public int compareTo(Exemplar o) {
-        Short exemplar2 = exemplar;
-        Short exemplarO2 = o.exemplar;
+        Short exemplar2 = getExemplar();
+        Short exemplarO2 = o.getExemplar();
         return exemplar2.compareTo(exemplarO2);            
     }
     
-    private static final long serialVersionUID = -6137808136410511086L;
+    private static long serialVersionUID = -6137808136410511086L;
     @Id
     @GeneratedValue
     private short tombo;
@@ -41,18 +55,32 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
 
     @Override
     public String toString() {
-        return "Nº exemplar =" + exemplar;
+        return "Tombo: "+getTombo()+" Nº exemplar =" + getExemplar();
     }
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idAcervo")
     private Acervo acervo;
+    
+    @Column(columnDefinition="boolean default true")
+    private boolean ativo;
+    
+    /* 
+     * 1 - Disponível
+     * 2 - Em espera
+     * 3 - Emprestado
+     */
+    
+    @Column(columnDefinition="int default 1")
+    private int situacao;
 
     @Override
     public int hashCode() {
-        int hash = 3;
-        hash = 73 * hash + this.tombo;
-        hash = 73 * hash + this.exemplar;
-        hash = 73 * hash + Objects.hashCode(this.acervo);
+        int hash = 5;
+        hash = 59 * hash + this.tombo;
+        hash = 59 * hash + this.exemplar;
+        hash = 59 * hash + Objects.hashCode(this.acervo);
+        hash = 59 * hash + (this.ativo ? 1 : 0);
+        hash = 59 * hash + this.situacao;
         return hash;
     }
 
@@ -74,8 +102,16 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
         if (!Objects.equals(this.acervo, other.acervo)) {
             return false;
         }
+        if (this.ativo != other.ativo) {
+            return false;
+        }
+        if (this.situacao != other.situacao) {
+            return false;
+        }
         return true;
     }
+
+   
 
     /**
      * @return the tombo
@@ -117,5 +153,33 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
      */
     public void setAcervo(Acervo acervo) {
         this.acervo = acervo;
+    }
+
+    /**
+     * @return the ativo
+     */
+    public boolean isAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(boolean ativo) {
+        this.ativo = ativo;
+    }
+
+    /**
+     * @return the situacao
+     */
+    public int getSituacao() {
+        return situacao;
+    }
+
+    /**
+     * @param situacao the situacao to set
+     */
+    public void setSituacao(int situacao) {
+        this.situacao = situacao;
     }
 }
