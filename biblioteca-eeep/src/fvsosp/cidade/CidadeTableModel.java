@@ -1,13 +1,11 @@
 package fvsosp.cidade;
 
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
- *
  * @author Controle Avaliação
  */
 @SuppressWarnings("serial")
@@ -16,12 +14,8 @@ public class CidadeTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"CodIBGE", "Descrição", "UF"};
     private List<Cidade> cidades;
 
-    public CidadeTableModel() {
-        cidades = new ArrayList<>();
-    }
-
     public CidadeTableModel(List<Cidade> lista) {
-        this();
+        cidades = new ArrayList<>();
         this.cidades.clear();
         this.cidades.addAll(lista);
         super.fireTableDataChanged();
@@ -40,10 +34,9 @@ public class CidadeTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Cidade cidade = cidades.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return df.format(cidade.getCodIBGE());
+                return Util.decimalFormat().format(cidade.getCodIBGE());
             case 1:
                 return cidade.getDescricao();
             case 2:

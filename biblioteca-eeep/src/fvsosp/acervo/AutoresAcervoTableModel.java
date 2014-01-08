@@ -1,11 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.acervo;
 
 import fvsosp.autor.Autor;
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -16,9 +12,9 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Pedro Saraiva
  */
-public class AutoresAcervoTableModel extends AbstractTableModel{
-    
-    private String[] nomeColunas = {"Código","Nome"};
+public class AutoresAcervoTableModel extends AbstractTableModel {
+
+    private String[] nomeColunas = {"Código", "Nome"};
     private List<Autor> autores;
 
     // construtor padrão criando um arraylist de alunos  
@@ -41,22 +37,19 @@ public class AutoresAcervoTableModel extends AbstractTableModel{
     }
 
     public int getColumnCount() {
-        return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return nomeColunas.length; 
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<Autor> outraLista = (List<Autor>) autores;
         Autor autor = outraLista.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                   return df.format(autor.getIdAutor());
+                return Util.decimalFormat().format(autor.getIdAutor());
             case 1:
                 return autor.getNome();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public String getColumnName(int column) {
@@ -68,5 +61,4 @@ public class AutoresAcervoTableModel extends AbstractTableModel{
         }
         return null;
     }
-    
 }

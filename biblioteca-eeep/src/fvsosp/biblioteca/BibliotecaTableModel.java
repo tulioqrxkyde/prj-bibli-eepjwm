@@ -1,6 +1,6 @@
 package fvsosp.biblioteca;
 
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -15,17 +15,11 @@ public class BibliotecaTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Código", "Biblioteca"};
     private List<Biblioteca> bibliotecas;
 
-    public BibliotecaTableModel() {
-        bibliotecas = new ArrayList<>();
-
-    }
-
     public BibliotecaTableModel(List<Biblioteca> lista) {
-        this();
+        bibliotecas = new ArrayList<>();
         this.bibliotecas.clear();
         this.bibliotecas.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
     @Override
@@ -41,10 +35,9 @@ public class BibliotecaTableModel extends AbstractTableModel {
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Biblioteca biblioteca = bibliotecas.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return df.format(biblioteca.getIdBiblioteca());
+                return Util.decimalFormat().format(biblioteca.getIdBiblioteca());
             case 1:
                 return biblioteca.getDescricao();
         }

@@ -1,5 +1,6 @@
 package fvsosp.emprestimo;
 
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -8,35 +9,35 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author TULIO
  */
+@SuppressWarnings("serial")
 public class EmprestimoTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Data de Empréstimo", "Acervo", "Autor"};
     private List<Emprestimo> emprestimos;
 
-    public EmprestimoTableModel() {
-        emprestimos = new ArrayList<Emprestimo>();
-    }
-
     public EmprestimoTableModel(List<Emprestimo> lista) {
-        this();
+        emprestimos = new ArrayList<>();
         this.emprestimos.clear();
         this.emprestimos.addAll(lista);
         super.fireTableDataChanged();
     }
 
+    @Override
     public int getRowCount() {
         return emprestimos.size();
     }
 
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Emprestimo emprestimo = emprestimos.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                return emprestimo.getIdEmprestimo();
+                return Util.decimalFormat().format(emprestimo.getIdEmprestimo());
             case 1:
                 return emprestimo.getDataEmprestimo();
 //            case 2:
@@ -48,6 +49,7 @@ public class EmprestimoTableModel extends AbstractTableModel {
         return null;
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

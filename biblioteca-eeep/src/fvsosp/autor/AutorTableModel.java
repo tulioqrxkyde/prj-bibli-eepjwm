@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.autor;
 
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -13,48 +9,44 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author acer
  */
+@SuppressWarnings("serial")
 public class AutorTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Autor", "Descrição"};
     private List<Autor> autores;
 
-    public AutorTableModel() {
-        autores = new ArrayList<Autor>();
-    }
-
     public AutorTableModel(List<Autor> lista) {
-        this();
+        autores = new ArrayList<>();
         this.autores.clear();
         this.autores.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
+    @Override
     public int getRowCount() {
         return autores.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Autor autor = autores.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                    return df.format(autor.getIdAutor());
+                    return Util.decimalFormat().format(autor.getIdAutor());
             case 1:
                     return autor.getNome();
             case 2:
                     return autor.getSobreOAutor();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

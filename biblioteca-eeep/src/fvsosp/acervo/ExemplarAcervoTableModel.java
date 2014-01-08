@@ -5,19 +5,18 @@
 package fvsosp.acervo;
 
 import fvsosp.exemplar.Exemplar;
-import fvsosp.palavraschaves.PalavrasChaves;
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
  * @author Pedro Saraiva
  */
+@SuppressWarnings("serial")
 public class ExemplarAcervoTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Tombo", "Nº Exemplar"};
@@ -25,7 +24,6 @@ public class ExemplarAcervoTableModel extends AbstractTableModel {
 
     // construtor padrão criando um arraylist de alunos  
     public ExemplarAcervoTableModel() {
-       // exemplares = new ArrayList<Exemplar>();
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
@@ -39,28 +37,23 @@ public class ExemplarAcervoTableModel extends AbstractTableModel {
     }
 
     public int getRowCount() {
-        return exemplares.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return exemplares.size();  
     }
 
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<Exemplar> outraLitsa = (List<Exemplar>) exemplares;
         Exemplar exemplar = outraLitsa.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000");
-        DecimalFormat df2 = new DecimalFormat("0000");
         switch (columnIndex) {
             case 0:
-                return df.format(exemplar.getTombo());
+                return Util.decimalFormat().format(exemplar.getTombo());
             case 1:
-                return df2.format(exemplar.getExemplar());
+                return Util.decimalFormat(1).format(exemplar.getExemplar());
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public String getColumnName(int column) {

@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.idioma;
 
-import fvsosp.sessao.Sessao;
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -14,49 +9,42 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author Oziel
  */
+@SuppressWarnings("serial")
 public class IdiomaTableModel extends AbstractTableModel {
-    
-     private String[] nomeColunas = {"Código", "Idioma"};
-     private List<Idioma> idiomas;
-     
-     public IdiomaTableModel(){
-         idiomas = new ArrayList<Idioma>();
-         
-     }
+
+    private String[] nomeColunas = {"Código", "Idioma"};
+    private List<Idioma> idiomas;
+
     public IdiomaTableModel(List<Idioma> lista) {
-        this();
+        idiomas = new ArrayList<>();
         this.idiomas.clear();
         this.idiomas.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
+    @Override
     public int getRowCount() {
         return idiomas.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Idioma idioma = idiomas.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                                    
-                return df.format(idioma.getIdIdioma());
-                
+                return Util.decimalFormat().format(idioma.getIdIdioma());
             case 1:
-                    return idioma.getDescricao();
-                
-       }
+                return idioma.getDescricao();
+        }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

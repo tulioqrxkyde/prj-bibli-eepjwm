@@ -4,6 +4,7 @@
  */
 package fvsosp.usuario;
 
+import fvsosp.util.Util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -13,6 +14,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author ADRIANO
  */
+@SuppressWarnings("serial")
 public class UsuarioTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Login"};
@@ -27,33 +29,28 @@ public class UsuarioTableModel extends AbstractTableModel {
         this.usuarios.clear();
         this.usuarios.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
     @Override
     public int getRowCount() {
         return usuarios.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Usuario usuario = usuarios.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return df.format(usuario.getIdUsuario());
+                return Util.decimalFormat().format(usuario.getIdUsuario());
             case 1:
                 return usuario.getLogin();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     @Override

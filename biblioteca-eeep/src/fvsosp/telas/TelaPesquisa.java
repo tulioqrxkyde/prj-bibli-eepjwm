@@ -39,8 +39,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         tbPesquisa.setModel(atm);
         setLocationRelativeTo(null);
         setModal(true);
-        setTitle("OSBilio - Pesquisa de " + titulo);
-        //lbTexto.setText("Pesquisa de " + titulo);
+        setTitle("OSBiblio - Pesquisa de " + titulo);
         tbPesquisa.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         FormataTamanhoColunasJTable.packColumns(tbPesquisa, 1);
         //packColumns(tbPesquisa, 1);
