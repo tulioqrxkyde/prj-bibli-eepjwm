@@ -31,8 +31,7 @@ public class Emprestimo implements Serializable {
         int hash = 3;
         hash = 53 * hash + this.getIdEmprestimo();
         hash = 53 * hash + Objects.hashCode(this.getDataEmprestimo());
-        hash = 53 * hash + Objects.hashCode(this.getDataDevolucao());
-        hash = 53 * hash + Objects.hashCode(this.getExemplares());
+        //hash = 53 * hash + Objects.hashCode(this.getExemplares());
         hash = 53 * hash + Objects.hashCode(this.getLeitor());
         return hash;
     }
@@ -52,12 +51,9 @@ public class Emprestimo implements Serializable {
         if (!Objects.equals(this.dataEmprestimo, other.dataEmprestimo)) {
             return false;
         }
-        if (!Objects.equals(this.dataDevolucao, other.dataDevolucao)) {
-            return false;
-        }
-        if (!Objects.equals(this.exemplares, other.exemplares)) {
-            return false;
-        }
+//        if (!Objects.equals(this.exemplares, other.exemplares)) {
+//            return false;
+//        }
         if (!Objects.equals(this.leitor, other.leitor)) {
             return false;
         }
@@ -68,8 +64,6 @@ public class Emprestimo implements Serializable {
     private short idEmprestimo;
     @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
     private Date dataEmprestimo;
-    @Temporal(TemporalType.DATE) // ignora horas e minutos e persiste apenas a data
-    private Date dataDevolucao;
 
     /*
      * Um emprestimo possui muitos acervos, e um acervo possui 
@@ -80,13 +74,8 @@ public class Emprestimo implements Serializable {
      * todos os itens da tabela acervoemprestimos que façam referência 
      * ao emprestimo excluído será deletado também
      */
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "ExemplarEmprestimos",
-            joinColumns =
-            @JoinColumn(name = "idEmprestimo"),
-            inverseJoinColumns =
-            @JoinColumn(name = "idExemplar"))
-    private Set<Exemplar> exemplares = new HashSet<Exemplar>();
+//    @OneToMany(fetch= FetchType.EAGER)
+//    private Set<ExemplarEmprestimos> exemplares = new HashSet<ExemplarEmprestimos>();
     /*set não aceita valores duplicados, 
      * ou seja um mesmo livro não poderá ser emprestado ao 
      * mesmo emprestimo
@@ -132,25 +121,11 @@ public class Emprestimo implements Serializable {
     }
 
     /**
-     * * @retorna a Data de Devolução **
-     */
-    public Date getDataDevolucao() {
-        return dataDevolucao;
-    }
-
-    /**
-     * * @seta a Data de Devolução **
-     */
-    public void setDataDevolucao(Date dataDevolucao) {
-        this.dataDevolucao = dataDevolucao;
-    }
-
-    /**
      * * @retorna a lista de Exemplares **
      */
-    public Set<Exemplar> getExemplares() {
-        return exemplares;
-    }
+//    public Set<ExemplarEmprestimos> getExemplares() {
+//        return exemplares;
+//    }
 
     /**
      * * @retorna o Leitor **
@@ -186,7 +161,7 @@ public class Emprestimo implements Serializable {
     /**
      * @param exemplares the exemplares to set
      */
-    public void setExemplares(Set<Exemplar> exemplares) {
-        this.exemplares = exemplares;
-    }
+//    public void setExemplares(Set<ExemplarEmprestimos> exemplares) {
+//        this.exemplares = exemplares;
+//    }
 }

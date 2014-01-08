@@ -4,6 +4,7 @@
  */
 package fvsosp.emprestimo;
 
+import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
 import fvsosp.acervo.*;
 import fvsosp.autor.Autor;
 import fvsosp.exemplar.Exemplar;
@@ -21,16 +22,16 @@ import javax.swing.table.AbstractTableModel;
  */
 public class ItensEmprestimoTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Tombo", "Exemplar", "Descrição"};
-    private List<Exemplar> exemplares;
+    private String[] nomeColunas = {"Tombo", "Exemplar", "Descrição", "Operação"};
+    private List<ExemplarEmprestimos> exemplares;
 
     // construtor padrão criando um arraylist de alunos  
     public ItensEmprestimoTableModel() {
-        exemplares = new ArrayList<Exemplar>();
+        exemplares = new ArrayList<ExemplarEmprestimos>();
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
-    public ItensEmprestimoTableModel(Set<Exemplar> lista) {
+    public ItensEmprestimoTableModel(Set<ExemplarEmprestimos> lista) {
         this();
         this.exemplares.clear();
         this.exemplares.addAll(lista);
@@ -49,17 +50,19 @@ public class ItensEmprestimoTableModel extends AbstractTableModel {
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
-        List<Exemplar> outraLista = (List<Exemplar>) exemplares;
-        Exemplar exemplar = outraLista.get(rowIndex);
+        List<ExemplarEmprestimos> outraLista = (List<ExemplarEmprestimos>) exemplares;
+        ExemplarEmprestimos exemplar = outraLista.get(rowIndex);
         DecimalFormat df = new DecimalFormat("0000000");
         DecimalFormat df2 = new DecimalFormat("000");
         switch (columnIndex) {
             case 0:
-                return df.format(exemplar.getTombo());
+                return df.format(exemplar.getExemplar().getTombo());
             case 1:
-                return df2.format(exemplar.getExemplar());
+                return df2.format(exemplar.getExemplar().getExemplar());
             case 2:
-                return exemplar.getAcervo().getTituloObra();
+                return exemplar.getExemplar().getAcervo().getTituloObra();
+            case 3:
+                return exemplar.descricaoOperacao();
         }
         return null;
         //throw new UnsupportedOperationException("Not supported yet.");  
@@ -73,6 +76,8 @@ public class ItensEmprestimoTableModel extends AbstractTableModel {
                 return nomeColunas[1];
             case 2:
                 return nomeColunas[2];
+            case 3:
+                return nomeColunas[3];
         }
         return null;
     }

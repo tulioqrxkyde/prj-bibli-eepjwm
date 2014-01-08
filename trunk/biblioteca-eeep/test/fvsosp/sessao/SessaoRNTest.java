@@ -128,26 +128,5 @@ public class SessaoRNTest {
         rn.remove(sessao);
     }
 
-    /**
-     * Test of pesquisarAcervos method, of class SessaoRN.
-     */
-    @Test
-    public void testPesquisarAcervos() {
-        AcervoRN rn = new AcervoRN();
-        Acervo acervo = new Acervo();
-       
-        if (acervo != null) {
-            rn.remover(acervo);
-        }
-        acervo = new Acervo();
-        acervo.setTituloObra("TestePesquisarAcervo");
-        rn.salvar(acervo);
-      
-        assertTrue("TestePesquisarAcervo", true);
-
-      
-
-        rn.remover(acervo);
-
-    }
+   
 }

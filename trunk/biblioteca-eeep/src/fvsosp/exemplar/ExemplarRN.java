@@ -45,7 +45,5 @@ public class ExemplarRN {
         return dao.pesquisarAcervo(acervo);
     }
     
-    public List<Exemplar> pesquisarSituacao(Leitor leitor, int situcao) {
-        return dao.pesquisarSituacao(leitor, situcao);
-    }
+    
 }

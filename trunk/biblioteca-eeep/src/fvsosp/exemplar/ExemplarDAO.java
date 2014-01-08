@@ -53,20 +53,5 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
         return exemplar;
     }
     
-    public List<Exemplar> pesquisarSituacao(Leitor leitor, int situcao) {
-        List<Exemplar> exemplar = null;
-        try {
-            this.setSessao(HibernateUtil.getSessionFactory().openSession());
-            this.setTransacao(getSessao().beginTransaction());
-            exemplar = (List<Exemplar>) getSessao().createCriteria(Exemplar.class).
-                    add(Restrictions.eq("", leitor)).add(Restrictions.eq("situcao", situcao))
-                    .addOrder(Order.asc("exemplar")).list();
-        } catch (HibernateException e) {
-            System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
-        } finally {
-            this.getSessao().close();
-        }
-        return exemplar;
-    }
     
 }
