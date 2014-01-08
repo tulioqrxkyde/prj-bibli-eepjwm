@@ -53,7 +53,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel24.setText("Descrição.:");
+        jLabel24.setText("Descrição.: *");
 
         tfNomeSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfNomeSessao.setToolTipText("Digite aqui a descrição da Sessão.");

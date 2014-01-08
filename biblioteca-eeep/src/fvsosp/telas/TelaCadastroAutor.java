@@ -1,6 +1,7 @@
 package fvsosp.telas;
 
 import fvsosp.autor.*;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -106,7 +107,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         });
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel24.setText("Nome do Autor.:");
+        jLabel24.setText("Nome do Autor.: *");
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel25.setText("Sobre o Autor.:");
@@ -127,23 +128,20 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addComponent(jLabel25))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1)
-                            .addComponent(tfNomeAutor))
-                        .addContainerGap())))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(215, Short.MAX_VALUE)
-                .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btSair)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(tfNomeAutor)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 205, Short.MAX_VALUE)
+                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btSair)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -231,20 +229,21 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         if (autor == null) {
             autor = new Autor();
         }
-
-        autor.setNome(tfNomeAutor.getText().toString());
-        autor.setSobreOAutor(tfSobreAutor.getText().toString());
-        int idAutor = autor.getIdAutor();
-        if (autorRN.salvar(autor)) {
-            if (idAutor == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Autor " + autor.getNome()
-                        + ", cadastrado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Autor " + autor.getNome()
-                        + ", alterado com sucesso!");
+        if (Util.chkVazio(tfNomeAutor.getText())) {
+            autor.setNome(tfNomeAutor.getText().toString());
+            autor.setSobreOAutor(tfSobreAutor.getText().toString());
+            int idAutor = autor.getIdAutor();
+            if (autorRN.salvar(autor)) {
+                if (idAutor == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Autor " + autor.getNome()
+                            + ", cadastrado com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Autor " + autor.getNome()
+                            + ", alterado com sucesso!");
+                }
+                limpaCampos();
+                btRemover.setEnabled(false);
             }
-            limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 

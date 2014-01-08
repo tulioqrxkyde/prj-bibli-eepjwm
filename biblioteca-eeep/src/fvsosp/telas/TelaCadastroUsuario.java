@@ -7,6 +7,7 @@ package fvsosp.telas;
 import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.usuario.UsuarioTableModel;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -80,10 +81,10 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         lbSenha.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        lbSenha.setText("Senha.:");
+        lbSenha.setText("Senha.: *");
 
         lbLogin.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        lbLogin.setText("Login.:");
+        lbLogin.setText("Login.: *");
 
         cbAdministrador.setBackground(new java.awt.Color(255, 255, 255));
         cbAdministrador.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -131,7 +132,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         });
 
         lbSenha1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        lbSenha1.setText("Confirmar Senha.:");
+        lbSenha1.setText("Confirmar Senha.: *");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -215,35 +216,36 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         if (usuario == null) {
             usuario = new Usuario();
         }
+        if (Util.chkVazio(tfLogin.getText(), tfSenha.getText().toString(), tfConfirmarSenha.getText().toString())) {
+            usuario.setLogin(tfLogin.getText().toString());
+            usuario.setSenha(tfSenha.getText().toString());
+            usuario.setAdministrador(cbAdministrador.isSelected());
+            int idUsario = usuario.getIdUsuario();
+            if (idUsario != 0) {
+                if (tfSenha.getText().equals(tfConfirmarSenha.getText())) {
+                    String senhaAnterior = JOptionPane.showInputDialog(idUsario, "Informe a senha anterior: ");
+                    if (usuarioRN.salvar(usuario, senhaAnterior) == true) {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
+                                + ", alterado com sucesso!");
+                        limpaCampos();
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Senha anterior não confere!");
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Senha e Confirmar senha devem ser iguais!");
+                }
 
-        usuario.setLogin(tfLogin.getText().toString());
-        usuario.setSenha(tfSenha.getText().toString());
-        usuario.setAdministrador(cbAdministrador.isSelected());
-        int idUsario = usuario.getIdUsuario();
-        if (idUsario != 0) {
-            if (tfSenha.getText().equals(tfConfirmarSenha.getText())) {
-                String senhaAnterior = JOptionPane.showInputDialog(idUsario, "Informe a senha anterior: ");
-                if (usuarioRN.salvar(usuario, senhaAnterior) == true) {
+
+            } else if (usuarioRN.salvar(usuario, tfConfirmarSenha.getText())) {
+                if (idUsario == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
+                            + ", cadastrado com sucesso!");
+                } else {
                     JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
                             + ", alterado com sucesso!");
-                    limpaCampos();
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Senha anterior não confere!");
                 }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Senha e Confirmar senha devem ser iguais!");
+                limpaCampos();
             }
-
-
-        } else if (usuarioRN.salvar(usuario, tfConfirmarSenha.getText())) {
-            if (idUsario == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
-                        + ", cadastrado com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
-                        + ", alterado com sucesso!");
-            }
-            limpaCampos();
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_btSalvarActionPerformed
@@ -261,19 +263,19 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         btExcluir.setEnabled(false);
     }
     private void cbAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAdministradorActionPerformed
-        String l = JOptionPane.showInputDialog(rootPane, "Informe seu usuário: ", "Autenticação", JOptionPane.PLAIN_MESSAGE),
-                p = JOptionPane.showInputDialog(rootPane, "Informe sua senha: ", "Autenticação", JOptionPane.PLAIN_MESSAGE);
-        if (JOptionPane.CANCEL_OPTION > 0) {
-            cbAdministrador.setSelected(false);
-        } else if ((usuario.getLogin() != null && !usuario.getLogin().equals(l)) || (usuario.getSenha() != null && !usuario.getSenha().equals(p))) {
-            JOptionPane.showMessageDialog(rootPane, "Dados " + usuario.getLogin()
-                    + ", incorretos!", "Autenticação", JOptionPane.INFORMATION_MESSAGE);
-            cbAdministrador.setSelected(false);
-        } else if (!usuario.isAdministrador()) {
-            JOptionPane.showMessageDialog(rootPane, "Somente usuários autorizados podem selecionar esta opção.", "Confirmação",
-                    JOptionPane.INFORMATION_MESSAGE);
-            cbAdministrador.setSelected(false);
-        }
+//        String l = JOptionPane.showInputDialog(rootPane, "Informe seu usuário: ", "Autenticação", JOptionPane.PLAIN_MESSAGE),
+//                p = JOptionPane.showInputDialog(rootPane, "Informe sua senha: ", "Autenticação", JOptionPane.PLAIN_MESSAGE);
+//        if (JOptionPane.CANCEL_OPTION > 0) {
+//            cbAdministrador.setSelected(false);
+//        } else if ((usuario.getLogin() != null && !usuario.getLogin().equals(l)) || (usuario.getSenha() != null && !usuario.getSenha().equals(p))) {
+//            JOptionPane.showMessageDialog(rootPane, "Dados " + usuario.getLogin()
+//                    + ", incorretos!", "Autenticação", JOptionPane.INFORMATION_MESSAGE);
+//            cbAdministrador.setSelected(false);
+//        } else if (!usuario.isAdministrador()) {
+//            JOptionPane.showMessageDialog(rootPane, "Somente usuários autorizados podem selecionar esta opção.", "Confirmação",
+//                    JOptionPane.INFORMATION_MESSAGE);
+//            cbAdministrador.setSelected(false);
+//        }
     }//GEN-LAST:event_cbAdministradorActionPerformed
 
     private void btExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirActionPerformed

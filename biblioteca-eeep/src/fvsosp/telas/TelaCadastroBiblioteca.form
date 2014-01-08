@@ -71,7 +71,7 @@
                       <Component id="tfNomeBiblioteca" max="32767" attributes="0"/>
                       <Group type="102" attributes="0">
                           <Component id="Descricao_Biblioteca" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="343" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="331" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -190,7 +190,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o.:"/>
+            <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o.: *"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfNomeBiblioteca">

@@ -105,7 +105,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         jLabel23.setBounds(0, 0, 170, 30);
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca.setText("Descrição.:");
+        Descricao_Biblioteca.setText("Descrição.: *");
 
         tfNomeBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfNomeBiblioteca.setToolTipText("Digite aqui a descrição da Biblioteca.");
@@ -133,7 +133,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
                     .addComponent(tfNomeBiblioteca)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(Descricao_Biblioteca)
-                        .addGap(0, 343, Short.MAX_VALUE)))
+                        .addGap(0, 331, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(

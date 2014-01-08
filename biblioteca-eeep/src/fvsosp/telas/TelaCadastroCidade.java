@@ -115,7 +115,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(btPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 190, 37, 33));
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca.setText("UF.:");
+        Descricao_Biblioteca.setText("UF.: *");
         jPanel1.add(Descricao_Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 29));
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -123,11 +123,11 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(tfDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca1.setText("Cód.IBGE.:");
+        Descricao_Biblioteca1.setText("Cód.IBGE.: *");
         jPanel1.add(Descricao_Biblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 11, -1, 29));
 
         Descricao_Biblioteca2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca2.setText("Descrição.:");
+        Descricao_Biblioteca2.setText("Descrição.: *");
         jPanel1.add(Descricao_Biblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         cbUF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N

@@ -100,8 +100,8 @@ public class Util {
 
     public static boolean chkVazio(String... campos) {
         for (String chk : campos) {
-            if (chk.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+            if (chk.isEmpty()||chk.equals("--")||chk.equals("  /  /    ")) {
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos com '*'!");
                 return false;
             }
         }
