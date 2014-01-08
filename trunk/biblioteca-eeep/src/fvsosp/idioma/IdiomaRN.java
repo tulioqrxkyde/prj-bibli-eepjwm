@@ -1,10 +1,5 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.idioma;
 
-import fvsosp.sessao.Sessao;
 import java.util.List;
 
 /**
@@ -15,19 +10,12 @@ public class IdiomaRN {
 
     private IdiomaDAO dao = new IdiomaDAO();
 
-    public boolean salvar (Idioma idioma) {
-        if (!idioma.getDescricao().isEmpty()){
+    public boolean salvar(Idioma idioma) {
         if (idioma.getIdIdioma() == 0) {
-            if (idioma.getDescricao() != null) {
-                return dao.adicionar(idioma);
-
-            }
+            return dao.adicionar(idioma);
         } else {
             return dao.atualizar(idioma);
         }
-        }
-        return false;
-
     }
 
     public boolean remove(Idioma idioma) {
@@ -42,10 +30,12 @@ public class IdiomaRN {
     public List<Idioma> pesquisaDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
+
     public List<Idioma> pesquisarDescricaoLike(String descricao) {
         return dao.pesquisarDescricaoLike(descricao);
     }
+
     public Idioma pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
- }
+    }
 }

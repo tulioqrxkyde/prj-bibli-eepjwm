@@ -8,7 +8,6 @@ import fvsosp.editora.Editora;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.util.List;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -20,13 +19,11 @@ public class AcervoRN {
 
     // Metódo que adiciona um livro no acervo, caso contrário retorna false
     public boolean salvar(Acervo acervo) {
-
         if (acervo.getIdAcervo() == 0) {
             return dao.adicionar(acervo);
         } else {
             return dao.atualizar(acervo);
         }
-
     }
 
     // Metódo que remove

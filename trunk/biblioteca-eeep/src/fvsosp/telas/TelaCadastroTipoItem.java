@@ -211,16 +211,15 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
-        if (tipoItem == null) {
-            tipoItem = new TipoItem();
-        }
         if (Util.chkVazio(tfTipoItem.getText())) {
+            if (tipoItem == null) {
+                tipoItem = new TipoItem();
+            }
             tipoItem.setDescricao(tfTipoItem.getText().toString());
             int idIdioma = tipoItem.getIdTipoItem();
             if (tipoItemRN.salvar(tipoItem)) {
                 JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
-                        + ", " + ((tipoItem.getIdTipoItem() == 0) ? "cadastrada" : "alterada") + "com sucesso!");
+                        + ", " + ((tipoItem.getIdTipoItem() == 0) ? "cadastrado" : "alterado") + "com sucesso!");
                 limpaCampos();
             }
         }

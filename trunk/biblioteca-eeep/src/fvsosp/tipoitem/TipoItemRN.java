@@ -4,7 +4,6 @@
  */
 package fvsosp.tipoitem;
 
-import fvsosp.idioma.Idioma;
 import java.util.List;
 
 /**
@@ -22,14 +21,10 @@ public class TipoItemRN {
 
     public boolean salvar(TipoItem tp) {
         if (tp.getIdTipoItem() == 0) {
-            if (tp.getDescricao() != null) {
-                return dao.adicionar(tp);
-
-            }
+            return dao.adicionar(tp);
         } else {
             return dao.atualizar(tp);
         }
-        return false;
     }
 
     public List<TipoItem> listar() {
@@ -39,11 +34,12 @@ public class TipoItemRN {
     public List<TipoItem> pesquisaDescricao(String descricao) {
         return dao.procuraDescricao(descricao);
     }
+
     public List<TipoItem> pesquisarDescricaoLike(String descricao) {
         return dao.pesquisarDescricaoLike(descricao);
     }
+
     public TipoItem pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
- }
+    }
 }
-

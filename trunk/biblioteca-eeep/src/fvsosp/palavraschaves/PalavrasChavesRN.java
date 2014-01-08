@@ -17,14 +17,10 @@ public class PalavrasChavesRN {
 
     public boolean adicionar(PalavrasChaves pc) {
         if (pc.getIdPalavrasChaves() == 0) {
-            if (!pc.getDescricao().isEmpty()) {
-                return dao.adicionar(pc);
-
-            }
+            return dao.adicionar(pc);
         } else {
             return dao.atualizar(pc);
         }
-        return false;
     }
 
     public boolean remove(PalavrasChaves pc) {
@@ -40,10 +36,10 @@ public class PalavrasChavesRN {
         return dao.pesquisarDescricao(descricao);
     }
 
-    public PalavrasChaves pesquisarCodigo(short id){
+    public PalavrasChaves pesquisarCodigo(short id) {
         return dao.pesquisarCodigo(id);
     }
-    
+
     public List<PalavrasChaves> pesquisarAcervo(Acervo acervo) {
         return dao.pesquisarAcervo(acervo);
     }

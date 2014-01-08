@@ -133,6 +133,6 @@ public class Util {
      * @return -> 0000 [ if opt(1) ]
      */
     public static DecimalFormat decimalFormat(int... opt) {
-        return new DecimalFormat(opt != null ? "0000000" : "");
+        return new DecimalFormat(((opt.length <= 0) ? "0000000" : "0000"));
     }
 }

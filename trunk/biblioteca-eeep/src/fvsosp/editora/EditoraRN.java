@@ -13,17 +13,11 @@ public class EditoraRN {
 
     public boolean salvar(Editora ed) {
         if (ed.getIdEditora() == 0) {
-            if (!ed.getNome().isEmpty()) {
-                return dao.adicionar(ed);
-
-            } else {
-                return dao.atualizar(ed);
-            }
+            return dao.adicionar(ed);
+        } else {
+            return dao.atualizar(ed);
         }
-        return false;
     }
-
-    
 
     public boolean remover(Editora ed) {
         return dao.remover(ed);

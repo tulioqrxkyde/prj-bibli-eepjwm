@@ -40,7 +40,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="jPanel3" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -89,6 +89,7 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="tfQuantidadeGruposLeitores1" min="-2" pref="390" max="-2" attributes="0"/>
                       <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel26" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
                       <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -104,14 +105,16 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="btSair" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="tfQuantidadeGruposLeitores" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfDiasGruposLeitores" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfNomeGruposLeitores" alignment="0" max="32767" attributes="0"/>
-                              <Component id="tfMultaGruposLeitores" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="tfMultaGruposLeitores" pref="390" max="32767" attributes="0"/>
+                                  <Component id="tfNomeGruposLeitores" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <Component id="jLabel27" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
+                      <Component id="tfDiasGruposLeitores" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -130,12 +133,12 @@
                   <Component id="tfMultaGruposLeitores" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Component id="tfQuantidadeGruposLeitores" min="-2" pref="25" max="-2" attributes="0"/>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
+                  <Component id="tfQuantidadeGruposLeitores1" min="-2" pref="25" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel27" min="-2" pref="17" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
-                  <Component id="tfDiasGruposLeitores" min="-2" max="-2" attributes="0"/>
+                  <Component id="tfDiasGruposLeitores" min="-2" pref="25" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btSair" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -150,18 +153,10 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JTextField" name="tfDiasGruposLeitores">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="12" style="0"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a dura&#xe7;&#xe3;o em Dias do Empr&#xe9;stimo."/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JFormattedTextField" name="tfMultaGruposLeitores">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
-              <Format format="#0" subtype="-1" type="0"/>
+              <Format subtype="0" type="4"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Digite aqui o valor da Multa Di&#xe1;ria."/>
             <Property name="focusLostBehavior" type="int" value="3"/>
@@ -199,7 +194,7 @@
             <Property name="text" type="java.lang.String" value="Descri&#xe7;&#xe3;o.: *"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="tfQuantidadeGruposLeitores">
+        <Component class="javax.swing.JFormattedTextField" name="tfDiasGruposLeitores">
           <Properties>
             <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
               <Format format="#0" subtype="-1" type="0"/>
@@ -271,6 +266,15 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPesquisarActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="tfQuantidadeGruposLeitores1">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="#0" subtype="-1" type="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a Quantidade M&#xe1;xima de Livros."/>
+            <Property name="focusLostBehavior" type="int" value="3"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

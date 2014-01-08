@@ -172,8 +172,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<Sessao> lista;
-        lista = ((tfNomeSessao.getText() != null) ? sessaoRN.pesquisarDescricaoLike(tfNomeSessao.getText()) : sessaoRN.listar());
+        List<Sessao> lista = ((tfNomeSessao.getText() != null) ? sessaoRN.pesquisarDescricaoLike(tfNomeSessao.getText()) : sessaoRN.listar());
         SessaoTableModel stm = new SessaoTableModel(lista);
         Object o = TelaPesquisa.exibeTela(stm, "Sessão");
         if (o != null) {
@@ -203,10 +202,10 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (sessao == null) {
-            sessao = new Sessao();
-        }
         if (Util.chkVazio(tfNomeSessao.getText())) {
+            if (sessao == null) {
+                sessao = new Sessao();
+            }
             sessao.setDescricao(tfNomeSessao.getText());
             int id = sessao.getIdSessao();
             if (sessaoRN.salvar(sessao)) {

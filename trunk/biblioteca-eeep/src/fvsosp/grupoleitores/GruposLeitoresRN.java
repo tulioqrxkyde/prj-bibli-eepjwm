@@ -15,14 +15,11 @@ public class GruposLeitoresRN {
     private GruposLeitoresDAO dao = new GruposLeitoresDAO();
 
     public boolean salvar(GruposLeitores gl) {
-        if (!gl.getDescricao().isEmpty() && gl.getDuracaoDiasEmprestimo() != 0 && gl.getQuantMaxLivros() != 0 && gl.getValorMultaDiaria() != 0) {
             if (gl.getIdGruposLeitores() == 0) {
                 return dao.adicionar(gl);
             } else {
                 return dao.atualizar(gl);
             }
-        }
-        return false;
     }
 
     public boolean atualiza(GruposLeitores gl) {

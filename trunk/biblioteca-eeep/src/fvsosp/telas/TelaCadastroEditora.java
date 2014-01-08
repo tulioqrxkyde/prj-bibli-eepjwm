@@ -172,8 +172,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<Editora> lista;
-        lista = ((!tfDescricao.getText().isEmpty()) ? editRN.pesquisarNomeEditora(tfDescricao.getText()) : editRN.listar());
+        List<Editora> lista = ((!tfDescricao.getText().isEmpty()) ? editRN.pesquisarNomeEditora(tfDescricao.getText()) : editRN.listar());
         EditoraTableModel itm = new EditoraTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Editora");
         if (o != null) {
@@ -209,10 +208,10 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (editora == null) {
-            editora = new Editora();
-        }
         if (Util.chkVazio(tfDescricao.getText())) {
+            if (editora == null) {
+                editora = new Editora();
+            }
             editora.setNome(tfDescricao.getText());
             int id = editora.getIdEditora();
             if (editRN.salvar(editora)) {
