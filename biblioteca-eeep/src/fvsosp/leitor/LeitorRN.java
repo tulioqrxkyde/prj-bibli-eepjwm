@@ -6,7 +6,6 @@ package fvsosp.leitor;
 
 import fvsosp.cidade.Cidade;
 import fvsosp.grupoleitores.GruposLeitores;
-import fvsosp.util.Util;
 import java.util.Date;
 import java.util.List;
 
@@ -20,17 +19,10 @@ public class LeitorRN {
 
     public boolean salvar(Leitor leitor) {
         if (leitor.getIdLeitor() == 0) {
-            if ((leitor.getNome() != null) && (leitor.getGruposLeitores() != null)
-                    && (leitor.getMatricula() != null)) {
-                leitor.setAtivo(true);
-                leitor.setDataCadastro(new Date( System.currentTimeMillis()));
-                return dao.adicionar(leitor);
-
-            }
+            return dao.adicionar(leitor);
         } else {
             return dao.atualizar(leitor);
         }
-        return false;
     }
 
     public boolean remove(Leitor leitor) {
@@ -77,7 +69,7 @@ public class LeitorRN {
     public List<Leitor> pesquisarCidade(Cidade cidades) {
         return dao.pesquisarCidade(cidades);
     }
-    
+
     public Leitor pesquisarCodigo(short id) {
         return dao.pesquisarCodigo(id);
     }

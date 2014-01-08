@@ -151,10 +151,10 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (cidade == null) {
-            cidade = new Cidade();
-        }
         if (Util.chkVazio(tfDescricao.getText(), tfCodIBGE.getText())) {
+            if (cidade == null) {
+                cidade = new Cidade();
+            }
             cidade.setCodIBGE(Integer.parseInt(tfCodIBGE.getText().replaceAll(" ", "")));
             cidade.setDescricao(tfDescricao.getText());
             cidade.setUf(cbUF.getSelectedItem().toString());
@@ -195,8 +195,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<Cidade> lista;
-        lista = !tfDescricao.getText().isEmpty() ? cidadeRN.pesquisarDescricao(tfDescricao.getText()) : cidadeRN.listar();
+        List<Cidade> lista = !tfDescricao.getText().isEmpty() ? cidadeRN.pesquisarDescricao(tfDescricao.getText()) : cidadeRN.listar();
         CidadeTableModel itm = new CidadeTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Cidade");
         if (o != null) {

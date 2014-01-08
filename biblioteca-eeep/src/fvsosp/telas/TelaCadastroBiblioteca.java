@@ -209,10 +209,10 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (biblioteca == null) {
-            biblioteca = new Biblioteca();
-        }
         if (Util.chkVazio(tfNomeBiblioteca.getText())) {
+            if (biblioteca == null) {
+                biblioteca = new Biblioteca();
+            }
             biblioteca.setDescricao(tfNomeBiblioteca.getText());
             int id = biblioteca.getIdBiblioteca();
             if (bibliotecaRN.salvar(biblioteca)) {

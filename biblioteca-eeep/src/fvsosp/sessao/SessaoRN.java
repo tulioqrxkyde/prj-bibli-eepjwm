@@ -17,13 +17,10 @@ public class SessaoRN {
 
     public boolean salvar(Sessao sessao) {
         if (sessao.getIdSessao() == 0) {
-            if (sessao.getDescricao() != null) {
-                return dao.adicionar(sessao);
-            }
+            return dao.adicionar(sessao);
         } else {
             return dao.atualizar(sessao);
         }
-        return false;
     }
 
     public boolean remove(Sessao sessao) {

@@ -19,10 +19,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
      */
     public TelaCadastroAutor() {
         initComponents();
-        this.setTitle("OSBiblio - Autor");
         this.setLocationRelativeTo(null);
-        btRemover.setEnabled(false);
-        setModal(true);
     }
 
     /**
@@ -49,6 +46,8 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         tfSobreAutor = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Autor");
+        setModal(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -72,6 +71,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);
@@ -201,11 +201,10 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
-        dispose();        // TODO add your handling code here:
+        dispose();
     }//GEN-LAST:event_btSairActionPerformed
 
     private void btRemoverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRemoverActionPerformed
-        // TODO add your handling code here:
         if (autor != null) {
             if (autor.getIdAutor() != 0) {
                 if (JOptionPane.showConfirmDialog(rootPane, "Deseja excluir o Autor " + autor.getNome()
@@ -225,7 +224,6 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        // TODO add your handling code here:
         if (autor == null) {
             autor = new Autor();
         }
@@ -248,9 +246,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     }//GEN-LAST:event_btSalvarActionPerformed
 
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
-        // TODO add your handling code here:
         limpaCampos();
-
     }//GEN-LAST:event_btNovoActionPerformed
 
     public void limpaCampos() {
