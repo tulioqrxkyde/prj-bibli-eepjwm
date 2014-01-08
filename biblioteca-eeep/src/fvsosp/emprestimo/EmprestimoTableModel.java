@@ -10,7 +10,7 @@ import javax.swing.table.AbstractTableModel;
  */
 public class EmprestimoTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Data de Empréstimo", "Data de Devolução", "Acervo", "Autor"};
+    private String[] nomeColunas = {"Código", "Data de Empréstimo", "Acervo", "Autor"};
     private List<Emprestimo> emprestimos;
 
     public EmprestimoTableModel() {
@@ -39,11 +39,9 @@ public class EmprestimoTableModel extends AbstractTableModel {
                 return emprestimo.getIdEmprestimo();
             case 1:
                 return emprestimo.getDataEmprestimo();
-            case 2:
-                return emprestimo.getDataDevolucao();
+//            case 2:
+//                return emprestimo.getExemplares();
             case 3:
-                return emprestimo.getExemplares();
-            case 4:
                 return emprestimo.getLeitor();
 
         }
@@ -60,8 +58,6 @@ public class EmprestimoTableModel extends AbstractTableModel {
                 return nomeColunas[2];
             case 3:
                 return nomeColunas[3];
-            case 4:
-                return nomeColunas[4];
         }
         return null;
     }

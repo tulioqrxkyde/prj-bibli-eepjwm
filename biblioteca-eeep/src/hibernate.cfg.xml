@@ -29,6 +29,7 @@
                 <mapping class="fvsosp.leitor.Leitor"/>
                 <mapping class="fvsosp.grupoleitores.GruposLeitores"/>
                 <mapping class="fvsosp.exemplar.Exemplar"/>
+                <mapping class="fvsosp.exemplaremprestimos.ExemplarEmprestimos"/>
         </session-factory>
 </hibernate-configuration>
 

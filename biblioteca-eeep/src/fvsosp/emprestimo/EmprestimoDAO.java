@@ -1,6 +1,7 @@
 package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.exemplar.Exemplar;
 import fvsosp.leitor.Leitor;
 import fvsosp.util.*;
 import java.util.*;
@@ -93,11 +94,11 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         return leitor;
     }
 
-    public int pesquisarSituacao(Leitor leitor, int situcao) {
-        String text = "select e.idLeitor from exemplaremprestimos ee  "
+    public int pesquisarSituacao(Leitor leitor) {
+        String text = "select distinct(exe.tombo) from exemplaremprestimos ee  "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
                 + "inner join exemplar exe on exe.tombo=ee.idExemplar "
-                + "where e.idLeitor=" + leitor.getIdLeitor() + " and exe.situacao=" + situcao;
+                + "where e.idLeitor=" + leitor.getIdLeitor() + " and exe.situacao=3";
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
@@ -112,4 +113,33 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         return 0;
 
     }
+
+    public short pesquisarEmprestimoLivroDevolvido(Exemplar exe) {
+        String text = "select e.idEmprestimo from exemplaremprestimos ee "
+                + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo  "
+                + "where ee.idExemplarEmprestimos=( "
+                + "select max(idExemplarEmprestimos) from exemplaremprestimos ee "
+                + "where ee.idExemplar="+exe.getTombo()+" and ee.operacao in (1,3))";
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery query = getSessao()
+                    .createSQLQuery(text);
+            System.out.println(query.list());
+            
+            Object o = query.list().get(0);
+            
+            //Integer codigo = (Integer) list.get(0);
+            return (short) o;
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return 0;
+
+    }
+    
+    
+    
 }

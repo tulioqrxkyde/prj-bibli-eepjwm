@@ -68,6 +68,7 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
      * 1 - Disponível
      * 2 - Em espera
      * 3 - Emprestado
+     * 4 - Indisponível
      */
     
     @Column(columnDefinition="int default 1")

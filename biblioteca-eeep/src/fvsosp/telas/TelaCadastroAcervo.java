@@ -854,6 +854,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         for (Biblioteca biblioteca : bibliotecas) {
             cbBiblioteca.addItem(biblioteca);
         }
+        if(bibliotecas.size()>0){
+            cbBiblioteca.setSelectedIndex(1);
+        }
     }
 
     private void preencheEditora() {
@@ -919,6 +922,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         atualizaTabelaAutores();
         atualizaTabelaPalavrasChaves();
         atualizaTabelaExemplares();
+        
+        BibliotecaRN bRN  = new BibliotecaRN();
+        List<Biblioteca> listBibli = bRN.listar();
+        if(listBibli.size()>0){
+            cbBiblioteca.setSelectedIndex(1);
+        }
+        
     }//GEN-LAST:event_btSalvarActionPerformed
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
@@ -1090,7 +1100,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                         }
                         
                         exemplar.setExemplar(numexemplar);
+                        
                     }
+                    exemplar.setAtivo(true);
+                    exemplar.setSituacao(1);
                     exemplaresAcervo.add(exemplar);
                 }
                 atualizaTabelaExemplares();
