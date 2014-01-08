@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.sessao;
 
-import fvsosp.sessao.Sessao;
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -14,49 +9,43 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author PSaraiva
  */
+@SuppressWarnings("serial")
 public class SessaoTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Sessão"};
     private List<Sessao> sessoes;
 
-    // construtor padrão criando um arraylist de alunos  
-    public SessaoTableModel() {
-        sessoes = new ArrayList<Sessao>();
-
-    }
-
     // construtor que adiciona a lista passada pelo método ao alunos  
     public SessaoTableModel(List<Sessao> lista) {
-        this();
+        sessoes = new ArrayList<>();
         this.sessoes.clear();
         this.sessoes.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
+    @Override
     public int getRowCount() {
         return sessoes.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public int getColumnCount() {
-        return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return nomeColunas.length;  
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Sessao sessao = sessoes.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return df.format(sessao.getIdSessao());
+                return Util.decimalFormat().format(sessao.getIdSessao());
             case 1:
                 return sessao.getDescricao();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

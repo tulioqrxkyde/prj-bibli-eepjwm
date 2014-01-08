@@ -7,6 +7,7 @@ package fvsosp.util;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DecimalFormat;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -100,7 +101,7 @@ public class Util {
 
     public static boolean chkVazio(String... campos) {
         for (String chk : campos) {
-            if (chk.isEmpty()||chk.equals("--")||chk.equals("  /  /    ")) {
+            if (chk.isEmpty() || chk.equals("--") || chk.equals("  /  /    ")) {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos com '*'!");
                 return false;
             }
@@ -122,5 +123,16 @@ public class Util {
             }
         }
         return true;
+    }
+
+    /**
+     * @Flag - decimalFormat()
+     * @param opt int VarArg
+     * @Values..
+     * @return -> 0000000 [ if opt(null) or !opt ]
+     * @return -> 0000 [ if opt(1) ]
+     */
+    public static DecimalFormat decimalFormat(int... opt) {
+        return new DecimalFormat(opt != null ? "0000000" : "");
     }
 }

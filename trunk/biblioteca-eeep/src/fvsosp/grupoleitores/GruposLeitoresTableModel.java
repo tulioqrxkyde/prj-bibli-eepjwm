@@ -4,6 +4,7 @@
  */
 package fvsosp.grupoleitores;
 
+import fvsosp.util.Util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -18,37 +19,30 @@ public class GruposLeitoresTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Código", "Grupo", "Valor da Multa Diária", "Quantidade Máxima de Livros", "Duração dias de Empréstimo"};
     private List<GruposLeitores> grupos;
 
-    // construtor padrão criando um arraylist de alunos  
-    public GruposLeitoresTableModel() {
-        grupos = new ArrayList<GruposLeitores>();
-
-    }
-
     // construtor que adiciona a lista passada pelo método ao alunos  
     public GruposLeitoresTableModel(List<GruposLeitores> lista) {
-        this();
+        grupos = new ArrayList<>();
         this.grupos.clear();
         this.grupos.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
+    @Override
     public int getRowCount() {
         return grupos.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public int getColumnCount() {
-        return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return nomeColunas.length; 
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         GruposLeitores grupo = grupos.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return df.format(grupo.getIdGruposLeitores());
+                return Util.decimalFormat().format(grupo.getIdGruposLeitores());
             case 1:
                 return grupo.getDescricao();
             case 2:
@@ -58,10 +52,10 @@ public class GruposLeitoresTableModel extends AbstractTableModel {
             case 4:
                 return grupo.getDuracaoDiasEmprestimo();
         }
-        return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return null; 
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

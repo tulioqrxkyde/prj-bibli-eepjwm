@@ -45,6 +45,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         btSalvar = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Sessão");
         setIconImage(null);
         setModal(true);

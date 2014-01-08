@@ -24,6 +24,11 @@ import javax.persistence.TemporalType;
 @Table(name="leitor")
 public class Leitor implements Serializable{
 
+    @Override
+    public String toString() {
+        return nome;
+    }
+
     @Id
     @GeneratedValue
     private short idLeitor;

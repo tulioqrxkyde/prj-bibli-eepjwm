@@ -1,11 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.exemplar;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.acervo.AcervoDAO;
 import fvsosp.leitor.Leitor;
 import java.util.List;
 
@@ -24,7 +19,6 @@ public class ExemplarRN {
         } else {
             return dao.atualizar(exemplar);
         }
-
     }
 
     // Metódo que remove
@@ -44,6 +38,4 @@ public class ExemplarRN {
     public List<Exemplar> pesquisarAcervo(Acervo acervo) {
         return dao.pesquisarAcervo(acervo);
     }
-    
-    
 }

@@ -1,12 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.palavraschaves;
 
-import fvsosp.sessao.*;
-import fvsosp.sessao.Sessao;
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -15,6 +9,7 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author PSaraiva
  */
+@SuppressWarnings("serial")
 public class PalavrasChavesTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Descrição"};
@@ -22,8 +17,7 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
 
     // construtor padrão criando um arraylist de alunos  
     public PalavrasChavesTableModel() {
-        palavras = new ArrayList<PalavrasChaves>();
-
+        palavras = new ArrayList<>();
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
@@ -32,30 +26,25 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
         this.palavras.clear();
         this.palavras.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
     public int getRowCount() {
-        return palavras.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return palavras.size();  
     }
 
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public Object getValueAt(int rowIndex, int columnIndex) {
         PalavrasChaves palavra = palavras.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
         switch (columnIndex) {
             case 0:
-                return df.format(palavra.getIdPalavrasChaves());
+                return Util.decimalFormat().format(palavra.getIdPalavrasChaves());
             case 1:
                 return palavra.getDescricao();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     public String getColumnName(int column) {

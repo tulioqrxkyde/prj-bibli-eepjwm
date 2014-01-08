@@ -72,6 +72,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
         tfMultaGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         tfMultaGruposLeitores.setToolTipText("Digite aqui o valor da Multa Diária.");
+        tfMultaGruposLeitores.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel27.setText("Duração em Dias do Empréstimo.: *");
@@ -87,6 +88,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
         tfQuantidadeGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
         tfQuantidadeGruposLeitores.setToolTipText("Digite aqui a Quantidade Máxima de Livros.");
+        tfQuantidadeGruposLeitores.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel25.setText("Multa Diária.: *");
@@ -218,9 +220,10 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         gruposleitores.setValorMultaDiaria(Float.parseFloat(tfMultaGruposLeitores.getText().replaceAll((" "), (""))));
         gruposleitores.setQuantMaxLivros(Byte.parseByte(tfQuantidadeGruposLeitores.getText().replaceAll((" "), (""))));
         gruposleitores.setDuracaoDiasEmprestimo(Byte.parseByte(tfDiasGruposLeitores.getText().replaceAll((" "), (""))));
+        int id = gruposleitores.getIdGruposLeitores();
         if (gruposleitoresRN.salvar(gruposleitores)) {
             JOptionPane.showMessageDialog(rootPane, "Grupo de Leitores " + gruposleitores.getDescricao()
-                + ", " + ((gruposleitores.getIdGruposLeitores() == 0) ? "cadastrado" : "alterado") + " com sucesso!");
+                + ", " + ((id == 0) ? "cadastrado" : "alterado") + " com sucesso!");
             limpaCampos();
         }
         }

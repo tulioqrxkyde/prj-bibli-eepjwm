@@ -1,10 +1,6 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package fvsosp.tipoitem;
 
-import java.text.DecimalFormat;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
@@ -12,50 +8,47 @@ import javax.swing.table.AbstractTableModel;
 /**
  *
  * @author Oziel
- */    
+ */
+@SuppressWarnings("serial")
 public class TipoItemTableModel extends AbstractTableModel {
 
-     private String[] nomeColunas = {"Código", "Descrição"};
-     private List<TipoItem> tipoitens;
-     
-     public TipoItemTableModel(){
-         tipoitens = new ArrayList<TipoItem>();
-         
-     }
+    private String[] nomeColunas = {"Código", "Descrição"};
+    private List<TipoItem> tipoitems;
+
+    public TipoItemTableModel() {
+        tipoitems = new ArrayList<>();
+    }
+
     public TipoItemTableModel(List<TipoItem> lista) {
         this();
-        this.tipoitens.clear();
-        this.tipoitens.addAll(lista);
+        this.tipoitems.clear();
+        this.tipoitems.addAll(lista);
         super.fireTableDataChanged();
-
     }
 
+    @Override
     public int getRowCount() {
-        return tipoitens.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
+        return tipoitems.size();
     }
 
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        TipoItem tipoiten = tipoitens.get(rowIndex);
-        DecimalFormat df = new DecimalFormat("0000000"); 
+        TipoItem tipoitem = tipoitems.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                                    
-                return df.format(tipoiten.getIdTipoItem());
-                
+                return Util.decimalFormat().format(tipoitem.getIdTipoItem());
             case 1:
-                    return tipoiten.getDescricao();
-                
-       }
+                return tipoitem.getDescricao();
+        }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:
@@ -65,5 +58,4 @@ public class TipoItemTableModel extends AbstractTableModel {
         }
         return null;
     }
-}    
-
+}

@@ -15,6 +15,7 @@
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
+    <SyntheticProperty name="generateCenter" type="boolean" value="false"/>
   </SyntheticProperties>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
@@ -163,6 +164,7 @@
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Digite aqui o valor da Multa Di&#xe1;ria."/>
+            <Property name="focusLostBehavior" type="int" value="3"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel27">
@@ -203,6 +205,7 @@
               <Format format="#0" subtype="-1" type="0"/>
             </Property>
             <Property name="toolTipText" type="java.lang.String" value="Digite aqui a Quantidade M&#xe1;xima de Livros."/>
+            <Property name="focusLostBehavior" type="int" value="3"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel25">
