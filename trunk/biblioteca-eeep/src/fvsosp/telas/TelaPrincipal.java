@@ -318,6 +318,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void itemCadUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadUsuarioActionPerformed
         // Instancie sua Tela
+        TelaCadastroUsuario tCU = new TelaCadastroUsuario();
+        tCU.setVisible(true);
     }//GEN-LAST:event_itemCadUsuarioActionPerformed
 
     private void ItemSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemSairMouseClicked

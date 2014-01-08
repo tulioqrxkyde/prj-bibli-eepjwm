@@ -112,7 +112,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         tfDescricao.setToolTipText("Digite aqui a descrição da Editora.");
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel24.setText("Descrição.:");
+        jLabel24.setText("Descrição.: *");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

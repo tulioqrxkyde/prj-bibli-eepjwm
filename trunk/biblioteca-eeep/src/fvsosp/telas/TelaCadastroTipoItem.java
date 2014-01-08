@@ -7,6 +7,7 @@ package fvsosp.telas;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.tipoitem.TipoItemTableModel;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -107,7 +108,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         jLabel23.setBounds(0, 0, 210, 30);
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca.setText("Descrição.:");
+        Descricao_Biblioteca.setText("Descrição.: *");
 
         tfTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfTipoItem.setToolTipText("Digite aqui a descrição do Tipo do Item.");
@@ -214,13 +215,14 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         if (tipoItem == null) {
             tipoItem = new TipoItem();
         }
-
-        tipoItem.setDescricao(tfTipoItem.getText().toString());
-        int idIdioma = tipoItem.getIdTipoItem();
-        if (tipoItemRN.salvar(tipoItem)) {
+        if (Util.chkVazio(tfTipoItem.getText())) {
+            tipoItem.setDescricao(tfTipoItem.getText().toString());
+            int idIdioma = tipoItem.getIdTipoItem();
+            if (tipoItemRN.salvar(tipoItem)) {
                 JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
                         + ", " + ((tipoItem.getIdTipoItem() == 0) ? "cadastrada" : "alterada") + "com sucesso!");
-            limpaCampos();
+                limpaCampos();
+            }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
     public void limpaCampos() {

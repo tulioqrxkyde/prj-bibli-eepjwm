@@ -158,7 +158,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel31.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel31.setText("Matrícula");
+        jLabel31.setText("Matrícula.: *");
         pn1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 29));
 
         tfMatricula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -166,7 +166,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.add(tfMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, -1));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel25.setText("Nome.:");
+        jLabel25.setText("Nome.: *");
         pn1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         tfNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -174,7 +174,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 420, -1));
 
         jLabel28.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel28.setText("Data Nascimento.:");
+        jLabel28.setText("Data Nascimento.: *");
         pn1.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 29));
 
         try {
@@ -334,11 +334,12 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
         cbGrupoLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbGrupoLeitores.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbGrupoLeitores.setToolTipText("--");
         GruposLeitoresRN grRN = new GruposLeitoresRN();         for (GruposLeitores gruposLeitores : grRN.listar()) {             cbGrupoLeitores.addItem(gruposLeitores);         }
         pn3.add(cbGrupoLeitores, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 380, -1));
 
         jLabel38.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel38.setText("Grupo de Leitores");
+        jLabel38.setText("Grupo de Leitores.: *");
         pn3.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, -1, -1));
 
         tbLeitor.addTab("Outras", pn3);
@@ -415,47 +416,50 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         if (leitor == null) {
             leitor = new Leitor();
         }
-        leitor.setNome(tfNome.getText());
-        leitor.setMatricula(tfMatricula.getText());
-        String dataString = tfDataNascimento.getText();
-        try {
-            if (tfDataNascimento.getText().equals("  /  /    ")) {
-                DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-                java.util.Date data;
-                data = new java.util.Date(fmt.parse(dataString).getTime());
-                leitor.setDataNascimento(data);
+        if (Util.chkVazio(tfMatricula.getText(),tfNome.getText(),cbGrupoLeitores.getSelectedItem().toString()
+                ,tfDataNascimento.getText())) {
+            leitor.setNome(tfNome.getText());
+            leitor.setMatricula(tfMatricula.getText());
+            String dataString = tfDataNascimento.getText();
+            try {
+                if (tfDataNascimento.getText().equals("  /  /    ")) {
+                    DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+                    java.util.Date data;
+                    data = new java.util.Date(fmt.parse(dataString).getTime());
+                    leitor.setDataNascimento(data);
+                }
+            } catch (ParseException ex) {
+                System.out.println(ex.getMessage());
             }
-        } catch (ParseException ex) {
-            System.out.println(ex.getMessage());
-        }
-        leitor.setSexo((rbFeminino.isSelected()) ? 'F' : 'M');
-        leitor.setCpf(tfCPF.getText().replaceAll("\\D*", "")); //retira a máscara
-        leitor.setRg(tfRG.getText());
-        leitor.setEndereco(tfEndereco.getText());
-        leitor.setBairro(tfBairro.getText());
-        leitor.setCep(tfCEP.getText().replaceAll("\\D*", ""));
-        if (cbCidade.getSelectedIndex() > 0) {
-            Cidade cidade = (Cidade) cbCidade.getSelectedItem();
-            leitor.setCidade(cidade);
-        } else {
-            leitor.setCidade(null);
-        }
-        leitor.setTelefone(tfTelefone.getText().replaceAll("\\D*", ""));
-        leitor.setCelular(tfCelular.getText().replaceAll("\\D*", ""));
-        leitor.setEmail(tfEmail.getText());
-        leitor.setNomeMae(tfNomeMae.getText());
-        leitor.setNomePai(tfNomeMae.getText());
-        if (cbGrupoLeitores.getSelectedIndex() > 0) {
-            GruposLeitores grupoLeitores = (GruposLeitores) cbGrupoLeitores.getSelectedItem();
-            leitor.setGruposLeitores(grupoLeitores);
-        } else {
-            leitor.setGruposLeitores(null);
-        }
-        short tdLeitor = leitor.getIdLeitor();
-        if (leitorRN.salvar(leitor)) {
-            JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
-                    + ", " + ((tdLeitor == 0) ? "cadastrado" : "alterado") + " com sucesso!");
-            limparCampos();
+            leitor.setSexo((rbFeminino.isSelected()) ? 'F' : 'M');
+            leitor.setCpf(tfCPF.getText().replaceAll("\\D*", "")); //retira a máscara
+            leitor.setRg(tfRG.getText());
+            leitor.setEndereco(tfEndereco.getText());
+            leitor.setBairro(tfBairro.getText());
+            leitor.setCep(tfCEP.getText().replaceAll("\\D*", ""));
+            if (cbCidade.getSelectedIndex() > 0) {
+                Cidade cidade = (Cidade) cbCidade.getSelectedItem();
+                leitor.setCidade(cidade);
+            } else {
+                leitor.setCidade(null);
+            }
+            leitor.setTelefone(tfTelefone.getText().replaceAll("\\D*", ""));
+            leitor.setCelular(tfCelular.getText().replaceAll("\\D*", ""));
+            leitor.setEmail(tfEmail.getText());
+            leitor.setNomeMae(tfNomeMae.getText());
+            leitor.setNomePai(tfNomeMae.getText());
+            if (cbGrupoLeitores.getSelectedIndex() > 0) {
+                GruposLeitores grupoLeitores = (GruposLeitores) cbGrupoLeitores.getSelectedItem();
+                leitor.setGruposLeitores(grupoLeitores);
+            } else {
+                leitor.setGruposLeitores(null);
+            }
+            short tdLeitor = leitor.getIdLeitor();
+            if (leitorRN.salvar(leitor)) {
+                JOptionPane.showMessageDialog(rootPane, "Leitor " + leitor.getNome()
+                        + ", " + ((tdLeitor == 0) ? "cadastrado" : "alterado") + " com sucesso!");
+                limparCampos();
+            }
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 

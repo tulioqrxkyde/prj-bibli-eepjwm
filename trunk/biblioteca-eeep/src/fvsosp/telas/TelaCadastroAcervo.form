@@ -227,7 +227,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Subtitulo da Obra.:"/>
+                        <Property name="text" type="java.lang.String" value="Subtitulo da Obra.: *"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -279,7 +279,7 @@
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Verdana" size="12" style="0"/>
                         </Property>
-                        <Property name="text" type="java.lang.String" value="Ano edi&#xe7;&#xe3;o.:"/>
+                        <Property name="text" type="java.lang.String" value="Ano edi&#xe7;&#xe3;o.: *"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -414,8 +414,8 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Palavras Chaves">
-                        <Property name="tabTitle" type="java.lang.String" value="Palavras Chaves"/>
+                      <JTabbedPaneConstraints tabName="Palavras Chaves *">
+                        <Property name="tabTitle" type="java.lang.String" value="Palavras Chaves *"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -777,8 +777,8 @@
                 <Container class="javax.swing.JPanel" name="jPanel7">
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                      <JTabbedPaneConstraints tabName="Autores">
-                        <Property name="tabTitle" type="java.lang.String" value="Autores"/>
+                      <JTabbedPaneConstraints tabName="Autores *">
+                        <Property name="tabTitle" type="java.lang.String" value="Autores *"/>
                       </JTabbedPaneConstraints>
                     </Constraint>
                   </Constraints>
@@ -786,26 +786,12 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="455" max="32767" attributes="0"/>
-                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="pn4" min="-2" pref="455" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="pn4" alignment="0" pref="455" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                     <DimensionLayout dim="1">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <EmptySpace min="0" pref="282" max="32767" attributes="0"/>
-                          <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">
-                              <Group type="102" attributes="0">
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                                  <Component id="pn4" min="-2" pref="282" max="-2" attributes="0"/>
-                                  <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
+                          <Component id="pn4" alignment="0" pref="282" max="32767" attributes="0"/>
                       </Group>
                     </DimensionLayout>
                   </Layout>
@@ -1009,7 +995,7 @@
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel5">
                       <Properties>
-                        <Property name="text" type="java.lang.String" value="Sess&#xe3;o.:"/>
+                        <Property name="text" type="java.lang.String" value="Sess&#xe3;o.: "/>
                       </Properties>
                     </Component>
                     <Component class="javax.swing.JLabel" name="jLabel6">

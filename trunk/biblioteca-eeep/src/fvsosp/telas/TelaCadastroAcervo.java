@@ -24,6 +24,7 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.FormataTamanhoColunasJTable;
+import fvsosp.util.Util;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -46,7 +47,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     Exemplar exemplar;
     Set<PalavrasChaves> palavrasChavesAcervo = new HashSet<PalavrasChaves>();
     Set<Autor> autoresAcervo = new HashSet<Autor>();
-    List<Exemplar> exemplaresAcervo = new ArrayList <Exemplar>();
+    List<Exemplar> exemplaresAcervo = new ArrayList<Exemplar>();
 
     /**
      * Creates new form TelaCadastroAcervo
@@ -221,7 +222,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(tfTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 420, -1));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel25.setText("Subtitulo da Obra.:");
+        jLabel25.setText("Subtitulo da Obra.: *");
         pn1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         tfSubTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -237,7 +238,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, -1, 29));
 
         jLabel33.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel33.setText("Ano edição.:");
+        jLabel33.setText("Ano edição.: *");
         pn1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, 29));
 
         jLabel41.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -344,7 +345,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         });
         pn3.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 20, -1, -1));
 
-        tbLeitor.addTab("Palavras Chaves", pn3);
+        tbLeitor.addTab("Palavras Chaves *", pn3);
 
         jpExemplar.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -581,24 +582,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 455, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(pn4, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(pn4, javax.swing.GroupLayout.DEFAULT_SIZE, 455, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 282, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel7Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(pn4, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+            .addComponent(pn4, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
         );
 
-        tbLeitor.addTab("Autores", jPanel7);
+        tbLeitor.addTab("Autores *", jPanel7);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -608,7 +599,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         jLabel4.setText("Idioma.:*");
 
-        jLabel5.setText("Sessão.:");
+        jLabel5.setText("Sessão.: ");
 
         jLabel6.setText("Tipo Item.:*");
 
@@ -754,22 +745,29 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         if (acervo == null) {
             acervo = new Acervo();
         }
-
-        if (!tffAnoEdicao.getText().isEmpty()) {
-            Calendar data = Calendar.getInstance();
-            if (Long.parseLong(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
-                JOptionPane.showMessageDialog(null, "Não é possível inserir um ano de edição superior ao ano atual. ");
-            } else {
-                acervo.setAnoEdicao(Short.parseShort(tffAnoEdicao.getText()));
-            }
-        }
-        acervo.setTituloObra(tfTitulo.getText());
-        acervo.setSubtituloObra(tfSubTitulo.getText());
-        acervo.setIsbn(tfVolume.getText());
-        acervo.setVolume(tfVolume.getText());
-        acervo.setEdicao(tfEdicao.getText());
-        acervo.setInformacoesAdicionais(tfInformacoesAdicionais.getText());
-        acervo.setLocalizacao(tfLocalizacao.getText());
+        if (Util.chkVazio(tfTitulo.getText(), tfVolume.getText(), tfEdicao.getText(), tfPaginas.getText(),
+                cbBiblioteca.getSelectedItem().toString(),
+                cbEditora.getSelectedItem().toString(),
+                cbIdioma.getSelectedItem().toString(),
+                cbTipoItem.getSelectedItem().toString(),
+                tfEdicao.getText(),
+                tffAnoEdicao.getText())) {
+            if (autoresAcervo.size() > 0 && palavrasChavesAcervo.size()>0) {
+                if (!tffAnoEdicao.getText().isEmpty()) {
+                    Calendar data = Calendar.getInstance();
+                    if (Long.parseLong(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
+                        JOptionPane.showMessageDialog(null, "Não é possível inserir um ano de edição superior ao ano atual. ");
+                    } else {
+                        acervo.setAnoEdicao(Short.parseShort(tffAnoEdicao.getText()));
+                    }
+                }
+                acervo.setTituloObra(tfTitulo.getText());
+                acervo.setSubtituloObra(tfSubTitulo.getText());
+                acervo.setIsbn(tfVolume.getText());
+                acervo.setVolume(tfVolume.getText());
+                acervo.setEdicao(tfEdicao.getText());
+                acervo.setInformacoesAdicionais(tfInformacoesAdicionais.getText());
+                acervo.setLocalizacao(tfLocalizacao.getText());
 //        if (!tfTombo.getText().isEmpty() && !tfExemplar.getText().isEmpty()) {
 //            exemplar.setTombo(Short.parseShort(tfTombo.getText()));
 //            exemplar.setExemplar(Short.parseShort(tfExemplar.getText()));
@@ -777,67 +775,75 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 //            exemplares.add(exemplar);
 //            acervo.setExemplares(exemplares);
 //        }
-        if ((cbBiblioteca.getSelectedIndex() > 0) && (cbEditora.getSelectedIndex() > 0)
-                && (cbIdioma.getSelectedIndex() > 0) && (cbSessao.getSelectedIndex() > 0) && (cbTipoItem.getSelectedIndex() > 0)) {
-            //    Autor autor = (Autor) cbAutor.getSelectedItem();
-            //acervo.setAutor(autor);
-            Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
-            acervo.setBiblioteca(biblioteca);
-            Editora editora = (Editora) cbEditora.getSelectedItem();
-            acervo.setEditora(editora);
-            Idioma idioma = (Idioma) cbIdioma.getSelectedItem();
-            acervo.setIdioma(idioma);
-            Sessao sessao = (Sessao) cbSessao.getSelectedItem();
-            acervo.setSessao(sessao);
-            TipoItem tipoitem = (TipoItem) cbTipoItem.getSelectedItem();
-            acervo.setTipoItem(tipoitem);
-        } else {
-            acervo.setAutor(null);
-            acervo.setBiblioteca(null);
-            acervo.setEditora(null);
-            acervo.setIdioma(null);
-            acervo.setSessao(null);
-            acervo.setTipoItem(null);
-        }
-        acervo.setPalavrasChaves(palavrasChavesAcervo);
-        acervo.setAutor(autoresAcervo);
-        acervo.setAcabamentoCapa(tfAcabamentoCapa.getText());
-        acervo.setAcabamentoMiolo(tfAcabamentoMiolo.getText());
-        acervo.setNumeroPaginas(Short.parseShort(tfPaginas.getText()));
-        acervo.setPeso(Short.parseShort(tfPeso.getText()));
-
-        if(acervo.getIdAcervo()!=0){
-            ExemplarRN exmRN = new ExemplarRN();
-            for (int i = 0; i < exemplaresAcervo.size(); i++) {
-                if (exemplaresAcervo.get(i).getTombo() == 0) {
-                    exemplaresAcervo.get(i).setAcervo(acervo);
-                    exmRN.adiciona(exemplaresAcervo.get(i));
+                if ((cbBiblioteca.getSelectedIndex() > 0) && (cbEditora.getSelectedIndex() > 0)
+                        && (cbIdioma.getSelectedIndex() > 0) && (cbTipoItem.getSelectedIndex() > 0)) {
+                    //    Autor autor = (Autor) cbAutor.getSelectedItem();
+                    //acervo.setAutor(autor);
+                    Biblioteca biblioteca = (Biblioteca) cbBiblioteca.getSelectedItem();
+                    acervo.setBiblioteca(biblioteca);
+                    Editora editora = (Editora) cbEditora.getSelectedItem();
+                    acervo.setEditora(editora);
+                    Idioma idioma = (Idioma) cbIdioma.getSelectedItem();
+                    acervo.setIdioma(idioma);
+                    if (cbSessao.getSelectedIndex() > 0) {
+                        Sessao sessao = (Sessao) cbSessao.getSelectedItem();
+                        acervo.setSessao(sessao);
+                    }
+                    TipoItem tipoitem = (TipoItem) cbTipoItem.getSelectedItem();
+                    acervo.setTipoItem(tipoitem);
+                } else {
+                    acervo.setAutor(null);
+                    acervo.setBiblioteca(null);
+                    acervo.setEditora(null);
+                    acervo.setIdioma(null);
+                    acervo.setSessao(null);
+                    acervo.setTipoItem(null);
                 }
-            }
-        }
+                acervo.setPalavrasChaves(palavrasChavesAcervo);
+                acervo.setAutor(autoresAcervo);
+                acervo.setAcabamentoCapa(tfAcabamentoCapa.getText());
+                acervo.setAcabamentoMiolo(tfAcabamentoMiolo.getText());
+                acervo.setNumeroPaginas(Short.parseShort(tfPaginas.getText()));
+                if (!tfPeso.getText().equals("")) {
+                    acervo.setPeso(Short.parseShort(tfPeso.getText()));
+                }
 
-        int tdAcervo = acervo.getIdAcervo();
-        if (acervoRN.salvar(acervo)) {
-            if (tdAcervo == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra() + ", cadastrado com sucesso!");
+                if (acervo.getIdAcervo() != 0) {
+                    ExemplarRN exmRN = new ExemplarRN();
+                    for (int i = 0; i < exemplaresAcervo.size(); i++) {
+                        if (exemplaresAcervo.get(i).getTombo() == 0) {
+                            exemplaresAcervo.get(i).setAcervo(acervo);
+                            exmRN.adiciona(exemplaresAcervo.get(i));
+                        }
+                    }
+                }
+
+                int tdAcervo = acervo.getIdAcervo();
+                if (acervoRN.salvar(acervo)) {
+                    if (tdAcervo == 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra() + ", cadastrado com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
+                                + ", alterado com sucesso!");
+                    }
+
+                    /*
+                     * Cadastro de exemplares
+                     */
+                    ExemplarRN exmRN = new ExemplarRN();
+                    for (int i = 0; i < exemplaresAcervo.size(); i++) {
+                        if (exemplaresAcervo.get(i).getTombo() == 0) {
+                            exemplaresAcervo.get(i).setAcervo(acervo);
+                            exmRN.adiciona(exemplaresAcervo.get(i));
+                        }
+                    }
+
+                    limparCampos();
+                    //btRemover.setEnabled(false);
+                }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
-                        + ", alterado com sucesso!");
+                JOptionPane.showMessageDialog(null, "Preencha todos os campos com '*'!");
             }
-
-            /*
-             * Cadastro de exemplares
-             */
-            ExemplarRN exmRN = new ExemplarRN();
-            for (int i = 0; i < exemplaresAcervo.size(); i++) {
-                if (exemplaresAcervo.get(i).getTombo() == 0) {
-                    exemplaresAcervo.get(i).setAcervo(acervo);
-                    exmRN.adiciona(exemplaresAcervo.get(i));
-                }
-            }
-
-            limparCampos();
-            //btRemover.setEnabled(false);
         }
     }
 
@@ -854,7 +860,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         for (Biblioteca biblioteca : bibliotecas) {
             cbBiblioteca.addItem(biblioteca);
         }
-        if(bibliotecas.size()>0){
+        if (bibliotecas.size() > 0) {
             cbBiblioteca.setSelectedIndex(1);
         }
     }
@@ -922,13 +928,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         atualizaTabelaAutores();
         atualizaTabelaPalavrasChaves();
         atualizaTabelaExemplares();
-        
-        BibliotecaRN bRN  = new BibliotecaRN();
+
+        BibliotecaRN bRN = new BibliotecaRN();
         List<Biblioteca> listBibli = bRN.listar();
-        if(listBibli.size()>0){
+        if (listBibli.size() > 0) {
             cbBiblioteca.setSelectedIndex(1);
         }
-        
+
     }//GEN-LAST:event_btSalvarActionPerformed
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         // TODO add your handling code here:
@@ -1088,19 +1094,18 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
                     if ((acervo == null) && (exemplaresAcervo.size() == 0)) {
                         exemplar.setExemplar(Short.valueOf(String.valueOf(i + 1)));
-                    } else {                        
-                        short numexemplar=1;
-                        if(exemplaresAcervo.size()==0){
-                            
+                    } else {
+                        short numexemplar = 1;
+                        if (exemplaresAcervo.size() == 0) {
                         } else {
-                            int tamanhoListaExmeplares=0;
+                            int tamanhoListaExmeplares = 0;
                             tamanhoListaExmeplares = exemplaresAcervo.size() - 1;
                             Collections.sort(exemplaresAcervo);
                             numexemplar = Short.valueOf(String.valueOf(exemplaresAcervo.get(tamanhoListaExmeplares).getExemplar() + 1));
                         }
-                        
+
                         exemplar.setExemplar(numexemplar);
-                        
+
                     }
                     exemplar.setAtivo(true);
                     exemplar.setSituacao(1);

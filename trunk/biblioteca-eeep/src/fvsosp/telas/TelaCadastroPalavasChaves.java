@@ -4,13 +4,13 @@
  */
 package fvsosp.telas;
 
-
 import fvsosp.palavraschaves.PalavrasChaves;
 import fvsosp.palavraschaves.PalavrasChavesRN;
 import fvsosp.palavraschaves.PalavrasChavesTableModel;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.tipoitem.TipoItemTableModel;
+import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -113,7 +113,7 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         jLabel23.setBounds(0, 0, 290, 30);
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca.setText("Descrição.:");
+        Descricao_Biblioteca.setText("Descrição.: *");
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfDescricao.setToolTipText("Digite aqui a descrição do Tipo do Item");
@@ -231,19 +231,20 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         if (palavras == null) {
             palavras = new PalavrasChaves();
         }
-
-        palavras.setDescricao(tfDescricao.getText().toString());
-        int idpalavra = palavras.getIdPalavrasChaves();
-        if (palavrasRN.adicionar(palavras)) {
-            if (idpalavra == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()
-                        + ", cadastrada com sucesso!");
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()
-                        + ", alterada com sucesso!");
+        if (Util.chkVazio(tfDescricao.getText())) {
+            palavras.setDescricao(tfDescricao.getText().toString());
+            int idpalavra = palavras.getIdPalavrasChaves();
+            if (palavrasRN.adicionar(palavras)) {
+                if (idpalavra == 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()
+                            + ", cadastrada com sucesso!");
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()
+                            + ", alterada com sucesso!");
+                }
+                limpaCampos();
+                btRemover.setEnabled(false);
             }
-            limpaCampos();
-            btRemover.setEnabled(false);
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 
