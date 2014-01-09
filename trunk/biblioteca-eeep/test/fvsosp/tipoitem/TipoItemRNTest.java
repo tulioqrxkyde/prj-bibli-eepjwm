@@ -59,7 +59,26 @@ public class TipoItemRNTest {
      */
     @Test
     public void testAtualizar() {
-        fail("The test case is a prototype.");
+        TipoItemRN rn = new TipoItemRN();
+        TipoItem tipoitem = new TipoItem();
+        
+        tipoitem.setDescricao("TesteAtualizarTipoItem");
+        rn.salvar(tipoitem);
+        
+        tipoitem=null;
+        
+        tipoitem = rn.pesquisarDescricaEq("TesteAtualizarTipoItem");
+        
+        if (tipoitem != null){
+            tipoitem.setDescricao("TesteAtualizarTipoItemAlterado");
+            rn.salvar(tipoitem);
+            tipoitem=null;
+        }
+        tipoitem = rn.pesquisarDescricaEq("TesteAtualizarTipoItemAlterado");
+        
+        assertEquals("TesteAtualizarTipoItemAlterado", tipoitem.getDescricao());
+        
+        rn.remover(tipoitem);
     }
 
     /**
@@ -67,7 +86,18 @@ public class TipoItemRNTest {
      */
     @Test
     public void testAdiciona() {
-        fail("The test case is a prototype.");
+        TipoItemRN rn = new TipoItemRN();
+        TipoItem tipoitem = new TipoItem();
+        
+        if (tipoitem != null){
+            rn.remover(tipoitem);
+        }
+        tipoitem = new TipoItem();
+        tipoitem.setDescricao("TesteAdiciona");
+        assertEquals(tipoitem.getDescricao(),"TesteAdiciona");
+        
+        rn.remover(tipoitem);
+        
     }
 
     /**
