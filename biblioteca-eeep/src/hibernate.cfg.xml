@@ -30,6 +30,7 @@
                 <mapping class="fvsosp.grupoleitores.GruposLeitores"/>
                 <mapping class="fvsosp.exemplar.Exemplar"/>
                 <mapping class="fvsosp.exemplaremprestimos.ExemplarEmprestimos"/>
+                <mapping class="fvsosp.multa.Multa"/>
         </session-factory>
 </hibernate-configuration>
 

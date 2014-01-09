@@ -15,6 +15,8 @@ import fvsosp.exemplar.ExemplarRN;
 import fvsosp.leitor.Leitor;
 import fvsosp.leitor.LeitorRN;
 import fvsosp.leitor.LeitorTableModel;
+import fvsosp.multa.Multa;
+import fvsosp.multa.MultaRN;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.UsuarioAtivo;
@@ -363,6 +365,18 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                         if (exem.getEmprestimo() == null) {
                             exem.setEmprestimo(emprestimo);
                         }
+                        if (exem.getOperacao() == 2) {
+                            int quantDias = Util.diferencaData(exem.getDataEmprestimo(), exem.getDataDevolucao());
+                            if (quantDias > leitor.getGruposLeitores().getDuracaoDiasEmprestimo()) {
+                                MultaRN muRN = new MultaRN();
+                                Multa multa = new Multa();
+                                multa.setExemplarEmprestimo(exem);
+                                multa.setPago(false);
+                                int diasDiferenca = quantDias - leitor.getGruposLeitores().getDuracaoDiasEmprestimo();
+                                multa.setValor(diasDiferenca * leitor.getGruposLeitores().getValorMultaDiaria());
+                                muRN.salvar(multa);
+                            }
+                        }
                         exemRN.adiciona(exem);
 
                         Exemplar exemplar = exem.getExemplar();
@@ -437,48 +451,56 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                         if (tfLeitor.getText().equals("")) {
                             JOptionPane.showMessageDialog(rootPane, "Informe o Leitor!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
                         } else {
+                            MultaRN mulRN = new MultaRN();
+                            boolean temMulta = mulRN.pesquisarSeTemEmAbertoMulta(leitor);
+                            if (temMulta) {
+                                JOptionPane.showMessageDialog(rootPane, "O leitor Possui Multa!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
+                            } else {
 
-                            Iterator<ExemplarEmprestimos> iExemEmpre = exemplares.iterator();
-                            boolean podeFazerEmprestimo = true;
-                            while (iExemEmpre.hasNext()) {
-                                ExemplarEmprestimos exempEmpres = iExemEmpre.next();
-                                if (exempEmpres.getOperacao() == 2 || exempEmpres.getOperacao() == 3) {
-                                    podeFazerEmprestimo = false;
+                                Iterator<ExemplarEmprestimos> iExemEmpre = exemplares.iterator();
+                                boolean podeFazerEmprestimo = true;
+                                while (iExemEmpre.hasNext()) {
+                                    ExemplarEmprestimos exempEmpres = iExemEmpre.next();
+                                    if (exempEmpres.getOperacao() == 2 || exempEmpres.getOperacao() == 3) {
+                                        podeFazerEmprestimo = false;
+                                    }
                                 }
-                            }
-                            if (podeFazerEmprestimo) {
-                                if ((exemplares.size() + empRN.pesquisarSituacao(leitor))
-                                        < leitor.getGruposLeitores().getQuantMaxLivros()) {
-                                    if (exemplar.getSituacao() != 4) {
+                                if (podeFazerEmprestimo) {
+                                    if ((exemplares.size() + empRN.pesquisarSituacao(leitor))
+                                            < leitor.getGruposLeitores().getQuantMaxLivros()) {
+                                        if (exemplar.getSituacao() != 4) {
 
-                                        exemplarEmprestimo = new ExemplarEmprestimos();
-                                        exemplarEmprestimo.setExemplar(exemplar);
-                                        exemplarEmprestimo.setOperacao(1);
+                                            exemplarEmprestimo = new ExemplarEmprestimos();
+                                            exemplarEmprestimo.setExemplar(exemplar);
+                                            exemplarEmprestimo.setOperacao(1);
 
-                                        try {
+                                            try {
 
-                                            exemplarEmprestimo.setDataEmprestimo(new Date());
-                                            Date d = new Date();
-                                            Calendar c = Calendar.getInstance();
-                                            c.add(Calendar.DAY_OF_WEEK, leitor.getGruposLeitores().getDuracaoDiasEmprestimo());
-                                            d = c.getTime();
-                                            exemplarEmprestimo.setDataPrevistaDevolucao(d);
-                                        } catch (Exception ex) {
-                                            System.out.println(ex.getMessage());
+                                                exemplarEmprestimo.setDataEmprestimo(new Date());
+                                                Date d = new Date();
+                                                Calendar c = Calendar.getInstance();
+                                                c.add(Calendar.DAY_OF_WEEK, leitor.getGruposLeitores().getDuracaoDiasEmprestimo());
+                                                d = c.getTime();
+                                                exemplarEmprestimo.setDataPrevistaDevolucao(d);
+                                            } catch (Exception ex) {
+                                                System.out.println(ex.getMessage());
+                                            }
+                                            exemplares.add(exemplarEmprestimo);
+                                            atualizaTabela();
+
+
+                                        } else {
+                                            JOptionPane.showMessageDialog(rootPane, "Este Exemplar encontra-se \n Indisponível Para Empréstimos!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
                                         }
-                                        exemplares.add(exemplarEmprestimo);
-                                        atualizaTabela();
 
                                     } else {
-                                        JOptionPane.showMessageDialog(rootPane, "Este Exemplar encontra-se \n Indisponível Para Empréstimos!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
+                                        JOptionPane.showMessageDialog(rootPane, "Quantidade Máxima \n de Livors Atingida!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
                                     }
-                                } else {
-                                    JOptionPane.showMessageDialog(rootPane, "Quantidade Máxima \n de Livors Atingida!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
-                                }
-                            } else {
-                                JOptionPane.showMessageDialog(rootPane, "Termine a Operação \n De Devolução/Renovação!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
-                            }
 
+                                } else {
+                                    JOptionPane.showMessageDialog(rootPane, "Termine a Operação \n De Devolução/Renovação!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
+                                }
+                            }
                         }
 
                     } else {
@@ -528,21 +550,33 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                                         if (i == 2) {
                                             //coloca data de devolução
                                             exemplarEmprestimo.setDataDevolucao(new Date());
+                                            exemplarEmprestimo.setOperacao(i);
+
+                                            exemplares.add(exemplarEmprestimo);
                                         } else {
                                             //renova o livro
-                                            exemplarEmprestimo.setDataEmprestimo(new Date());
-                                            Date d = new Date();
-                                            Calendar c = Calendar.getInstance();
-                                            c.add(Calendar.DAY_OF_WEEK, leitor.getGruposLeitores().getDuracaoDiasEmprestimo());
-                                            d = c.getTime();
-                                            exemplarEmprestimo.setDataPrevistaDevolucao(d);
+                                            int quantDiasLivros = Util.diferencaData(exemplarEmprestimo.getDataEmprestimo(),
+                                                    new Date());
+                                            if (quantDiasLivros > leitor.getGruposLeitores().getDuracaoDiasEmprestimo()) {
+                                                JOptionPane.showMessageDialog(rootPane, "O Exemplar não pode ser renovado! "
+                                                        + "\n Ultrapassou a quantidade de dias "
+                                                        + "\n exigidos pelo Grupo de Leitores do Leitor! Devolva o Livro!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
+                                            } else {
+                                                exemplarEmprestimo.setDataEmprestimo(new Date());
+                                                Date d = new Date();
+                                                Calendar c = Calendar.getInstance();
+                                                c.add(Calendar.DAY_OF_WEEK, leitor.getGruposLeitores().getDuracaoDiasEmprestimo());
+                                                d = c.getTime();
+                                                exemplarEmprestimo.setDataPrevistaDevolucao(d);
+                                                exemplarEmprestimo.setOperacao(i);
+
+                                                exemplares.add(exemplarEmprestimo);
+                                            }
                                         }
                                     } catch (Exception ex) {
                                         System.out.println(ex.getMessage());
                                     }
-                                    exemplarEmprestimo.setOperacao(i);
 
-                                    exemplares.add(exemplarEmprestimo);
                                     atualizaTabela();
                                 }
                             }
