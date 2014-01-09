@@ -41,23 +41,29 @@ public class Acervo implements Serializable{
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + this.getIdAcervo();
-        hash = 79 * hash + Objects.hashCode(this.getTituloObra());
-        hash = 79 * hash + Objects.hashCode(this.getSubtituloObra());
-        hash = 79 * hash + Objects.hashCode(this.getIsbn());
-        hash = 79 * hash + Objects.hashCode(this.getVolume());
-        hash = 79 * hash + Objects.hashCode(this.getEdicao());
-        hash = 79 * hash + this.getAnoEdicao();
-        hash = 79 * hash + Objects.hashCode(this.getInformacoesAdicionais());
-        hash = 79 * hash + Objects.hashCode(this.getLocalizacao());
-        hash = 79 * hash + Objects.hashCode(this.getTipoItem());
-        hash = 79 * hash + Objects.hashCode(this.getAutor());
-        hash = 79 * hash + Objects.hashCode(this.getEditora());
-        hash = 79 * hash + Objects.hashCode(this.getIdioma());
-        hash = 79 * hash + Objects.hashCode(this.getSessao());
-        hash = 79 * hash + Objects.hashCode(this.getBiblioteca());
-        hash = 79 * hash + Objects.hashCode(this.getExemplares());
+        int hash = 5;
+        hash = 41 * hash + this.getIdAcervo();
+        hash = 41 * hash + Objects.hashCode(this.getCutter());
+        hash = 41 * hash + Objects.hashCode(this.getPalavrasChaves());
+        hash = 41 * hash + Objects.hashCode(this.getTituloObra());
+        hash = 41 * hash + Objects.hashCode(this.getSubtituloObra());
+        hash = 41 * hash + Objects.hashCode(this.getIsbn());
+        hash = 41 * hash + Objects.hashCode(this.getVolume());
+        hash = 41 * hash + Objects.hashCode(this.getEdicao());
+        hash = 41 * hash + this.getAnoEdicao();
+        hash = 41 * hash + Objects.hashCode(this.getInformacoesAdicionais());
+        hash = 41 * hash + Objects.hashCode(this.getLocalizacao());
+        hash = 41 * hash + Objects.hashCode(this.getTipoItem());
+        hash = 41 * hash + Objects.hashCode(this.getAutores());
+        hash = 41 * hash + Objects.hashCode(this.getEditora());
+        hash = 41 * hash + Objects.hashCode(this.getIdioma());
+        hash = 41 * hash + Objects.hashCode(this.getSessao());
+        hash = 41 * hash + Objects.hashCode(this.getBiblioteca());
+        hash = 41 * hash + Objects.hashCode(this.getExemplares());
+        hash = 41 * hash + this.getNumeroPaginas();
+        hash = 41 * hash + this.getPeso();
+        hash = 41 * hash + Objects.hashCode(this.getAcabamentoCapa());
+        hash = 41 * hash + Objects.hashCode(this.getAcabamentoMiolo());
         return hash;
     }
 
@@ -71,6 +77,12 @@ public class Acervo implements Serializable{
         }
         final Acervo other = (Acervo) obj;
         if (this.getIdAcervo() != other.getIdAcervo()) {
+            return false;
+        }
+        if (!Objects.equals(this.cutter, other.cutter)) {
+            return false;
+        }
+        if (!Objects.equals(this.palavrasChaves, other.palavrasChaves)) {
             return false;
         }
         if (!Objects.equals(this.tituloObra, other.tituloObra)) {
@@ -100,14 +112,15 @@ public class Acervo implements Serializable{
         if (!Objects.equals(this.tipoItem, other.tipoItem)) {
             return false;
         }
-        
+        if (!Objects.equals(this.autores, other.autores)) {
+            return false;
+        }
         if (!Objects.equals(this.editora, other.editora)) {
             return false;
         }
         if (!Objects.equals(this.idioma, other.idioma)) {
             return false;
         }
-        
         if (!Objects.equals(this.sessao, other.sessao)) {
             return false;
         }
@@ -117,8 +130,22 @@ public class Acervo implements Serializable{
         if (!Objects.equals(this.exemplares, other.exemplares)) {
             return false;
         }
+        if (this.getNumeroPaginas() != other.getNumeroPaginas()) {
+            return false;
+        }
+        if (this.getPeso() != other.getPeso()) {
+            return false;
+        }
+        if (!Objects.equals(this.acabamentoCapa, other.acabamentoCapa)) {
+            return false;
+        }
+        if (!Objects.equals(this.acabamentoMiolo, other.acabamentoMiolo)) {
+            return false;
+        }
         return true;
     }
+    
+    private String cutter;
     
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "PalavraschavesAcervo", 
@@ -127,6 +154,7 @@ public class Acervo implements Serializable{
     private Set<PalavrasChaves> palavrasChaves;
       
     @Column(nullable = false, length = 50)
+    @NaturalId(mutable=true)
     private String tituloObra;
     
     @Column(nullable = false, length = 50)
@@ -138,7 +166,7 @@ public class Acervo implements Serializable{
     @Column(length = 4, nullable = false)
     private String volume;
     
-    @Column(length = 4, nullable = false)
+    @Column(length = 4)
     private String edicao;
     
     @Column(length = 4, nullable = false)
@@ -351,26 +379,13 @@ public class Acervo implements Serializable{
     }
 
     /**
-     * @param exemplares the exemplares to set
-     */
-    public void setExemplares(List<Exemplar> exemplares) {
-        this.setExemplares(exemplares);
-    }
-
-    /**
      * @return the palavrasChaves
      */
     public Set<PalavrasChaves> getPalavrasChaves() {
         return palavrasChaves;
     }
 
-    /**
-     * @param palavrasChaves the palavrasChaves to set
-     */
-    public void setPalavrasChaves(Set<PalavrasChaves> palavrasChaves) {
-        this.palavrasChaves = palavrasChaves;
-    }
-
+    
    
     /**
      * @return the autores
@@ -379,14 +394,7 @@ public class Acervo implements Serializable{
         return autores;
     }
 
-    /**
-     * @param autores the autores to set
-     */
-    public void setAutores(Set<Autor> autores) {
-        this.autores = autores;
-    }
-
-    /**
+      /**
      * @return the numeroPaginas
      */
     public short getNumeroPaginas() {
@@ -440,6 +448,41 @@ public class Acervo implements Serializable{
      */
     public void setAcabamentoMiolo(String acabamentoMiolo) {
         this.acabamentoMiolo = acabamentoMiolo;
+    }
+
+    /**
+     * @return the cutter
+     */
+    public String getCutter() {
+        return cutter;
+    }
+
+    /**
+     * @param cutter the cutter to set
+     */
+    public void setCutter(String cutter) {
+        this.cutter = cutter;
+    }
+
+    /**
+     * @param palavrasChaves the palavrasChaves to set
+     */
+    public void setPalavrasChaves(Set<PalavrasChaves> palavrasChaves) {
+        this.palavrasChaves = palavrasChaves;
+    }
+
+    /**
+     * @param autores the autores to set
+     */
+    public void setAutores(Set<Autor> autores) {
+        this.autores = autores;
+    }
+
+    /**
+     * @param exemplares the exemplares to set
+     */
+    public void setExemplares(List<Exemplar> exemplares) {
+        this.exemplares = exemplares;
     }
 
 }

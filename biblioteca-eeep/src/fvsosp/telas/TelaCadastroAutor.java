@@ -44,6 +44,8 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         jLabel25 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfSobreAutor = new javax.swing.JTextArea();
+        jLabel26 = new javax.swing.JLabel();
+        tfSobreNomeAutor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Autor");
@@ -52,6 +54,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(432, 177));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btPesquisar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/procurar_1.png"))); // NOI18N
         btPesquisar.setToolTipText("Pesquisar");
@@ -60,6 +63,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                 btPesquisarActionPerformed(evt);
             }
         });
+        jPanel1.add(btPesquisar, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 240, 37, 33));
 
         btSair.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/SA.png"))); // NOI18N
         btSair.setToolTipText("Sair");
@@ -68,6 +72,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                 btSairActionPerformed(evt);
             }
         });
+        jPanel1.add(btSair, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 240, -1, -1));
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
@@ -77,9 +82,11 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                 btRemoverActionPerformed(evt);
             }
         });
+        jPanel1.add(btRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 37, 33));
 
         tfNomeAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfNomeAutor.setToolTipText("Digite aqui a descrição do autor");
+        jPanel1.add(tfNomeAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 442, -1));
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
         btSalvar.setToolTipText("Salvar");
@@ -88,6 +95,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                 btSalvarActionPerformed(evt);
             }
         });
+        jPanel1.add(btSalvar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 240, 40, 33));
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
         jPanel3.setLayout(null);
@@ -98,6 +106,8 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         jPanel3.add(jLabel23);
         jLabel23.setBounds(0, 0, 170, 30);
 
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 462, 35));
+
         btNovo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novo_1.png"))); // NOI18N
         btNovo.setToolTipText("Novo");
         btNovo.addActionListener(new java.awt.event.ActionListener() {
@@ -105,66 +115,29 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
                 btNovoActionPerformed(evt);
             }
         });
+        jPanel1.add(btNovo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 42, 33));
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel24.setText("Nome do Autor.: *");
+        jLabel24.setText("Sobrenome do Autor.: *");
+        jPanel1.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 29));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel25.setText("Sobre o Autor.:");
+        jPanel1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 29));
 
         tfSobreAutor.setColumns(20);
         tfSobreAutor.setRows(5);
         jScrollPane1.setViewportView(tfSobreAutor);
 
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel24)
-                            .addComponent(jLabel25))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1)
-                    .addComponent(tfNomeAutor)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 205, Short.MAX_VALUE)
-                        .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btSair)))
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(1, 1, 1)
-                .addComponent(tfNomeAutor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(14, 14, 14)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btSair)
-                    .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btRemover, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btNovo, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap())
-        );
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 442, 49));
+
+        jLabel26.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel26.setText("Nome do Autor.: *");
+        jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 29));
+
+        tfSobreNomeAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfSobreNomeAutor.setToolTipText("Digite aqui a descrição do autor");
+        jPanel1.add(tfSobreNomeAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 442, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -174,7 +147,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 251, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 286, Short.MAX_VALUE)
         );
 
         pack();
@@ -196,6 +169,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
             autor = autorRN.pesquisarCodigo(id);
             tfNomeAutor.setText(autor.getNome().toString());
             tfSobreAutor.setText(autor.getSobreOAutor().toString());
+            tfSobreNomeAutor.setText(autor.getSobrenome().toString());
             btRemover.setEnabled(true);
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
@@ -227,9 +201,10 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         if (autor == null) {
             autor = new Autor();
         }
-        if (Util.chkVazio(tfNomeAutor.getText())) {
+        if (Util.chkVazio(tfNomeAutor.getText(),tfSobreNomeAutor.getText())) {
             autor.setNome(tfNomeAutor.getText().toString());
             autor.setSobreOAutor(tfSobreAutor.getText().toString());
+            autor.setSobrenome(tfSobreAutor.getText());
             int idAutor = autor.getIdAutor();
             if (autorRN.salvar(autor)) {
                 if (idAutor == 0) {
@@ -252,6 +227,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     public void limpaCampos() {
         tfNomeAutor.setText("");
         tfSobreAutor.setText("");
+        tfSobreNomeAutor.setText("");
         autor = null;
         tfNomeAutor.requestFocus();
         btRemover.setEnabled(false);
@@ -300,10 +276,12 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField tfNomeAutor;
     private javax.swing.JTextArea tfSobreAutor;
+    private javax.swing.JTextField tfSobreNomeAutor;
     // End of variables declaration//GEN-END:variables
 }

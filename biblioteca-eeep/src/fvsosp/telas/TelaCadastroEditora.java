@@ -1,5 +1,7 @@
 package fvsosp.telas;
 
+import fvsosp.cidade.Cidade;
+import fvsosp.cidade.CidadeRN;
 import fvsosp.editora.Editora;
 import fvsosp.editora.EditoraRN;
 import fvsosp.editora.EditoraTableModel;
@@ -29,6 +31,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         editora = null;
         tfDescricao.setText("");
         tfDescricao.requestFocus();
+        cbCidade.setSelectedIndex(0);
         btRemover.setEnabled(false);
     }
 
@@ -51,6 +54,8 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         btNovo = new javax.swing.JButton();
         tfDescricao = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
+        cbCidade = new javax.swing.JComboBox();
 
         setTitle("OSBiblio - Editora");
         setModal(true);
@@ -114,6 +119,13 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Descrição.: *");
 
+        jLabel29.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jLabel29.setText("Cidade.: *");
+
+        cbCidade.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        cbCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        CidadeRN cidRN = new CidadeRN();         for (Cidade cidade : cidRN.listar()) {             cbCidade.addItem(cidade);         }
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -133,10 +145,13 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
                         .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btSair))
+                    .addComponent(tfDescricao)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel24)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(tfDescricao))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel24)
+                            .addComponent(jLabel29)
+                            .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -147,6 +162,10 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(1, 1, 1)
                 .addComponent(tfDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel29)
+                .addGap(4, 4, 4)
+                .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSair)
@@ -165,7 +184,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
         );
 
         pack();
@@ -179,6 +198,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
             editora = new Editora();
             editora = editRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfDescricao.setText(editora.getNome());
+            cbCidade.setSelectedItem(editora.getCidade());
             btRemover.setEnabled(true);
         }
 
@@ -208,12 +228,22 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (Util.chkVazio(tfDescricao.getText())) {
+        if (Util.chkVazio(tfDescricao.getText(),cbCidade.getSelectedItem().toString())) {
             if (editora == null) {
                 editora = new Editora();
             }
             editora.setNome(tfDescricao.getText());
+            if (cbCidade.getSelectedIndex() > 0) {
+                Cidade cidade = (Cidade) cbCidade.getSelectedItem();
+                editora.setCidade(cidade);
+            } else {
+                editora.setCidade(null);
+            }
             int id = editora.getIdEditora();
+//            Editora edExis = editRN.pesquisarNomeEditoraEq(tfDescricao.getText());
+//            if(edExis!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
+//            }else             
             if (editRN.salvar(editora)) {
                 JOptionPane.showMessageDialog(rootPane, "Editora " + editora.getNome()
                         + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
@@ -266,8 +296,10 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     private javax.swing.JButton btRemover;
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSalvar;
+    private javax.swing.JComboBox cbCidade;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JTextField tfDescricao;

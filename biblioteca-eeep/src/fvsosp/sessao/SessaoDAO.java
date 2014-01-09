@@ -44,6 +44,7 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
     }
     
+        
     public List<Sessao> pesquisarDescricaoLike(String descricao) {
         List<Sessao> sessao = null;
         try {

@@ -223,7 +223,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
             int idUsario = usuario.getIdUsuario();
             if (idUsario != 0) {
                 if (tfSenha.getText().equals(tfConfirmarSenha.getText())) {
-                    String senhaAnterior = JOptionPane.showInputDialog(idUsario, "Informe a senha anterior: ");
+                    String senhaAnterior = JOptionPane.showInputDialog(null, "Informe a senha anterior: ");
                     if (usuarioRN.salvar(usuario, senhaAnterior) == true) {
                         JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
                                 + ", alterado com sucesso!");
@@ -236,15 +236,22 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 }
 
 
-            } else if (usuarioRN.salvar(usuario, tfConfirmarSenha.getText())) {
-                if (idUsario == 0) {
-                    JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
-                            + ", cadastrado com sucesso!");
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
-                            + ", alterado com sucesso!");
+
+            } else {
+//                Usuario usuExistente = usuarioRN.pesquisaLogin(tfLogin.getText());
+//                if(usuExistente!=null){
+//                    JOptionPane.showMessageDialog(rootPane, "Login Já Cadastrado! Informe outro login!");
+//                } else
+                if (usuarioRN.salvar(usuario, tfConfirmarSenha.getText())) {
+                    if (idUsario == 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
+                                + ", cadastrado com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Usuário " + usuario.getLogin()
+                                + ", alterado com sucesso!");
+                    }
+                    limpaCampos();
                 }
-                limpaCampos();
             }
         }
         // TODO add your handling code here:

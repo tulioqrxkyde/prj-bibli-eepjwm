@@ -37,6 +37,10 @@ public class LeitorRN {
     public List<Leitor> pesquisaNome(String nome) {
         return dao.pesquisarNome(nome);
     }
+    
+    public Leitor pesquisaNomeEq(String nome) {
+        return dao.pesquisarNomeEq(nome);
+    }
 
     public List<Leitor> pesquisarEmail(String email) {
         return dao.pesquisarEmail(email);
@@ -56,6 +60,10 @@ public class LeitorRN {
 
     public List<Leitor> pesquisarMatricula(String matricula) {
         return dao.pesquisarMatricula(matricula);
+    }
+    
+    public Leitor pesquisarMatriculaEq(String matricula) {
+        return dao.pesquisarMatriculaEq(matricula);
     }
 
     public List<Leitor> pesquisarAtivo(boolean ativo) {

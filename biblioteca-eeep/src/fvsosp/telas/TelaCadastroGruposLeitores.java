@@ -1,6 +1,7 @@
 package fvsosp.telas;
 
 import fvsosp.grupoleitores.*;
+import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -21,6 +22,9 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
     public TelaCadastroGruposLeitores() {
         initComponents();
         this.setLocationRelativeTo(null);
+        tfDiasGruposLeitores.setDocument(new OnlyNumberField());
+        //tfMultaGruposLeitores.setDocument(new OnlyNumberField());
+        tfQuantidadeGruposLeitores1.setDocument(new OnlyNumberField());
     }
 
     /**
@@ -35,19 +39,19 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         jPanel3 = new javax.swing.JPanel();
         jLabel23 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        tfMultaGruposLeitores = new javax.swing.JFormattedTextField();
         jLabel27 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         tfNomeGruposLeitores = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
-        tfDiasGruposLeitores = new javax.swing.JFormattedTextField();
         jLabel25 = new javax.swing.JLabel();
         btSalvar = new javax.swing.JButton();
         btRemover = new javax.swing.JButton();
         btSair = new javax.swing.JButton();
         btNovo = new javax.swing.JButton();
         btPesquisar = new javax.swing.JButton();
-        tfQuantidadeGruposLeitores1 = new javax.swing.JFormattedTextField();
+        tfMultaGruposLeitores = new javax.swing.JTextField();
+        tfQuantidadeGruposLeitores1 = new javax.swing.JTextField();
+        tfDiasGruposLeitores = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Grupos de Leitores");
@@ -67,10 +71,6 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
-        tfMultaGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
-        tfMultaGruposLeitores.setToolTipText("Digite aqui o valor da Multa Diária.");
-        tfMultaGruposLeitores.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel27.setText("Duração em Dias do Empréstimo.: *");
 
@@ -82,10 +82,6 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Descrição.: *");
-
-        tfDiasGruposLeitores.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        tfDiasGruposLeitores.setToolTipText("Digite aqui a Quantidade Máxima de Livros.");
-        tfDiasGruposLeitores.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel25.setText("Multa Diária.: *");
@@ -131,9 +127,14 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
             }
         });
 
-        tfQuantidadeGruposLeitores1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("#0"))));
-        tfQuantidadeGruposLeitores1.setToolTipText("Digite aqui a Quantidade Máxima de Livros.");
-        tfQuantidadeGruposLeitores1.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        tfMultaGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfMultaGruposLeitores.setToolTipText("Digite aqui a descrição do Grupo de Leitores.");
+
+        tfQuantidadeGruposLeitores1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfQuantidadeGruposLeitores1.setToolTipText("Digite aqui a descrição do Grupo de Leitores.");
+
+        tfDiasGruposLeitores.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfDiasGruposLeitores.setToolTipText("Digite aqui a descrição do Grupo de Leitores.");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -142,7 +143,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(tfQuantidadeGruposLeitores1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel24)
                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 216, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel25)
@@ -158,11 +159,10 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btSair))
                         .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.DEFAULT_SIZE, 390, Short.MAX_VALUE)
-                                .addComponent(tfNomeGruposLeitores))
+                            .addComponent(tfNomeGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(12, 12, 12)))
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfQuantidadeGruposLeitores1, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(tfDiasGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -175,16 +175,16 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
                 .addComponent(tfNomeGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel25)
-                .addGap(2, 2, 2)
-                .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tfMultaGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel26)
-                .addGap(3, 3, 3)
-                .addComponent(tfQuantidadeGruposLeitores1, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(tfQuantidadeGruposLeitores1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(2, 2, 2)
-                .addComponent(tfDiasGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(5, 5, 5)
+                .addComponent(tfDiasGruposLeitores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSair)
@@ -221,9 +221,13 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
             }
             gruposleitores.setDescricao(tfNomeGruposLeitores.getText());
             gruposleitores.setValorMultaDiaria(Float.parseFloat(tfMultaGruposLeitores.getText().replaceAll((" "), (""))));
-            gruposleitores.setQuantMaxLivros(Byte.parseByte(tfDiasGruposLeitores.getText().replaceAll((" "), (""))));
+            gruposleitores.setQuantMaxLivros(Byte.parseByte(tfQuantidadeGruposLeitores1.getText().replaceAll((" "), (""))));
             gruposleitores.setDuracaoDiasEmprestimo(Byte.parseByte(tfDiasGruposLeitores.getText().replaceAll((" "), (""))));
             int id = gruposleitores.getIdGruposLeitores();
+//            GruposLeitores grLExis = gruposleitoresRN.pesquisarDescricaoEq(tfNomeGruposLeitores.getText());
+//            if(grLExis!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
+//            } else
             if (gruposleitoresRN.salvar(gruposleitores)) {
                 JOptionPane.showMessageDialog(rootPane, "Grupo de Leitores " + gruposleitores.getDescricao()
                         + ", " + ((id == 0) ? "cadastrado" : "alterado") + " com sucesso!");
@@ -268,7 +272,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
             gruposleitores = gruposleitoresRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNomeGruposLeitores.setText(gruposleitores.getDescricao());
             tfMultaGruposLeitores.setText(String.valueOf(gruposleitores.getValorMultaDiaria()));
-            tfDiasGruposLeitores.setText(String.valueOf(gruposleitores.getQuantMaxLivros()));
+            tfQuantidadeGruposLeitores1.setText(String.valueOf(gruposleitores.getQuantMaxLivros()));
             tfDiasGruposLeitores.setText(String.valueOf(gruposleitores.getDuracaoDiasEmprestimo()));
             btRemover.setEnabled(true);
         }
@@ -279,7 +283,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         tfNomeGruposLeitores.setText("");
         tfMultaGruposLeitores.setText("");
         tfDiasGruposLeitores.setText("");
-        tfDiasGruposLeitores.setText("");
+        tfQuantidadeGruposLeitores1.setText("");
         tfNomeGruposLeitores.requestFocus();
         btRemover.setEnabled(false);
     }
@@ -327,9 +331,9 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel27;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JFormattedTextField tfDiasGruposLeitores;
-    private javax.swing.JFormattedTextField tfMultaGruposLeitores;
+    private javax.swing.JTextField tfDiasGruposLeitores;
+    private javax.swing.JTextField tfMultaGruposLeitores;
     private javax.swing.JTextField tfNomeGruposLeitores;
-    private javax.swing.JFormattedTextField tfQuantidadeGruposLeitores1;
+    private javax.swing.JTextField tfQuantidadeGruposLeitores1;
     // End of variables declaration//GEN-END:variables
 }

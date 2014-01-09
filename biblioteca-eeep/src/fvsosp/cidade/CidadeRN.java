@@ -29,6 +29,10 @@ public class CidadeRN {
     public List<Cidade> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
+    
+    public Cidade pesquisarDescricaoEq(String descricao) {
+        return dao.pesquisarDescricaoEq(descricao);
+    }
 
     public List<Cidade> pesquisarUf(String uf) {
         return dao.pesquisarUf(uf);

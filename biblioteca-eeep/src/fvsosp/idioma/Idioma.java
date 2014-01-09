@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "idioma")
@@ -41,6 +42,7 @@ public class Idioma implements Serializable{
     private short idIdioma;
     
     @Column(length = 40, nullable = false, columnDefinition = "varchar(40) default ''")
+    @NaturalId(mutable=true)
     private String descricao;
 
 

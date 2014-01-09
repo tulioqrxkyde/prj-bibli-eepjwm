@@ -9,6 +9,7 @@ import java.util.Set;
 import javax.persistence.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table (name="gruposleitores")
@@ -61,6 +62,7 @@ public class GruposLeitores implements Serializable{
     }
    
     @Column(length = 40, nullable = false)
+    @NaturalId(mutable=true)
     private String descricao;
     
     @Column(length = 2, nullable = false)

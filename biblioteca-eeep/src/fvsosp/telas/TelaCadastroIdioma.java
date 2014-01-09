@@ -172,7 +172,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
         List<Idioma> lista;
-        lista = ((tfNomeIdioma.getText() != null) ? idiomaRN.pesquisarDescricaoLike(tfNomeIdioma.getText()) : idiomaRN.listar());
+        lista = ((tfNomeIdioma.getText() != null) ? idiomaRN.pesquisaDescricao(tfNomeIdioma.getText()) : idiomaRN.listar());
         IdiomaTableModel itm = new IdiomaTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Idioma");
         if (o != null) {
@@ -216,6 +216,10 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         if (Util.chkVazio(tfNomeIdioma.getText())) {
             idioma.setDescricao(tfNomeIdioma.getText());
             int id = idioma.getIdIdioma();
+            Idioma idiomaExi = idiomaRN.pesquisarDescricaoEq(tfNomeIdioma.getText());
+//            if(idiomaExi!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
+//            } else
             if (idiomaRN.salvar(idioma)) {
                 JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
                         + ", " + ((id == 0) ? "cadastrado" : "alterado") + " com sucesso!");

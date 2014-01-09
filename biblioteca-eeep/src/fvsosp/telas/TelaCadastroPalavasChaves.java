@@ -239,6 +239,10 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         if (Util.chkVazio(tfDescricao.getText())) {
             palavras.setDescricao(tfDescricao.getText().toString());
             int idpalavra = palavras.getIdPalavrasChaves();
+//            PalavrasChaves pCExiste = palavrasRN.pesquisarDescricaoEq(tfDescricao.getText());
+//            if(pCExiste!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
+//            } else 
             if (palavrasRN.adicionar(palavras)) {
                 if (idpalavra == 0) {
                     JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + palavras.getDescricao()

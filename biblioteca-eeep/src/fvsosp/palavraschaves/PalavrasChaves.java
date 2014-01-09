@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.*;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "palavraschaves")
@@ -48,6 +49,7 @@ public class PalavrasChaves implements Serializable, Comparable<PalavrasChaves> 
 
     
     @Column(length = 50, nullable = false, columnDefinition = "varchar(50) default ''")
+    @NaturalId(mutable=true)
     private String descricao;   
 
     

@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class AutorTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Autor", "Descrição"};
+    private String[] nomeColunas = {"Código", "Sobrenome","Autor", "Descrição"};
     private List<Autor> autores;
 
     public AutorTableModel(List<Autor> lista) {
@@ -39,8 +39,10 @@ public class AutorTableModel extends AbstractTableModel {
             case 0:
                     return Util.decimalFormat().format(autor.getIdAutor());
             case 1:
-                    return autor.getNome();
+                    return autor.getSobrenome();
             case 2:
+                    return autor.getNome();
+            case 3:
                     return autor.getSobreOAutor();
         }
         return null;
@@ -55,6 +57,8 @@ public class AutorTableModel extends AbstractTableModel {
                 return nomeColunas[1];
             case 2:
                 return nomeColunas[2];
+            case 3:
+                return nomeColunas[3];
         }
         return null;
     }

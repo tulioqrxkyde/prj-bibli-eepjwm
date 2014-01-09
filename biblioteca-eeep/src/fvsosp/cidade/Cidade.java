@@ -13,7 +13,7 @@ public class Cidade implements Serializable {
     @GeneratedValue // campo auto incremento
     private short idCidade;
     
-    @NaturalId
+    @NaturalId(mutable=true)
     private int codIBGE;
 
     @Override

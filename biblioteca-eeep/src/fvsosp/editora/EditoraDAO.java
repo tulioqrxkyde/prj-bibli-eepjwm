@@ -35,6 +35,25 @@ public class EditoraDAO extends GenericDAO<Editora> {
         }
         return editoras;
     }
+    
+    public Editora procuraNomeEditoraEq(String nome) {
+        Editora editoras = null;
+
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            editoras = (Editora) getSessao().createCriteria(Editora.class).
+                    add(Restrictions.eq("nome", nome)).
+                    addOrder(Order.asc("nome")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Nome da Editora: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return editoras;
+    }
  
     public List<Acervo> procuraAcervoEditora(Editora ed) {
         List<Acervo> acervos = null;

@@ -47,14 +47,14 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
         return tipoitens;
     }
 
-    public List<TipoItem> pesquisarDescricaoLike(String descricao) {
-        List<TipoItem> tipoitens = null;
+    public TipoItem pesquisarDescricaoEq(String descricao) {
+        TipoItem tipoitens = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            tipoitens = (List<TipoItem>) getSessao().createCriteria(TipoItem.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).list();
+            tipoitens = (TipoItem) getSessao().createCriteria(TipoItem.class).
+                    add(Restrictions.eq("descricao", descricao)).uniqueResult();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());

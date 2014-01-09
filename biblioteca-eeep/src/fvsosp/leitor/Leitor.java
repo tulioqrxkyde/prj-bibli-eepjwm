@@ -19,6 +19,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="leitor")
@@ -34,6 +35,7 @@ public class Leitor implements Serializable{
     private short idLeitor;
     
     @Column(nullable=false, length=100)
+    @NaturalId(mutable=true)
     private String nome;
     
     @Column(length=70)
@@ -55,6 +57,7 @@ public class Leitor implements Serializable{
     private String celular;
     
     @Column(length=50, nullable=false)
+    @NaturalId(mutable=true)
     private String matricula;
     
     @Column(columnDefinition="boolean default 1")

@@ -215,6 +215,10 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
             }
             biblioteca.setDescricao(tfNomeBiblioteca.getText());
             int id = biblioteca.getIdBiblioteca();
+//            Biblioteca biblioExis = bibliotecaRN.pesquisarDescricaoEq(tfNomeBiblioteca.getText());
+//            if(biblioExis!=null){
+//               JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!"); 
+//            } else
             if (bibliotecaRN.salvar(biblioteca)) {
                 JOptionPane.showMessageDialog(rootPane, "Biblioteca " + biblioteca.getDescricao()
                         + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
