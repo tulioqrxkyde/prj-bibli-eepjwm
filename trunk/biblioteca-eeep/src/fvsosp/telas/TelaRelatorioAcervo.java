@@ -10,6 +10,7 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.ConnectionFactory;
+import java.net.URL;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -196,10 +197,10 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
 
         Connection connection = new ConnectionFactory().getConnection();
         try {
-            pathjrxml = JasperCompileManager.compileReport("relatorios/RelAcervo.jrxml");
+            pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelAcervo.jrxml");
             JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                     connection);
-            JasperExportManager.exportReportToPdfFile(printReport, "relatorios/RelAcervo.pdf");
+            JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelAcervo.pdf");
             JasperViewer jv = new JasperViewer(printReport, false);
             jv.setVisible(true);
         } catch (JRException ex) {
