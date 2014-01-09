@@ -289,7 +289,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         itemRelatorioUsuario.setText("Relatórios");
 
-        jMenuItem3.setText("Usuário");
+        jMenuItem3.setText("Extrato de Leitor");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
         itemRelatorioUsuario.add(jMenuItem3);
 
         itemRelatorioFinanceiro.setText("Acervo");
@@ -404,6 +409,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaRelatorioAcervo tRA = new TelaRelatorioAcervo();
         tRA.setVisible(true);
     }//GEN-LAST:event_itemRelatorioFinanceiroActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorioExtratoLeitor rEL = new TelaRelatorioExtratoLeitor();
+        rEL.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     /**
      * @param args the command line arguments
