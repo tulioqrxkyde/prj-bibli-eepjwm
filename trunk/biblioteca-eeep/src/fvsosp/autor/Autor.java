@@ -15,7 +15,7 @@ public class Autor implements Comparable<Autor> {
 
      @Override
     public int compareTo(Autor o) {        
-        return nome.compareTo(o.nome);            
+        return getNome().compareTo(o.getNome());            
     }
     
     @Id // campo chave primária
@@ -25,9 +25,10 @@ public class Autor implements Comparable<Autor> {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 37 * hash + this.idAutor;
-        hash = 37 * hash + Objects.hashCode(this.nome);
-        hash = 37 * hash + Objects.hashCode(this.sobreOAutor);
+        hash = 13 * hash + this.idAutor;
+        hash = 13 * hash + Objects.hashCode(this.nome);
+        hash = 13 * hash + Objects.hashCode(this.sobrenome);
+        hash = 13 * hash + Objects.hashCode(this.sobreOAutor);
         return hash;
     }
 
@@ -46,20 +47,25 @@ public class Autor implements Comparable<Autor> {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (!Objects.equals(this.sobrenome, other.sobrenome)) {
+            return false;
+        }
         if (!Objects.equals(this.sobreOAutor, other.sobreOAutor)) {
             return false;
         }
         return true;
     }
-    
+   
     // not null de tamanho 70 e valor padrão ''
     @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 
     private String nome;
     
+    @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 
+    private String sobrenome;
+    
     @Type(type="text")
     @Column(nullable = false, length = 150)
     private String sobreOAutor;
-    
        
     /*** @retorna o id do Autor ***/
     public short getIdAutor() {
@@ -93,6 +99,22 @@ public class Autor implements Comparable<Autor> {
 
     /*** @retorna a lista de Acervos ***/
     public String toString(){
-        return nome;
+        return getNome();
     }
+
+    /**
+     * @return the sobrenome
+     */
+    public String getSobrenome() {
+        return sobrenome;
+    }
+
+    /**
+     * @param sobrenome the sobrenome to set
+     */
+    public void setSobrenome(String sobrenome) {
+        this.sobrenome = sobrenome;
+    }
+
+    
 }

@@ -1,9 +1,11 @@
 package fvsosp.editora;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.cidade.Cidade;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "editora")
@@ -13,7 +15,12 @@ public class Editora implements Serializable {
     @GeneratedValue
     private short idEditora;
     @Column(length = 70, nullable = false)
+    @NaturalId(mutable=true)
     private String nome;
+    
+    @ManyToOne
+    @JoinColumn(name="idcidade")
+    private Cidade cidade;
 //    @OneToMany(mappedBy = "editora")
 //    private List<Acervo> acervo;
 
@@ -42,8 +49,9 @@ public class Editora implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 53 * hash + this.idEditora;
-        hash = 53 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + this.idEditora;
+        hash = 41 * hash + Objects.hashCode(this.nome);
+        hash = 41 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
 
@@ -62,12 +70,30 @@ public class Editora implements Serializable {
         if (!Objects.equals(this.nome, other.nome)) {
             return false;
         }
+        if (!Objects.equals(this.cidade, other.cidade)) {
+            return false;
+        }
         return true;
     }
 
+    
    
     
     public String toString(){
-        return nome;
+        return getNome();
+    }
+
+    /**
+     * @return the cidade
+     */
+    public Cidade getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @param cidade the cidade to set
+     */
+    public void setCidade(Cidade cidade) {
+        this.cidade = cidade;
     }
 }

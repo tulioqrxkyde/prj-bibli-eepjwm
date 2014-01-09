@@ -47,7 +47,7 @@ public class AutoresAcervoTableModel extends AbstractTableModel {
             case 0:
                 return Util.decimalFormat().format(autor.getIdAutor());
             case 1:
-                return autor.getNome();
+                return autor.getSobrenome()+", "+autor.getNome();
         }
         return null;
     }

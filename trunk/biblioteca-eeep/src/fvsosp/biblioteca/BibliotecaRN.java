@@ -34,6 +34,10 @@ public class BibliotecaRN {
         return dao.pesquisarDescricao(descricao);
     }
     
+    public Biblioteca pesquisarDescricaoEq(String descricao) {
+        return dao.pesquisarDescricaoEq(descricao);
+    }
+    
     public Biblioteca pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }

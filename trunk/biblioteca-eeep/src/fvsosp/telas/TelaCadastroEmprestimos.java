@@ -16,6 +16,7 @@ import fvsosp.leitor.Leitor;
 import fvsosp.leitor.LeitorRN;
 import fvsosp.leitor.LeitorTableModel;
 import fvsosp.usuario.UsuarioRN;
+import fvsosp.util.OnlyNumberField;
 import fvsosp.util.UsuarioAtivo;
 import fvsosp.util.Util;
 import java.text.DateFormat;
@@ -56,6 +57,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         ExemplarRN exemplarRN = new ExemplarRN();
         setModal(true);
         lblDevolucao.setText("");
+        tfTombo.setDocument(new OnlyNumberField());
 //        for (int x = 0; x < exemplarRN.listar().size(); x++) {
 //            tbExemplaresEmprestimo.getModel().setValueAt(exemplarRN.listar().get(x), x, 0);
 //        }

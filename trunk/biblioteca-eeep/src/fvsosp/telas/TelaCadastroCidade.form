@@ -259,17 +259,16 @@
             </Constraint>
           </Constraints>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="tfCodIBGE">
+        <Component class="javax.swing.JTextField" name="tfCodIBGE">
           <Properties>
-            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor" preCode="try {" postCode="} catch (java.text.ParseException ex) {&#xa;ex.printStackTrace();&#xa;}">
-              <Format format="##########" subtype="-1" type="5"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Informe o c&#xf3;digo do IBGE."/>
-            <Property name="focusLostBehavior" type="int" value="3"/>
+            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o da Cidade."/>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-              <AbsoluteConstraints x="10" y="40" width="70" height="-1"/>
+              <AbsoluteConstraints x="10" y="40" width="120" height="-1"/>
             </Constraint>
           </Constraints>
         </Component>

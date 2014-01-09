@@ -35,6 +35,10 @@ public class PalavrasChavesRN {
     public List<PalavrasChaves> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
+    
+    public PalavrasChaves pesquisarDescricaoEq(String descricao) {
+        return dao.pesquisarDescricaoEq(descricao);
+    }
 
     public PalavrasChaves pesquisarCodigo(short id) {
         return dao.pesquisarCodigo(id);

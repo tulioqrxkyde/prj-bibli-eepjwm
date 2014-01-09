@@ -37,6 +37,10 @@ public class GruposLeitoresRN {
     public List<GruposLeitores> pesquisarDescricao(String descricao) {
         return dao.pesquisaDescricao(descricao);
     }
+    
+    public GruposLeitores pesquisarDescricaoEq(String descricao) {
+        return dao.pesquisaDescricaoEq(descricao);
+    }
 
     public List<GruposLeitores> pesquisarDescricaoLike(String descricao) {
         return dao.pesquisarDescricaoLike(descricao);

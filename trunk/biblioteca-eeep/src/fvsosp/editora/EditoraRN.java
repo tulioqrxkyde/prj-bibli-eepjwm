@@ -31,6 +31,10 @@ public class EditoraRN {
     public List<Editora> pesquisarNomeEditora(String nome) {
         return dao.procuraNomeEditora(nome);
     }
+    
+    public Editora pesquisarNomeEditoraEq(String nome) {
+        return dao.procuraNomeEditoraEq(nome);
+    }
 
     public List<Acervo> pesquisarAcervoEditora(Editora et) {
         return dao.procuraAcervoEditora(et);

@@ -172,7 +172,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
-        List<TipoItem> lista = ((tfTipoItem.getText() != null) ? tipoItemRN.pesquisarDescricaoLike(tfTipoItem.getText()) : tipoItemRN.listar());
+        List<TipoItem> lista = ((tfTipoItem.getText() != null) ? tipoItemRN.pesquisaDescricao(tfTipoItem.getText()) : tipoItemRN.listar());
         TipoItemTableModel itm = new TipoItemTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Tipo de Item");
         if (o != null) {
@@ -217,6 +217,10 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
             }
             tipoItem.setDescricao(tfTipoItem.getText().toString());
             int idIdioma = tipoItem.getIdTipoItem();
+            TipoItem tipoItemExis = tipoItemRN.pesquisarDescricaEq(tfTipoItem.getText());
+//            if(tipoItemExis!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
+//            } else
             if (tipoItemRN.salvar(tipoItem)) {
                 JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
                         + ", " + ((tipoItem.getIdTipoItem() == 0) ? "cadastrado" : "alterado") + "com sucesso!");

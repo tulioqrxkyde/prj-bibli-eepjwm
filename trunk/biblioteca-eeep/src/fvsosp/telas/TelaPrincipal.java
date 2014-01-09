@@ -4,7 +4,25 @@
  */
 package fvsosp.telas;
 
+import fvsosp.acervo.Acervo;
+import fvsosp.acervo.AcervoRN;
+import fvsosp.util.ConnectionFactory;
 import fvsosp.util.UsuarioAtivo;
+import java.sql.Connection;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -20,8 +38,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         //setExtendedState( MAXIMIZED_BOTH ); ;   //( iniciar tela cheia )
         setTitle("OSBiblio");
         setLocationRelativeTo(null);
-        jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?",((UsuarioAtivo.getLogin() != null) ? UsuarioAtivo.getLogin() : "?")));
+        jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?", ((UsuarioAtivo.getLogin() != null) ? UsuarioAtivo.getLogin() : "?")));
         itemCadUsuario.setVisible(UsuarioAtivo.isAdministrador());
+        itemIndisponivelExemplar.setVisible(UsuarioAtivo.isAdministrador());
     }
 
     /**
@@ -54,14 +73,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemCadTipoItem = new javax.swing.JMenuItem();
         itemCadUsuario = new javax.swing.JMenuItem();
         itemEmprestar = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        itemEmprestimoDevolucao = new javax.swing.JMenuItem();
+        itemIndisponivelExemplar = new javax.swing.JMenuItem();
         menuConsulta = new javax.swing.JMenu();
         itemConsultarAcervo = new javax.swing.JMenuItem();
         itemRelatorioUsuario = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         itemRelatorioFinanceiro = new javax.swing.JMenuItem();
-        itemRelatorioEmprestimo = new javax.swing.JMenuItem();
-        itemRelatorioCatalogacao = new javax.swing.JMenuItem();
         ItemSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -243,14 +261,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         itemEmprestar.setText("Movimentação");
 
-        jMenuItem1.setText("Empréstimo/Devolução");
-        jMenuItem1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        itemEmprestimoDevolucao.setText("Empréstimo/Devolução");
+        itemEmprestimoDevolucao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        itemEmprestimoDevolucao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                itemEmprestimoDevolucaoActionPerformed(evt);
             }
         });
-        itemEmprestar.add(jMenuItem1);
+        itemEmprestar.add(itemEmprestimoDevolucao);
+
+        itemIndisponivelExemplar.setText("Exemplar Disponível");
+        itemIndisponivelExemplar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemIndisponivelExemplarActionPerformed(evt);
+            }
+        });
+        itemEmprestar.add(itemIndisponivelExemplar);
 
         BarradeMenuPrincipal.add(itemEmprestar);
 
@@ -266,14 +292,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3.setText("Usuário");
         itemRelatorioUsuario.add(jMenuItem3);
 
-        itemRelatorioFinanceiro.setText("Financeiro");
+        itemRelatorioFinanceiro.setText("Acervo");
+        itemRelatorioFinanceiro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRelatorioFinanceiroActionPerformed(evt);
+            }
+        });
         itemRelatorioUsuario.add(itemRelatorioFinanceiro);
-
-        itemRelatorioEmprestimo.setText("Emprestimo");
-        itemRelatorioUsuario.add(itemRelatorioEmprestimo);
-
-        itemRelatorioCatalogacao.setText("Catalogação");
-        itemRelatorioUsuario.add(itemRelatorioCatalogacao);
 
         BarradeMenuPrincipal.add(itemRelatorioUsuario);
 
@@ -362,11 +387,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tCPC.setVisible(true);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
-    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+    private void itemEmprestimoDevolucaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEmprestimoDevolucaoActionPerformed
         // TODO add your handling code here:
         TelaCadastroEmprestimos TCE = new TelaCadastroEmprestimos();
         TCE.setVisible(true);
-    }//GEN-LAST:event_jMenuItem1ActionPerformed
+    }//GEN-LAST:event_itemEmprestimoDevolucaoActionPerformed
+
+    private void itemIndisponivelExemplarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemIndisponivelExemplarActionPerformed
+        // TODO add your handling code here:
+        TelaExemplarIndisponivel tEI = new TelaExemplarIndisponivel();
+        tEI.setVisible(true);
+    }//GEN-LAST:event_itemIndisponivelExemplarActionPerformed
+
+    private void itemRelatorioFinanceiroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRelatorioFinanceiroActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorioAcervo tRA = new TelaRelatorioAcervo();
+        tRA.setVisible(true);
+    }//GEN-LAST:event_itemRelatorioFinanceiroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -418,12 +455,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemCadUsuario;
     private javax.swing.JMenuItem itemConsultarAcervo;
     private javax.swing.JMenu itemEmprestar;
-    private javax.swing.JMenuItem itemRelatorioCatalogacao;
-    private javax.swing.JMenuItem itemRelatorioEmprestimo;
+    private javax.swing.JMenuItem itemEmprestimoDevolucao;
+    private javax.swing.JMenuItem itemIndisponivelExemplar;
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;

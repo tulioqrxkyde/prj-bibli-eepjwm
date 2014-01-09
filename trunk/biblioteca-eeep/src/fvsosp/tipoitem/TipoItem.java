@@ -10,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="tipoitem")
@@ -46,6 +47,7 @@ public class TipoItem implements Serializable{
     }
     
     @Column(length=50, nullable=false, columnDefinition = "varchar(50) default ''")
+    @NaturalId(mutable=true)
     private String descricao;
 
 

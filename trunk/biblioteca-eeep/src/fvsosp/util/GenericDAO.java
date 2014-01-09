@@ -38,7 +38,7 @@ public abstract class GenericDAO<T> {
             this.getSessao().save(entity);
             this.getTransacao().commit();
         } catch (HibernateException e) {
-            System.out.println("Não foi possível inserir " + entity.getClass()
+            JOptionPane.showMessageDialog(null, "Não foi possível inserir " + entity.getClass()
                     + ". Erro: " + e.getMessage());
             return false;
         } finally {
@@ -55,7 +55,7 @@ public abstract class GenericDAO<T> {
             this.getSessao().merge(entity);
             this.getTransacao().commit();
         } catch (HibernateException e) {
-            System.out.println("Não foi possível atualizar " + entity.getClass()
+            JOptionPane.showMessageDialog(null, "Não foi possível atualizar " + entity.getClass()
                     + ". Erro: " + e.getMessage());
             return false;
         } finally {
@@ -72,7 +72,7 @@ public abstract class GenericDAO<T> {
             this.getSessao().delete(entity);
             this.getTransacao().commit();
         } catch (HibernateException e) {
-            System.out.println("Não foi possível remover " + entity.getClass()
+            JOptionPane.showMessageDialog(null, "Não foi possível remover " + entity.getClass()
                     + ". Erro: " + e.getMessage());
             return false;
         } finally {
@@ -93,7 +93,7 @@ public abstract class GenericDAO<T> {
             if (getTransacao().isActive()) {
                 getTransacao().rollback();
             }
-            System.out.println("Erro ao listar. Erro " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Não foi possível listar: " + e.getMessage());
         }
         return lista;
     }
@@ -108,7 +108,7 @@ public abstract class GenericDAO<T> {
             Object o = sessao.load(classe, chavePrimaria);
             return (T) o;
         } catch (HibernateException e) {
-            System.out.println("Erro ao carregar por chave primária: " + e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao carregar por chave primária"+ e.getMessage());
         } finally {
             sessao.close();
         }

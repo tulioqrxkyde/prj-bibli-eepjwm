@@ -53,6 +53,25 @@ public class CidadeDAO extends GenericDAO<Cidade> {
         return cidades;
 
     }
+    
+    public Cidade pesquisarDescricaoEq(String descricao) {
+        Cidade cidades = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            cidades = (Cidade) getSessao().createCriteria(Cidade.class).
+                    add(Restrictions.eq("descricao", descricao)).
+                    addOrder(Order.asc("descricao")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return cidades;
+
+    }
 
     public List<Cidade> pesquisarUf(String uf) {
         List<Cidade> cidades = null;

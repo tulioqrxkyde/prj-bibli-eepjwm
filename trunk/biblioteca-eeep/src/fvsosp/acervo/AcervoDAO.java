@@ -6,6 +6,7 @@ package fvsosp.acervo;
 
 import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
+import fvsosp.cidade.Cidade;
 import fvsosp.editora.Editora;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
@@ -30,7 +31,23 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("tituloObra", titulo, MatchMode.ANYWHERE)).addOrder(Order.asc("tituloObra")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("tituloObra", titulo
+                    ,MatchMode.ANYWHERE)).addOrder(Order.asc("tituloObra")).list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar o Título. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return acervo;
+    }
+    
+    public Acervo pesquisarTitulodaObraEq(String titulo) {
+        Acervo acervo = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("tituloObra", titulo
+                    )).addOrder(Order.asc("tituloObra")).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Título. Erro: " + e.getMessage());
         } finally {
@@ -179,7 +196,6 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    
     public List<Acervo> pesquisarSessao(Sessao sessao) {
         List<Acervo> acervo = null;
         try {
@@ -223,5 +239,44 @@ public class AcervoDAO extends GenericDAO<Acervo> {
             this.getSessao().close();
         }
         return acervo;
+    }
+
+    public List relatorioAcervo() {
+        String text = "select ac.idAcervo, "
+                + "ac.tituloObra, "
+                + "ci.descricao, "
+                + "ed.nome, "
+                + "ac.anoEdicao, "
+                + "au.nome, "
+                + "(select count(*) from exemplar exe "
+                + "		where exe.idacervo=2 and ativo=true ) as qtdexemplares, "
+                + "(select count(*) from exemplar exe "
+                + "		inner join exemplaremprestimos exeemp "
+                + "					on exeemp.idExemplar=exe.tombo "
+                + "		where exe.idacervo=2) as qtdemprestimos, "
+                + "(select count(*) from exemplar exe "
+                + "		where exe.idacervo=ac.idAcervo and exe.situacao=3 and ativo=true) as qtdexemplaresemprestados, "
+                + "(select count(*) from exemplar exe "
+                + "		where exe.idacervo=ac.idAcervo and exe.situacao=4 and ativo=true) as qtdexemplaresconsulta "
+                + "from acervo ac "
+                + "inner join editora ed on ed.ideditora=ac.ideditora "
+                + "inner join cidade ci on ci.idCidade=ed.idcidade "
+                + "inner join autoresacervo ae on ae.idAcervo=ac.idAcervo "
+                + "inner join autor au on au.idAutor=ae.idAutor;";
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery query = getSessao()
+                    .createSQLQuery("select * from acervo ac ").addEntity("acervo",Acervo.class);
+            //query.addEntity(Acervo.class
+
+            
+            return query.list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return null;
     }
 }

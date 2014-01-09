@@ -35,8 +35,8 @@ public class TipoItemRN {
         return dao.procuraDescricao(descricao);
     }
 
-    public List<TipoItem> pesquisarDescricaoLike(String descricao) {
-        return dao.pesquisarDescricaoLike(descricao);
+    public TipoItem pesquisarDescricaEq(String descricao) {
+        return dao.pesquisarDescricaoEq(descricao);
     }
 
     public TipoItem pesquisarCodigo(short codigo) {

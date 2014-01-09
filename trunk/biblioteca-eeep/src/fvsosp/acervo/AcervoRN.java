@@ -8,6 +8,8 @@ import fvsosp.editora.Editora;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import java.util.List;
+import java.util.Set;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +40,10 @@ public class AcervoRN {
 
     public List<Acervo> pesquisarTitulodaObra(String obra) {
         return dao.pesquisarTitulodaObra(obra);
+    }
+    
+    public Acervo pesquisarTitulodaObraEq(String obra) {
+        return dao.pesquisarTitulodaObraEq(obra);
     }
 
     public List<Acervo> pesquisarSubTitulodaObra(String subtitulo) {
@@ -82,5 +88,9 @@ public class AcervoRN {
 
     public Acervo pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
+    }
+    
+    public List relatorioAcervo() {
+        return dao.relatorioAcervo();
     }
 }

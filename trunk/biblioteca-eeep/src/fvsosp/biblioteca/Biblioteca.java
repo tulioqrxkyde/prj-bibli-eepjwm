@@ -5,6 +5,7 @@ import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
+import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "biblioteca")
@@ -40,7 +41,8 @@ public class Biblioteca implements Serializable{
         return true;
     }
 
-    @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''") 
+    @Column(length = 70, nullable = false, columnDefinition = "varchar(70) default ''")
+    @NaturalId(mutable=true)
     private String descricao;
     
     /*Uma biblioteca possui vários acervos

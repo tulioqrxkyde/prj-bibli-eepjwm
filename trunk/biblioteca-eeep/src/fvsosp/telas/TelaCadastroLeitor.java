@@ -204,7 +204,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.add(rbFeminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 150, -1, -1));
 
         jLabel32.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel32.setText("CPF.: *");
+        jLabel32.setText("CPF.: ");
         pn1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 20));
 
         try {
@@ -226,7 +226,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.add(tfRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 170, -1));
 
         jLabel33.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel33.setText("RG.: *");
+        jLabel33.setText("RG.:");
         pn1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 180, -1, 20));
 
         try {
@@ -409,7 +409,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         if (Util.chkVazio(tfMatricula.getText().replaceAll(" ", ""), tfNome.getText(),
                 cbGrupoLeitores.getSelectedItem().toString(), tfDataNascimento.getText(),
-                tfCPF.getText().replaceAll("\\D*", ""), tfRG.getText(), tfEndereco.getText(),
+                tfEndereco.getText(),
                 tfBairro.getText(), cbCidade.getSelectedItem().toString(), cbGrupoLeitores.getSelectedItem().toString())) {
             if (leitor == null) {
                 leitor = new Leitor();
@@ -442,6 +442,14 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             leitor.setGruposLeitores(grupoLeitores);
             leitor.setGruposLeitores(null);
             short tdLeitor = leitor.getIdLeitor();
+            Leitor leitorMatriExi = leitorRN.pesquisarMatriculaEq(tfMatricula.getText());
+            Leitor leitorNomeExi = leitorRN.pesquisaNomeEq(tfNome.getText());
+//            if(leitorMatriExi!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Matrícula Já Cadastrada! Informe outra Matrícula!");
+//            } else
+//            if(leitorNomeExi!=null){
+//                JOptionPane.showMessageDialog(rootPane, "Nome Já Cadastrado! Informe outro Nome!");
+//            } else
             if (leitorRN.salvar(leitor)) {
                 leitor.setAtivo(true);
                 leitor.setDataCadastro(new Date(System.currentTimeMillis()));

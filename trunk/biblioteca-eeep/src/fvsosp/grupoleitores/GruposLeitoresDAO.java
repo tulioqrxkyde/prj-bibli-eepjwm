@@ -43,8 +43,28 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
         }
         return descricaoPesquisa;
     }
-    
-        public List<GruposLeitores> pesquisarDescricaoLike(String descricao) {
+
+    public GruposLeitores pesquisaDescricaoEq(String descricao) {
+        GruposLeitores descricaoPesquisa = null;
+
+        try {
+
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            descricaoPesquisa = (GruposLeitores) getSessao().createCriteria(GruposLeitores.class).
+                    add(Restrictions.eq("descricao", descricao)).
+                    addOrder(Order.asc("descricao")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return descricaoPesquisa;
+    }
+
+    public List<GruposLeitores> pesquisarDescricaoLike(String descricao) {
         List<GruposLeitores> gruposleitores = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
@@ -59,7 +79,7 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
         } finally {
             this.getSessao().close();
         }
-            
+
         return gruposleitores;
 
     }

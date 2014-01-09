@@ -3,6 +3,7 @@ package fvsosp.telas;
 import fvsosp.cidade.Cidade;
 import fvsosp.cidade.CidadeRN;
 import fvsosp.cidade.CidadeTableModel;
+import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -23,6 +24,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     public TelaCadastroCidade() {
         initComponents();
         setLocationRelativeTo(null);
+        tfCodIBGE.setDocument(new OnlyNumberField());
     }
 
     /**
@@ -47,7 +49,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         Descricao_Biblioteca1 = new javax.swing.JLabel();
         Descricao_Biblioteca2 = new javax.swing.JLabel();
         cbUF = new javax.swing.JComboBox();
-        tfCodIBGE = new javax.swing.JFormattedTextField();
+        tfCodIBGE = new javax.swing.JTextField();
 
         setTitle("OSBiblio - Cidade");
         setModal(true);
@@ -136,14 +138,9 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         cbUF.setToolTipText("Selecione o Estado:");
         jPanel1.add(cbUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 80, -1));
 
-        try {
-            tfCodIBGE.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfCodIBGE.setToolTipText("Informe o código do IBGE.");
-        tfCodIBGE.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 70, -1));
+        tfCodIBGE.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfCodIBGE.setToolTipText("Digite aqui a descrição da Cidade.");
+        jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 430, 240));
 
@@ -159,7 +156,12 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
             cidade.setDescricao(tfDescricao.getText());
             cidade.setUf(cbUF.getSelectedItem().toString());
             int id = cidade.getIdCidade();
-            if (cidadeRN.salvar(cidade)) {
+//            Cidade cidadeIBGEExis = cidadeRN.pesquisarIBGE(Integer.parseInt(tfCodIBGE.getText()));
+//            
+//            if (cidadeIBGEExis!=null) {
+//                JOptionPane.showMessageDialog(rootPane, "Cod IBGE Já Cadastrado! Informe outrCód IBGE!");
+//            } else 
+                if (cidadeRN.salvar(cidade)) {
                 JOptionPane.showMessageDialog(rootPane, "Cidade " + cidade.getDescricao()
                         + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
                 limpaCampos();
@@ -259,7 +261,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JFormattedTextField tfCodIBGE;
+    private javax.swing.JTextField tfCodIBGE;
     private javax.swing.JTextField tfDescricao;
     // End of variables declaration//GEN-END:variables
 }

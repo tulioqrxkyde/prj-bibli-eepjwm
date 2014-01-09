@@ -43,6 +43,23 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
         }
         return bibliotecas;
     }
+    
+    public Biblioteca pesquisarDescricaoEq(String descricao) {
+        Biblioteca bibliotecas = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            
+            bibliotecas = (Biblioteca) getSessao().createCriteria(Biblioteca.class).
+                    add(Restrictions.eq("descricao", descricao)).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return bibliotecas;
+    }
 
     public Biblioteca pesquisarCodigo(short codigo) {
         Biblioteca biblioteca = null;

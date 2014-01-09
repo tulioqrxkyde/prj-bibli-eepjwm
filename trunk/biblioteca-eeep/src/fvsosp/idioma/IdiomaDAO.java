@@ -40,21 +40,21 @@ public class IdiomaDAO extends GenericDAO<Idioma> {
         return idiomas;
     }
 
-    public List<Idioma> pesquisarDescricaoLike(String descricao) {
-        List<Idioma> idioma = null;
+    public Idioma pesquisarDescricaoEq(String descricao) {
+        Idioma idiomas = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
-            idioma = (List<Idioma>) getSessao().createCriteria(Idioma.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).list();
+
+            idiomas = (Idioma) getSessao().createCriteria(Idioma.class).
+                    add(Restrictions.eq("descricao", descricao)).addOrder(Order.asc("descricao")).uniqueResult();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
         } finally {
             this.getSessao().close();
         }
-        return idioma;
+        return idiomas;
     }
 
     public Idioma pesquisarCodigo(short codigo) {

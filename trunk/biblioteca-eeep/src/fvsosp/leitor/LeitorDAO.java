@@ -42,6 +42,24 @@ public class LeitorDAO extends GenericDAO<Leitor> {
         }
         return leitores;
     }
+    
+    public Leitor pesquisarNomeEq(String nome) {
+        Leitor leitores = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitores = (Leitor) getSessao().createCriteria(Leitor.class).
+                    add(Restrictions.eq("nome", nome)).
+                    addOrder(Order.asc("nome")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por nome: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return leitores;
+    }
 
     public List<Leitor> pesquisarEmail(String email) {
         List<Leitor> leitores = null;
@@ -136,6 +154,26 @@ public class LeitorDAO extends GenericDAO<Leitor> {
         return leitores;
 
     }
+    
+    public Leitor pesquisarMatriculaEq(String matricula) {
+        Leitor leitores = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitores = (Leitor) getSessao().createCriteria(Leitor.class).
+                    add(Restrictions.eq("matricula", matricula)).
+                    addOrder(Order.asc("matricula")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por matricula: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return leitores;
+
+    }
+
 
     public List<Leitor> pesquisarAtivo(boolean ativo) {
         List<Leitor> leitores = null;
