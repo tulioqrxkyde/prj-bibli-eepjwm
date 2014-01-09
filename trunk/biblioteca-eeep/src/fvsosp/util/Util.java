@@ -8,6 +8,9 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.text.DecimalFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.JOptionPane;
@@ -134,5 +137,26 @@ public class Util {
      */
     public static DecimalFormat decimalFormat(int... opt) {
         return new DecimalFormat(((opt.length <= 0) ? "0000000" : "0000"));
+    }
+
+    public static int diferencaData(Date dia1, Date dia2) {
+
+        //DateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
+        Date data3 = null;
+        Date data4 = null;
+        long m1 = 0;
+        long m2 = 0;
+        try {
+            data3 = (Date) dia1;
+            data4 = (Date) dia2;
+        } catch (Exception e) {
+        }
+        Calendar data1 = new GregorianCalendar();
+        data1.setTime(data3);
+        Calendar data2 = new GregorianCalendar();
+        data2.setTime(data4);
+        m1 = data1.getTimeInMillis();
+        m2 = data2.getTimeInMillis();
+        return (int) ((m2 - m1) / (24 * 60 * 60 * 1000));
     }
 }
