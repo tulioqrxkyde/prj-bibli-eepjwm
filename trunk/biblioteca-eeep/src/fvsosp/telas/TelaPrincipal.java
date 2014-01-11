@@ -75,6 +75,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemEmprestar = new javax.swing.JMenu();
         itemEmprestimoDevolucao = new javax.swing.JMenuItem();
         itemIndisponivelExemplar = new javax.swing.JMenuItem();
+        itemMulta = new javax.swing.JMenuItem();
         menuConsulta = new javax.swing.JMenu();
         itemConsultarAcervo = new javax.swing.JMenuItem();
         itemRelatorioUsuario = new javax.swing.JMenu();
@@ -278,6 +279,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         itemEmprestar.add(itemIndisponivelExemplar);
 
+        itemMulta.setText("Multa");
+        itemMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMultaActionPerformed(evt);
+            }
+        });
+        itemEmprestar.add(itemMulta);
+
         BarradeMenuPrincipal.add(itemEmprestar);
 
         menuConsulta.setText("Consulta");
@@ -416,6 +425,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         rEL.setVisible(true);
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
+    private void itemMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMultaActionPerformed
+        // TODO add your handling code here:
+        TelaMulta teMul = new TelaMulta();
+        teMul.setVisible(true);
+    }//GEN-LAST:event_itemMultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -468,6 +483,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenu itemEmprestar;
     private javax.swing.JMenuItem itemEmprestimoDevolucao;
     private javax.swing.JMenuItem itemIndisponivelExemplar;
+    private javax.swing.JMenuItem itemMulta;
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;

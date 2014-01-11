@@ -36,4 +36,12 @@ public class MultaRN {
         return dao.pesquisarSeTemEmAbertoMulta(leitor);
     }
     
+    public List<Multa> pesquisarMultas(Leitor leitor) {
+        return dao.pesquisarMultas(leitor);
+    }
+    
+    public Multa pesquisarCodigo(int codigo) {
+        return dao.pesquisarCodigo(codigo);
+    }
+    
 }
