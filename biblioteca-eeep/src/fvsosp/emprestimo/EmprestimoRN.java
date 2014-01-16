@@ -2,6 +2,7 @@ package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
 import fvsosp.exemplar.Exemplar;
+import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
 import fvsosp.leitor.Leitor;
 import java.util.*;
 
@@ -52,6 +53,11 @@ public class EmprestimoRN {
     
     public short pesquisarEmprestimoLivroDevolvido(Exemplar exe) {
         return dao.pesquisarEmprestimoLivroDevolvido(exe);
+
+    }
+    
+    public List<ExemplarEmprestimos> pesquisarExemplaresEmprestados(Leitor leitor) {
+        return dao.pesquisarExemplaresEmprestados(leitor);
 
     }
 }

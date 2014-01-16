@@ -2,6 +2,7 @@ package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
 import fvsosp.exemplar.Exemplar;
+import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
 import fvsosp.leitor.Leitor;
 import fvsosp.util.*;
 import java.util.*;
@@ -98,7 +99,7 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         String text = "select distinct(exe.tombo) from exemplaremprestimos ee  "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
                 + "inner join exemplar exe on exe.tombo=ee.idExemplar "
-                + "where e.idLeitor=" + leitor.getIdLeitor() + " and exe.situacao=3";
+                + "where e.idLeitor=" + leitor.getIdLeitor() + " and exe.situacao=3 and ee.datadevolucao is null";
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
@@ -111,6 +112,26 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             this.getSessao().close();
         }
         return 0;
+
+    }
+    
+    public List<ExemplarEmprestimos> pesquisarExemplaresEmprestados(Leitor leitor) {
+        String text = "select * from exemplaremprestimos ee  "
+                + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
+                + "inner join exemplar exe on exe.tombo=ee.idExemplar and exe.situacao=3 "
+                + "where e.idLeitor=" + leitor.getIdLeitor() + " and ee.datadevolucao is null";
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery query = getSessao()
+                    .createSQLQuery(text).addEntity(ExemplarEmprestimos.class);
+            return query.list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return null;
 
     }
 

@@ -29,6 +29,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -239,6 +240,11 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         lblDevolucao.setForeground(new java.awt.Color(255, 0, 0));
         lblDevolucao.setText("jLabel1");
         lblDevolucao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        lblDevolucao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lblDevolucaoMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -340,7 +346,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                 + "\nData de Empréstimo: " + tfDataEmprestimoDia.getText() + " / " + tfDataEmprestimoMes.getText()
                 + " / " + tfDataEmprestimoAno.getText()
                 + "\nLeitor: " + tfLeitor.getText()
-                + "\nExemplar(es): " + exemplares.toString()) == JOptionPane.YES_OPTION) {
+                + "\nExemplar(es): " + exemplares.toString(), "OSBiblio", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
 
             if (emprestimo == null) {
                 emprestimo = new Emprestimo();
@@ -365,8 +371,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                 int id = emprestimo.getIdEmprestimo();
                 emprestimo.setLeitor(leitor);
                 if (emprestimoRN.adiciona(emprestimo)) {
-                    JOptionPane.showMessageDialog(rootPane, "Empréstimo " + ((id == 0) ? "cadastrado" : "alterado")
-                            + " com sucesso!");
+
 
                     ExemplarEmprestimosRN exemRN = new ExemplarEmprestimosRN();
 
@@ -418,6 +423,13 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
 
                         eRN.adiciona(exemplar);
                     }
+                    if (seEemprestimo) {
+                        JOptionPane.showMessageDialog(rootPane, "Empréstimo " + ((id == 0) ? "cadastrado" : "alterado")
+                                + " com sucesso!");
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Devolução/Renovação " + ((id == 0) ? "cadastrado" : "alterado")
+                                + " com sucesso!");
+                    }
                     JasperReport pathjrxml;
                     HashMap parametros = new HashMap();
                     String sql = "";
@@ -430,8 +442,8 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                     } catch (Exception e) {
                     }
                     if (itensOperadorInConsulta != "") {
-                        parametros.put("sql", "(" + itensOperadorInConsulta + ")  and exeem.operacao in (2,3) and "+
-                                "emp.idemprestimo="+emprestimo.getIdEmprestimo());
+                        parametros.put("sql", "(" + itensOperadorInConsulta + ")  and exeem.operacao in (2,3) and "
+                                + "emp.idemprestimo=" + emprestimo.getIdEmprestimo());
                     } else {
                         parametros.put("sql", emprestimo.getIdEmprestimo());
                     }
@@ -501,14 +513,38 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     }//GEN-LAST:event_btPesquisar6ActionPerformed
 
     private void RemoveAcrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveAcrActionPerformed
-        if (tbExemplaresEmprestimo.getSelectedRow() > -1) {
-            tbExemplaresEmprestimo.setValueAt("", tbExemplaresEmprestimo.getSelectedRow(), 0);
-            exemplares.remove(tbExemplaresEmprestimo.getSelectedRow());
+        if (exemplares.size() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Não existem exemplares para remover!");
         } else {
-            tbExemplaresEmprestimo.setValueAt("", tbExemplaresEmprestimo.getRowCount() - 1, 0);
-            exemplares.remove(tbExemplaresEmprestimo.getRowCount() - 1);
+            int tombo = pegaTomboSelecionado();
+            if (tombo > 0) {
+                Iterator<ExemplarEmprestimos> iterator = exemplares.iterator();
+                while (iterator.hasNext()) {
+                    if (iterator.next().getExemplar().getTombo() == tombo) {
+                        iterator.remove();
+                    }
+                }
+            }
         }
+        atualizaTabela();
+
     }//GEN-LAST:event_RemoveAcrActionPerformed
+
+    private int pegaTomboSelecionado() {
+        int row = tbExemplaresEmprestimo.getSelectedRow();
+
+        if (row > -1) { //então tem ítem selecionado  
+            Object value = tbExemplaresEmprestimo.getValueAt(row, 0);
+            short id;
+            return id = (short) Short.valueOf(String.valueOf(value));
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Selecione a Linha!",
+                    "ERRO", JOptionPane.ERROR_MESSAGE);
+        }
+        return 0;
+
+    }
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
@@ -558,7 +594,34 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                                             } catch (Exception ex) {
                                                 System.out.println(ex.getMessage());
                                             }
-                                            exemplares.add(exemplarEmprestimo);
+                                            //verifica se já tem um tombo igual já inserido
+                                            Iterator<ExemplarEmprestimos> iteratorTombo = exemplares.iterator();
+                                            boolean possuiTombo = false;
+                                            while (iteratorTombo.hasNext()) {
+                                                ExemplarEmprestimos eemp = iteratorTombo.next();
+                                                if (eemp.getExemplar().getTombo() == exemplar.getTombo()) {
+                                                    possuiTombo = true;
+                                                }
+                                            }
+
+                                            //verifica se já tem um tombo igual já inserido
+                                            Iterator<ExemplarEmprestimos> iteratorAcervo = exemplares.iterator();
+                                            boolean possuiAcervo = false;
+                                            while (iteratorAcervo.hasNext()) {
+                                                ExemplarEmprestimos eemp = iteratorAcervo.next();
+                                                if (eemp.getExemplar().getAcervo().getIdAcervo()
+                                                        == exemplar.getAcervo().getIdAcervo()) {
+                                                    possuiAcervo = true;
+                                                }
+                                            }
+
+                                            if (possuiAcervo) {
+                                                JOptionPane.showMessageDialog(rootPane, "Já existe um Exemplar com esse Acervo na lista de Empréstimo!");
+                                            } else if (possuiTombo) {
+                                                JOptionPane.showMessageDialog(rootPane, "Já existe um Exemplar com esse Tombo na lista de Empréstimo!");
+                                            } else {
+                                                exemplares.add(exemplarEmprestimo);
+                                            }
                                             atualizaTabela();
 
 
@@ -669,6 +732,12 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         }
         tfTombo.setText("");
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void lblDevolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDevolucaoMouseClicked
+        // TODO add your handling code here:
+        List<ExemplarEmprestimos> lista = emprestimoRN.pesquisarExemplaresEmprestados(leitor);
+        TelaConsultaLivrosEmprestados.livrosEmprestados(lista);
+    }//GEN-LAST:event_lblDevolucaoMouseClicked
 
     private void limpaCampos() {
         emprestimo = null;
