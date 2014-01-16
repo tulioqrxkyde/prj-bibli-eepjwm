@@ -111,7 +111,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Descrição.: *");
 
         tfTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTipoItem.setToolTipText("Digite aqui a descrição do Tipo do Item.");
+        tfTipoItem.setToolTipText("Informe a descrição");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

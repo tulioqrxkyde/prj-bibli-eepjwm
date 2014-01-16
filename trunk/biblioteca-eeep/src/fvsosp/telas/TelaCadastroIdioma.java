@@ -108,7 +108,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Descrição.: *");
 
         tfNomeIdioma.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeIdioma.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfNomeIdioma.setToolTipText("Informe a descrição");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

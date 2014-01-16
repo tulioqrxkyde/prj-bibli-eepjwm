@@ -108,7 +108,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         jPanel1.add(btImprimir, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 180, -1, -1));
 
         tfLeitor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfLeitor.setToolTipText("Digite aqui a descrição da Sessão.");
+        tfLeitor.setToolTipText("Informe o leitor");
         tfLeitor.setEnabled(false);
         jPanel1.add(tfLeitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 80, 280, -1));
 
@@ -126,6 +126,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfDataInicial1.setToolTipText("Informe a Data Inicial ");
         tfDataInicial1.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         tfDataInicial1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel1.add(tfDataInicial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 120, -1));
@@ -143,6 +144,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfDataFinal1.setToolTipText("Informe a Data Final");
         tfDataFinal1.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         tfDataFinal1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel1.add(tfDataFinal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 120, -1));

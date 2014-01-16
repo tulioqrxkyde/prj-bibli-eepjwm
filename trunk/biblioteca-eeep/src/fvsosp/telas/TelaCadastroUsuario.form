@@ -153,6 +153,12 @@
       </Layout>
       <SubComponents>
         <Component class="javax.swing.JPasswordField" name="tfSenha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informe a senha"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbSenha">
           <Properties>
@@ -163,6 +169,12 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfLogin">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informe o login"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="lbLogin">
           <Properties>
@@ -246,6 +258,12 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JPasswordField" name="tfConfirmarSenha">
+          <Properties>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Confirme a senha"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

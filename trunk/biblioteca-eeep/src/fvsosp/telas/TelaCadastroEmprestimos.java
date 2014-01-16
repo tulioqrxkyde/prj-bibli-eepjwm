@@ -4,6 +4,7 @@
  */
 package fvsosp.telas;
 
+import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.emprestimo.Emprestimo;
 import fvsosp.emprestimo.EmprestimoRN;
 import fvsosp.emprestimo.EmprestimoTableModel;
@@ -18,9 +19,11 @@ import fvsosp.leitor.LeitorTableModel;
 import fvsosp.multa.Multa;
 import fvsosp.multa.MultaRN;
 import fvsosp.usuario.UsuarioRN;
+import fvsosp.util.ConnectionFactory;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.UsuarioAtivo;
 import fvsosp.util.Util;
+import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -35,6 +39,13 @@ import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -204,6 +215,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
             }
         });
 
+        tfLeitor.setToolTipText("Informe o Leitor");
         tfLeitor.setEnabled(false);
 
         btPesquisar6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/application-form-magnify-icon.png"))); // NOI18N
@@ -214,7 +226,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
             }
         });
 
-        tfTombo.setToolTipText("Informe o número do Tombo.");
+        tfTombo.setToolTipText("Informe o tombo");
 
         jButton1.setText("Adicionar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -360,6 +372,8 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
 
                     Iterator<ExemplarEmprestimos> iterator = exemplares.iterator();
 
+                    boolean seEemprestimo = false;
+                    String itensOperadorInConsulta = "";
                     while (iterator.hasNext()) {
                         ExemplarEmprestimos exem = iterator.next();
                         if (exem.getEmprestimo() == null) {
@@ -379,15 +393,74 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                         }
                         exemRN.adiciona(exem);
 
+
                         Exemplar exemplar = exem.getExemplar();
                         ExemplarRN eRN = new ExemplarRN();
-                        if (exem.getOperacao() == 1 || exem.getOperacao() == 3) {
+                        if ((exem.getOperacao() == 1) || (exem.getOperacao() == 3)) {
                             exemplar.setSituacao(3);
+                            if (exem.getOperacao() == 1) {
+                                seEemprestimo = true;
+                            } else {
+                                itensOperadorInConsulta += exemplar.getTombo();
+                                if (iterator.hasNext()) {
+                                    itensOperadorInConsulta += ",";
+                                }
+
+                            }
                         } else {
                             exemplar.setSituacao(1);
+                            itensOperadorInConsulta += exemplar.getTombo();
+                            if (iterator.hasNext()) {
+                                itensOperadorInConsulta += ",";
+                            }
+
                         }
 
                         eRN.adiciona(exemplar);
+                    }
+                    JasperReport pathjrxml;
+                    HashMap parametros = new HashMap();
+                    String sql = "";
+
+                    Connection connection = new ConnectionFactory().getConnection();
+                    parametros.put("sql", sql);
+                    BibliotecaRN bRN = new BibliotecaRN();
+                    try {
+                        parametros.put("biblioteca", bRN.listar().get(0));
+                    } catch (Exception e) {
+                    }
+                    if (itensOperadorInConsulta != "") {
+                        parametros.put("sql", "(" + itensOperadorInConsulta + ")  and exeem.operacao in (2,3) and "+
+                                "emp.idemprestimo="+emprestimo.getIdEmprestimo());
+                    } else {
+                        parametros.put("sql", emprestimo.getIdEmprestimo());
+                    }
+
+                    if (seEemprestimo) {
+                        //imprime recibo emprestimo
+
+                        try {
+                            pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelReciboEmprestimo.jrxml");
+                            JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
+                                    connection);
+                            JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelReciboEmprestimo.pdf");
+                            JasperViewer jv = new JasperViewer(printReport, false);
+                            jv.setVisible(true);
+                        } catch (JRException ex) {
+                            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    } else {
+                        try {
+                            pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelReciboDevRen.jrxml");
+                            JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
+                                    connection);
+                            JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelReciboDevRen.pdf");
+                            JasperViewer jv = new JasperViewer(printReport, false);
+                            jv.setVisible(true);
+
+                        } catch (JRException ex) {
+                            Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+                        }
                     }
 
 

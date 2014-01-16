@@ -86,10 +86,12 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
 
         cbSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbSessao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbSessao.setToolTipText("Informe a Sessão");
         SessaoRN sesRN = new SessaoRN();         List<Sessao> sessoes = sesRN.listar();         for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }
 
         cbTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbTipoItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
+        cbTipoItem.setToolTipText("Informe o Tipo do Item");
         TipoItemRN tipRN = new TipoItemRN();         List<TipoItem> tipoitens = tipRN.listar();         for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N

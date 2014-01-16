@@ -114,7 +114,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         });
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDescricao.setToolTipText("Digite aqui a descrição da Editora.");
+        tfDescricao.setToolTipText("Informe a Descrição");
 
         jLabel24.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel24.setText("Descrição.: *");

@@ -82,6 +82,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         lbTexto.setBounds(0, 0, 130, 40);
 
         tfPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfPesquisar.setToolTipText("Informe o que Deseja pesquisar");
         tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tfPesquisarKeyPressed(evt);
@@ -178,7 +179,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
             o = tbPesquisa.getValueAt(row, 0);
             dispose();
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Selecione a Linha a Ser Excluída!",
+            JOptionPane.showMessageDialog(rootPane, "Selecione o Ítem!",
                     "ERRO", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btSelecionarActionPerformed

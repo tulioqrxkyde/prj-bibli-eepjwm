@@ -85,7 +85,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         jPanel1.add(btRemover, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 240, 37, 33));
 
         tfNomeAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeAutor.setToolTipText("Digite aqui a descrição do autor");
+        tfNomeAutor.setToolTipText("Informe o nome do autor");
         jPanel1.add(tfNomeAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 120, 442, -1));
 
         btSalvar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/save_1.png"))); // NOI18N
@@ -136,7 +136,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         jPanel1.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, -1, 29));
 
         tfSobreNomeAutor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfSobreNomeAutor.setToolTipText("Digite aqui a descrição do autor");
+        tfSobreNomeAutor.setToolTipText("Informe o Sobrenome do autor");
         jPanel1.add(tfSobreNomeAutor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 442, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -204,7 +204,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         if (Util.chkVazio(tfNomeAutor.getText(),tfSobreNomeAutor.getText())) {
             autor.setNome(tfNomeAutor.getText().toString());
             autor.setSobreOAutor(tfSobreAutor.getText().toString());
-            autor.setSobrenome(tfSobreAutor.getText());
+            autor.setSobrenome(tfSobreNomeAutor.getText());
             int idAutor = autor.getIdAutor();
             if (autorRN.salvar(autor)) {
                 if (idAutor == 0) {

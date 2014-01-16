@@ -109,12 +109,12 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
 
         tfLeitor.setEditable(false);
         tfLeitor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfLeitor.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfLeitor.setToolTipText("");
         jPanel3.add(tfLeitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 76, 380, -1));
 
         tfTombo.setEditable(false);
         tfTombo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTombo.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfTombo.setToolTipText("");
         jPanel3.add(tfTombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 80, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -123,7 +123,7 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
 
         tfTitulo.setEditable(false);
         tfTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTitulo.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfTitulo.setToolTipText("");
         jPanel3.add(tfTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 290, -1));
 
         Descricao_Biblioteca2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -132,7 +132,7 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
 
         tfValor.setEditable(false);
         tfValor.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfValor.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfValor.setToolTipText("");
         jPanel3.add(tfValor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 80, -1));
 
         Descricao_Biblioteca3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -141,7 +141,7 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
 
         tfDtpagamento.setEditable(false);
         tfDtpagamento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDtpagamento.setToolTipText("Digite aqui a descrição do Idioma.");
+        tfDtpagamento.setToolTipText("");
         jPanel3.add(tfDtpagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 190, 110, -1));
 
         Descricao_Biblioteca4.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N

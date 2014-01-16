@@ -313,6 +313,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfLeitor">
           <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="Informe o Leitor"/>
             <Property name="enabled" type="boolean" value="false"/>
           </Properties>
         </Component>
@@ -329,7 +330,7 @@
         </Component>
         <Component class="javax.swing.JTextField" name="tfTombo">
           <Properties>
-            <Property name="toolTipText" type="java.lang.String" value="Informe o n&#xfa;mero do Tombo."/>
+            <Property name="toolTipText" type="java.lang.String" value="Informe o tombo"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JButton" name="jButton1">

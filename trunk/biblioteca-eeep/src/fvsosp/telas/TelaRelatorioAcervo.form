@@ -148,6 +148,7 @@
                 <StringItem index="0" value="--"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informe a Sess&#xe3;o"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="SessaoRN sesRN = new SessaoRN();         List&lt;Sessao&gt; sessoes = sesRN.listar();         for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }"/>
@@ -163,6 +164,7 @@
                 <StringItem index="0" value="--"/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informe o Tipo do Item"/>
           </Properties>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="TipoItemRN tipRN = new TipoItemRN();         List&lt;TipoItem&gt; tipoitens = tipRN.listar();         for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }"/>

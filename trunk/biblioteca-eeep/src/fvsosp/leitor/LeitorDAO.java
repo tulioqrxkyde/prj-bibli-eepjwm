@@ -251,4 +251,22 @@ public class LeitorDAO extends GenericDAO<Leitor> {
         return leitor;
 
     }
+    
+    public List<Leitor> pesquisarCpf(String cpf) {
+        List<Leitor> leitor = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            leitor = (List<Leitor>) getSessao().createCriteria(Leitor.class).
+                    add(Restrictions.eq("cpf", cpf)).list();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar por leitor: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return leitor;
+
+    }
 }

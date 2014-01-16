@@ -108,7 +108,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Descrição.: *");
 
         tfNomeBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeBiblioteca.setToolTipText("Digite aqui a descrição da Biblioteca.");
+        tfNomeBiblioteca.setToolTipText("Informe a Descrição");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);

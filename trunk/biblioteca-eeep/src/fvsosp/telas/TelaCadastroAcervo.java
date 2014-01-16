@@ -24,6 +24,7 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.FormataTamanhoColunasJTable;
+import fvsosp.util.LimataDocumentoJTextField;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
 import java.util.ArrayList;
@@ -57,9 +58,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         this.setLocationRelativeTo(null);
         
         tfPaginas.setDocument(new OnlyNumberField());
-        tffAnoEdicao.setDocument(new OnlyNumberField(4));
-        tfVolume.setDocument(new OnlyNumberField());
-        
+        tffAnoEdicao.setDocument(new OnlyNumberField(4));      
+        tfcutter2.setDocument(new LimataDocumentoJTextField(5));
+        tfEdicao.setDocument(new OnlyNumberField());
+        tfqtdExemplar.setDocument(new OnlyNumberField(10));
         
     }
 
@@ -91,14 +93,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jLabel41 = new javax.swing.JLabel();
-        tfVolume = new javax.swing.JTextField();
+        tfEdicao = new javax.swing.JTextField();
         jLabel42 = new javax.swing.JLabel();
         jLabel43 = new javax.swing.JLabel();
         tfLocalizacao = new javax.swing.JTextField();
-        tfEdicao = new javax.swing.JFormattedTextField();
-        tfIsbn2 = new javax.swing.JFormattedTextField();
         tffAnoEdicao = new javax.swing.JTextField();
         tfcutter2 = new javax.swing.JTextField();
+        tfVolume1 = new javax.swing.JTextField();
+        tfIsbn = new javax.swing.JTextField();
         pn3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPalavrasChaves = new javax.swing.JTable();
@@ -107,10 +109,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         jpExemplar = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
-        tfqtdExemplar = new javax.swing.JFormattedTextField();
         jButton3 = new javax.swing.JButton();
         jScrollPane4 = new javax.swing.JScrollPane();
         tbExemplares = new javax.swing.JTable();
+        tfqtdExemplar = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
         tfAcabamentoCapa = new javax.swing.JTextField();
@@ -211,15 +213,15 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 29));
 
         tfTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTitulo.setToolTipText("Digite aqui o título da obra");
+        tfTitulo.setToolTipText("Informe o título da obra");
         pn1.add(tfTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 420, -1));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel25.setText("Subtitulo da Obra.: *");
+        jLabel25.setText("Subtitulo da Obra.: ");
         pn1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         tfSubTitulo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfSubTitulo.setToolTipText("Digite aqui o subtítulo da obra");
+        tfSubTitulo.setToolTipText("Informe o subtitulo da obra");
         pn1.add(tfSubTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 420, -1));
 
         jLabel28.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -238,9 +240,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel41.setText("Volume.:*");
         pn1.add(jLabel41, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 110, -1, 29));
 
-        tfVolume.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfVolume.setToolTipText("Digite aqui as informações adicionais");
-        pn1.add(tfVolume, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 170, -1));
+        tfEdicao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfEdicao.setToolTipText("");
+        pn1.add(tfEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 170, -1));
 
         jLabel42.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel42.setText("Cutter.:");
@@ -251,36 +253,24 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         pn1.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 220, -1, 29));
 
         tfLocalizacao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfLocalizacao.setToolTipText("Digite aqui a localização");
+        tfLocalizacao.setToolTipText("");
         pn1.add(tfLocalizacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 250, 170, -1));
 
-        try {
-            tfEdicao.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfEdicao.setToolTipText("Digite aqui o ano de edição");
-        tfEdicao.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        tfEdicao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        pn1.add(tfEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 170, -1));
-
-        try {
-            tfIsbn2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfIsbn2.setToolTipText("Digite aqui o ano de edição");
-        tfIsbn2.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        tfIsbn2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        pn1.add(tfIsbn2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, -1));
-
         tffAnoEdicao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tffAnoEdicao.setToolTipText("Digite aqui as informações adicionais");
+        tffAnoEdicao.setToolTipText("");
         pn1.add(tffAnoEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 190, 170, -1));
 
         tfcutter2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfcutter2.setToolTipText("Digite aqui as informações adicionais");
+        tfcutter2.setToolTipText("");
         pn1.add(tfcutter2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 170, -1));
+
+        tfVolume1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfVolume1.setToolTipText("");
+        pn1.add(tfVolume1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 140, 170, -1));
+
+        tfIsbn.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfIsbn.setToolTipText("");
+        pn1.add(tfIsbn, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 170, -1));
 
         tbAcervo.addTab("Obra", pn1);
 
@@ -347,15 +337,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel36.setText("Qtd Exemplar a Gerar.:");
 
-        try {
-            tfqtdExemplar.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("#####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfqtdExemplar.setToolTipText("Digite aqui o ano de edição");
-        tfqtdExemplar.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        tfqtdExemplar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-
         jButton3.setText("Gerar");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,6 +371,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jScrollPane4.setViewportView(tbExemplares);
         tbExemplares.getColumnModel().getColumn(0).setResizable(false);
 
+        tfqtdExemplar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfqtdExemplar.setToolTipText("");
+
         javax.swing.GroupLayout jpExemplarLayout = new javax.swing.GroupLayout(jpExemplar);
         jpExemplar.setLayout(jpExemplarLayout);
         jpExemplarLayout.setHorizontalGroup(
@@ -400,13 +384,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                         .addContainerGap()
                         .addComponent(jLabel36)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(tfqtdExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(tfqtdExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton3))
                     .addGroup(jpExemplarLayout.createSequentialGroup()
-                        .addGap(30, 30, 30)
+                        .addGap(28, 28, 28)
                         .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 380, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         jpExemplarLayout.setVerticalGroup(
             jpExemplarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -414,11 +398,11 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 .addContainerGap()
                 .addGroup(jpExemplarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfqtdExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jButton3)
+                    .addComponent(tfqtdExemplar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(84, Short.MAX_VALUE))
+                .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         tbAcervo.addTab("Exemplar", jpExemplar);
@@ -429,13 +413,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel34.setText("Acabamento da Capa.:");
 
         tfAcabamentoCapa.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfAcabamentoCapa.setToolTipText("Digite aqui o acabamento da capa");
+        tfAcabamentoCapa.setToolTipText("");
 
         jLabel27.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel27.setText("Acabamento do Miolo.:");
 
         tfAcabamentoMiolo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfAcabamentoMiolo.setToolTipText("Digite aqui o acabamento do miolo");
+        tfAcabamentoMiolo.setToolTipText("");
 
         jLabel35.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel35.setText("Peso.:");
@@ -444,10 +428,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel44.setText("Número de Páginas.:*");
 
         tfPeso.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfPeso.setToolTipText("Digite aqui o peso");
+        tfPeso.setToolTipText("");
 
         tfPaginas.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfPaginas.setToolTipText("Digite aqui o peso");
+        tfPaginas.setToolTipText("");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -699,11 +683,11 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             acervo = acervoRN.pesquisarCodigo(id);
             tfTitulo.setText(acervo.getTituloObra().toString());
             tfSubTitulo.setText(acervo.getSubtituloObra().toString());
-            tfVolume.setText(acervo.getIsbn().toString());
-            tfVolume.setText(acervo.getVolume().toString());
+            tfEdicao.setText(acervo.getIsbn().toString());
+            tfEdicao.setText(acervo.getVolume().toString());
             tfEdicao.setText(acervo.getEdicao().toString());
             tffAnoEdicao.setText(String.valueOf(acervo.getAnoEdicao()));
-            tfVolume.setText(acervo.getInformacoesAdicionais().toString());
+            tfEdicao.setText(acervo.getInformacoesAdicionais().toString());
             tfLocalizacao.setText(acervo.getLocalizacao());
             cbBiblioteca.setSelectedItem(((acervo.getBiblioteca() != null) ? acervo.getBiblioteca() : 0));
             cbEditora.setSelectedItem(((acervo.getEditora() != null) ? acervo.getEditora() : 0));
@@ -720,6 +704,11 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             tfAcabamentoMiolo.setText(acervo.getAcabamentoMiolo());
             tfPeso.setText(String.valueOf(acervo.getPeso()));
             tfPaginas.setText(String.valueOf(acervo.getNumeroPaginas()));
+            tfcutter2.setText(acervo.getCutter());
+            tfVolume1.setText(acervo.getVolume());
+            tfInformacoesAdicionais.setText(acervo.getInformacoesAdicionais());
+            tfEdicao.setText(acervo.getEdicao());
+            tfIsbn.setText(acervo.getIsbn());
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
@@ -732,14 +721,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         if (acervo == null) {
             acervo = new Acervo();
         }
-        if (Util.chkVazio(tfTitulo.getText(), tfVolume.getText(), tfPaginas.getText(),
+        if (Util.chkVazio(tfTitulo.getText(), tfPaginas.getText(),
                 cbBiblioteca.getSelectedItem().toString(),
                 cbEditora.getSelectedItem().toString(),
                 cbIdioma.getSelectedItem().toString(),
                 cbTipoItem.getSelectedItem().toString(),
                 tffAnoEdicao.getText(),
-                tfVolume.getText(),
-                cbSessao.getSelectedItem().toString())) {
+                tfEdicao.getText(),
+                cbSessao.getSelectedItem().toString(), tfIsbn.getText())) {
             if (autoresAcervo.size() > 0 && palavrasChavesAcervo.size()>0) {
                 if (!tffAnoEdicao.getText().isEmpty()) {
                     Calendar data = Calendar.getInstance();
@@ -752,11 +741,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 int tdAcervo = acervo.getIdAcervo();
                 acervo.setTituloObra(tfTitulo.getText());
                 acervo.setSubtituloObra(tfSubTitulo.getText());
-                acervo.setIsbn(tfVolume.getText().replaceAll(" ", ""));
-                acervo.setVolume(tfVolume.getText().replaceAll(" ", ""));
+                acervo.setIsbn(tfIsbn.getText().replaceAll(" ", ""));
+                acervo.setVolume(tfVolume1.getText());
                 acervo.setEdicao(tfEdicao.getText().replaceAll(" ", ""));
-                acervo.setInformacoesAdicionais(tfVolume.getText());
+                acervo.setInformacoesAdicionais(tfEdicao.getText());
                 acervo.setLocalizacao(tfLocalizacao.getText());
+                
+                //acervo.setVolume(tfVolume1.getText());
 //        if (!tfTombo.getText().isEmpty() && !tfExemplar.getText().isEmpty()) {
 //            exemplar.setTombo(Short.parseShort(tfTombo.getText()));
 //            exemplar.setExemplar(Short.parseShort(tfExemplar.getText()));
@@ -795,7 +786,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 acervo.setAcabamentoCapa(tfAcabamentoCapa.getText());
                 acervo.setAcabamentoMiolo(tfAcabamentoMiolo.getText());
                 acervo.setNumeroPaginas(Short.parseShort(tfPaginas.getText()));
-                acervo.setCutter(tfVolume.getText());
+                acervo.setCutter(tfcutter2.getText());
+                acervo.setInformacoesAdicionais(tfInformacoesAdicionais.getText());
                 if (!tfPeso.getText().equals("")) {
                     acervo.setPeso(Short.parseShort(tfPeso.getText()));
                 }
@@ -824,13 +816,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     public void limparCampos() {
         tfTitulo.setText("");
         tfSubTitulo.setText("");
-        tfVolume.setText("");
-        tfVolume.setText("");
+        tfEdicao.setText("");
+        tfEdicao.setText("");
         tfEdicao.setText("");
         tffAnoEdicao.setText("");
-        tfVolume.setText("");
+        tfEdicao.setText("");
         tfLocalizacao.setText("");
-        tfVolume.setText("");
+        tfEdicao.setText("");
         //cbAutor.setSelectedIndex(0);
         cbBiblioteca.setSelectedIndex(0);
         cbEditora.setSelectedIndex(0);
@@ -844,6 +836,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         atualizaTabelaAutores();
         atualizaTabelaPalavrasChaves();
         atualizaTabelaExemplares();
+        tfVolume1.setText("");
+        tfInformacoesAdicionais.setText("");
+        tfPaginas.setText("");
+        tfPeso.setText("");
+        tfAcabamentoCapa.setText("");
+        tfAcabamentoMiolo.setText("");
+        tfcutter2.setText("");
+        tfIsbn.setText("");
     }//GEN-LAST:event_btSalvarActionPerformed
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         limparCampos();
@@ -1155,17 +1155,17 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JTable tbPalavrasChaves;
     private javax.swing.JTextField tfAcabamentoCapa;
     private javax.swing.JTextField tfAcabamentoMiolo;
-    private javax.swing.JFormattedTextField tfEdicao;
+    private javax.swing.JTextField tfEdicao;
     private javax.swing.JTextArea tfInformacoesAdicionais;
-    private javax.swing.JFormattedTextField tfIsbn2;
+    private javax.swing.JTextField tfIsbn;
     private javax.swing.JTextField tfLocalizacao;
     private javax.swing.JTextField tfPaginas;
     private javax.swing.JTextField tfPeso;
     private javax.swing.JTextField tfSubTitulo;
     private javax.swing.JTextField tfTitulo;
-    private javax.swing.JTextField tfVolume;
+    private javax.swing.JTextField tfVolume1;
     private javax.swing.JTextField tfcutter2;
     private javax.swing.JTextField tffAnoEdicao;
-    private javax.swing.JFormattedTextField tfqtdExemplar;
+    private javax.swing.JTextField tfqtdExemplar;
     // End of variables declaration//GEN-END:variables
 }

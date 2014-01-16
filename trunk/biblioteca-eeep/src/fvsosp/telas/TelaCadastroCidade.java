@@ -121,7 +121,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(Descricao_Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 110, -1, 29));
 
         tfDescricao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfDescricao.setToolTipText("Digite aqui a descrição da Cidade.");
+        tfDescricao.setToolTipText("Informe a Descrição");
         jPanel1.add(tfDescricao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 400, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -139,7 +139,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(cbUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 80, -1));
 
         tfCodIBGE.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfCodIBGE.setToolTipText("Digite aqui a descrição da Cidade.");
+        tfCodIBGE.setToolTipText("informe o Cód. IBGE");
         jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 430, 240));
