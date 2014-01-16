@@ -104,6 +104,7 @@ public class TelaMulta extends javax.swing.JDialog {
         Descricao_Biblioteca.setText("Leitor:");
         jPanel1.add(Descricao_Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 46, -1, 29));
 
+        tfLeitor.setToolTipText("Informe o leitor");
         tfLeitor.setEnabled(false);
         jPanel1.add(tfLeitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 296, -1));
 

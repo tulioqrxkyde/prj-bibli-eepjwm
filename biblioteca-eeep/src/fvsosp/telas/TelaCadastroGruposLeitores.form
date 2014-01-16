@@ -39,7 +39,7 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="1" attributes="0">
               <Component id="jPanel3" min="-2" pref="35" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="1" max="32767" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
           </Group>
       </Group>
@@ -88,7 +88,6 @@
               <Group type="102" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="tfMultaGruposLeitores" min="-2" pref="390" max="-2" attributes="0"/>
                       <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel26" alignment="0" min="-2" pref="216" max="-2" attributes="0"/>
                       <Component id="jLabel25" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -112,6 +111,7 @@
                       <Component id="jLabel27" alignment="0" min="-2" pref="280" max="-2" attributes="0"/>
                       <Component id="tfQuantidadeGruposLeitores1" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
                       <Component id="tfDiasGruposLeitores" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
+                      <Component id="tfMultaGruposLeitores" alignment="0" min="-2" pref="390" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -126,9 +126,9 @@
                   <Component id="tfNomeGruposLeitores" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel25" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="5" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="3" max="-2" attributes="0"/>
                   <Component id="tfMultaGruposLeitores" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="-2" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel26" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="tfQuantidadeGruposLeitores1" min="-2" max="-2" attributes="0"/>
@@ -171,7 +171,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o do Grupo de Leitores."/>
+            <Property name="toolTipText" type="java.lang.String" value="Informe a descri&#xe7;&#xe3;o"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel24">
@@ -246,20 +246,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPesquisarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="tfMultaGruposLeitores">
-          <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Verdana" size="12" style="0"/>
-            </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o do Grupo de Leitores."/>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="tfQuantidadeGruposLeitores1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o do Grupo de Leitores."/>
+            <Property name="toolTipText" type="java.lang.String" value="Informe a quantidade m&#xe1;xima de livros"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="tfDiasGruposLeitores">
@@ -267,7 +259,18 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Verdana" size="12" style="0"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Digite aqui a descri&#xe7;&#xe3;o do Grupo de Leitores."/>
+            <Property name="toolTipText" type="java.lang.String" value="Informe a dura&#xe7;&#xe3;o em dias do empr&#xe9;stimo"/>
+          </Properties>
+        </Component>
+        <Component class="javax.swing.JFormattedTextField" name="tfMultaGruposLeitores">
+          <Properties>
+            <Property name="formatterFactory" type="javax.swing.JFormattedTextField$AbstractFormatterFactory" editor="org.netbeans.modules.form.editors.AbstractFormatterFactoryEditor">
+              <Format format="#0.00" subtype="-1" type="0"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Informe a multa di&#xe1;ria"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Verdana" size="12" style="0"/>
+            </Property>
           </Properties>
         </Component>
       </SubComponents>

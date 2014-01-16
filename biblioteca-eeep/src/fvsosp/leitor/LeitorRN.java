@@ -8,6 +8,7 @@ import fvsosp.cidade.Cidade;
 import fvsosp.grupoleitores.GruposLeitores;
 import java.util.Date;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -19,7 +20,13 @@ public class LeitorRN {
 
     public boolean salvar(Leitor leitor) {
         if (leitor.getIdLeitor() == 0) {
-            return dao.adicionar(leitor);
+            List<Leitor> leitores = dao.pesquisarCpf(leitor.getCpf());
+            if (leitores.size()>0) {
+                JOptionPane.showMessageDialog(null, "Já Existe Leitor Cadastrado com o CPF: "+leitor.getCpf()+"!");
+                return false;
+            } else {
+                return dao.adicionar(leitor);
+            }
         } else {
             return dao.atualizar(leitor);
         }
@@ -37,7 +44,7 @@ public class LeitorRN {
     public List<Leitor> pesquisaNome(String nome) {
         return dao.pesquisarNome(nome);
     }
-    
+
     public Leitor pesquisaNomeEq(String nome) {
         return dao.pesquisarNomeEq(nome);
     }
@@ -61,7 +68,7 @@ public class LeitorRN {
     public List<Leitor> pesquisarMatricula(String matricula) {
         return dao.pesquisarMatricula(matricula);
     }
-    
+
     public Leitor pesquisarMatriculaEq(String matricula) {
         return dao.pesquisarMatriculaEq(matricula);
     }

@@ -66,7 +66,7 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         tfTombo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfTombo.setToolTipText("Digite aqui a descrição da Sessão.");
+        tfTombo.setToolTipText("Informe o tombo");
         jPanel2.add(tfTombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 108, -1));
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));

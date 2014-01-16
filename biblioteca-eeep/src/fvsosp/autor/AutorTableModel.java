@@ -12,7 +12,7 @@ import javax.swing.table.AbstractTableModel;
 @SuppressWarnings("serial")
 public class AutorTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Sobrenome","Autor", "Descrição"};
+    private String[] nomeColunas = {"Código", "Sobrenome","Autor", "Sobre o Autor"};
     private List<Autor> autores;
 
     public AutorTableModel(List<Autor> lista) {

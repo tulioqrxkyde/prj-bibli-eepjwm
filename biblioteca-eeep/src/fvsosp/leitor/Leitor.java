@@ -84,6 +84,7 @@ public class Leitor implements Serializable{
     @Column(length=8)
     private String rg;
     
+    @NaturalId(mutable=true)
     @Column(length=11)
     private String cpf;
     

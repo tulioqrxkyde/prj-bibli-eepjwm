@@ -80,8 +80,14 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
+        tfSenha.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfSenha.setToolTipText("Informe a senha");
+
         lbSenha.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lbSenha.setText("Senha.: *");
+
+        tfLogin.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfLogin.setToolTipText("Informe o login");
 
         lbLogin.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lbLogin.setText("Login.: *");
@@ -133,6 +139,9 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
 
         lbSenha1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         lbSenha1.setText("Confirmar Senha.: *");
+
+        tfConfirmarSenha.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfConfirmarSenha.setToolTipText("Confirme a senha");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

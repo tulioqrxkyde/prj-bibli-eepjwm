@@ -7,6 +7,7 @@ import fvsosp.grupoleitores.GruposLeitoresRN;
 import fvsosp.leitor.Leitor;
 import fvsosp.leitor.LeitorRN;
 import fvsosp.leitor.LeitorTableModel;
+import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,6 +33,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     public TelaCadastroLeitor() {
         initComponents();
         setLocationRelativeTo(null);
+        tfMatricula.setDocument(new OnlyNumberField());
     }
 
     /**
@@ -63,10 +65,10 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         rbMasculino = new javax.swing.JRadioButton();
         rbFeminino = new javax.swing.JRadioButton();
         jLabel32 = new javax.swing.JLabel();
-        tfMatricula = new javax.swing.JFormattedTextField();
         tfRG = new javax.swing.JTextField();
         jLabel33 = new javax.swing.JLabel();
         tfDataNascimento = new javax.swing.JFormattedTextField();
+        tfMatricula = new javax.swing.JTextField();
         pn2 = new javax.swing.JPanel();
         jLabel29 = new javax.swing.JLabel();
         tfCEP = new javax.swing.JFormattedTextField();
@@ -167,7 +169,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, 29));
 
         tfNome.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNome.setToolTipText("Digite aqui a descrição do autor");
+        tfNome.setToolTipText("Informe o nome");
         pn1.add(tfNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 420, -1));
 
         jLabel28.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -179,6 +181,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfCPF.setToolTipText("Informe o CPF");
         tfCPF.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfCPF.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
@@ -207,22 +210,8 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         jLabel32.setText("CPF.: ");
         pn1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 20));
 
-        try {
-            tfMatricula.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("########")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        tfMatricula.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        tfMatricula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfMatricula.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                ftDataNascimentoFocusLost(evt);
-            }
-        });
-        pn1.add(tfMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, -1));
-
         tfRG.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfRG.setToolTipText("Digite aqui a descrição do autor");
+        tfRG.setToolTipText("Informe o RG");
         pn1.add(tfRG, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 170, -1));
 
         jLabel33.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -234,9 +223,14 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        tfDataNascimento.setToolTipText("Informe a data de nascimento");
         tfDataNascimento.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         tfDataNascimento.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         pn1.add(tfDataNascimento, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 150, -1));
+
+        tfMatricula.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        tfMatricula.setToolTipText("Informe a matrícula");
+        pn1.add(tfMatricula, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 150, -1));
 
         tbLeitor.addTab("Pessoais", pn1);
 
@@ -272,7 +266,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn2.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 210, -1, 29));
 
         tfEmail.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfEmail.setToolTipText("Digite aqui a descrição do autor");
+        tfEmail.setToolTipText("");
         pn2.add(tfEmail, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, 380, -1));
 
         jLabel35.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -280,11 +274,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn2.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, -1, 29));
 
         tfEndereco.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfEndereco.setToolTipText("Digite aqui a descrição do autor");
+        tfEndereco.setToolTipText("");
         pn2.add(tfEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 380, -1));
 
         tfBairro.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfBairro.setToolTipText("Digite aqui a descrição do autor");
+        tfBairro.setToolTipText("");
         pn2.add(tfBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 150, -1));
 
         jLabel36.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -322,11 +316,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn3.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 20, -1, 29));
 
         tfNomePai.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomePai.setToolTipText("Digite aqui a descrição do autor");
+        tfNomePai.setToolTipText("");
         pn3.add(tfNomePai, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 50, 380, -1));
 
         tfNomeMae.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        tfNomeMae.setToolTipText("Digite aqui a descrição do autor");
+        tfNomeMae.setToolTipText("");
         pn3.add(tfNomeMae, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 100, 380, -1));
 
         jLabel40.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -361,7 +355,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             leitor = leitorRN.pesquisarCodigo(Short.valueOf(String.valueOf(o)));
             tfNome.setText(leitor.getNome());
             tfMatricula.setText(leitor.getMatricula().toString());
-            tfMatricula.setText(String.valueOf(leitor.getDataCadastro()));
+            Date dtNascimento = leitor.getDataNascimento();
+            SimpleDateFormat dfdtDataNascimento;
+            dfdtDataNascimento = new SimpleDateFormat("dd/MM/yyyy");
+            tfDataNascimento.setText(dfdtDataNascimento.format(dtNascimento));
+            //tfDataNascimento.setText(String.valueOf(leitor.getDataCadastro()));
             if (leitor.getSexo() == 'F') {
                 rbFeminino.setSelected(true);
             } else if (leitor.getSexo() == 'M') {
@@ -440,10 +438,11 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
             leitor.setNomePai(tfNomeMae.getText());
             GruposLeitores grupoLeitores = (GruposLeitores) cbGrupoLeitores.getSelectedItem();
             leitor.setGruposLeitores(grupoLeitores);
-            leitor.setGruposLeitores(null);
+            leitor.setAtivo(true);
+            //leitor.setGruposLeitores(null);
             short tdLeitor = leitor.getIdLeitor();
-            Leitor leitorMatriExi = leitorRN.pesquisarMatriculaEq(tfMatricula.getText());
-            Leitor leitorNomeExi = leitorRN.pesquisaNomeEq(tfNome.getText());
+//            Leitor leitorMatriExi = leitorRN.pesquisarMatriculaEq(tfMatricula.getText());
+//            Leitor leitorNomeExi = leitorRN.pesquisaNomeEq(tfNome.getText());
 //            if(leitorMatriExi!=null){
 //                JOptionPane.showMessageDialog(rootPane, "Matrícula Já Cadastrada! Informe outra Matrícula!");
 //            } else
@@ -468,7 +467,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         leitor = null;
         btRemover.setEnabled(false);
         JTextField[] tfs = {tfBairro, tfCPF, tfNome, tfEmail, tfEndereco, tfMatricula, tfNomeMae, tfNomePai, tfRG,
-            tfCelular, tfMatricula, tfCEP, tfTelefone};
+            tfCelular, tfMatricula, tfCEP, tfTelefone, tfDataNascimento};
         for (JTextField tf : tfs) {
             tf.setText("");
         }
@@ -476,10 +475,6 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         cbGrupoLeitores.setSelectedIndex(0);
         btGrSexo.clearSelection();
     }
-
-    private void ftDataNascimentoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_ftDataNascimentoFocusLost
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ftDataNascimentoFocusLost
 
     private void tfCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCPFFocusLost
 
@@ -564,7 +559,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     private javax.swing.JFormattedTextField tfDataNascimento;
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfEndereco;
-    private javax.swing.JFormattedTextField tfMatricula;
+    private javax.swing.JTextField tfMatricula;
     private javax.swing.JTextField tfNome;
     private javax.swing.JTextField tfNomeMae;
     private javax.swing.JTextField tfNomePai;
