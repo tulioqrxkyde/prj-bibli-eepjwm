@@ -727,7 +727,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 cbIdioma.getSelectedItem().toString(),
                 cbTipoItem.getSelectedItem().toString(),
                 tffAnoEdicao.getText(),
-                tfEdicao.getText(),
                 cbSessao.getSelectedItem().toString(), tfIsbn.getText())) {
             if (autoresAcervo.size() > 0 && palavrasChavesAcervo.size()>0) {
                 if (!tffAnoEdicao.getText().isEmpty()) {

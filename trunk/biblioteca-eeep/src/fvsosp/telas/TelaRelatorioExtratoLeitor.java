@@ -15,6 +15,8 @@ import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.ConnectionFactory;
 import java.net.URL;
 import java.sql.Connection;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
@@ -63,10 +65,10 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         btImprimir = new javax.swing.JButton();
         tfLeitor = new javax.swing.JTextField();
         btPesquisar6 = new javax.swing.JButton();
-        tfDataInicial1 = new javax.swing.JFormattedTextField();
+        tfDataInicial = new javax.swing.JFormattedTextField();
         Descricao_Biblioteca1 = new javax.swing.JLabel();
         Descricao_Biblioteca2 = new javax.swing.JLabel();
-        tfDataFinal1 = new javax.swing.JFormattedTextField();
+        tfDataFinal = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -122,14 +124,14 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         jPanel1.add(btPesquisar6, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 70, 34, -1));
 
         try {
-            tfDataInicial1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+            tfDataInicial.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        tfDataInicial1.setToolTipText("Informe a Data Inicial ");
-        tfDataInicial1.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        tfDataInicial1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel1.add(tfDataInicial1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 120, -1));
+        tfDataInicial.setToolTipText("Informe a Data Inicial ");
+        tfDataInicial.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        tfDataInicial.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel1.add(tfDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 120, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         Descricao_Biblioteca1.setText("Leitor.:");
@@ -140,14 +142,14 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         jPanel1.add(Descricao_Biblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 29));
 
         try {
-            tfDataFinal1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####/##/##")));
+            tfDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
-        tfDataFinal1.setToolTipText("Informe a Data Final");
-        tfDataFinal1.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-        tfDataFinal1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jPanel1.add(tfDataFinal1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 120, -1));
+        tfDataFinal.setToolTipText("Informe a Data Final");
+        tfDataFinal.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
+        tfDataFinal.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jPanel1.add(tfDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 120, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -171,26 +173,43 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         // TODO add your handling code here:
         if (tfLeitor.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Informe o Leitor!");
-        } else if (tfDataInicial1.getText().equals("    /  /  ")) {
+        } else if (tfDataInicial.getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(rootPane, "Informe a Data Inicial!");
-        } else if (tfDataInicial1.getText().equals("    /  /  ")) {
+        } else if (tfDataFinal.getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(rootPane, "Informe a Data Final!");
         } else {
 
             JasperReport pathjrxml;
             HashMap parametros = new HashMap();
             String sql = "", texto = "";
-
+            
+            String dataInicial="", dataFinal="";
+            try {
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    java.sql.Date data = new java.sql.Date(format.parse(tfDataInicial.getText()).getTime());
+                    dataInicial = String.valueOf(data);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            
+            try {
+                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                    java.sql.Date data = new java.sql.Date(format.parse(tfDataFinal.getText()).getTime());
+                     dataFinal = String.valueOf(data);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+            
             
             sql += "where empr.idleitor="+
                     String.valueOf(leitor.getIdLeitor())+
-                    " and exeem.dataEmprestimo between '"+tfDataInicial1.getText()+"' and '"+
-                    tfDataFinal1.getText()+"'";
+                    " and exeem.dataEmprestimo between '"+dataInicial+"' and '"+
+                    dataFinal+"'";
             
             
                    
             texto +="Leitor: "+leitor.getNome()+"; Dt.Inicial: "+
-                        tfDataInicial1.getText()+"; Data Final: "+tfDataInicial1.getText();            
+                        tfDataInicial.getText()+"; Data Final: "+tfDataInicial.getText();            
             sql += " order by exeem.dataEmprestimo,exeem.operacao,ac.tituloObra,ex.tombo";
             parametros.put("sql", sql);
             BibliotecaRN bRN = new BibliotecaRN();
@@ -276,8 +295,8 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JFormattedTextField tfDataFinal1;
-    private javax.swing.JFormattedTextField tfDataInicial1;
+    private javax.swing.JFormattedTextField tfDataFinal;
+    private javax.swing.JFormattedTextField tfDataInicial;
     private javax.swing.JTextField tfLeitor;
     // End of variables declaration//GEN-END:variables
 }

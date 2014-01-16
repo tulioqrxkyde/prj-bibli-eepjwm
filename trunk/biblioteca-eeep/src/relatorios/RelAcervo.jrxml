@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelAcervo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="4f866355-cc78-4810-9689-c383bb74ab75">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelAcervo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="4f866355-cc78-4810-9689-c383bb74ab75">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
@@ -10,6 +10,9 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<parameter name="texto" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ativo" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
@@ -23,6 +26,8 @@
 			where ae.idAcervo=ac.idacervo  limit 1) autor,
 		(select count(*) from exemplar exe
 				where exe.idacervo=ac.idacervo and ativo=true ) as qtdexemplares,
+(select count(*) from exemplar exe
+				where exe.idacervo=ac.idacervo and ativo=false ) as qtdexemplaresinativos,
 		(select count(*) from exemplar exe
 				inner join exemplaremprestimos exeemp
 							on exeemp.idExemplar=exe.tombo
@@ -50,9 +55,14 @@ inner join cidade ci on ci.idCidade=ed.idcidade
 	</field>
 	<field name="autor" class="java.lang.String"/>
 	<field name="qtdexemplares" class="java.lang.Long"/>
+	<field name="qtdexemplaresinativos" class="java.lang.Long"/>
 	<field name="qtdemprestimos" class="java.lang.Long"/>
 	<field name="qtdexemplaresemprestados" class="java.lang.Long"/>
 	<field name="qtdexemplaresconsulta" class="java.lang.Long"/>
+	<variable name="total" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{autor}]]></variableExpression>
+		<initialValueExpression><![CDATA[0]]></initialValueExpression>
+	</variable>
 	<group name="Group4">
 		<groupHeader>
 			<band/>
@@ -117,7 +127,7 @@ inner join cidade ci on ci.idCidade=ed.idcidade
 		</band>
 	</columnHeader>
 	<detail>
-		<band height="62">
+		<band height="64">
 			<textField>
 				<reportElement uuid="fcdece4d-87d6-4905-9c65-172bc76b40f6" x="0" y="1" width="48" height="20"/>
 				<textElement>
@@ -171,12 +181,21 @@ inner join cidade ci on ci.idCidade=ed.idcidade
 				<textFieldExpression><![CDATA[$F{qtdexemplares} + " exemplares; " +
 $F{qtdemprestimos} + " emprestimos; "+
 $F{qtdexemplaresemprestados} + " emprestados; "+
-$F{qtdexemplaresconsulta} + " consulta"]]></textFieldExpression>
+$F{qtdexemplaresconsulta} + " consulta; "+
+$F{qtdexemplaresinativos}+" inativos"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band/>
+		<band height="30">
+			<textField>
+				<reportElement uuid="46727f0d-077c-4758-aea5-2fc77f28b738" x="273" y="0" width="282" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}+" registros encontrados"]]></textFieldExpression>
+			</textField>
+		</band>
 	</columnFooter>
 	<pageFooter>
 		<band height="17">
