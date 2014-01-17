@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -165,13 +166,13 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
         // TODO add your handling code here:
         JasperReport pathjrxml;
         HashMap parametros = new HashMap();
-        String sql = "", texto="";
-        
+        String sql = "", texto = "";
+
         if (cbSessao.getSelectedIndex() > 0) {
             Sessao sessao = (Sessao) cbSessao.getSelectedItem();
             if (sql.equals("")) {
                 sql += " where ac.idsessao=" + sessao.getIdSessao();
-                texto += "Sessão: "+sessao.getDescricao();
+                texto += "Sessão: " + sessao.getDescricao();
             } else {
                 sql += " ac.idsessao=" + sessao.getIdSessao();
             }
@@ -180,10 +181,10 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
             TipoItem tipoItem = (TipoItem) cbTipoItem.getSelectedItem();
             if (sql.equals("")) {
                 sql += " where ac.idtipoitem=" + tipoItem.getIdTipoItem();
-                texto += "Tipo de Item: "+tipoItem.getDescricao();
+                texto += "Tipo de Item: " + tipoItem.getDescricao();
             } else {
                 sql += " and ac.idtipoitem=" + tipoItem.getIdTipoItem();
-                texto += "; Tipo de Item: "+tipoItem.getDescricao();
+                texto += "; Tipo de Item: " + tipoItem.getDescricao();
             }
         }
         sql += " order by idacervo";
@@ -192,22 +193,28 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
         try {
             parametros.put("biblioteca", bRN.listar().get(0));
         } catch (Exception e) {
-            
         }
         parametros.put("texto", texto);
 
         Connection connection = new ConnectionFactory().getConnection();
         try {
+            JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório", true);
+            viewer.setSize(1000, 600);
+            viewer.setLocationRelativeTo(null);
+            viewer.setModal(true);
             pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelAcervo.jrxml");
             JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                     connection);
-            JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelAcervo.pdf");
             JasperViewer jv = new JasperViewer(printReport, false);
-            jv.setVisible(true);
+            viewer.getContentPane().add(jv.getContentPane());
+            viewer.setVisible(true);
+            //JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelAcervo.pdf");
+            
+            //jv.setVisible(true);
         } catch (JRException ex) {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
-        dispose();
+        //dispose();
 
     }//GEN-LAST:event_btImprimirActionPerformed
 

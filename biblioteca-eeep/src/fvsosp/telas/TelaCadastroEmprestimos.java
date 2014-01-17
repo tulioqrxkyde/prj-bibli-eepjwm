@@ -39,6 +39,7 @@ import java.util.List;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -452,23 +453,34 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                         //imprime recibo emprestimo
 
                         try {
+                            JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório", true);
+                            viewer.setSize(1000, 600);
+                            viewer.setLocationRelativeTo(null);
+                            viewer.setModal(true);
                             pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelReciboEmprestimo.jrxml");
                             JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                                     connection);
                             JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelReciboEmprestimo.pdf");
                             JasperViewer jv = new JasperViewer(printReport, false);
-                            jv.setVisible(true);
+                            viewer.getContentPane().add(jv.getContentPane());
+                            viewer.setVisible(true);
+                            // jv.setVisible(true);
                         } catch (JRException ex) {
                             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     } else {
                         try {
+                            JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório", true);
+                            viewer.setSize(1000, 600);
+                            viewer.setLocationRelativeTo(null);
+                            viewer.setModal(true);
                             pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelReciboDevRen.jrxml");
                             JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                                     connection);
                             JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelReciboDevRen.pdf");
                             JasperViewer jv = new JasperViewer(printReport, false);
-                            jv.setVisible(true);
+                            viewer.getContentPane().add(jv.getContentPane());
+                            viewer.setVisible(true);
 
                         } catch (JRException ex) {
                             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
