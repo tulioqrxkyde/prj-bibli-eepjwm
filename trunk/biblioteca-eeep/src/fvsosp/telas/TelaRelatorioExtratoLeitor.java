@@ -21,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
@@ -182,34 +183,34 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
             JasperReport pathjrxml;
             HashMap parametros = new HashMap();
             String sql = "", texto = "";
-            
-            String dataInicial="", dataFinal="";
+
+            String dataInicial = "", dataFinal = "";
             try {
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                    java.sql.Date data = new java.sql.Date(format.parse(tfDataInicial.getText()).getTime());
-                    dataInicial = String.valueOf(data);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date data = new java.sql.Date(format.parse(tfDataInicial.getText()).getTime());
+                dataInicial = String.valueOf(data);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
             try {
-                    SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
-                    java.sql.Date data = new java.sql.Date(format.parse(tfDataFinal.getText()).getTime());
-                     dataFinal = String.valueOf(data);
-                } catch (ParseException e) {
-                    e.printStackTrace();
-                }
-            
-            
-            sql += "where empr.idleitor="+
-                    String.valueOf(leitor.getIdLeitor())+
-                    " and exeem.dataEmprestimo between '"+dataInicial+"' and '"+
-                    dataFinal+"'";
-            
-            
-                   
-            texto +="Leitor: "+leitor.getNome()+"; Dt.Inicial: "+
-                        tfDataInicial.getText()+"; Data Final: "+tfDataInicial.getText();            
+                SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+                java.sql.Date data = new java.sql.Date(format.parse(tfDataFinal.getText()).getTime());
+                dataFinal = String.valueOf(data);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+
+
+            sql += "where empr.idleitor="
+                    + String.valueOf(leitor.getIdLeitor())
+                    + " and exeem.dataEmprestimo between '" + dataInicial + "' and '"
+                    + dataFinal + "'";
+
+
+
+            texto += "Leitor: " + leitor.getNome() + "; Dt.Inicial: "
+                    + tfDataInicial.getText() + "; Data Final: " + tfDataInicial.getText();
             sql += " order by exeem.dataEmprestimo,exeem.operacao,ac.tituloObra,ex.tombo";
             parametros.put("sql", sql);
             BibliotecaRN bRN = new BibliotecaRN();
@@ -221,16 +222,22 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
 
             Connection connection = new ConnectionFactory().getConnection();
             try {
+                JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório", true);
+                viewer.setSize(1000, 600);
+                viewer.setLocationRelativeTo(null);
+                viewer.setModal(true);
                 pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelExtratoLeitor.jrxml");
                 JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                         connection);
                 JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelExtratoLeitor.pdf");
                 JasperViewer jv = new JasperViewer(printReport, false);
-                jv.setVisible(true);
+                viewer.getContentPane().add(jv.getContentPane());
+                viewer.setVisible(true);
+                //jv.setVisible(true);
             } catch (JRException ex) {
                 Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            dispose();
+            //dispose();
         }
 
     }//GEN-LAST:event_btImprimirActionPerformed
@@ -238,16 +245,16 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
     private void btPesquisar6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisar6ActionPerformed
         LeitorRN lRn = new LeitorRN();
         List<Leitor> lista = lRn.listar();
-        
+
         LeitorTableModel stm = new LeitorTableModel(lista);
         Object o = TelaPesquisa.exibeTela(stm, "Leitor");
         leitor = new Leitor();
-        
+
         if (o != null) {
             short id = Short.valueOf(String.valueOf(o));
             leitor = lRn.pesquisarCodigo(id);
             tfLeitor.setText(leitor.getNome());
-            
+
         }
     }//GEN-LAST:event_btPesquisar6ActionPerformed
 
