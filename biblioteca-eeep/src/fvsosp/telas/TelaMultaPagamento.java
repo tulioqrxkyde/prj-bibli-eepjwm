@@ -4,10 +4,23 @@
  */
 package fvsosp.telas;
 
+import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.multa.Multa;
 import fvsosp.multa.MultaRN;
+import fvsosp.util.ConnectionFactory;
+import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JDialog;
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.view.JasperViewer;
 
 /**
  *
@@ -15,14 +28,14 @@ import java.util.Date;
  */
 public class TelaMultaPagamento extends javax.swing.JDialog {
 
-    private static Multa multa=null;
-    
-    public static void pagamentoMulta(Multa multa){
-        TelaMultaPagamento.multa=multa;
+    private static Multa multa = null;
+
+    public static void pagamentoMulta(Multa multa) {
+        TelaMultaPagamento.multa = multa;
         TelaMultaPagamento tMP = new TelaMultaPagamento();
         tMP.setVisible(true);
     }
-    
+
     /**
      * Creates new form TelaMultaPagamento
      */
@@ -35,7 +48,7 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
         tfTitulo.setText(multa.getExemplarEmprestimo().getExemplar().getAcervo().getTituloObra());
         tfTombo.setText(String.valueOf(multa.getExemplarEmprestimo().getExemplar().getTombo()));
         tfValor.setText(String.valueOf(multa.getValor()));
-        
+
         Date dtPagamento = new Date();
         SimpleDateFormat dfdtPagamento;
         dfdtPagamento = new SimpleDateFormat("dd/MM/yyyy");
@@ -172,6 +185,36 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
         multa.setPago(cbPago.isSelected());
         multa.setDataPagamento(new Date());
         multaRN.salvar(multa);
+        if (cbPago.isSelected()) {
+            JasperReport pathjrxml;
+            HashMap parametros = new HashMap();
+            String sql = "", texto = "";
+            sql += " where m.idmulta=" + multa.getIdMulta();
+            parametros.put("sql", sql);
+            BibliotecaRN bRN = new BibliotecaRN();
+            try {
+                parametros.put("biblioteca", bRN.listar().get(0).getDescricao());
+            } catch (Exception e) {
+            }
+            parametros.put("leitor", multa.getExemplarEmprestimo().getEmprestimo().getLeitor().getNome());
+            Connection connection = new ConnectionFactory().getConnection();
+            try {
+                JDialog viewer = new JDialog(new javax.swing.JFrame(), "Visualização do Relatório", true);
+                viewer.setSize(1000, 600);
+                viewer.setLocationRelativeTo(null);
+                viewer.setModal(true);
+                pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelReciboMulta.jrxml");
+                JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
+                        connection);
+                //JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelMulta.pdf");
+                JasperViewer jv = new JasperViewer(printReport, false);
+                viewer.getContentPane().add(jv.getContentPane());
+                viewer.setVisible(true);
+                //jv.setVisible(true);
+            } catch (JRException ex) {
+                Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         dispose();
     }//GEN-LAST:event_btSalvar2ActionPerformed
 
