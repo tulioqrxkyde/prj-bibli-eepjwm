@@ -127,6 +127,6 @@ public class GruposLeitores implements Serializable{
     private static final long serialVersionUID = -3510357413546466120L;  
     
     public String toString(){
-        return descricao+", Q.Dias: "+duracaoDiasEmprestimo+", Q.Livros: "+quantMaxLivros;
+        return idGruposLeitores+" | "+descricao+", Q.Dias: "+duracaoDiasEmprestimo+", Q.Livros: "+quantMaxLivros;
     }
 }

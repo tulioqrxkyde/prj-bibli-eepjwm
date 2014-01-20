@@ -72,6 +72,10 @@ public class PalavrasChaves implements Serializable, Comparable<PalavrasChaves> 
    
     private static final long serialVersionUID = 7848363955215642796L;
     
+    public String toString(){
+        return idPalavrasChaves+" | "+descricao;
+    }
+    
     
     
 }

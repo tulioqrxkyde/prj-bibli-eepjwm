@@ -151,6 +151,13 @@ public class Multa {
         this.pago = pago;
     }
     
+    public String toString(){
+        return idMulta+" | Leitor: "+exemplarEmprestimo.getEmprestimo().getLeitor().getNome()+
+                " | Exemplar: "+exemplarEmprestimo.getExemplar().getTombo()+" | Acervo: "
+                +exemplarEmprestimo.getExemplar().getAcervo().getTituloObra()+" | Valor: "+
+                valor+" | Pago: "+pago;
+    }
+    
     
     
 }

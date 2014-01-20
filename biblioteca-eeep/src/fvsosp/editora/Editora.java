@@ -80,7 +80,7 @@ public class Editora implements Serializable {
    
     
     public String toString(){
-        return getNome();
+        return idEditora+" | "+getNome();
     }
 
     /**

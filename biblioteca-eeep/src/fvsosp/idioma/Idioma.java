@@ -9,7 +9,7 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "idioma")
-public class Idioma implements Serializable{
+public class Idioma implements Serializable {
 
     @Override
     public int hashCode() {
@@ -36,39 +36,43 @@ public class Idioma implements Serializable{
         }
         return true;
     }
-
     @Id // campo chave primária
     @GeneratedValue //campo auto incremento
     private short idIdioma;
-    
     @Column(length = 40, nullable = false, columnDefinition = "varchar(40) default ''")
-    @NaturalId(mutable=true)
+    @NaturalId(mutable = true)
     private String descricao;
 
-
-    /*** @retorna o id do Idioma ***/
+    /**
+     * * @retorna o id do Idioma **
+     */
     public short getIdIdioma() {
         return idIdioma;
     }
 
-    /*** @seta o id do Idioma ***/
+    /**
+     * * @seta o id do Idioma **
+     */
     public void setIdIdioma(short idIdioma) {
         this.idIdioma = idIdioma;
     }
 
-    /*** @retorna o nome do Idioma ***/
+    /**
+     * * @retorna o nome do Idioma **
+     */
     public String getDescricao() {
         return descricao;
     }
 
-    /*** @seta o nome do Idioma ***/
+    /**
+     * * @seta o nome do Idioma **
+     */
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
     private static final long serialVersionUID = -3057265994106209062L;
-    
-    public String toString(){
-        return descricao;
+
+    public String toString() {
+        return idIdioma + " | " + descricao;
     }
 }

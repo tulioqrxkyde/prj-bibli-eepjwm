@@ -70,6 +70,6 @@ public class Biblioteca implements Serializable{
     private static final long serialVersionUID = 8467106441036780639L;
     
     public String toString(){
-        return descricao;
+        return idBiblioteca+" | "+descricao;
     }
 }

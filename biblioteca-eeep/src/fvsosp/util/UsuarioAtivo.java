@@ -4,6 +4,9 @@
  */
 package fvsosp.util;
 
+import fvsosp.usuario.Usuario;
+import fvsosp.usuario.UsuarioRN;
+
 /**
  *
  * @author Pedro Saraiva
@@ -40,4 +43,12 @@ public class UsuarioAtivo {
     public static void setAdministrador(boolean aAdministrador) {
         administrador = aAdministrador;
     }   
+    
+    public static Usuario retornaUsuarioAtivo(){
+        
+        UsuarioRN usuRN = new UsuarioRN();
+        Usuario usu = usuRN.pesquisaLogin(login);
+        return usu;
+        
+    }
 }
