@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelAcervo" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="4f866355-cc78-4810-9689-c383bb74ab75">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="sql" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="biblioteca" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="texto" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[select
+	exeem.dataEmprestimo,
+	ex.tombo,
+	ac.tituloObra,
+	ti.descricao tipoitem,
+	(select concat(au.sobrenome,", " ,au.nome) from autor au
+			inner join autoresacervo ae on au.idAutor=ae.idAutor
+			where ae.idAcervo=ac.idacervo  limit 1) autor,
+	case ex.situacao
+		when 1 then "Disponível"
+		when 2 then "Em Espera"
+		when 3 then "Emprestado"
+		when 4 then "Indisponível"
+	end as situacao,
+	case exeem.operacao
+		when 1 then "Empréstimo"
+		when 2 then "Devolução"
+		when 3 then "Renovação"
+	end as operacao
+	from exemplar ex
+inner join exemplaremprestimos exeem on ex.tombo=exeem.idexemplar
+inner join acervo ac on ac.idacervo=ex.idacervo
+inner join tipoitem ti on ti.idtipoitem=ac.idtipoitem
+inner join emprestimo empr on empr.idemprestimo=exeem.idemprestimo
+   $P!{sql}]]>
+	</queryString>
+	<field name="dataEmprestimo" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tombo" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tituloObra" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tipoitem" class="java.lang.String"/>
+	<field name="autor" class="java.lang.String"/>
+	<field name="situacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="operacao" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="total" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$F{dataEmprestimo}]]></variableExpression>
+	</variable>
+	<group name="Group4">
+		<groupHeader>
+			<band/>
+		</groupHeader>
+		<groupFooter>
+			<band/>
+		</groupFooter>
+	</group>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="62">
+			<frame>
+				<reportElement uuid="0542e2b1-581a-41a5-9b7e-3206ffa78fe9" mode="Opaque" x="-20" y="-20" width="595" height="82" backcolor="#006699"/>
+				<staticText>
+					<reportElement uuid="029a89a8-cd85-46b8-a350-02dbd56a8ec2" x="20" y="19" width="286" height="48" forecolor="#FFFFFF"/>
+					<textElement>
+						<font size="30" isBold="true"/>
+					</textElement>
+					<text><![CDATA[Extrato de Leitor]]></text>
+				</staticText>
+				<textField>
+					<reportElement uuid="44b81d41-973e-4519-ad4e-c030a8ae9614" x="20" y="0" width="555" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{biblioteca}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement uuid="f3e7c84e-3303-4a3f-b785-22a3417427ad" x="155" y="62" width="420" height="20" forecolor="#FFFFFF"/>
+					<textElement textAlignment="Right">
+						<font size="13" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{texto}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</title>
+	<pageHeader>
+		<band/>
+	</pageHeader>
+	<columnHeader>
+		<band height="21">
+			<staticText>
+				<reportElement uuid="8af27d5d-cf31-4140-a155-8f2289367acc" x="0" y="0" width="48" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="52f53363-c800-4c39-8b78-86e4e6bee4ef" x="48" y="1" width="56" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tombo]]></text>
+			</staticText>
+			<line>
+				<reportElement uuid="8079cf0d-17cd-462d-9d80-4e6d4d0482fa" x="0" y="19" width="555" height="1"/>
+			</line>
+			<staticText>
+				<reportElement uuid="ca08b6b2-bd0d-40f1-a304-ea241fc1425b" x="104" y="0" width="78" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[TipoAcervo]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="a361471e-4d86-4968-a91a-9130fd317271" x="182" y="0" width="196" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Título]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="7fa0b60b-de2c-42d2-b6a9-57c68cdf0a4a" x="378" y="1" width="123" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="13" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Autor]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="45">
+			<textField>
+				<reportElement uuid="fcdece4d-87d6-4905-9c65-172bc76b40f6" x="0" y="1" width="48" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dataEmprestimo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="cc9a98f0-320e-469d-8ced-127ac8f1921c" x="48" y="1" width="56" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tombo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="7b272344-43bd-4d04-b46f-29bbcfb269c4" x="104" y="1" width="78" height="20"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tipoitem}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="2b8621aa-0907-44ac-a78c-bf94efb02c8b" x="182" y="1" width="196" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tituloObra}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="db0a3812-f629-4621-9a24-023f6f69fbe1" x="378" y="1" width="177" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{autor}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="3f307f94-05ea-4167-b0b4-e490bc71a003" x="109" y="21" width="446" height="20"/>
+				<textElement>
+					<font fontName="Arial" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Situação Exemplar: "+$F{situacao}+" | Operação Realizada: "+$F{operacao}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement uuid="48037489-3e54-4cae-a6a7-97fc55d01c56" x="0" y="41" width="555" height="1"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="30">
+			<textField>
+				<reportElement uuid="5ac6fa26-9ac9-43cc-a572-8c18dae2f868" x="273" y="0" width="282" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{total}+" registros encontrados"]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="17">
+			<textField>
+				<reportElement uuid="ab912b86-5163-4595-82bc-2516a4904bf0" mode="Opaque" x="0" y="4" width="515" height="13" backcolor="#E6E6E6"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement uuid="4b74062a-bbe9-4e98-b207-d9c16f99c3ec" mode="Opaque" x="515" y="4" width="40" height="13" backcolor="#E6E6E6"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement uuid="ad4c5d19-5651-4c5a-9f1a-5479e38316fc" x="0" y="4" width="100" height="13"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band/>
+	</summary>
+</jasperReport>
