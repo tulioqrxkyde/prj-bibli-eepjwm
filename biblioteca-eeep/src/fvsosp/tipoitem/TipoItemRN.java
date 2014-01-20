@@ -5,6 +5,7 @@
 package fvsosp.tipoitem;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,7 +22,13 @@ public class TipoItemRN {
 
     public boolean salvar(TipoItem tp) {
         if (tp.getIdTipoItem() == 0) {
+            List<TipoItem> lista = dao.checkExists("descricao", tp.getDescricao());
+            if(lista.size()==0){
             return dao.adicionar(tp);
+            } else {
+                JOptionPane.showMessageDialog(null, "Descrição já cadastrada para Tipo de Item!");
+                return false;
+            }
         } else {
             return dao.atualizar(tp);
         }

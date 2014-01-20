@@ -21,11 +21,23 @@ public class LeitorRN {
     public boolean salvar(Leitor leitor) {
         if (leitor.getIdLeitor() == 0) {
             List<Leitor> leitores = dao.pesquisarCpf(leitor.getCpf());
-            if (leitores.size()>0) {
-                JOptionPane.showMessageDialog(null, "Já Existe Leitor Cadastrado com o CPF: "+leitor.getCpf()+"!");
+            if (leitores.size() > 0) {
+                JOptionPane.showMessageDialog(null, "Já Existe Leitor Cadastrado com o CPF: " + leitor.getCpf() + "!");
                 return false;
             } else {
-                return dao.adicionar(leitor);
+                List<Leitor> leitorMatricula = dao.checkExists("matricula", leitor.getMatricula());
+                if (leitorMatricula.size() == 0) {
+                    List<Leitor> leitorNome = dao.checkExists("nome", leitor.getNome());
+                    if(leitorNome.size()==0){
+                    return dao.adicionar(leitor);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Nome Já cadastrado para leitor");
+                        return false;
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Matrícula Já cadastrada para leitor");
+                    return false;
+                }
             }
         } else {
             return dao.atualizar(leitor);

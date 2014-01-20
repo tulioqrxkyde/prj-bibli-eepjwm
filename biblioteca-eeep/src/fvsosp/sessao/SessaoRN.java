@@ -6,6 +6,7 @@ package fvsosp.sessao;
 
 import fvsosp.acervo.Acervo;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +18,13 @@ public class SessaoRN {
 
     public boolean salvar(Sessao sessao) {
         if (sessao.getIdSessao() == 0) {
-            return dao.adicionar(sessao);
+            List<Sessao> lista = dao.checkExists("descricao", sessao.getDescricao());
+            if (lista.size() == 0) {
+                return dao.adicionar(sessao);
+            } else {
+                JOptionPane.showMessageDialog(null, "Descrição já cadastrada para Sessão!");
+                return false;
+            }
         } else {
             return dao.atualizar(sessao);
         }

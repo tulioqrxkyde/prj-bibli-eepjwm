@@ -22,7 +22,13 @@ public class AcervoRN {
     // Metódo que adiciona um livro no acervo, caso contrário retorna false
     public boolean salvar(Acervo acervo) {
         if (acervo.getIdAcervo() == 0) {
-            return dao.adicionar(acervo);
+            List<Acervo> lista = dao.checkExists("tituloObra", acervo.getTituloObra());
+            if(lista.size()==0){
+                return dao.adicionar(acervo);
+            } else {
+                JOptionPane.showMessageDialog(null, "Título de Obra Já cadastrado para Acervo");
+                return false;
+            }
         } else {
             return dao.atualizar(acervo);
         }

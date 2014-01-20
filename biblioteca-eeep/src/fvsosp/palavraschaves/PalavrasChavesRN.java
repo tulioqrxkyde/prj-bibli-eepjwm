@@ -6,6 +6,7 @@ package fvsosp.palavraschaves;
 
 import fvsosp.acervo.Acervo;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -17,7 +18,13 @@ public class PalavrasChavesRN {
 
     public boolean adicionar(PalavrasChaves pc) {
         if (pc.getIdPalavrasChaves() == 0) {
+            List<PalavrasChaves> lista = dao.checkExists("descricao", pc.getDescricao());
+            if(lista.size()==0){
             return dao.adicionar(pc);
+            } else {
+                JOptionPane.showMessageDialog(null, "Descrição já cadastrada para Palavra Chave!");
+                return false;
+            }
         } else {
             return dao.atualizar(pc);
         }

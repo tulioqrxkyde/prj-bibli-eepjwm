@@ -2,6 +2,7 @@ package fvsosp.editora;
 
 import fvsosp.acervo.Acervo;
 import java.util.*;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,7 +14,13 @@ public class EditoraRN {
 
     public boolean salvar(Editora ed) {
         if (ed.getIdEditora() == 0) {
+            List<Editora> lista = dao.checkExists("nome", ed.getNome());
+            if(lista.size()==0){
             return dao.adicionar(ed);
+            } else {
+                JOptionPane.showMessageDialog(null, "Nome Já cadastrado para Editora");
+                return false;
+            }
         } else {
             return dao.atualizar(ed);
         }

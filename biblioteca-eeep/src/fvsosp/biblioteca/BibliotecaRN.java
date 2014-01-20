@@ -5,6 +5,7 @@
 package fvsosp.biblioteca;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +17,13 @@ public class BibliotecaRN {
 
     public boolean salvar(Biblioteca biblioteca) {
         if (biblioteca.getIdBiblioteca() == 0) {
+            List<Biblioteca> lista = dao.checkExists("descricao", biblioteca.getDescricao());
+            if(lista.size()==0){
             return dao.adicionar(biblioteca);
+            } else {
+                JOptionPane.showMessageDialog(null, "Descrição Já cadastrada para Biblioteca");
+                return false;
+            }
         } else {
             return dao.atualizar(biblioteca);
         }

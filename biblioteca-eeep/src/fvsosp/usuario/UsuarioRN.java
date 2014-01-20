@@ -6,6 +6,7 @@ package fvsosp.usuario;
 
 import fvsosp.util.Util;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -45,11 +46,17 @@ public class UsuarioRN {
     public boolean salvar(Usuario usuario, String outraSenha) {
         if (usuario.getIdUsuario() == 0) {
             //se adiciona tem que ter uma senha pra confirma a senha digitada
-            outraSenha = Util.md5(outraSenha);
-            if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
-                if (usuario.getSenha().equals(outraSenha)) {
-                    return usuDAO.adicionar(usuario);
+            List<Usuario> lista = usuDAO.checkExists("login", usuario.getLogin());
+            if (lista.size()==0) {
+                outraSenha = Util.md5(outraSenha);
+                if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
+                    if (usuario.getSenha().equals(outraSenha)) {
+                        return usuDAO.adicionar(usuario);
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Login já cadastrado para Usuário!");
+                return false;
             }
         } else {
             //se altera tem que ter uma senha pra confirmar a senha anterior
@@ -68,12 +75,12 @@ public class UsuarioRN {
     public List<Usuario> listar() {
         return usuDAO.listar();
     }
-    
+
     public List<Usuario> pesquisarLoginLike(String login) {
         return usuDAO.pesquisarLoginLike(login);
     }
-    
-     public Usuario pesquisarCodigo(short codigo) {
-         return usuDAO.pesquisarCodigo(codigo);
-     }
+
+    public Usuario pesquisarCodigo(short codigo) {
+        return usuDAO.pesquisarCodigo(codigo);
+    }
 }
