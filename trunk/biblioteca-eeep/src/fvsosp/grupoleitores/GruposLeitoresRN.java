@@ -5,6 +5,7 @@
 package fvsosp.grupoleitores;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,7 +17,13 @@ public class GruposLeitoresRN {
 
     public boolean salvar(GruposLeitores gl) {
             if (gl.getIdGruposLeitores() == 0) {
+                List<GruposLeitores> lista = dao.checkExists("descricao", gl.getDescricao());
+                if(lista.size()==0){
                 return dao.adicionar(gl);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Descrição Já cadastrado para Grupo de Leitores");
+                    return false;
+                }
             } else {
                 return dao.atualizar(gl);
             }

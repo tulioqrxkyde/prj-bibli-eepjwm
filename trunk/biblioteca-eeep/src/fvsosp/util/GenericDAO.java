@@ -10,6 +10,7 @@ import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Restrictions;
 
 /**
  *
@@ -108,11 +109,28 @@ public abstract class GenericDAO<T> {
             Object o = sessao.load(classe, chavePrimaria);
             return (T) o;
         } catch (HibernateException e) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar por chave primária"+ e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao carregar por chave primária" + e.getMessage());
         } finally {
             sessao.close();
         }
         return null;
+    }
+
+    public List<T> checkExists(String campo, Object valor) {
+        List<T> lista = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            setTransacao(getSessao().beginTransaction());
+            lista = this.getSessao().createCriteria(classe).add(Restrictions.eq(campo, valor)).list();
+            sessao.close();
+        } catch (Throwable e) {
+            if (getTransacao().isActive()) {
+                getTransacao().rollback();
+            }
+            JOptionPane.showMessageDialog(null, "Não foi possível listar: " + e.getMessage());
+        }
+        return lista;
+
     }
 
     /**

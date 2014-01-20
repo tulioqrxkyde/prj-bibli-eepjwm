@@ -1,6 +1,7 @@
 package fvsosp.idioma;
 
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -12,7 +13,13 @@ public class IdiomaRN {
 
     public boolean salvar(Idioma idioma) {
         if (idioma.getIdIdioma() == 0) {
+            List<Idioma> lista = dao.checkExists("descricao", idioma.getDescricao());
+            if(lista.size()==0){
             return dao.adicionar(idioma);
+            } else {
+                JOptionPane.showMessageDialog(null, "Descrição Já cadastrada para Idioma");
+                return false;
+            }
         } else {
             return dao.atualizar(idioma);
         }
