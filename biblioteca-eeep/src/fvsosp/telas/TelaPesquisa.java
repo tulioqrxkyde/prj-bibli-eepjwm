@@ -5,16 +5,13 @@
 package fvsosp.telas;
 
 import fvsosp.util.FormataTamanhoColunasJTable;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.Point;
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
+import javax.swing.JViewport;
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableColumnModel;
-import javax.swing.table.TableCellRenderer;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableModel;
 
 /**
  *
@@ -64,7 +61,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         lbTexto = new javax.swing.JLabel();
         tfPesquisar = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
         btSelecionar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
@@ -84,8 +81,8 @@ public class TelaPesquisa extends javax.swing.JDialog {
         tfPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfPesquisar.setToolTipText("Informe o que Deseja pesquisar");
         tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tfPesquisarKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyReleased(evt);
             }
         });
         jPanel4.add(tfPesquisar);
@@ -113,11 +110,11 @@ public class TelaPesquisa extends javax.swing.JDialog {
             }
         });
         tbPesquisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbPesquisaKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbPesquisaKeyReleased(evt);
             }
         });
-        jScrollPane1.setViewportView(tbPesquisa);
+        jScrollPane2.setViewportView(tbPesquisa);
 
         btSelecionar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/confi.gif"))); // NOI18N
         btSelecionar.setToolTipText("Selecionar");
@@ -145,13 +142,13 @@ public class TelaPesquisa extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(15, Short.MAX_VALUE))
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(20, 20, 20)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -164,18 +161,23 @@ public class TelaPesquisa extends javax.swing.JDialog {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
-        // TODO add your handling code here:
-
-        o = null;
-        dispose();
-
-    }//GEN-LAST:event_btCancelarActionPerformed
-
+    private void procuraTable(String nome) {
+        for (int linha = 0; linha < tbPesquisa.getRowCount(); linha++) {
+            String nomeTabela = String.valueOf(tbPesquisa.getValueAt(linha, 1));
+            if (nomeTabela.startsWith(nome)) {
+                tbPesquisa.setRowSelectionInterval(linha, linha);
+                JViewport viewport = (JViewport) tbPesquisa.getParent();
+                Rectangle rect = tbPesquisa.getCellRect(linha, 1, true);
+                Point pt = viewport.getViewPosition();
+                rect.setLocation(rect.x - pt.x, rect.y - pt.y);
+                viewport.scrollRectToVisible(rect);
+                break;
+            }
+        }
+    }
     private void btSelecionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSelecionarActionPerformed
-        // TODO add your handling code here:
         int row = tbPesquisa.getSelectedRow();
-        if (row > -1) { //então tem ítem selecionado  
+        if (row > -1) { //então tem ítem selecionado
             o = tbPesquisa.getValueAt(row, 0);
             dispose();
         } else {
@@ -184,37 +186,26 @@ public class TelaPesquisa extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_btSelecionarActionPerformed
 
-    private void tbPesquisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPesquisaKeyPressed
-        // TODO add your handling code here:
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            btSelecionarActionPerformed(null);
-        }
-    }//GEN-LAST:event_tbPesquisaKeyPressed
-
-    private void procuraTable(String nome) {
-        int tamanho = nome.length();
-        for (int linha = 0; linha < tbPesquisa.getRowCount(); linha++) {
-            String nomeTabela = String.valueOf(tbPesquisa.getValueAt(linha, 1));
-            if (nomeTabela.substring(0, tamanho).equalsIgnoreCase(nome)) {
-                tbPesquisa.setRowSelectionInterval(linha, linha);
-                break;
-            }
-        }
-    }
-
     private void tbPesquisaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPesquisaMouseClicked
         if (evt.getClickCount() == 2) {
             btSelecionarActionPerformed(null);
         }
     }//GEN-LAST:event_tbPesquisaMouseClicked
 
-    private void tfPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyPressed
-        // TODO add your handling code here:
-        procuraTable(tfPesquisar.getText());
+    private void btCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCancelarActionPerformed
+        o = null;
+        dispose();
+    }//GEN-LAST:event_btCancelarActionPerformed
+
+    private void tbPesquisaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPesquisaKeyReleased
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btSelecionarActionPerformed(null);
         }
-    }//GEN-LAST:event_tfPesquisarKeyPressed
+    }//GEN-LAST:event_tbPesquisaKeyReleased
+
+    private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
+        procuraTable(tfPesquisar.getText());
+    }//GEN-LAST:event_tfPesquisarKeyReleased
 
     /**
      * @param args the command line arguments
@@ -255,11 +246,9 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private javax.swing.JButton btSelecionar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel lbTexto;
     private javax.swing.JTable tbPesquisa;
     private javax.swing.JTextField tfPesquisar;
     // End of variables declaration//GEN-END:variables
-
-    
 }
