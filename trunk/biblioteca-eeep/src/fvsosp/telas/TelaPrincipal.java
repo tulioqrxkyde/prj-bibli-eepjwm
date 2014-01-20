@@ -81,6 +81,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemRelatorioUsuario = new javax.swing.JMenu();
         jMenuItem3 = new javax.swing.JMenuItem();
         itemRelatorioFinanceiro = new javax.swing.JMenuItem();
+        itemRelMulta = new javax.swing.JMenuItem();
         ItemSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -314,6 +315,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         itemRelatorioUsuario.add(itemRelatorioFinanceiro);
 
+        itemRelMulta.setText("Multa");
+        itemRelMulta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemRelMultaActionPerformed(evt);
+            }
+        });
+        itemRelatorioUsuario.add(itemRelMulta);
+
         BarradeMenuPrincipal.add(itemRelatorioUsuario);
 
         ItemSair.setText("Sair");
@@ -431,6 +440,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         teMul.setVisible(true);
     }//GEN-LAST:event_itemMultaActionPerformed
 
+    private void itemRelMultaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemRelMultaActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorioExtratoLeitorMulta trM = new TelaRelatorioExtratoLeitorMulta();
+        trM.setVisible(true);
+    }//GEN-LAST:event_itemRelMultaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -484,6 +499,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemEmprestimoDevolucao;
     private javax.swing.JMenuItem itemIndisponivelExemplar;
     private javax.swing.JMenuItem itemMulta;
+    private javax.swing.JMenuItem itemRelMulta;
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;
