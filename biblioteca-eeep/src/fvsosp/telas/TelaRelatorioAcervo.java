@@ -191,7 +191,7 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
         parametros.put("sql", sql);
         BibliotecaRN bRN = new BibliotecaRN();
         try {
-            parametros.put("biblioteca", bRN.listar().get(0));
+            parametros.put("biblioteca", bRN.listar().get(0).getDescricao());
         } catch (Exception e) {
         }
         parametros.put("texto", texto);

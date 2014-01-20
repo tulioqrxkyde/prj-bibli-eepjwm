@@ -35,18 +35,18 @@ import net.sf.jasperreports.view.JasperViewer;
  *
  * @author Pedro Saraiva
  */
-public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
+public class TelaRelatorioExtratoLeitorMulta extends javax.swing.JDialog {
 
     Leitor leitor = null;
 
     /**
      * Creates new form TelaRelatorioAcervo
      */
-    public TelaRelatorioExtratoLeitor() {
+    public TelaRelatorioExtratoLeitorMulta() {
         initComponents();
         setModal(true);
         setLocationRelativeTo(null);
-        setTitle("Relatório Extrato de Leitor");
+        setTitle("Relatório de Multas");
     }
 
     /**
@@ -91,7 +91,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
 
         jLabel23.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("Relatório Leitor");
+        jLabel23.setText("Relatório Multas");
         jPanel3.add(jLabel23);
         jLabel23.setBounds(0, 0, 300, 30);
 
@@ -202,7 +202,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
             }
 
 
-            sql += "where empr.idleitor="
+            sql += "where e.idleitor="
                     + String.valueOf(leitor.getIdLeitor())
                     + " and exeem.dataEmprestimo between '" + dataInicial + "' and '"
                     + dataFinal + "'";
@@ -211,7 +211,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
 
             texto += "Leitor: " + leitor.getNome() + "; Dt.Inicial: "
                     + tfDataInicial.getText() + "; Data Final: " + tfDataInicial.getText();
-            sql += " order by exeem.dataEmprestimo,exeem.operacao,ac.tituloObra,ex.tombo";
+            sql += " order by exeem.dataEmprestimo";
             parametros.put("sql", sql);
             BibliotecaRN bRN = new BibliotecaRN();
             try {
@@ -226,10 +226,10 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
                 viewer.setSize(1000, 600);
                 viewer.setLocationRelativeTo(null);
                 viewer.setModal(true);
-                pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelExtratoLeitor.jrxml");
+                pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelMulta.jrxml");
                 JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                         connection);
-               // JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelExtratoLeitor.pdf");
+                //JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelMulta.pdf");
                 JasperViewer jv = new JasperViewer(printReport, false);
                 viewer.getContentPane().add(jv.getContentPane());
                 viewer.setVisible(true);
@@ -275,20 +275,20 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitorMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitorMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitorMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaRelatorioExtratoLeitorMulta.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new TelaRelatorioExtratoLeitor().setVisible(true);
+                new TelaRelatorioExtratoLeitorMulta().setVisible(true);
             }
         });
     }
