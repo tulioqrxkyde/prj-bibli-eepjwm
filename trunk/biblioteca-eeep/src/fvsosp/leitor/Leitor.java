@@ -26,8 +26,8 @@ import org.hibernate.annotations.NaturalId;
 public class Leitor implements Serializable{
 
     @Override
-    public String toString() {
-        return nome;
+    public String toString(){
+        return idLeitor+" | "+nome;
     }
 
     @Id
@@ -494,6 +494,7 @@ public class Leitor implements Serializable{
         }
         return true;
     }
+    
     
     
 }

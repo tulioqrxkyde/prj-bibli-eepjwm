@@ -29,7 +29,11 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
     
     @Override
     public String toString() {
-        return "Tombo: "+getExemplar().getTombo()+" Nº exemplar =" + getExemplar().getExemplar();
+        return idExemplarEmprestimos+" | Tombo: "+getExemplar().getTombo()+" | Nº exemplar =" + 
+                getExemplar().getExemplar()+
+                " | Acervo: "+getExemplar().getAcervo().getTituloObra()+
+                " | Operação: "+descricaoOperacao()
+                ;
     }
     
     @Override

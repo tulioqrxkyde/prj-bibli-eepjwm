@@ -105,5 +105,9 @@ public class Usuario implements Serializable{
         return true;
     }
     
+    public String toString(){
+        return idUsuario+" | "+login;
+    }
+    
     
 }

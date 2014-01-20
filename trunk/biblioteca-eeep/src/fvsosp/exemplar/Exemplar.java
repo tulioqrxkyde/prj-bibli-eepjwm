@@ -55,7 +55,8 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
 
     @Override
     public String toString() {
-        return "Tombo: "+getTombo()+" Nº exemplar =" + getExemplar();
+        return "Tombo: "+getTombo()+" | Nº exemplar =" + getExemplar()+ " | Acervo: "
+                +getAcervo().getTituloObra();
     }
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "idAcervo")

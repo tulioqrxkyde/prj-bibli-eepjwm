@@ -164,4 +164,9 @@ public class Emprestimo implements Serializable {
 //    public void setExemplares(Set<ExemplarEmprestimos> exemplares) {
 //        this.exemplares = exemplares;
 //    }
+    
+    public String toString() {
+        return idEmprestimo + " | Dt. Empréstimo: " + dataEmprestimo+
+                " | Leitor: "+leitor.getNome();
+    }
 }

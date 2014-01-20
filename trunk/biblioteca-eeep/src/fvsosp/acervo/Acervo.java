@@ -34,6 +34,10 @@ public class Acervo implements Serializable{
     public static void setSerialVersionUID(long aSerialVersionUID) {
         serialVersionUID = aSerialVersionUID;
     }
+    
+    public String toString() {
+        return idAcervo + " | " + tituloObra;
+    }
 
     @Id
     @GeneratedValue

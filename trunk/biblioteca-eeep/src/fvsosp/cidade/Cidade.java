@@ -90,6 +90,6 @@ public class Cidade implements Serializable {
     }
 
     public String toString(){
-        return descricao+"-"+uf;
+        return idCidade+" | "+descricao+"-"+uf;
     }
 }

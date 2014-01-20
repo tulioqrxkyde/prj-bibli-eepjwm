@@ -69,6 +69,6 @@ public class Sessao implements Serializable{
     private static final long serialVersionUID = 2535742826332189587L;
     
     public String toString(){
-        return descricao;
+        return idSessao+" | "+descricao;
     }
 }

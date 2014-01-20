@@ -99,7 +99,7 @@ public class Autor implements Comparable<Autor> {
 
     /*** @retorna a lista de Acervos ***/
     public String toString(){
-        return getNome();
+        return idAutor+" | "+getSobreOAutor()+", "+getNome();
     }
 
     /**

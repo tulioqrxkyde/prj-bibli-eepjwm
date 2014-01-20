@@ -4,7 +4,10 @@
  */
 package fvsosp.util;
 
+import fvsosp.log.Log;
+import fvsosp.log.LogRN;
 import fvsosp.usuario.Usuario;
+import java.util.Date;
 import java.util.List;
 import javax.swing.JOptionPane;
 import org.hibernate.HibernateException;
@@ -38,6 +41,15 @@ public abstract class GenericDAO<T> {
             this.setTransacao(getSessao().beginTransaction());
             this.getSessao().save(entity);
             this.getTransacao().commit();
+
+            if (entity.getClass() != Log.class) {
+                Log log = new Log();
+                LogRN logRN = new LogRN();
+                log.setDatalog(new Date());
+                log.setDescricao("Adicionado: " + entity.getClass() + ", " + entity.toString());
+                log.setUsuario(UsuarioAtivo.retornaUsuarioAtivo());
+                logRN.salvar(log);
+            }
         } catch (HibernateException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível inserir " + entity.getClass()
                     + ". Erro: " + e.getMessage());
@@ -55,6 +67,14 @@ public abstract class GenericDAO<T> {
             this.setTransacao(getSessao().beginTransaction());
             this.getSessao().merge(entity);
             this.getTransacao().commit();
+            if (entity.getClass() != Log.class) {
+                Log log = new Log();
+                LogRN logRN = new LogRN();
+                log.setDatalog(new Date());
+                log.setDescricao("Atualizado: " + entity.getClass() + ", " + entity.toString());
+                log.setUsuario(UsuarioAtivo.retornaUsuarioAtivo());
+                logRN.salvar(log);
+            }
         } catch (HibernateException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível atualizar " + entity.getClass()
                     + ". Erro: " + e.getMessage());
@@ -72,6 +92,14 @@ public abstract class GenericDAO<T> {
             this.setTransacao(getSessao().beginTransaction());
             this.getSessao().delete(entity);
             this.getTransacao().commit();
+            if (entity.getClass() != Log.class) {
+                Log log = new Log();
+                LogRN logRN = new LogRN();
+                log.setDatalog(new Date());
+                log.setDescricao("Removido: " + entity.getClass() + ", " + entity.toString());
+                log.setUsuario(UsuarioAtivo.retornaUsuarioAtivo());
+                logRN.salvar(log);
+            }
         } catch (HibernateException e) {
             JOptionPane.showMessageDialog(null, "Não foi possível remover " + entity.getClass()
                     + ". Erro: " + e.getMessage());
