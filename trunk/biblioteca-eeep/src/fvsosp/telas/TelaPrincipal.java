@@ -106,14 +106,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(826, 0, -1, -1));
 
         jLabel2.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/logoosp.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-120, 20, 960, -1));
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/novalogosoproject.jpg"))); // NOI18N
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(-160, 20, 1030, 480));
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 159));
 
         jlUsuarioLogado.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         jlUsuarioLogado.setForeground(new java.awt.Color(255, 255, 255));
-        jlUsuarioLogado.setText("Logado como: ?");
+        jlUsuarioLogado.setText("Usuário: ?");
 
         labelVersao.setFont(new java.awt.Font("Verdana", 0, 10)); // NOI18N
         labelVersao.setForeground(new java.awt.Color(255, 255, 255));
@@ -126,7 +126,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(labelVersao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 554, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 617, Short.MAX_VALUE)
                 .addComponent(jlUsuarioLogado)
                 .addGap(121, 121, 121))
         );
@@ -139,7 +139,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 840, -1));
+        getContentPane().add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 500, 870, -1));
 
         jPanel4.setBackground(new java.awt.Color(59, 89, 159));
 
@@ -147,14 +147,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 840, Short.MAX_VALUE)
+            .addGap(0, 870, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 17, Short.MAX_VALUE)
         );
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 840, -1));
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 870, -1));
 
         BarradeMenuPrincipal.setBackground(new java.awt.Color(51, 51, 255));
         BarradeMenuPrincipal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
