@@ -164,7 +164,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private void procuraTable(String nome) {
         for (int linha = 0; linha < tbPesquisa.getRowCount(); linha++) {
             String nomeTabela = String.valueOf(tbPesquisa.getValueAt(linha, 1));
-            if (nomeTabela.startsWith(nome)) {
+            if (nomeTabela.startsWith(nome.toLowerCase())) {
                 tbPesquisa.setRowSelectionInterval(linha, linha);
                 JViewport viewport = (JViewport) tbPesquisa.getParent();
                 Rectangle rect = tbPesquisa.getCellRect(linha, 1, true);
