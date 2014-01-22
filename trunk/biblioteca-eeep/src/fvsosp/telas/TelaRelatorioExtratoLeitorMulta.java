@@ -235,6 +235,10 @@ public class TelaRelatorioExtratoLeitorMulta extends javax.swing.JDialog {
             }
             //dispose();
         }
+        //tfLeitor = null;
+        tfLeitor.setText("");
+        tfDataFinal.setText("");
+        tfDataInicial.setText("");
 
     }//GEN-LAST:event_btImprimirActionPerformed
 
