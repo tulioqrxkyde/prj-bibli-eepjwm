@@ -28,12 +28,8 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
      */
     public TelaCadastroPalavasChaves() {
         initComponents();
-
-        this.setTitle("OSBiblio - Palavras Chaves");
         this.setLocationRelativeTo(null);
-        btRemover.setEnabled(false);
-        setModal(true);
-
+        Util.setAcessibilidade(this);
     }
 
     /**
@@ -57,6 +53,8 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         tfDescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Palavras Chaves");
+        setModal(true);
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,6 +71,7 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
 
         btRemover.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/remove_1.png"))); // NOI18N
         btRemover.setToolTipText("Excluir");
+        btRemover.setEnabled(false);
         btRemover.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btRemoverActionPerformed(evt);

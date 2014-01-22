@@ -5,6 +5,7 @@
 package fvsosp.telas;
 
 import fvsosp.exemplar.Exemplar;
+import fvsosp.util.Util;
 
 /**
  *
@@ -33,6 +34,7 @@ public class TelaOperacaoEmprestimoDevolucao extends javax.swing.JDialog {
         jLabel1.setText("Tombo:"+exemplar.getTombo()+" \n Exemplar: "+exemplar.getExemplar());
         jLabel2.setText("Titulo: "+exemplar.getAcervo().getTituloObra());
         setModal(true);
+        Util.setAcessibilidade(this);
     }
 
     /**

@@ -23,6 +23,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
     public TelaCadastroSessao() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Util.setAcessibilidade(this);
     }
 
     /**

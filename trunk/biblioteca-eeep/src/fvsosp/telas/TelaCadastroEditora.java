@@ -25,6 +25,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     public TelaCadastroEditora() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Util.setAcessibilidade(this);
     }
 
     public void limpaCampos() {

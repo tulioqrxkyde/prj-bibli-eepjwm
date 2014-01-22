@@ -7,6 +7,7 @@ package fvsosp.telas;
 import fvsosp.emprestimo.ExemplaresEmprestadosTableModel;
 import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
 import fvsosp.util.FormataTamanhoColunasJTable;
+import fvsosp.util.Util;
 import java.util.List;
 import java.util.Set;
 
@@ -35,6 +36,7 @@ public class TelaConsultaLivrosEmprestados extends javax.swing.JDialog {
         ExemplaresEmprestadosTableModel exeempTM = new ExemplaresEmprestadosTableModel(listaExeEmp);
         tbExeEmprestados.setModel(exeempTM);
         FormataTamanhoColunasJTable.packColumns(tbExeEmprestados, 1);
+        Util.setAcessibilidade(this);
     }
 
     /**

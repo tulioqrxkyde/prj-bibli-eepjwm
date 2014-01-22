@@ -10,6 +10,7 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.ConnectionFactory;
+import fvsosp.util.Util;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.HashMap;
@@ -39,6 +40,7 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
         setModal(true);
         setLocationRelativeTo(null);
         setTitle("Relatório Acervo");
+        Util.setAcessibilidade(this);
     }
 
     /**

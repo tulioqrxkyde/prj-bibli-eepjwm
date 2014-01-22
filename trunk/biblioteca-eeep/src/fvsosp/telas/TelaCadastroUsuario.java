@@ -27,9 +27,9 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
     public TelaCadastroUsuario() {
         initComponents();
         setTitle("OSBiblio - Usuario");
-        setLocationRelativeTo(null);
         setModal(true);
         btExcluir.setEnabled(false);
+        Util.setAcessibilidade(this);
     }
 
     /**
@@ -219,6 +219,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed

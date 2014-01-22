@@ -8,6 +8,7 @@ import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.multa.Multa;
 import fvsosp.multa.MultaRN;
 import fvsosp.util.ConnectionFactory;
+import fvsosp.util.Util;
 import java.sql.Connection;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -48,11 +49,11 @@ public class TelaMultaPagamento extends javax.swing.JDialog {
         tfTitulo.setText(multa.getExemplarEmprestimo().getExemplar().getAcervo().getTituloObra());
         tfTombo.setText(String.valueOf(multa.getExemplarEmprestimo().getExemplar().getTombo()));
         tfValor.setText(String.valueOf(multa.getValor()));
-
         Date dtPagamento = new Date();
         SimpleDateFormat dfdtPagamento;
         dfdtPagamento = new SimpleDateFormat("dd/MM/yyyy");
         tfDtpagamento.setText(dfdtPagamento.format(dtPagamento));
+        Util.setAcessibilidade(this);
     }
 
     /**

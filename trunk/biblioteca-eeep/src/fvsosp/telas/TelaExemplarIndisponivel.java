@@ -7,6 +7,7 @@ package fvsosp.telas;
 import fvsosp.exemplar.Exemplar;
 import fvsosp.exemplar.ExemplarRN;
 import fvsosp.util.OnlyNumberField;
+import fvsosp.util.Util;
 import javax.swing.JOptionPane;
 
 /**
@@ -28,6 +29,7 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         setLocationRelativeTo(null);
         limpaCampos();
         tfTombo.setDocument(new OnlyNumberField());
+        Util.setAcessibilidade(this);
     }
 
     /**

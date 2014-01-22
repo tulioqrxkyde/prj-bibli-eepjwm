@@ -23,6 +23,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
     public TelaCadastroBiblioteca() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Util.setAcessibilidade(this);
     }
 
     /**

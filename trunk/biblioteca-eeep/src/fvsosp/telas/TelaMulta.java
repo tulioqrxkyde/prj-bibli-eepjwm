@@ -11,6 +11,7 @@ import fvsosp.multa.Multa;
 import fvsosp.multa.MultaRN;
 import fvsosp.multa.MultaTableModel;
 import fvsosp.util.FormataTamanhoColunasJTable;
+import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -35,7 +36,7 @@ public class TelaMulta extends javax.swing.JDialog {
         tbMulta.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         FormataTamanhoColunasJTable.packColumns(tbMulta, 1);
         atualizaTabela();
-        
+        Util.setAcessibilidade(this);
     }
     
     public void atualizaTabela(){

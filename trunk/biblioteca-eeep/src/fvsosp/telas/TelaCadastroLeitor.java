@@ -34,6 +34,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         tfMatricula.setDocument(new OnlyNumberField());
+        Util.setAcessibilidade(this);
     }
 
     /**
