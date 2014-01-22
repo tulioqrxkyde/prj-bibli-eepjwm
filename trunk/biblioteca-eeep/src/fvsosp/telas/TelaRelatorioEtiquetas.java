@@ -15,6 +15,7 @@ import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.ConnectionFactory;
 import fvsosp.util.FormataTamanhoColunasJTable;
 import fvsosp.util.OnlyNumberField;
+import fvsosp.util.Util;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -47,6 +48,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
         setModal(true);
         setLocationRelativeTo(null);
         setTitle("Relatório Etiquetas");
+        Util.setAcessibilidade(this);
         atualizaTabela();
         tfTomboFinal.setDocument(new OnlyNumberField());
         tfTomboInicial.setDocument(new OnlyNumberField());
