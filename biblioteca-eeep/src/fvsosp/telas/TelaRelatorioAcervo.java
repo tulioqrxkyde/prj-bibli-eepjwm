@@ -217,7 +217,8 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
             Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
         //dispose();
-
+        cbSessao.setSelectedIndex(0);
+        cbTipoItem.setSelectedIndex(0);
     }//GEN-LAST:event_btImprimirActionPerformed
 
     /**

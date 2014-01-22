@@ -82,6 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jMenuItem3 = new javax.swing.JMenuItem();
         itemRelatorioFinanceiro = new javax.swing.JMenuItem();
         itemRelMulta = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
         ItemSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -323,6 +324,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         itemRelatorioUsuario.add(itemRelMulta);
 
+        jMenuItem1.setText("Etiquetas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        itemRelatorioUsuario.add(jMenuItem1);
+
         BarradeMenuPrincipal.add(itemRelatorioUsuario);
 
         ItemSair.setText("Sair");
@@ -446,6 +455,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         trM.setVisible(true);
     }//GEN-LAST:event_itemRelMultaActionPerformed
 
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorioEtiquetas telaReltique = new TelaRelatorioEtiquetas();
+        telaReltique.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -503,6 +518,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JPanel jPanel2;

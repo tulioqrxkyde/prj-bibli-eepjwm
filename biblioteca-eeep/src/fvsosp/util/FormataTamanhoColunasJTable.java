@@ -21,6 +21,7 @@ public class FormataTamanhoColunasJTable {
         for (int c = 0; c < table.getColumnCount(); c++) {
             packColumn(table, c, 2);
         }
+        table.setAutoResizeMode(table.AUTO_RESIZE_OFF);
     }  
     
      private static void packColumn(JTable table, int vColIndex, int margin) {
