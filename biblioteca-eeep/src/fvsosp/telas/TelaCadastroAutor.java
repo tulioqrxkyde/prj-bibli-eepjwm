@@ -20,6 +20,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
     public TelaCadastroAutor() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Util.setAcessibilidade(this);
     }
 
     /**

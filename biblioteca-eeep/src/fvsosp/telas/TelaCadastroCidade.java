@@ -25,6 +25,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         initComponents();
         setLocationRelativeTo(null);
         tfCodIBGE.setDocument(new OnlyNumberField());
+        Util.setAcessibilidade(this);
     }
 
     /**

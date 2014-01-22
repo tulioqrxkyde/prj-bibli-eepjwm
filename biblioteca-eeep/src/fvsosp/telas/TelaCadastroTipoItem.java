@@ -26,6 +26,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
     public TelaCadastroTipoItem() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Util.setAcessibilidade(this);
     }
 
     /**

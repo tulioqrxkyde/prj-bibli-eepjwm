@@ -25,6 +25,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         tfDiasGruposLeitores.setDocument(new OnlyNumberField(2));
         //tfMultaGruposLeitores.setDocument(new OnlyNumberField());
         tfQuantidadeGruposLeitores1.setDocument(new OnlyNumberField(2));
+        Util.setAcessibilidade(this);
     }
 
     /**

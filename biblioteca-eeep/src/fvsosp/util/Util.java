@@ -4,6 +4,8 @@
  */
 package fvsosp.util;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -13,13 +15,20 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JDialog;
 import javax.swing.JOptionPane;
+import javax.swing.JRootPane;
+import javax.swing.KeyStroke;
 
 /**
  *
  * @author Pedro Saraiva
  */
 public class Util {
+
+    JRootPane meurootpane;
 
     /**
      * Realiza a validação do CPF.
@@ -158,5 +167,19 @@ public class Util {
         m1 = data1.getTimeInMillis();
         m2 = data2.getTimeInMillis();
         return (int) ((m2 - m1) / (24 * 60 * 60 * 1000));
+    }
+
+    public static void setAcessibilidade(final JDialog tela) {
+        Util utilidades = new Util();
+        utilidades.meurootpane = tela.getRootPane();
+        utilidades.meurootpane.getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), "ESCAPE");
+        utilidades.meurootpane.getRootPane().getActionMap().put("ESCAPE", new AbstractAction("ESCAPE") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Deseja sair sem salvar?", "Sair", JOptionPane.YES_NO_CANCEL_OPTION) == JOptionPane.YES_OPTION) {
+                    tela.setVisible(false);
+                }
+            }
+        });
     }
 }

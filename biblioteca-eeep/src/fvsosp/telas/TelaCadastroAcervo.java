@@ -27,14 +27,20 @@ import fvsosp.util.FormataTamanhoColunasJTable;
 import fvsosp.util.LimataDocumentoJTextField;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
+import java.awt.event.ActionEvent;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JTextField;
+import javax.swing.JRootPane;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -55,14 +61,13 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
      */
     public TelaCadastroAcervo() {
         initComponents();
+        Util.setAcessibilidade(this);
         this.setLocationRelativeTo(null);
-        
         tfPaginas.setDocument(new OnlyNumberField());
-        tffAnoEdicao.setDocument(new OnlyNumberField(4));      
+        tffAnoEdicao.setDocument(new OnlyNumberField(4));
         tfcutter2.setDocument(new LimataDocumentoJTextField(5));
         tfEdicao.setDocument(new OnlyNumberField());
         tfqtdExemplar.setDocument(new OnlyNumberField(10));
-        
     }
 
     /**
@@ -728,7 +733,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 cbTipoItem.getSelectedItem().toString(),
                 tffAnoEdicao.getText(),
                 cbSessao.getSelectedItem().toString(), tfIsbn.getText())) {
-            if (autoresAcervo.size() > 0 && palavrasChavesAcervo.size()>0) {
+            if (autoresAcervo.size() > 0 && palavrasChavesAcervo.size() > 0) {
                 if (!tffAnoEdicao.getText().isEmpty()) {
                     Calendar data = Calendar.getInstance();
                     if (Long.parseLong(tffAnoEdicao.getText()) > data.get(Calendar.YEAR)) {
@@ -745,7 +750,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 acervo.setEdicao(tfEdicao.getText().replaceAll(" ", ""));
                 acervo.setInformacoesAdicionais(tfEdicao.getText());
                 acervo.setLocalizacao(tfLocalizacao.getText());
-                
+
                 //acervo.setVolume(tfVolume1.getText());
 //        if (!tfTombo.getText().isEmpty() && !tfExemplar.getText().isEmpty()) {
 //            exemplar.setTombo(Short.parseShort(tfTombo.getText()));
@@ -802,8 +807,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 //                    JOptionPane.showMessageDialog(rootPane, "Título Já Cadastrado! Informe outro Titulo!");
 //                } else
                 if (acervoRN.salvar(acervo)) {
-                        JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
-                                + ", " + ((tdAcervo == 0) ? "cadastrado" : "alterado") + " com sucesso!");
+                    JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
+                            + ", " + ((tdAcervo == 0) ? "cadastrado" : "alterado") + " com sucesso!");
                     limparCampos();
                 }
             } else {
@@ -956,7 +961,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir o Autor: "
                     + autor.getNome() + "?", "Inserir Autor",
                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
-                
+
                 autoresAcervo.add(autor);
                 atualizaTabelaAutores();
             }
@@ -1014,6 +1019,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tCA.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
 
+ 
+
     private void atualizaTabelaPalavrasChaves() {
         PalavraChaveAcervoTableModel atm;
         try {
@@ -1068,6 +1075,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+
+
+
+
 
 
 

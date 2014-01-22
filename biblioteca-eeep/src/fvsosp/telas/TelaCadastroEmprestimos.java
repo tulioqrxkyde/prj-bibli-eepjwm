@@ -73,9 +73,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         setModal(true);
         lblDevolucao.setText("");
         tfTombo.setDocument(new OnlyNumberField());
-//        for (int x = 0; x < exemplarRN.listar().size(); x++) {
-//            tbExemplaresEmprestimo.getModel().setValueAt(exemplarRN.listar().get(x), x, 0);
-//        }
+        Util.setAcessibilidade(this);
     }
 
     public void atualizaTabela() {

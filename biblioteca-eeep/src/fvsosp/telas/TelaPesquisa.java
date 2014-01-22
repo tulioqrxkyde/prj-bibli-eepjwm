@@ -5,6 +5,7 @@
 package fvsosp.telas;
 
 import fvsosp.util.FormataTamanhoColunasJTable;
+import fvsosp.util.Util;
 import java.awt.Point;
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
@@ -40,6 +41,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         tbPesquisa.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         FormataTamanhoColunasJTable.packColumns(tbPesquisa, 1);
         //packColumns(tbPesquisa, 1);
+        Util.setAcessibilidade(this);
     }
 
     private TelaPesquisa() {

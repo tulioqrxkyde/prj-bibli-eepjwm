@@ -23,6 +23,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
     public TelaCadastroIdioma() {
         initComponents();
         this.setLocationRelativeTo(null);
+        Util.setAcessibilidade(this);
     }
 
     /**

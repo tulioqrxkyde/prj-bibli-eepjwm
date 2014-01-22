@@ -8,12 +8,8 @@ import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.leitor.Leitor;
 import fvsosp.leitor.LeitorRN;
 import fvsosp.leitor.LeitorTableModel;
-import fvsosp.sessao.Sessao;
-import fvsosp.sessao.SessaoRN;
-import fvsosp.tipoitem.TipoItem;
-import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.ConnectionFactory;
-import java.net.URL;
+import fvsosp.util.Util;
 import java.sql.Connection;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +21,6 @@ import javax.swing.JDialog;
 import javax.swing.JOptionPane;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
@@ -47,6 +42,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         setModal(true);
         setLocationRelativeTo(null);
         setTitle("Relatório Extrato de Leitor");
+        Util.setAcessibilidade(this);
     }
 
     /**
