@@ -56,9 +56,9 @@ $P!{sql}]]>
 				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
 			</textField>
 			<componentElement>
-				<reportElement uuid="8906c66a-6129-463a-beb8-6006c8cb0219" x="105" y="40" width="162" height="38"/>
+				<reportElement uuid="8906c66a-6129-463a-beb8-6006c8cb0219" x="59" y="40" width="250" height="38"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="2of7" drawText="false" checksumRequired="false">
-					<jr:codeExpression><![CDATA[$F{tombo}]]></jr:codeExpression>
+					<jr:codeExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})   ]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
 			<textField>
@@ -66,7 +66,7 @@ $P!{sql}]]>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tombo}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})   ]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
