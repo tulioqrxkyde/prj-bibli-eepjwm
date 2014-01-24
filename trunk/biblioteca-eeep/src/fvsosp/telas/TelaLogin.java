@@ -110,7 +110,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
         jLabel5.setText("Versão: 1.0");
 
-        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/bibliotecas.jpg"))); // NOI18N
+        Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/bibliotecasx.jpg"))); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
