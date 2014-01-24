@@ -36,7 +36,7 @@ public class Acervo implements Serializable{
     }
     
     public String toString() {
-        return idAcervo + " | " + tituloObra;
+        return getIdAcervo() + " | " + tituloObra;
     }
 
     @Id
@@ -228,11 +228,6 @@ public class Acervo implements Serializable{
     /*** @retorna o id do Acervo ***/
     public short getIdAcervo() {
         return idAcervo;
-    }
-
-    /*** @seta idAcervo the idAcervo to set ***/
-    public void setIdAcervo(short idAcervo) {
-        this.idAcervo = idAcervo;
     }
 
     /*** @retorna o Título da Obra ***/
