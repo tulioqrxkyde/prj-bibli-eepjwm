@@ -13,6 +13,7 @@ import java.text.DecimalFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import javax.swing.AbstractAction;
@@ -182,4 +183,13 @@ public class Util {
             }
         });
     }
+    
+    public static boolean chkSize(List lista, String type) {
+        if(lista.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não foram encontrados registros para: "+type);
+            return false;
+        }
+        else return true;
+    }
+    
 }

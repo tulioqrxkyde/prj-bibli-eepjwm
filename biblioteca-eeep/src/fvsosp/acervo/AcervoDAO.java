@@ -6,13 +6,13 @@ package fvsosp.acervo;
 
 import fvsosp.autor.Autor;
 import fvsosp.biblioteca.Biblioteca;
-import fvsosp.cidade.Cidade;
 import fvsosp.editora.Editora;
 import fvsosp.sessao.Sessao;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.*;
+import javax.swing.JOptionPane;
 import org.hibernate.*;
 import org.hibernate.criterion.*;
 
@@ -31,8 +31,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("tituloObra", titulo
-                    ,MatchMode.ANYWHERE)).addOrder(Order.asc("tituloObra")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("tituloObra", titulo, MatchMode.ANYWHERE)).addOrder(Order.asc("tituloObra")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Título. Erro: " + e.getMessage());
         } finally {
@@ -40,14 +39,13 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         }
         return acervo;
     }
-    
+
     public Acervo pesquisarTitulodaObraEq(String titulo) {
         Acervo acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("tituloObra", titulo
-                    )).addOrder(Order.asc("tituloObra")).uniqueResult();
+            acervo = (Acervo) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("tituloObra", titulo)).addOrder(Order.asc("tituloObra")).uniqueResult();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Título. Erro: " + e.getMessage());
         } finally {
@@ -117,7 +115,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.like("anoEdicao", String.valueOf(anos), MatchMode.ANYWHERE)).addOrder(Order.asc("anoEdicao")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("anoEdicao", anos)).addOrder(Order.asc("anoEdicao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Ano de Edição. Erro: " + e.getMessage());
         } finally {
@@ -182,6 +180,24 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * @param query
+     * @return Lista de Acervos que contenham a query(Autor) 
+     */
+    public List pesquisarAutorQuery(String query) {
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery querySQL = getSessao().createSQLQuery(query);
+            return querySQL.list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao consultar por Autor. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return null;
+    }
+
     public List<Acervo> pesquisarEditora(Editora editora) {
         List<Acervo> acervo = null;
         try {
@@ -224,6 +240,28 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * @param query
+     * @return Lista de Acervos que contenham a query(PalavraChave) 
+     */
+    public List pesquisarPalavrasChavesQuery(String query) {
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery querySQL = getSessao().createSQLQuery(query);
+            return querySQL.list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao consultar por Palavras Chaves. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return null;
+    }
+
+    /**
+     * @param codigo
+     * @return Acervo
+     */
     public Acervo pesquisarCodigo(short codigo) {
         Acervo acervo = null;
         try {
@@ -241,6 +279,9 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * @return Lista de Acervos
+     */
     public List relatorioAcervo() {
         String text = "select ac.idAcervo, "
                 + "ac.tituloObra, "
@@ -267,13 +308,31 @@ public class AcervoDAO extends GenericDAO<Acervo> {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
             SQLQuery query = getSessao()
-                    .createSQLQuery("select * from acervo ac ").addEntity("acervo",Acervo.class);
+                    .createSQLQuery("select * from acervo ac ").addEntity("acervo", Acervo.class);
             //query.addEntity(Acervo.class
 
-            
+
             return query.list();
         } catch (HibernateException e) {
-            System.out.println("Erro ao localizar o Leitor. Erro: " + e.getMessage());
+            System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
+        } finally {
+            this.getSessao().close();
+        }
+        return null;
+    }
+
+    /**
+     * @param query
+     * @return Lista de Acervos que contenham a query
+     */
+    public List consultaAcervo(String query) {
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+            SQLQuery querySQL = getSessao().createSQLQuery(query).addEntity(Acervo.class);
+            return querySQL.list();
+        } catch (HibernateException e) {
+            System.out.println("Erro ao consultar por Acervo. Erro: " + e.getMessage());
         } finally {
             this.getSessao().close();
         }
