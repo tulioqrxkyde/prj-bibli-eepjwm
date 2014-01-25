@@ -15,10 +15,13 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.Util;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 
 /**
  *
@@ -31,6 +34,7 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
      */
     public TelaConsultaAcervo() {
         initComponents();
+        Util.setAcessibilidade(this);
     }
 
     @SuppressWarnings("unchecked")
@@ -124,7 +128,15 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
-        tbConsulta.setRowSelectionAllowed(false);
+        tbConsulta.setSurrendersFocusOnKeystroke(true);
+        tbConsulta.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbConsultaKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tbConsultaKeyReleased(evt);
+            }
+        });
         scrollPane.setViewportView(tbConsulta);
 
         pn2.add(scrollPane);
@@ -405,22 +417,34 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
                     tbConsulta.setValueAt((Acervo) acervoRN.pesquisarCodigo(Short.parseShort(resultadosAutor
                             .get(x).toString())), x, 0);
                 }
-            } 
+            }
         } else if (resultadosPalavrasChaves.size() > 0 && tfAutor.getText().isEmpty()) {
             for (int x = 0; x < resultadosPalavrasChaves.size(); x++) {
                 tbConsulta.setValueAt((Acervo) acervoRN.pesquisarCodigo(Short.parseShort(resultadosPalavrasChaves.get(x).toString())),
                         x, 0);
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Nenhum acervo foi encontrado.");
+            return;
         }
-        else {
-                JOptionPane.showMessageDialog(rootPane, "Nenhum acervo foi encontrado.");
-                return;
-            }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         dispose();
     }//GEN-LAST:event_btSairActionPerformed
+
+    private void tbConsultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbConsultaKeyReleased
+        
+    }//GEN-LAST:event_tbConsultaKeyReleased
+
+    private void tbConsultaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbConsultaKeyPressed
+        tbConsulta.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "none");
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER && tbConsulta.getValueAt(tbConsulta.getSelectedRow(), 0) != null) {
+            TelaConsultaResultados t = new TelaConsultaResultados((tbConsulta.
+                    getValueAt((tbConsulta.getSelectedRow()), 0).toString()));
+            t.setVisible(true);
+        }
+    }//GEN-LAST:event_tbConsultaKeyPressed
 
     private void limpar(boolean... clearFields) {
         for (int x = 0; x < tbConsulta.getRowCount(); x++) {
