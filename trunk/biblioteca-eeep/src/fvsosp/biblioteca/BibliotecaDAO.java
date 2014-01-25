@@ -28,7 +28,7 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
             this.setTransacao(getSessao().beginTransaction());
             /*
              * pesquisa uma biblioteca por descricao
-             * usando o like, o MatchMode.ANYWHERE quer dizer
+             * usando o ilike, o MatchMode.ANYWHERE quer dizer
              * que a sequência de caracteres passada na String descricao
              * pode ser encontrada em qualquer lugar, representa o '%descricao%', ordenando
              * de forma crescente por descicao

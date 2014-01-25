@@ -32,7 +32,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setTransacao(getSessao().beginTransaction());
 
             leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
-                    add(Restrictions.like("nome", nome, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
         } catch (HibernateException e) {
@@ -68,7 +68,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setTransacao(getSessao().beginTransaction());
 
             leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
-                    add(Restrictions.like("email", email, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("email", email, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("email")).list();
 
         } catch (HibernateException e) {
@@ -87,7 +87,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setTransacao(getSessao().beginTransaction());
 
             leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
-                    add(Restrictions.like("dataNascimento", String.valueOf(dataNascimento), MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("dataNascimento", String.valueOf(dataNascimento), MatchMode.ANYWHERE)).
                     addOrder(Order.asc("dataNascimento")).list();
 
         } catch (HibernateException e) {
@@ -105,7 +105,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setTransacao(getSessao().beginTransaction());
 
             leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
-                    add(Restrictions.like("telefone", telefone, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("telefone", telefone, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
         } catch (HibernateException e) {
@@ -124,7 +124,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setTransacao(getSessao().beginTransaction());
 
             leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
-                    add(Restrictions.like("celular", celular, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("celular", celular, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
         } catch (HibernateException e) {
@@ -143,7 +143,7 @@ public class LeitorDAO extends GenericDAO<Leitor> {
             this.setTransacao(getSessao().beginTransaction());
 
             leitores = (List<Leitor>) getSessao().createCriteria(Leitor.class).
-                    add(Restrictions.like("matricula", matricula, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("matricula", matricula, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("matricula")).list();
 
         } catch (HibernateException e) {

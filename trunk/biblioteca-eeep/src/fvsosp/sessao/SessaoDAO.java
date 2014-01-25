@@ -43,8 +43,7 @@ public class SessaoDAO extends GenericDAO<Sessao> {
         return sessao;
 
     }
-    
-        
+
     public List<Sessao> pesquisarDescricaoLike(String descricao) {
         List<Sessao> sessao = null;
         try {
@@ -52,7 +51,7 @@ public class SessaoDAO extends GenericDAO<Sessao> {
             this.setTransacao(getSessao().beginTransaction());
 
             sessao = (List<Sessao>) getSessao().createCriteria(Sessao.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {

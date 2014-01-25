@@ -32,7 +32,7 @@ public class AutorDAO extends GenericDAO<Autor> {
             this.setTransacao(getSessao().beginTransaction());
 
             autores = (List<Autor>) getSessao().createCriteria(Autor.class).
-                    add(Restrictions.like("nome", nome, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("nome", nome, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("nome")).list();
 
         } catch (HibernateException e) {
@@ -52,7 +52,7 @@ public class AutorDAO extends GenericDAO<Autor> {
             this.setTransacao(getSessao().beginTransaction());
 
             autores = (List<Autor>) getSessao().createCriteria(Autor.class).
-                    add(Restrictions.like("sobreOAutor", sobreOAutor, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("sobreOAutor", sobreOAutor, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("sobreOAutor")).list();
 
         } catch (HibernateException e) {

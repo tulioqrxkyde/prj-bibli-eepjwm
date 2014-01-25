@@ -5,7 +5,6 @@
 package fvsosp.palavraschaves;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.leitor.Leitor;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.List;
@@ -31,7 +30,7 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
             this.setTransacao(getSessao().beginTransaction());
 
             PalavrasChavess = (List<PalavrasChaves>) getSessao().createCriteria(PalavrasChaves.class).
-                    add(Restrictions.like("descricao", descricao, MatchMode.ANYWHERE)).
+                    add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).
                     addOrder(Order.asc("descricao")).list();
 
         } catch (HibernateException e) {
