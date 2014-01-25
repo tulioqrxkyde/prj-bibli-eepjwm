@@ -65,13 +65,10 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
      */
     public TelaCadastroEmprestimos() {
         initComponents();
-        setLocationRelativeTo(null);
         tfDataEmprestimoDia.setText("");
         ExemplarRN exemplarRN = new ExemplarRN();
-        setModal(true);
         lblDevolucao.setText("");
         tfTombo.setDocument(new OnlyNumberField());
-        Util.setAcessibilidade(this);
     }
 
     public void atualizaTabela() {
@@ -112,6 +109,8 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         lblDevolucao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel9.setBackground(new java.awt.Color(59, 89, 152));
@@ -333,6 +332,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         jPanel7.getAccessibleContext().setAccessibleParent(this);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btNovo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovo5ActionPerformed

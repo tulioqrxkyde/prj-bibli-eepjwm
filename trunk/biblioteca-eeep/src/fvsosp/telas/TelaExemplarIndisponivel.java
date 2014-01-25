@@ -24,12 +24,8 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
      */
     public TelaExemplarIndisponivel() {
         initComponents();
-        setTitle("Exemplar Disponível");
-        setModal(true);
-        setLocationRelativeTo(null);
         limpaCampos();
         tfTombo.setDocument(new OnlyNumberField());
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -63,6 +59,9 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         jLabel1.setText("jLabel1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Exemplar Disponível");
+        setModal(true);
+        setResizable(false);
 
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -162,7 +161,10 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE)
         );
 
+        Util.setAcessibilidade(this);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -225,7 +227,7 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

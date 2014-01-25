@@ -23,7 +23,6 @@ public class TelaConsultaResultados extends javax.swing.JDialog {
 
     public TelaConsultaResultados(String ac){
         this();
-        Util.setAcessibilidade(this);
         String s = ac.substring(0, 1);
         AcervoRN acervoRN = new AcervoRN();
         Acervo acr = (Acervo) acervoRN.pesquisarCodigo((short)Short.valueOf(s));
@@ -465,8 +464,7 @@ public class TelaConsultaResultados extends javax.swing.JDialog {
                     .addComponent(jScrollPane1)
                     .addGroup(jPanel4Layout.createSequentialGroup()
                         .addComponent(jLabel45)
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addGap(215, 215, 215)))
+                        .addGap(0, 215, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
@@ -526,6 +524,8 @@ public class TelaConsultaResultados extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
+
+        Util.setAcessibilidade(this);
 
         pack();
         setLocationRelativeTo(null);

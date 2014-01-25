@@ -9,7 +9,6 @@ import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
 import fvsosp.util.FormataTamanhoColunasJTable;
 import fvsosp.util.Util;
 import java.util.List;
-import java.util.Set;
 
 /**
  *
@@ -30,13 +29,10 @@ public class TelaConsultaLivrosEmprestados extends javax.swing.JDialog {
     public TelaConsultaLivrosEmprestados() {
         initComponents();
         setTitle("Livros Emprestados a "+listaExeEmp.get(0).getEmprestimo().getLeitor().getNome());
-        setModal(true);
-        setLocationRelativeTo(null);
         
         ExemplaresEmprestadosTableModel exeempTM = new ExemplaresEmprestadosTableModel(listaExeEmp);
         tbExeEmprestados.setModel(exeempTM);
         FormataTamanhoColunasJTable.packColumns(tbExeEmprestados, 1);
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -56,6 +52,8 @@ public class TelaConsultaLivrosEmprestados extends javax.swing.JDialog {
         tbExeEmprestados = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setModal(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(432, 177));
@@ -109,7 +107,10 @@ public class TelaConsultaLivrosEmprestados extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        Util.setAcessibilidade(this);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed

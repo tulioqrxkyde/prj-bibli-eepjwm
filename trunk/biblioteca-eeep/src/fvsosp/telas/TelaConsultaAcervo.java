@@ -37,16 +37,6 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
      */
     public TelaConsultaAcervo() {
         initComponents();
-        Util.setAcessibilidade(this);
-        this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
-        this.getRootPane().getRootPane().getActionMap().put("ENTER", new AbstractAction("ENTER") {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                if (JOptionPane.showConfirmDialog(null, "Deseja pesquisar?", "Pesquisar por Acervo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
-                    btPesquisarActionPerformed(null);
-                }
-            }
-        });
     }
 
     @SuppressWarnings("unchecked")
@@ -254,6 +244,8 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
                 .addComponent(pn2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0))
         );
+
+        Util.setAcessibilidade(this);     this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");         this.getRootPane().getRootPane().getActionMap().put("ENTER", new AbstractAction("ENTER") {             @Override             public void actionPerformed(ActionEvent e) {                 if (JOptionPane.showConfirmDialog(null, "Deseja pesquisar?", "Pesquisar por Acervo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {                     btPesquisarActionPerformed(null);                 }             }         });
 
         pack();
         setLocationRelativeTo(null);

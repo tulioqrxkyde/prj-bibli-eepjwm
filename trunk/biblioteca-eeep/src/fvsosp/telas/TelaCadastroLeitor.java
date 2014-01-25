@@ -32,9 +32,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
      */
     public TelaCadastroLeitor() {
         initComponents();
-        setLocationRelativeTo(null);
         tfMatricula.setDocument(new OnlyNumberField());
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -95,6 +93,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
 
         setTitle("OSBiblio - Leitor");
         setModal(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -343,8 +342,10 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         jPanel1.add(tbLeitor, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, 460, 310));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 460, 380));
+        Util.setAcessibilidade(this);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed

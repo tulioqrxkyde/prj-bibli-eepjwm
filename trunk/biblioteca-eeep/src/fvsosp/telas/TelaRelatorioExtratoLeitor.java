@@ -39,10 +39,6 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
      */
     public TelaRelatorioExtratoLeitor() {
         initComponents();
-        setModal(true);
-        setLocationRelativeTo(null);
-        setTitle("Relatório Extrato de Leitor");
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -68,6 +64,9 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         tfDataFinal = new javax.swing.JFormattedTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Relatório Extrato de Leitor");
+        setModal(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(432, 177));
@@ -159,7 +158,10 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
         );
 
+        Util.setAcessibilidade(this);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
