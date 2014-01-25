@@ -40,6 +40,7 @@ import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
+import javax.swing.JTable;
 import javax.swing.KeyStroke;
 
 /**
@@ -61,12 +62,20 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
      */
     public TelaCadastroAcervo() {
         initComponents();
-        Util.setAcessibilidade(this);
+        //Util.setAcessibilidade(this);
         tfPaginas.setDocument(new OnlyNumberField());
         tffAnoEdicao.setDocument(new OnlyNumberField(4));
         tfcutter2.setDocument(new LimataDocumentoJTextField(5));
         tfEdicao.setDocument(new OnlyNumberField());
         tfqtdExemplar.setDocument(new OnlyNumberField(10));
+        setModal(true);
+        tbAutores.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbExemplares.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbPalavrasChaves.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        FormataTamanhoColunasJTable.packColumns(tbAutores, 1);
+        FormataTamanhoColunasJTable.packColumns(tbPalavrasChaves, 1);
+        FormataTamanhoColunasJTable.packColumns(tbExemplares, 1);
+        
     }
 
     /**
@@ -150,7 +159,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Acervo");
-        setModal(true);
         setResizable(false);
 
         jPanel1.setLayout(null);
