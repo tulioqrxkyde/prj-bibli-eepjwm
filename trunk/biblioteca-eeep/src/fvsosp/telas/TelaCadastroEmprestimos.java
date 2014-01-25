@@ -7,7 +7,6 @@ package fvsosp.telas;
 import fvsosp.biblioteca.BibliotecaRN;
 import fvsosp.emprestimo.Emprestimo;
 import fvsosp.emprestimo.EmprestimoRN;
-import fvsosp.emprestimo.EmprestimoTableModel;
 import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
 import fvsosp.exemplaremprestimos.ExemplarEmprestimosRN;
 import fvsosp.emprestimo.ItensEmprestimoTableModel;
@@ -23,13 +22,12 @@ import fvsosp.util.ConnectionFactory;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.UsuarioAtivo;
 import fvsosp.util.Util;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
@@ -110,7 +108,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         tfLeitor = new javax.swing.JTextField();
         btPesquisar6 = new javax.swing.JButton();
         tfTombo = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
+        btAdicionar = new javax.swing.JButton();
         lblDevolucao = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -227,11 +225,16 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         });
 
         tfTombo.setToolTipText("Informe o tombo");
+        tfTombo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                tfTomboKeyReleased(evt);
+            }
+        });
 
-        jButton1.setText("Adicionar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btAdicionar.setText("Adicionar");
+        btAdicionar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btAdicionarActionPerformed(evt);
             }
         });
 
@@ -270,7 +273,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfTombo, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton1)
+                        .addComponent(btAdicionar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(RemoveAcr))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
@@ -312,7 +315,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelDataEmprestimo7)
                     .addComponent(tfTombo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
+                    .addComponent(btAdicionar)
                     .addComponent(RemoveAcr))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -556,7 +559,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
 
     }
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void btAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAdicionarActionPerformed
 
 
         if (!tfTombo.getText().equals("")) {
@@ -741,13 +744,18 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Preencha o Tombo!", "OSBiblio", JOptionPane.INFORMATION_MESSAGE);
         }
         tfTombo.setText("");
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_btAdicionarActionPerformed
 
     private void lblDevolucaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lblDevolucaoMouseClicked
         // TODO add your handling code here:
         List<ExemplarEmprestimos> lista = emprestimoRN.pesquisarExemplaresEmprestados(leitor);
         TelaConsultaLivrosEmprestados.livrosEmprestados(lista);
     }//GEN-LAST:event_lblDevolucaoMouseClicked
+
+    private void tfTomboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTomboKeyReleased
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
+            btAdicionarActionPerformed(null);
+    }//GEN-LAST:event_tfTomboKeyReleased
 
     private void limpaCampos() {
         emprestimo = null;
@@ -805,11 +813,11 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton RemoveAcr;
+    private javax.swing.JButton btAdicionar;
     private javax.swing.JButton btNovo5;
     private javax.swing.JButton btPesquisar6;
     private javax.swing.JButton btSair5;
     private javax.swing.JButton btSalvar5;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JPanel jPanel7;

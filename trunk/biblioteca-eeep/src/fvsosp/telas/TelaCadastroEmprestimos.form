@@ -101,7 +101,7 @@
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="tfTombo" min="-2" pref="86" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="jButton1" min="-2" max="-2" attributes="0"/>
+                          <Component id="btAdicionar" min="-2" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="RemoveAcr" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -153,7 +153,7 @@
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="labelDataEmprestimo7" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="tfTombo" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="RemoveAcr" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -333,13 +333,16 @@
           <Properties>
             <Property name="toolTipText" type="java.lang.String" value="Informe o tombo"/>
           </Properties>
+          <Events>
+            <EventHandler event="keyReleased" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tfTomboKeyReleased"/>
+          </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="btAdicionar">
           <Properties>
             <Property name="text" type="java.lang.String" value="Adicionar"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btAdicionarActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblDevolucao">
