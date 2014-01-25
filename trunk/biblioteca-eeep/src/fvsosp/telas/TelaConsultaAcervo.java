@@ -15,9 +15,12 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.Util;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.AbstractAction;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
@@ -35,6 +38,15 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
     public TelaConsultaAcervo() {
         initComponents();
         Util.setAcessibilidade(this);
+        this.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "ENTER");
+        this.getRootPane().getRootPane().getActionMap().put("ENTER", new AbstractAction("ENTER") {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (JOptionPane.showConfirmDialog(null, "Deseja pesquisar?", "Pesquisar por Acervo", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                    btPesquisarActionPerformed(null);
+                }
+            }
+        });
     }
 
     @SuppressWarnings("unchecked")
@@ -129,12 +141,14 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
             }
         });
         tbConsulta.setSurrendersFocusOnKeystroke(true);
+        tbConsulta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbConsultaMouseClicked(evt);
+            }
+        });
         tbConsulta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbConsultaKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbConsultaKeyReleased(evt);
             }
         });
         scrollPane.setViewportView(tbConsulta);
@@ -425,17 +439,12 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Nenhum acervo foi encontrado.");
-            return;
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         dispose();
     }//GEN-LAST:event_btSairActionPerformed
-
-    private void tbConsultaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbConsultaKeyReleased
-        
-    }//GEN-LAST:event_tbConsultaKeyReleased
 
     private void tbConsultaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbConsultaKeyPressed
         tbConsulta.getInputMap(JTable.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT).put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "none");
@@ -445,6 +454,14 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
             t.setVisible(true);
         }
     }//GEN-LAST:event_tbConsultaKeyPressed
+
+    private void tbConsultaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbConsultaMouseClicked
+        if (evt.getClickCount() == 2 && tbConsulta.getValueAt(tbConsulta.getSelectedRow(), 0) != null) {
+            TelaConsultaResultados t = new TelaConsultaResultados((tbConsulta.
+                    getValueAt((tbConsulta.getSelectedRow()), 0).toString()));
+            t.setVisible(true);
+        }
+    }//GEN-LAST:event_tbConsultaMouseClicked
 
     private void limpar(boolean... clearFields) {
         for (int x = 0; x < tbConsulta.getRowCount(); x++) {

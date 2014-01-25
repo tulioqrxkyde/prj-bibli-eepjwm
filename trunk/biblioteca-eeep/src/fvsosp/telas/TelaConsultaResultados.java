@@ -5,10 +5,8 @@
 package fvsosp.telas;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.acervo.AcervoDAO;
 import fvsosp.acervo.AcervoRN;
 import fvsosp.util.Util;
-import javax.swing.JOptionPane;
 
 /**
  *
@@ -21,35 +19,40 @@ public class TelaConsultaResultados extends javax.swing.JDialog {
      */
     public TelaConsultaResultados() {
         initComponents();
-        Util.setAcessibilidade(this);
     }
 
     public TelaConsultaResultados(String ac){
         this();
+        Util.setAcessibilidade(this);
         String s = ac.substring(0, 1);
         AcervoRN acervoRN = new AcervoRN();
         Acervo acr = (Acervo) acervoRN.pesquisarCodigo((short)Short.valueOf(s));
         tfTitulo.setText(acr.getTituloObra());
-        tfSubTitulo.setText(acr.getSubtituloObra());
+        tfSubTitulo.setText(!acr.getSubtituloObra().isEmpty() ?
+                acr.getSubtituloObra() : "Nenhum Subtítulo foi informado no cadastro.");
         tfIsbn.setText(acr.getIsbn());
         tfVolume.setText(acr.getVolume());
-        tfEdicao.setText(acr.getEdicao());
+        tfEdicao.setText(!acr.getEdicao().isEmpty() ? acr.getEdicao() : "Nenhuma Edição foi informada no cadastro.");
         tffAnoEdicao.setText(String.valueOf(acr.getAnoEdicao()));
-        tfCutter.setText(acr.getCutter());
-        tfLocalizacao.setText(acr.getLocalizacao());
+        tfCutter.setText(!acr.getCutter().isEmpty() ? acr.getCutter() : "Nenhum Cutter foi informado no cadastro.");
+        tfLocalizacao.setText(!acr.getLocalizacao().isEmpty() ?
+                acr.getLocalizacao() : "Nenhuma Localização foi informada no cadastro.");
         tfPalavrasChaves.setText(acr.getPalavrasChaves().toString());
         tfAutores.setText(acr.getAutores().toString());
         tfExemplares.setText(acr.getExemplares().toString());
-        tfAcabamentoCapa.setText(acr.getAcabamentoCapa());
-        tfAcabamentoMiolo.setText(acr.getAcabamentoMiolo());
+        tfAcabamentoCapa.setText(!acr.getAcabamentoCapa().isEmpty() ?
+                acr.getAcabamentoCapa() : "Nenhum Acabamento de Capa foi informado no cadastro." );
+        tfAcabamentoMiolo.setText(!acr.getAcabamentoMiolo().isEmpty() ?
+                acr.getAcabamentoMiolo() : "Nenhum Acabamento de Miolo foi informado no cadastro.");
         tfPaginas.setText(String.valueOf(acr.getNumeroPaginas()));
-        tfPeso.setText(String.valueOf(acr.getPeso()));
+        tfPeso.setText(String.valueOf(acr.getPeso()).isEmpty() ? String.valueOf(acr.getPeso()) : "Peso não foi informado no cadastro.");
         tfEditora.setText(acr.getEditora().getNome());
         tfIdioma.setText(String.valueOf(acr.getIdioma()));
         tfSessao.setText(acr.getSessao().getDescricao());
         tfBiblioteca.setText(acr.getBiblioteca().getDescricao());
         tfTipoItem.setText(acr.getTipoItem().getDescricao());
-        tfInformacoesAdicionais.setText(acr.getInformacoesAdicionais());
+        tfInformacoesAdicionais.setText(!acr.getInformacoesAdicionais().isEmpty() ?
+                acr.getInformacoesAdicionais() : "Nenhuma informação foi adicionada no cadastro.");
     }   
     
     /**
