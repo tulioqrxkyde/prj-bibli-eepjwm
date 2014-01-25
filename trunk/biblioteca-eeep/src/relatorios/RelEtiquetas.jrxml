@@ -7,11 +7,14 @@
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
 	<queryString>
-		<![CDATA[select exe.tombo,a.tituloobra,coalesce(a.cutter,"") as cutter,
+		<![CDATA[select exe.exemplar,exe.tombo,a.tituloobra,coalesce(a.cutter,"") as cutter,
 	case exe.situacao when 4 then "**Cativo**" else "Disponível" end as situacao from exemplar exe
 inner join acervo a on exe.idacervo=a.idacervo
 $P!{sql}]]>
 	</queryString>
+	<field name="exemplar" class="java.lang.Integer">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="tombo" class="java.lang.Integer">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -49,8 +52,8 @@ $P!{sql}]]>
 				<textFieldExpression><![CDATA[$F{tituloobra}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b223a56b-fa42-410c-b4b6-4f14134d6fd0" x="17" y="20" width="240" height="20"/>
-				<textElement textAlignment="Center">
+				<reportElement uuid="b223a56b-fa42-410c-b4b6-4f14134d6fd0" x="129" y="20" width="128" height="20"/>
+				<textElement textAlignment="Left">
 					<font size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
@@ -58,7 +61,7 @@ $P!{sql}]]>
 			<componentElement>
 				<reportElement uuid="8906c66a-6129-463a-beb8-6006c8cb0219" x="59" y="40" width="250" height="38"/>
 				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="2of7" drawText="false" checksumRequired="false">
-					<jr:codeExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})   ]]></jr:codeExpression>
+					<jr:codeExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})]]></jr:codeExpression>
 				</jr:barbecue>
 			</componentElement>
 			<textField>
@@ -66,7 +69,14 @@ $P!{sql}]]>
 				<textElement textAlignment="Center">
 					<font size="12"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})   ]]></textFieldExpression>
+				<textFieldExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb35d672-2794-4faa-88f4-de4cd4739b53" x="17" y="20" width="112" height="20"/>
+				<textElement textAlignment="Right">
+					<font size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ex.:" + $F{exemplar}+ " "]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

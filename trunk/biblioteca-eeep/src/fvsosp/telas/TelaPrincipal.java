@@ -40,7 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?", ((UsuarioAtivo.getLogin() != null) ? UsuarioAtivo.getLogin() : "?")));
         itemCadUsuario.setVisible(UsuarioAtivo.isAdministrador());
-        itemIndisponivelExemplar.setVisible(UsuarioAtivo.isAdministrador());
+        //itemIndisponivelExemplar.setVisible(UsuarioAtivo.isAdministrador());
     }
 
     /**
@@ -294,6 +294,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuConsulta.setText("Consulta");
 
         itemConsultarAcervo.setText("Acervo");
+        itemConsultarAcervo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemConsultarAcervoActionPerformed(evt);
+            }
+        });
         menuConsulta.add(itemConsultarAcervo);
 
         BarradeMenuPrincipal.add(menuConsulta);
@@ -460,6 +465,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         TelaRelatorioEtiquetas telaReltique = new TelaRelatorioEtiquetas();
         telaReltique.setVisible(true);
     }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void itemConsultarAcervoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemConsultarAcervoActionPerformed
+        // TODO add your handling code here:
+        TelaConsultaAcervo tCA = new TelaConsultaAcervo();
+        tCA.setVisible(true);
+    }//GEN-LAST:event_itemConsultarAcervoActionPerformed
 
     /**
      * @param args the command line arguments

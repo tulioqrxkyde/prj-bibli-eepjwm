@@ -208,7 +208,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
 
 
             texto += "Leitor: " + leitor.getNome() + "; Dt.Inicial: "
-                    + tfDataInicial.getText() + "; Data Final: " + tfDataInicial.getText();
+                    + tfDataInicial.getText() + "; Data Final: " + tfDataFinal.getText();
             sql += " order by exeem.dataEmprestimo,exeem.operacao,ac.tituloObra,ex.tombo";
             parametros.put("sql", sql);
             BibliotecaRN bRN = new BibliotecaRN();
