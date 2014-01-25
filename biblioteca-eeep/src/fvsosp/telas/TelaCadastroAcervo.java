@@ -62,7 +62,6 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     public TelaCadastroAcervo() {
         initComponents();
         Util.setAcessibilidade(this);
-        this.setLocationRelativeTo(null);
         tfPaginas.setDocument(new OnlyNumberField());
         tffAnoEdicao.setDocument(new OnlyNumberField(4));
         tfcutter2.setDocument(new LimataDocumentoJTextField(5));
@@ -676,6 +675,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed

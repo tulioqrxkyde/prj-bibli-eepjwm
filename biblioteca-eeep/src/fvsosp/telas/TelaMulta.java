@@ -30,13 +30,9 @@ public class TelaMulta extends javax.swing.JDialog {
      */
     public TelaMulta() {
         initComponents();
-        setTitle("Multa");
-        setLocationRelativeTo(null);
-        setModal(true);
         tbMulta.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         FormataTamanhoColunasJTable.packColumns(tbMulta, 1);
         atualizaTabela();
-        Util.setAcessibilidade(this);
     }
     
     public void atualizaTabela(){
@@ -66,6 +62,9 @@ public class TelaMulta extends javax.swing.JDialog {
         tbMulta = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Multa");
+        setModal(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -139,8 +138,10 @@ public class TelaMulta extends javax.swing.JDialog {
         jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 500, 190));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 523, 350));
+        Util.setAcessibilidade(this);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btEditarActionPerformed

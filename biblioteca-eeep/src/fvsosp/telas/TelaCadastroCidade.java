@@ -23,9 +23,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
      */
     public TelaCadastroCidade() {
         initComponents();
-        setLocationRelativeTo(null);
         tfCodIBGE.setDocument(new OnlyNumberField());
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -144,8 +142,10 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         jPanel1.add(tfCodIBGE, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 120, -1));
 
         getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 30, 430, 240));
+        Util.setAcessibilidade(this);
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed

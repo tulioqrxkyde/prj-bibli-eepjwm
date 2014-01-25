@@ -21,11 +21,9 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
      */
     public TelaCadastroGruposLeitores() {
         initComponents();
-        this.setLocationRelativeTo(null);
         tfDiasGruposLeitores.setDocument(new OnlyNumberField(2));
         //tfMultaGruposLeitores.setDocument(new OnlyNumberField());
         tfQuantidadeGruposLeitores1.setDocument(new OnlyNumberField(2));
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -56,9 +54,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Grupos de Leitores");
-        setMaximumSize(new java.awt.Dimension(32767, 32767));
         setModal(true);
-        setPreferredSize(new java.awt.Dimension(432, 347));
         setResizable(false);
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -212,7 +208,10 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
+        Util.setAcessibilidade(this);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed

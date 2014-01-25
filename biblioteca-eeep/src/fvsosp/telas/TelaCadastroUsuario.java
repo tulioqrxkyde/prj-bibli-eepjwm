@@ -26,10 +26,6 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
      */
     public TelaCadastroUsuario() {
         initComponents();
-        setTitle("OSBiblio - Usuario");
-        setModal(true);
-        btExcluir.setEnabled(false);
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -56,6 +52,11 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         btSair = new javax.swing.JButton();
         lbSenha1 = new javax.swing.JLabel();
         tfConfirmarSenha = new javax.swing.JPasswordField();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("OSBiblio - Usuário");
+        setModal(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(51, 89, 152));
 
@@ -217,6 +218,8 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
+
+        Util.setAcessibilidade(this);
 
         pack();
         setLocationRelativeTo(null);

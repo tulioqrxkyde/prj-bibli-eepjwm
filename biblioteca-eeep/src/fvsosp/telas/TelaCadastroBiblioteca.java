@@ -22,8 +22,6 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
      */
     public TelaCadastroBiblioteca() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        Util.setAcessibilidade(this);
     }
 
     /**
@@ -166,7 +164,10 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
+        Util.setAcessibilidade(this);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed

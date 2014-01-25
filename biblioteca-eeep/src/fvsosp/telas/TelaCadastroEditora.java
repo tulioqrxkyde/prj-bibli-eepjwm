@@ -24,8 +24,6 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
      */
     public TelaCadastroEditora() {
         initComponents();
-        this.setLocationRelativeTo(null);
-        Util.setAcessibilidade(this);
     }
 
     public void limpaCampos() {
@@ -188,7 +186,10 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 213, Short.MAX_VALUE)
         );
 
+        Util.setAcessibilidade(this);
+
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
