@@ -83,6 +83,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         itemRelatorioFinanceiro = new javax.swing.JMenuItem();
         itemRelMulta = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem4 = new javax.swing.JMenuItem();
         ItemSair = new javax.swing.JMenu();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -339,10 +341,32 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         BarradeMenuPrincipal.add(itemRelatorioUsuario);
 
+        jMenu1.setText("Sobre");
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
+
+        jMenuItem4.setText("OurSourceProjects");
+        jMenuItem4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem4ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem4);
+
+        BarradeMenuPrincipal.add(jMenu1);
+
         ItemSair.setText("Sair");
         ItemSair.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 ItemSairMouseClicked(evt);
+            }
+        });
+        ItemSair.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ItemSairActionPerformed(evt);
             }
         });
         BarradeMenuPrincipal.add(ItemSair);
@@ -472,6 +496,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tCA.setVisible(true);
     }//GEN-LAST:event_itemConsultarAcervoActionPerformed
 
+    private void ItemSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ItemSairActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ItemSairActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+
+    }//GEN-LAST:event_jMenu1ActionPerformed
+
+    private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
+        TelaSobre tsobre = new TelaSobre();
+    tsobre.setVisible(true);
+    }//GEN-LAST:event_jMenuItem4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -529,9 +566,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemRelatorioFinanceiro;
     private javax.swing.JMenu itemRelatorioUsuario;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JMenu jMenu1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
