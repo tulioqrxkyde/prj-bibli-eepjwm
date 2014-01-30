@@ -69,6 +69,11 @@ public class TelaPesquisa extends javax.swing.JDialog {
         btCancelar = new javax.swing.JButton();
 
         setTitle("Tela de Pesquisa");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel4.setBackground(new java.awt.Color(59, 89, 152));
@@ -166,7 +171,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private void procuraTable(String nome) {
         for (int linha = 0; linha < tbPesquisa.getRowCount(); linha++) {
             String nomeTabela = String.valueOf(tbPesquisa.getValueAt(linha, 1));
-            if (nomeTabela.startsWith(nome.toLowerCase())) {
+            if (nomeTabela.toLowerCase().startsWith(nome.toLowerCase())) {
                 tbPesquisa.setRowSelectionInterval(linha, linha);
                 JViewport viewport = (JViewport) tbPesquisa.getParent();
                 Rectangle rect = tbPesquisa.getCellRect(linha, 1, true);
@@ -208,6 +213,10 @@ public class TelaPesquisa extends javax.swing.JDialog {
     private void tfPesquisarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyReleased
         procuraTable(tfPesquisar.getText());
     }//GEN-LAST:event_tfPesquisarKeyReleased
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        o = null;
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
