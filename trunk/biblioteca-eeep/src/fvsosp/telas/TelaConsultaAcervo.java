@@ -405,7 +405,6 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
         } else if (resultadosAutor.size() > 0) {
             boolean finded = false;
             if (!resultadosPalavrasChaves.isEmpty()) {
-
                 loops:
                 for (Object autor : resultadosAutor) {
                     for (Object palavra : resultadosPalavrasChaves) {
@@ -418,7 +417,7 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
                     }
                 }
             }
-            if (finded) {
+            if (finded || resultadosAutor.size() > 0) {
                 for (int x = 0; x < resultadosAutor.size(); x++) {
                     tbConsulta.setValueAt((Acervo) acervoRN.pesquisarCodigo(Short.parseShort(resultadosAutor
                             .get(x).toString())), x, 0);
