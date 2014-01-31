@@ -2,6 +2,8 @@ package fvsosp.tipoitem;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -16,13 +18,14 @@ public class TipoItemTableModel extends AbstractTableModel {
     private List<TipoItem> tipoitems;
 
     public TipoItemTableModel() {
-        tipoitems = new ArrayList<>();
+        
     }
 
     public TipoItemTableModel(List<TipoItem> lista) {
-        this();
-        this.tipoitems.clear();
-        this.tipoitems.addAll(lista);
+        tipoitems = new ArrayList(new HashSet(lista));
+//        this.tipoitems.clear();
+//        this.tipoitems.addAll(lista);
+        Collections.sort(tipoitems);
         super.fireTableDataChanged();
     }
 

@@ -8,6 +8,7 @@ import fvsosp.exemplar.Exemplar;
 import fvsosp.exemplar.ExemplarRN;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -26,6 +27,9 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         initComponents();
         limpaCampos();
         tfTombo.setDocument(new OnlyNumberField());
+        limpaCampos();
+        setModal(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -68,6 +72,20 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
 
         tfTombo.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfTombo.setToolTipText("Informe o tombo");
+        tfTombo.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                tfTomboAncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        tfTombo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfTomboKeyPressed(evt);
+            }
+        });
         jPanel2.add(tfTombo, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, 108, -1));
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -164,7 +182,6 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -215,6 +232,17 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         }
         tfTombo.setText("");
     }//GEN-LAST:event_btPesquisar6ActionPerformed
+
+    private void tfTomboAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_tfTomboAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tfTomboAncestorAdded
+
+    private void tfTomboKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTomboKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btPesquisar6ActionPerformed(null);
+        }
+    }//GEN-LAST:event_tfTomboKeyPressed
 
     /**
      * @param args the command line arguments
@@ -277,5 +305,6 @@ public class TelaExemplarIndisponivel extends javax.swing.JDialog {
         lblTombo.setText("");
         chbAtivo.setSelected(false);
         chbDisponivel.setSelected(false);
+        tfTombo.grabFocus();
     }
 }

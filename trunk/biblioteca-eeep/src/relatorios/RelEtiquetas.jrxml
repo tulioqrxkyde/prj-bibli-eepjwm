@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelEtiquetas" language="groovy" columnCount="2" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="277" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="976890b9-c5d3-409c-8f32-55bbdd55c080">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelEtiquetas" language="groovy" columnCount="3" printOrder="Horizontal" pageWidth="595" pageHeight="842" columnWidth="185" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="976890b9-c5d3-409c-8f32-55bbdd55c080">
 	<property name="ireport.zoom" value="1.5"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="sql" class="java.lang.String">
 		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
 	</parameter>
+	<parameter name="biblioteca" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[select exe.exemplar,exe.tombo,a.tituloobra,coalesce(a.cutter,"") as cutter,
-	case exe.situacao when 4 then "**Cativo**" else "Disponível" end as situacao from exemplar exe
+	case exe.situacao when 4 then "***" else "" end as situacao,
+	s.descricao sessao from exemplar exe
 inner join acervo a on exe.idacervo=a.idacervo
+inner join sessao s on s.idsessao=a.idsessao
 $P!{sql}]]>
 	</queryString>
 	<field name="exemplar" class="java.lang.Integer">
@@ -27,66 +32,76 @@ $P!{sql}]]>
 	<field name="situacao" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="sessao" class="java.lang.String"/>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="9" splitType="Stretch"/>
+		<band height="1" splitType="Stretch"/>
 	</title>
 	<pageHeader>
-		<band height="6" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageHeader>
 	<columnHeader>
-		<band height="5" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnHeader>
 	<detail>
-		<band height="108" splitType="Stretch">
+		<band height="66" splitType="Stretch">
 			<rectangle>
-				<reportElement uuid="1049ee4f-0e34-46ec-9bdc-8afbfa5063df" x="0" y="0" width="273" height="106"/>
+				<reportElement uuid="1049ee4f-0e34-46ec-9bdc-8afbfa5063df" x="0" y="0" width="174" height="60"/>
 			</rectangle>
 			<textField>
-				<reportElement uuid="18cf76a9-6556-4701-b8ea-44635034bcf1" x="17" y="0" width="240" height="20"/>
+				<reportElement uuid="18cf76a9-6556-4701-b8ea-44635034bcf1" x="0" y="0" width="174" height="20"/>
 				<textElement textAlignment="Center">
-					<font size="12"/>
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{biblioteca}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="caf08441-8950-44ac-af53-624b7b7ac33f" x="0" y="30" width="174" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[(new DecimalFormat("0000")).format($F{tombo})]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement uuid="fb35d672-2794-4faa-88f4-de4cd4739b53" x="0" y="20" width="174" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Ex.:" + $F{exemplar} +" "+
+$F{situacao}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement uuid="b15c6735-a268-496e-815f-3c2eaafcf36a" x="0" y="50" width="174" height="15"/>
+				<textElement textAlignment="Center">
+					<font size="8" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[OSProjects / OSBiblio]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="407cd49d-bf54-4d0b-ab05-05b2ba0d018c" x="0" y="10" width="174" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="10"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{tituloobra}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement uuid="b223a56b-fa42-410c-b4b6-4f14134d6fd0" x="129" y="20" width="128" height="20"/>
-				<textElement textAlignment="Left">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{situacao}]]></textFieldExpression>
-			</textField>
-			<componentElement>
-				<reportElement uuid="8906c66a-6129-463a-beb8-6006c8cb0219" x="59" y="40" width="250" height="38"/>
-				<jr:barbecue xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" type="2of7" drawText="false" checksumRequired="false">
-					<jr:codeExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})]]></jr:codeExpression>
-				</jr:barbecue>
-			</componentElement>
-			<textField>
-				<reportElement uuid="caf08441-8950-44ac-af53-624b7b7ac33f" x="17" y="78" width="240" height="20"/>
+				<reportElement uuid="e30e8525-eb83-4a78-a562-a012da543722" x="0" y="40" width="174" height="20"/>
 				<textElement textAlignment="Center">
-					<font size="12"/>
+					<font size="10"/>
 				</textElement>
-				<textFieldExpression><![CDATA[(new DecimalFormat("00000000")).format($F{tombo})]]></textFieldExpression>
-			</textField>
-			<textField>
-				<reportElement uuid="fb35d672-2794-4faa-88f4-de4cd4739b53" x="17" y="20" width="112" height="20"/>
-				<textElement textAlignment="Right">
-					<font size="12"/>
-				</textElement>
-				<textFieldExpression><![CDATA["Ex.:" + $F{exemplar}+ " "]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{sessao}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<columnFooter>
-		<band height="6" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</columnFooter>
 	<pageFooter>
-		<band height="5" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</pageFooter>
 	<summary>
-		<band height="5" splitType="Stretch"/>
+		<band splitType="Stretch"/>
 	</summary>
 </jasperReport>

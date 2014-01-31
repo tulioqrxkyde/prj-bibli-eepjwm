@@ -22,6 +22,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
      */
     public TelaCadastroSessao() {
         initComponents();
+        limpaCampos();
     }
 
     /**
@@ -231,6 +232,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
         tfNomeSessao.setText("");
         tfNomeSessao.requestFocus();
         btRemover.setEnabled(false);
+        tfNomeSessao.grabFocus();
     }
 
     /**

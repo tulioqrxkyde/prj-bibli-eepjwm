@@ -30,6 +30,7 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         Util.setAcessibilidade(this);
+        limpaCampos();
     }
 
     /**
@@ -263,6 +264,7 @@ public class TelaCadastroPalavasChaves extends javax.swing.JDialog {
         palavras = null;
         tfDescricao.requestFocus();
         btRemover.setEnabled(false);
+        tfDescricao.grabFocus();
     }
 
     /**

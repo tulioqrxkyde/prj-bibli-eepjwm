@@ -19,6 +19,7 @@ import fvsosp.util.Util;
 import java.net.URL;
 import java.sql.Connection;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -46,8 +47,11 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
     public TelaRelatorioEtiquetas() {
         initComponents();
         atualizaTabela();
+        setLocationRelativeTo(null);
+        setModal(true);
         tfTomboFinal.setDocument(new OnlyNumberField());
         tfTomboInicial.setDocument(new OnlyNumberField());
+        tfTomboInicial.grabFocus();
         
     }
     private List<Exemplar> exemplares = new ArrayList<Exemplar>();
@@ -73,6 +77,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
         jButton1 = new javax.swing.JButton();
         tfTomboInicial = new javax.swing.JTextField();
         tfTomboFinal = new javax.swing.JTextField();
+        jButton2 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tb = new javax.swing.JTable();
 
@@ -127,7 +132,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
         jLabel3.setText("Tombo Final.:");
 
         jButton1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jButton1.setText("Gerar");
+        jButton1.setText("Add");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -138,16 +143,21 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
 
         tfTomboFinal.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
 
+        jButton2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        jButton2.setText("Limpar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel1)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -156,9 +166,11 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
                         .addComponent(jLabel3)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tfTomboFinal, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
-                        .addComponent(jButton1)))
-                .addContainerGap())
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton2)))
+                .addGap(0, 10, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,7 +182,8 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
                     .addComponent(jLabel3)
                     .addComponent(jButton1)
                     .addComponent(tfTomboInicial, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(tfTomboFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfTomboFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton2))
                 .addGap(0, 15, Short.MAX_VALUE))
         );
 
@@ -207,7 +220,6 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -232,8 +244,14 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
                     sql+=",";
                 }
             }
-            sql+=") order by a.idacervo,exe.tombo";
+            sql+=") order by exe.tombo,a.idacervo";
             parametros.put("sql", sql);
+            
+            BibliotecaRN bRN = new BibliotecaRN();
+            try {
+                parametros.put("biblioteca", bRN.listar().get(0).getDescricao());
+            } catch (Exception e) {
+            }
 
 
 
@@ -263,6 +281,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
         atualizaTabela();
         tfTomboFinal.setText("");
         tfTomboInicial.setText("");
+        tfTomboInicial.grabFocus();
 
     }//GEN-LAST:event_btImprimirActionPerformed
 
@@ -276,7 +295,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
                 > Integer.parseInt(tfTomboFinal.getText())) {
             JOptionPane.showMessageDialog(rootPane, "Tombo Inicial não pode ser maior que o final!");
         } else {
-            exemplares.clear();
+           
             for (int i = Integer.parseInt(tfTomboInicial.getText()); i <= Integer.parseInt(tfTomboFinal.getText()); i++) {
                 ExemplarRN eRN = new ExemplarRN();
                 Exemplar exemplar = eRN.pesquisarTombo(Short.valueOf(String.valueOf(i)));
@@ -287,6 +306,14 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
             atualizaTabela();
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+         exemplares.clear();
+         atualizaTabela();
+         tfTomboFinal.setText("");
+         tfTomboInicial.setText("");
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -326,6 +353,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
     private javax.swing.JButton btImprimir;
     private javax.swing.JButton btSair;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
@@ -340,6 +368,7 @@ public class TelaRelatorioEtiquetas extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void atualizaTabela() {
+        Collections.sort(exemplares);
         ExemplarTableModel etm = new ExemplarTableModel(exemplares);
         tb.setModel(etm);
         FormataTamanhoColunasJTable.packColumns(tb, 1);

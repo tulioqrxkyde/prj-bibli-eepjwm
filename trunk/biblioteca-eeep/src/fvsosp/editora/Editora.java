@@ -9,7 +9,13 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "editora")
-public class Editora implements Serializable {
+public class Editora implements Serializable, Comparable<Editora> {
+    
+    
+    @Override
+    public int compareTo(Editora o) {
+        return nome.compareTo(o.nome);            
+    }
 
     @Id
     @GeneratedValue

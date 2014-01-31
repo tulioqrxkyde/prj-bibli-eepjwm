@@ -2,6 +2,8 @@ package fvsosp.autor;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -16,9 +18,10 @@ public class AutorTableModel extends AbstractTableModel {
     private List<Autor> autores;
 
     public AutorTableModel(List<Autor> lista) {
-        autores = new ArrayList<>();
+        autores = new ArrayList(new HashSet(lista));
         this.autores.clear();
         this.autores.addAll(lista);
+        Collections.sort(autores);
         super.fireTableDataChanged();
     }
 

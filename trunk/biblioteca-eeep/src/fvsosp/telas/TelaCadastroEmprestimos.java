@@ -69,6 +69,9 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         ExemplarRN exemplarRN = new ExemplarRN();
         lblDevolucao.setText("");
         tfTombo.setDocument(new OnlyNumberField());
+        limpaCampos();
+        setModal(true);
+        setLocationRelativeTo(null);
     }
 
     public void atualizaTabela() {
@@ -228,6 +231,9 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 tfTomboKeyReleased(evt);
             }
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfTomboKeyPressed(evt);
+            }
         });
 
         btAdicionar.setText("Adicionar");
@@ -332,7 +338,6 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         jPanel7.getAccessibleContext().setAccessibleParent(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btNovo5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovo5ActionPerformed
@@ -523,6 +528,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                 lblDevolucao.setText("");
             }
         }
+        tfTombo.grabFocus();
     }//GEN-LAST:event_btPesquisar6ActionPerformed
 
     private void RemoveAcrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveAcrActionPerformed
@@ -753,9 +759,15 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     }//GEN-LAST:event_lblDevolucaoMouseClicked
 
     private void tfTomboKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTomboKeyReleased
-        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
-            btAdicionarActionPerformed(null);
+        
     }//GEN-LAST:event_tfTomboKeyReleased
+
+    private void tfTomboKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfTomboKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btAdicionarActionPerformed(null);
+        }
+    }//GEN-LAST:event_tfTomboKeyPressed
 
     private void limpaCampos() {
         emprestimo = null;
@@ -768,6 +780,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
         lblDevolucao.setText("");
         atualizaTabela();
         btPesquisar6.setEnabled(true);
+        tfTombo.grabFocus();
     }
 
     /**

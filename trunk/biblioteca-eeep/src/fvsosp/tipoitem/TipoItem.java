@@ -1,6 +1,7 @@
 package fvsosp.tipoitem;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.leitor.Leitor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -14,7 +15,12 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="tipoitem")
-public class TipoItem implements Serializable{
+public class TipoItem implements Serializable, Comparable<TipoItem>{
+    
+    @Override
+    public int compareTo(TipoItem o) {
+        return descricao.compareTo(o.descricao);            
+    }
     
     @Id //chave primária
     @GeneratedValue //auto incremento

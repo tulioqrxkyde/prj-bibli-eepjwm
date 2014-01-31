@@ -33,6 +33,9 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     public TelaCadastroLeitor() {
         initComponents();
         tfMatricula.setDocument(new OnlyNumberField());
+        limparCampos();
+        setModal(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -345,7 +348,6 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed
@@ -476,6 +478,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         cbCidade.setSelectedIndex(0);
         cbGrupoLeitores.setSelectedIndex(0);
         btGrSexo.clearSelection();
+        tfMatricula.grabFocus();
     }
 
     private void tfCPFFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_tfCPFFocusLost

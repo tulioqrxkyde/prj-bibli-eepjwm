@@ -42,6 +42,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         FormataTamanhoColunasJTable.packColumns(tbPesquisa, 1);
         //packColumns(tbPesquisa, 1);
         Util.setAcessibilidade(this);
+        tfPesquisar.grabFocus();
     }
 
     private TelaPesquisa() {
@@ -62,6 +63,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel4 = new javax.swing.JPanel();
         lbTexto = new javax.swing.JLabel();
         tfPesquisar = new javax.swing.JTextField();
+        btProcurar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbPesquisa = new javax.swing.JTable();
@@ -69,6 +71,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
         btCancelar = new javax.swing.JButton();
 
         setTitle("Tela de Pesquisa");
+        setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -79,23 +82,33 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel4.setBackground(new java.awt.Color(59, 89, 152));
         jPanel4.setLayout(null);
 
-        lbTexto.setFont(new java.awt.Font("Verdana", 1, 24)); // NOI18N
+        lbTexto.setFont(new java.awt.Font("Verdana", 1, 14)); // NOI18N
         lbTexto.setForeground(new java.awt.Color(255, 255, 255));
         lbTexto.setText("Pesquisa");
         jPanel4.add(lbTexto);
-        lbTexto.setBounds(0, 0, 130, 40);
+        lbTexto.setBounds(10, -10, 130, 40);
 
         tfPesquisar.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         tfPesquisar.setToolTipText("Informe o que Deseja pesquisar");
         tfPesquisar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tfPesquisarKeyReleased(evt);
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tfPesquisarKeyPressed(evt);
             }
         });
         jPanel4.add(tfPesquisar);
-        tfPesquisar.setBounds(130, 10, 260, 22);
+        tfPesquisar.setBounds(10, 20, 330, 22);
 
-        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 40));
+        btProcurar.setFont(new java.awt.Font("Verdana", 0, 11)); // NOI18N
+        btProcurar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/application-form-magnify-icon.png"))); // NOI18N
+        btProcurar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btProcurarActionPerformed(evt);
+            }
+        });
+        jPanel4.add(btProcurar);
+        btProcurar.setBounds(350, 10, 30, 30);
+
+        getContentPane().add(jPanel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 50));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -154,9 +167,9 @@ public class TelaPesquisa extends javax.swing.JDialog {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(20, 20, 20)
+                .addGap(28, 28, 28)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btSelecionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btCancelar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -218,6 +231,19 @@ public class TelaPesquisa extends javax.swing.JDialog {
         o = null;
     }//GEN-LAST:event_formWindowClosing
 
+    private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
+        // TODO add your handling code here:
+        procuraTable(tfPesquisar.getText());
+    }//GEN-LAST:event_btProcurarActionPerformed
+
+    private void tfPesquisarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesquisarKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            btProcurarActionPerformed(null);
+        }
+    }//GEN-LAST:event_tfPesquisarKeyPressed
+
+    
     /**
      * @param args the command line arguments
      */
@@ -254,6 +280,7 @@ public class TelaPesquisa extends javax.swing.JDialog {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCancelar;
+    private javax.swing.JButton btProcurar;
     private javax.swing.JButton btSelecionar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel4;

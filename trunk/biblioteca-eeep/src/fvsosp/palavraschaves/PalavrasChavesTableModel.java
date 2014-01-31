@@ -2,6 +2,8 @@ package fvsosp.palavraschaves;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -17,14 +19,15 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
 
     // construtor padrão criando um arraylist de alunos  
     public PalavrasChavesTableModel() {
-        palavras = new ArrayList<>();
+        
     }
 
     // construtor que adiciona a lista passada pelo método ao alunos  
     public PalavrasChavesTableModel(List<PalavrasChaves> lista) {
-        this();
-        this.palavras.clear();
-        this.palavras.addAll(lista);
+        palavras = new ArrayList(new HashSet(lista));
+//        this.palavras.clear();
+//        this.palavras.addAll(lista);
+        Collections.sort(palavras);
         super.fireTableDataChanged();
     }
 

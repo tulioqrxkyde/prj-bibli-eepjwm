@@ -2,6 +2,8 @@ package fvsosp.cidade;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -9,15 +11,16 @@ import javax.swing.table.AbstractTableModel;
  * @author Controle Avaliação
  */
 @SuppressWarnings("serial")
-public class CidadeTableModel extends AbstractTableModel {
+public class CidadeTableModel extends AbstractTableModel{
 
     private String[] nomeColunas = {"CodIBGE", "Descrição", "UF"};
     private List<Cidade> cidades;
 
     public CidadeTableModel(List<Cidade> lista) {
-        cidades = new ArrayList<>();
+        cidades = new ArrayList(new HashSet(lista));
         this.cidades.clear();
         this.cidades.addAll(lista);
+        Collections.sort(cidades);
         super.fireTableDataChanged();
     }
 

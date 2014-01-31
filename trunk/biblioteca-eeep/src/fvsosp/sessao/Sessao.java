@@ -1,6 +1,7 @@
 package fvsosp.sessao;
 
 import fvsosp.acervo.Acervo;
+import fvsosp.leitor.Leitor;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -9,8 +10,13 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="sessao")
-public class Sessao implements Serializable{
+public class Sessao implements Serializable, Comparable<Sessao>{
 
+    @Override
+    public int compareTo(Sessao o) {
+        return descricao.compareTo(o.descricao);            
+    }
+    
     @Id // chave primária
     @GeneratedValue //auto incrmento
     private short idSessao;

@@ -8,7 +8,12 @@ import org.hibernate.annotations.NaturalId;
 //classe persistente de usuário
 @Entity
 @Table(name="usuario")
-public class Usuario implements Serializable{
+public class Usuario implements Serializable, Comparable<Usuario>{
+    
+     @Override
+    public int compareTo(Usuario o) {
+        return login.compareTo(o.login);            
+    }
     
     @Id // chave primária
     @GeneratedValue // campo auto incremento

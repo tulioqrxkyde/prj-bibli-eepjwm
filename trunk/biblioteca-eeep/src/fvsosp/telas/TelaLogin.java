@@ -8,6 +8,8 @@ import fvsosp.usuario.Usuario;
 import fvsosp.usuario.UsuarioRN;
 import fvsosp.util.UsuarioAtivo;
 import fvsosp.util.Util;
+import java.awt.Toolkit;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
@@ -26,6 +28,12 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     public TelaLogin() {
         initComponents();
+        setLocationRelativeTo(null);
+        tfLogin.grabFocus();
+        Util.setIcon(TelaLogin.class, this);
+        lblVersao.setText("Versão: "+Util.getVersao());
+//        ImageIcon icone = new ImageIcon("./imagens/fvsosp/bicoaguia.png");
+//        setIconImage(icone.getImage()); 
     }
 
     /**
@@ -49,7 +57,7 @@ public class TelaLogin extends javax.swing.JFrame {
         tfSenha = new javax.swing.JPasswordField();
         btLogar = new javax.swing.JButton();
         btCancelar = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
+        lblVersao = new javax.swing.JLabel();
         Logo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -68,6 +76,7 @@ public class TelaLogin extends javax.swing.JFrame {
         jLabel3.setLabelFor(jPanel2);
 
         jPanel3.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,8 +111,8 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel5.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
-        jLabel5.setText("Versão: 1.0");
+        lblVersao.setFont(new java.awt.Font("Verdana", 0, 14)); // NOI18N
+        lblVersao.setText("Versão: 1.3");
 
         Logo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/bibliotecasx.jpg"))); // NOI18N
 
@@ -114,7 +123,7 @@ public class TelaLogin extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblVersao, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(285, 285, 285)
                         .addComponent(btLogar)
@@ -151,23 +160,11 @@ public class TelaLogin extends javax.swing.JFrame {
                             .addComponent(btLogar)))
                     .addComponent(Logo, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel5)
+                .addComponent(lblVersao)
                 .addGap(5, 5, 5))
         );
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
+        jPanel3.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -207,7 +204,6 @@ public class TelaLogin extends javax.swing.JFrame {
         );
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
@@ -218,8 +214,9 @@ public class TelaLogin extends javax.swing.JFrame {
             UsuarioAtivo.setLogin(tfLogin.getText());
             UsuarioAtivo.setAdministrador(true);
             TelaPrincipal tp = new TelaPrincipal();
+            dispose();
             tp.setVisible(true);
-            
+                        
         } else
         if (verificaCampos()) {
             /*
@@ -310,11 +307,13 @@ public class TelaLogin extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lblVersao;
     private javax.swing.JTextField tfLogin;
     private javax.swing.JPasswordField tfSenha;
     // End of variables declaration//GEN-END:variables
+
+    
 }

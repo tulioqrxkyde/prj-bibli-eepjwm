@@ -1,5 +1,6 @@
 package fvsosp.leitor;
 
+import fvsosp.acervo.Acervo;
 import fvsosp.cidade.Cidade;
 import fvsosp.emprestimo.Emprestimo;
 import fvsosp.grupoleitores.GruposLeitores;
@@ -23,8 +24,13 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="leitor")
-public class Leitor implements Serializable{
+public class Leitor implements Serializable, Comparable<Leitor>{
 
+    @Override
+    public int compareTo(Leitor o) {
+        return nome.compareTo(o.nome);            
+    }
+    
     @Override
     public String toString(){
         return idLeitor+" | "+nome;
