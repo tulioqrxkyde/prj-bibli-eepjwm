@@ -19,6 +19,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
      */
     public TelaCadastroAutor() {
         initComponents();
+        limpaCampos();
     }
 
     /**
@@ -233,6 +234,7 @@ public class TelaCadastroAutor extends javax.swing.JDialog {
         autor = null;
         tfNomeAutor.requestFocus();
         btRemover.setEnabled(false);
+        tfSobreNomeAutor.grabFocus();
     }
 
     /**

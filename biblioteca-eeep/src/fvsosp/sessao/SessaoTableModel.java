@@ -2,6 +2,8 @@ package fvsosp.sessao;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -17,9 +19,10 @@ public class SessaoTableModel extends AbstractTableModel {
 
     // construtor que adiciona a lista passada pelo método ao alunos  
     public SessaoTableModel(List<Sessao> lista) {
-        sessoes = new ArrayList<>();
+        sessoes = new ArrayList(new HashSet(lista));
         this.sessoes.clear();
         this.sessoes.addAll(lista);
+        Collections.sort(sessoes);
         super.fireTableDataChanged();
     }
 

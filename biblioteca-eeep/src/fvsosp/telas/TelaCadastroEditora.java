@@ -24,6 +24,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
      */
     public TelaCadastroEditora() {
         initComponents();
+        limpaCampos();
     }
 
     public void limpaCampos() {
@@ -32,6 +33,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         tfDescricao.requestFocus();
         cbCidade.setSelectedIndex(0);
         btRemover.setEnabled(false);
+        tfDescricao.grabFocus();
     }
 
     /**
@@ -58,6 +60,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
 
         setTitle("OSBiblio - Editora");
         setModal(true);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(432, 177));
@@ -189,7 +192,6 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPesquisarActionPerformed

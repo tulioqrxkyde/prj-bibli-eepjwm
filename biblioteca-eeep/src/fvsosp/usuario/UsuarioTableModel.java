@@ -7,6 +7,8 @@ package fvsosp.usuario;
 import fvsosp.util.Util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -21,13 +23,14 @@ public class UsuarioTableModel extends AbstractTableModel {
     private List<Usuario> usuarios;
 
     public UsuarioTableModel() {
-        usuarios = new ArrayList<>();
+        
     }
 
     public UsuarioTableModel(List<Usuario> lista) {
-        this();
-        this.usuarios.clear();
-        this.usuarios.addAll(lista);
+        usuarios = new ArrayList(new HashSet(lista));
+//        this.usuarios.clear();
+//        this.usuarios.addAll(lista);
+        Collections.sort(usuarios);
         super.fireTableDataChanged();
     }
 

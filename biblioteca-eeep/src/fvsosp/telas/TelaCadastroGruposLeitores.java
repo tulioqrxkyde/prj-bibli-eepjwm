@@ -24,6 +24,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         tfDiasGruposLeitores.setDocument(new OnlyNumberField(2));
         //tfMultaGruposLeitores.setDocument(new OnlyNumberField());
         tfQuantidadeGruposLeitores1.setDocument(new OnlyNumberField(2));
+        limpaCampos();
     }
 
     /**
@@ -289,6 +290,7 @@ public class TelaCadastroGruposLeitores extends javax.swing.JDialog {
         tfQuantidadeGruposLeitores1.setText("");
         tfNomeGruposLeitores.requestFocus();
         btRemover.setEnabled(false);
+        tfNomeGruposLeitores.grabFocus();
     }
 
     /**

@@ -19,7 +19,12 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name="acervo")
-public class Acervo implements Serializable{
+public class Acervo implements Serializable, Comparable<Acervo>{
+    
+    @Override
+    public int compareTo(Acervo o) {
+        return tituloObra.compareTo(o.tituloObra);            
+    }
 
     /**
      * @return the serialVersionUID
@@ -152,7 +157,7 @@ public class Acervo implements Serializable{
     private String cutter;
     
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "PalavraschavesAcervo", 
+    @JoinTable(name = "palavraschavesacervo", 
             joinColumns = @JoinColumn(name = "idAcervo"), 
             inverseJoinColumns = @JoinColumn(name = "idPalavrasChaves"))
     private Set<PalavrasChaves> palavrasChaves;
@@ -187,7 +192,7 @@ public class Acervo implements Serializable{
     private TipoItem tipoItem;
       
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "AutoresAcervo", 
+    @JoinTable(name = "autoresacervo", 
             joinColumns = @JoinColumn(name = "idAcervo"), 
             inverseJoinColumns = @JoinColumn(name = "idAutor"))
     private Set<Autor> autores;

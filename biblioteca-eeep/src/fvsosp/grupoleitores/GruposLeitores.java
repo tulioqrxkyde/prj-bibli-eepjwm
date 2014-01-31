@@ -13,8 +13,13 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table (name="gruposleitores")
-public class GruposLeitores implements Serializable{
+public class GruposLeitores implements Serializable, Comparable<GruposLeitores>{
 
+    @Override
+    public int compareTo(GruposLeitores o) {
+        return descricao.compareTo(o.descricao);            
+    }
+    
     @Id
     @GeneratedValue
     private short idGruposLeitores;

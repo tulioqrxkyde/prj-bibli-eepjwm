@@ -24,6 +24,9 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
     public TelaCadastroCidade() {
         initComponents();
         tfCodIBGE.setDocument(new OnlyNumberField());
+        limpaCampos();
+        setLocationRelativeTo(null);
+        setModal(true);
     }
 
     /**
@@ -50,8 +53,11 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         cbUF = new javax.swing.JComboBox();
         tfCodIBGE = new javax.swing.JTextField();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Cidade");
+        setIconImage(null);
         setModal(true);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanel3.setBackground(new java.awt.Color(59, 89, 152));
@@ -145,7 +151,6 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
@@ -218,6 +223,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         cbUF.setSelectedIndex(0);
         tfCodIBGE.requestFocus();
         btRemover.setEnabled(false);
+        tfCodIBGE.grabFocus();
     }
 
     /**

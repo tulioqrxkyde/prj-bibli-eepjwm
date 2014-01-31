@@ -41,9 +41,9 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
 
     @Override
     public int compareTo(Exemplar o) {
-        Short exemplar2 = getExemplar();
-        Short exemplarO2 = o.getExemplar();
-        return exemplar2.compareTo(exemplarO2);            
+        Short tombo = getTombo();
+        Short tombo2 = o.getTombo();
+        return tombo.compareTo(tombo2);            
     }
     
     private static long serialVersionUID = -6137808136410511086L;

@@ -2,6 +2,7 @@ package fvsosp.idioma;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -16,9 +17,9 @@ public class IdiomaTableModel extends AbstractTableModel {
     private List<Idioma> idiomas;
 
     public IdiomaTableModel(List<Idioma> lista) {
-        idiomas = new ArrayList<>();
-        this.idiomas.clear();
-        this.idiomas.addAll(lista);
+        idiomas = new ArrayList(new HashSet(lista));
+//        this.idiomas.clear();
+//        this.idiomas.addAll(lista);
         super.fireTableDataChanged();
     }
 

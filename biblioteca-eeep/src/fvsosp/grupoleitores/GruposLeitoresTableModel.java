@@ -7,6 +7,7 @@ package fvsosp.grupoleitores;
 import fvsosp.util.Util;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -24,6 +25,7 @@ public class GruposLeitoresTableModel extends AbstractTableModel {
         grupos = new ArrayList<>();
         this.grupos.clear();
         this.grupos.addAll(lista);
+        Collections.sort(grupos);
         super.fireTableDataChanged();
     }
 

@@ -24,6 +24,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         initComponents();
         this.setLocationRelativeTo(null);
         Util.setAcessibilidade(this);
+        limpaCampos();
     }
 
     /**
@@ -236,6 +237,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         tfNomeIdioma.setText("");
         tfNomeIdioma.requestFocus();
         btRemover.setEnabled(false);
+        tfNomeIdioma.grabFocus();
     }
 
     /**

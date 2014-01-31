@@ -2,6 +2,8 @@ package fvsosp.editora;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -16,9 +18,10 @@ public class EditoraTableModel extends AbstractTableModel {
     private List<Editora> editoras;
 
     public EditoraTableModel(List<Editora> lista) {
-        editoras = new ArrayList<>();
+        editoras = new ArrayList(new HashSet(lista));
         this.editoras.clear();
         this.editoras.addAll(lista);
+        Collections.sort(editoras);
         super.fireTableDataChanged();
     }
 

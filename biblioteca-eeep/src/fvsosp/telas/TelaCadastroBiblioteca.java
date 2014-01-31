@@ -22,6 +22,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
      */
     public TelaCadastroBiblioteca() {
         initComponents();
+        limpaCampos();
     }
 
     /**
@@ -233,6 +234,7 @@ public class TelaCadastroBiblioteca extends javax.swing.JDialog {
         tfNomeBiblioteca.setText("");
         tfNomeBiblioteca.requestFocus();
         btRemover.setEnabled(false);
+        tfNomeBiblioteca.grabFocus();
     }
 
     /**

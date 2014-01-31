@@ -7,8 +7,13 @@ import org.hibernate.annotations.NaturalId;
 
 @Entity
 @Table(name = "cidade")
-public class Cidade implements Serializable {
+public class Cidade implements Serializable, Comparable<Cidade>  {
 
+    @Override
+    public int compareTo(Cidade o) {
+        return descricao.compareTo(o.descricao);            
+    }
+    
     @Id // campo chave primária
     @GeneratedValue // campo auto incremento
     private short idCidade;

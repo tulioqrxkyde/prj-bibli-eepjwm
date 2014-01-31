@@ -2,6 +2,8 @@ package fvsosp.leitor;
 
 import fvsosp.util.Util;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
 
@@ -17,9 +19,10 @@ public class LeitorTableModel extends AbstractTableModel {
 
     // construtor que adiciona a lista passada pelo método ao alunos  
     public LeitorTableModel(List<Leitor> lista) {
-        leitores = new ArrayList<>();
-        this.leitores.clear();
-        this.leitores.addAll(lista);
+        leitores = new ArrayList(new HashSet(lista));
+//        this.leitores.clear();
+//        this.leitores.addAll(lista);
+        Collections.sort(leitores);
         super.fireTableDataChanged();
     }
 

@@ -25,6 +25,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
      */
     public TelaCadastroTipoItem() {
         initComponents();
+        limpaCampos();
     }
 
     /**
@@ -235,6 +236,7 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
         tipoItem = null;
         tfTipoItem.requestFocus();
         btRemover.setEnabled(false);
+        tfTipoItem.grabFocus();
     }
 
     /**

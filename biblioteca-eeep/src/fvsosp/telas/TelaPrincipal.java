@@ -8,6 +8,7 @@ import fvsosp.acervo.Acervo;
 import fvsosp.acervo.AcervoRN;
 import fvsosp.util.ConnectionFactory;
 import fvsosp.util.UsuarioAtivo;
+import fvsosp.util.Util;
 import java.sql.Connection;
 import java.util.HashMap;
 import java.util.List;
@@ -15,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.ImageIcon;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperExportManager;
@@ -41,6 +43,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jlUsuarioLogado.setText(jlUsuarioLogado.getText().replace("?", ((UsuarioAtivo.getLogin() != null) ? UsuarioAtivo.getLogin() : "?")));
         itemCadUsuario.setVisible(UsuarioAtivo.isAdministrador());
         //itemIndisponivelExemplar.setVisible(UsuarioAtivo.isAdministrador());
+        
+        Util.setIcon(TelaPrincipal.class, this);
+        labelVersao.setText("Versão: "+Util.getVersao());
     }
 
     /**
@@ -506,7 +511,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         TelaSobre tsobre = new TelaSobre();
-    tsobre.setVisible(true);
+        tsobre.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     /**

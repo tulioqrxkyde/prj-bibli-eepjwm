@@ -4,6 +4,7 @@
  */
 package fvsosp.util;
 
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.math.BigInteger;
@@ -19,6 +20,7 @@ import java.util.regex.Pattern;
 import javax.swing.AbstractAction;
 import javax.swing.JComponent;
 import javax.swing.JDialog;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JRootPane;
 import javax.swing.KeyStroke;
@@ -31,6 +33,9 @@ public class Util {
 
     JRootPane meurootpane;
 
+    public static String getVersao(){
+        return "1.3";
+    }
     /**
      * Realiza a validação do CPF.
      *
@@ -190,6 +195,10 @@ public class Util {
             return false;
         }
         else return true;
+    }
+    
+    public static void setIcon(Class classe, JFrame jframe) {
+        jframe.setIconImage(Toolkit.getDefaultToolkit().getImage(classe.getResource("/fvsosp/imagens/bicoaguia.png")));
     }
     
 }

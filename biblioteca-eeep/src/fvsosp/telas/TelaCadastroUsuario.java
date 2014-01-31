@@ -26,6 +26,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
      */
     public TelaCadastroUsuario() {
         initComponents();
+        limpaCampos();
     }
 
     /**
@@ -281,6 +282,7 @@ public class TelaCadastroUsuario extends javax.swing.JDialog {
         tfConfirmarSenha.setText("");
         usuario = null;
         btExcluir.setEnabled(false);
+        tfLogin.grabFocus();
     }
     private void cbAdministradorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbAdministradorActionPerformed
 //        String l = JOptionPane.showInputDialog(rootPane, "Informe seu usuário: ", "Autenticação", JOptionPane.PLAIN_MESSAGE),
