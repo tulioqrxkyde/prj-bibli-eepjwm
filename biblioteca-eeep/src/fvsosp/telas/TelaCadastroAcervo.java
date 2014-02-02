@@ -933,11 +933,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         PalavrasChavesTableModel itm = new PalavrasChavesTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Palavras Chaves");
-        PalavrasChaves palavras = new PalavrasChaves();
-
         if (o != null) {
             short id = Short.valueOf(String.valueOf(o));
-            palavras = palavrasRN.pesquisarCodigo(id);
+            PalavrasChaves palavras = palavrasRN.pesquisarCodigo(id);
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir a Palavra Chave: "
                     + palavras.getDescricao() + "?", "Inserir Palavra Chave",
                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
@@ -990,11 +988,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 
         AutorTableModel itm = new AutorTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Autor");
-        Autor autor = new Autor();
 
         if (o != null) {
             short id = Short.valueOf(String.valueOf(o));
-            autor = autorRN.pesquisarCodigo(id);
+            Autor autor = autorRN.pesquisarCodigo(id);
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir o Autor: "
                     + autor.getNome() + "?", "Inserir Autor",
                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {

@@ -25,20 +25,6 @@ import javax.persistence.Table;
 @Table(name = "exemplar")
 public class Exemplar implements Serializable, Comparable<Exemplar> {
 
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
-
     @Override
     public int compareTo(Exemplar o) {
         Short tombo = getTombo();
@@ -46,7 +32,7 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
         return tombo.compareTo(tombo2);            
     }
     
-    private static long serialVersionUID = -6137808136410511086L;
+    private static final long serialVersionUID = -6137808136410511086L;
     @Id
     @GeneratedValue
     private short tombo;

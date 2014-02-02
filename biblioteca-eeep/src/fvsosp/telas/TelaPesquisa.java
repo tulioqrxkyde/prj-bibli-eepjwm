@@ -227,10 +227,6 @@ public class TelaPesquisa extends javax.swing.JDialog {
         procuraTable(tfPesquisar.getText());
     }//GEN-LAST:event_tfPesquisarKeyReleased
 
-    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
-        o = null;
-    }//GEN-LAST:event_formWindowClosing
-
     private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
         // TODO add your handling code here:
         procuraTable(tfPesquisar.getText());
@@ -242,6 +238,10 @@ public class TelaPesquisa extends javax.swing.JDialog {
             btProcurarActionPerformed(null);
         }
     }//GEN-LAST:event_tfPesquisarKeyPressed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        o = null;
+    }//GEN-LAST:event_formWindowClosing
 
     
     /**

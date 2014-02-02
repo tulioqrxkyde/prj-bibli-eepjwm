@@ -11,7 +11,7 @@ import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name="autor")
-public class Autor implements Comparable<Autor> {
+public class Autor implements Comparable<Autor>, Serializable {
 
      @Override
     public int compareTo(Autor o) {        
@@ -66,7 +66,7 @@ public class Autor implements Comparable<Autor> {
     @Type(type="text")
     @Column(nullable = false, length = 150)
     private String sobreOAutor;
-       
+      
     /*** @retorna o id do Autor ***/
     public short getIdAutor() {
         return idAutor;
@@ -115,6 +115,5 @@ public class Autor implements Comparable<Autor> {
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;
     }
-
-    
+    private static final long serialVersionUID = 5447515010224855795L;
 }

@@ -414,7 +414,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_itemCadUsuarioActionPerformed
 
     private void ItemSairMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ItemSairMouseClicked
-        System.exit(0);
+        Runtime.getRuntime().exit(0);
     }//GEN-LAST:event_ItemSairMouseClicked
 
     private void itemCadLeitorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCadLeitorActionPerformed

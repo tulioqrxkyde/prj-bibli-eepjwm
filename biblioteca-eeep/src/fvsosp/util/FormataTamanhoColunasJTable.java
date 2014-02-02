@@ -25,11 +25,10 @@ public class FormataTamanhoColunasJTable {
     }  
     
      private static void packColumn(JTable table, int vColIndex, int margin) {
-        TableModel model = table.getModel();
         DefaultTableColumnModel colModel = (DefaultTableColumnModel) table.
                 getColumnModel();
         TableColumn col = colModel.getColumn(vColIndex);
-        int width = 0;            // Obtém a largura do cabeçalho da coluna
+        int width;            // Obtém a largura do cabeçalho da coluna
         TableCellRenderer renderer = col.getHeaderRenderer();
         if (renderer == null) {
             renderer = table.getTableHeader().getDefaultRenderer();

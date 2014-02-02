@@ -221,10 +221,7 @@ public class TelaCadastroIdioma extends javax.swing.JDialog {
         if (Util.chkVazio(tfNomeIdioma.getText())) {
             idioma.setDescricao(tfNomeIdioma.getText());
             int id = idioma.getIdIdioma();
-            Idioma idiomaExi = idiomaRN.pesquisarDescricaoEq(tfNomeIdioma.getText());
-//            if(idiomaExi!=null){
-//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
-//            } else
+            idiomaRN.pesquisarDescricaoEq(tfNomeIdioma.getText());
             if (idiomaRN.salvar(idioma)) {
                 JOptionPane.showMessageDialog(rootPane, "Idioma " + idioma.getDescricao()
                         + ", " + ((id == 0) ? "cadastrado" : "alterado") + " com sucesso!");

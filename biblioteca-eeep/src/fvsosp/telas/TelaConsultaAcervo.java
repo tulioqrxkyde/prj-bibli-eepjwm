@@ -286,8 +286,8 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
             tfs.add(tfs.size(), tfTitulo);
         }
         if (!tfAnoEdicao.getText().replaceAll(" ", "").isEmpty()) {
-            Short s = new Short(tfAnoEdicao.getText().replaceAll(" ", ""));
-            List<Acervo> listaAnoEdicao = (List<Acervo>) acervoRN.pesquisaranoEdicao(s.shortValue());
+            Short s = (Short.parseShort(tfAnoEdicao.getText().replaceAll(" ", "")));
+            List<Acervo> listaAnoEdicao = (List<Acervo>) acervoRN.pesquisaranoEdicao(s);
             if (!Util.chkSize(listaAnoEdicao, "Ano de Edição")) {
                 return;
             }
@@ -356,19 +356,19 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
             camposStr.add(camposStr.size(), String.valueOf(listaEditoras.get(0).getIdEditora()));
             tfs.add(tfs.size(), tfEditora);
         }
-        String sql = "";
+        StringBuilder sql = new StringBuilder();
         if (!tfs.isEmpty()) {
-            sql += " SELECT * FROM acervo WHERE ";
+            sql.append(" SELECT * FROM acervo WHERE ");
             for (int j = 0; j < tfs.size(); j++) {
-                sql += sqlFields.get(j);
+                sql.append(sqlFields.get(j));
                 if (j == 0 && !tfTitulo.getText().isEmpty()) {
-                    sql += " LIKE '" + tfTitulo.getText() + "%'";
+                    sql.append(" LIKE '").append(tfTitulo.getText()).append("%'");
                 } else {
-                    sql += " = " + Short.parseShort(camposStr.get(j));
+                    sql.append(" = ").append(Short.parseShort(camposStr.get(j)));
                 }
                 if (j + 1 < tfs.size()) {
                     if (!tfs.get(j + 1).toString().isEmpty()) {
-                        sql += " AND ";
+                        sql.append(" AND ");
                     }
                 } else {
                     break;
@@ -378,7 +378,7 @@ public class TelaConsultaAcervo extends javax.swing.JDialog {
 
         List<Acervo> resultados;
         if (!camposStr.isEmpty()) {
-            resultados = (List<Acervo>) acervoRN.consultaAcervo(sql);
+            resultados = (List<Acervo>) acervoRN.consultaAcervo(sql.toString());
             if (!resultados.isEmpty()) {
                 if (autores.size() > 0) {
                     for (int h = 0; h < resultados.size(); h++) {

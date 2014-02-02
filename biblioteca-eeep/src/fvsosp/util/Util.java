@@ -33,9 +33,10 @@ public class Util {
 
     JRootPane meurootpane;
 
-    public static String getVersao(){
+    public static String getVersao() {
         return "1.3";
     }
+
     /**
      * Realiza a validação do CPF.
      *
@@ -65,7 +66,7 @@ public class Util {
         digito1 = digito2 = resto = 0;
 
         for (int nCount = 1; nCount < strCpf.length() - 1; nCount++) {
-            digitoCPF = Integer.valueOf(strCpf.substring(nCount - 1, nCount)).intValue();
+            digitoCPF = Integer.parseInt(strCpf.substring(nCount - 1, nCount));
 
             //multiplique a ultima casa por 2 a seguinte por 3 a seguinte por 4 e assim por diante.  
             d1 = d1 + (11 - nCount) * digitoCPF;
@@ -107,14 +108,14 @@ public class Util {
     /* @MD5 Método de Encriptação da Senha em um HASH Hexadecimal */
 
     public static String md5(String senha) {
-        MessageDigest md = null;
         try {
-            md = MessageDigest.getInstance("MD5");
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
+            return ((String) hash.toString(16));
         } catch (NoSuchAlgorithmException e) {
             e.printStackTrace();
         }
-        BigInteger hash = new BigInteger(1, md.digest(senha.getBytes()));
-        return ((String) hash.toString(16));
+        return "";
     }
 
     public static boolean chkVazio(String... campos) {
@@ -188,17 +189,17 @@ public class Util {
             }
         });
     }
-    
+
     public static boolean chkSize(List lista, String type) {
-        if(lista.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Não foram encontrados registros para: "+type);
+        if (lista.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Não foram encontrados registros para: " + type);
             return false;
+        } else {
+            return true;
         }
-        else return true;
     }
-    
+
     public static void setIcon(Class classe, JFrame jframe) {
         jframe.setIconImage(Toolkit.getDefaultToolkit().getImage(classe.getResource("/fvsosp/imagens/bicoaguia.png")));
     }
-    
 }

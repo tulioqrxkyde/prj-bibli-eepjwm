@@ -211,10 +211,7 @@ public class TelaCadastroSessao extends javax.swing.JDialog {
             }
             sessao.setDescricao(tfNomeSessao.getText());
             int id = sessao.getIdSessao();
-            Sessao sessaoExis = sessaoRN.pesquisarDescricao(tfNomeSessao.getText());
-//            if(sessaoExis!=null){
-//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
-//            } else
+            sessaoRN.pesquisarDescricao(tfNomeSessao.getText());
             if (sessaoRN.salvar(sessao)) {
                 JOptionPane.showMessageDialog(rootPane, "Sessão " + sessao.getDescricao()
                         + ", " + ((id == 0) ? "cadastrada" : "alterada") + " com sucesso!");
