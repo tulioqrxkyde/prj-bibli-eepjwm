@@ -25,20 +25,6 @@ public class Acervo implements Serializable, Comparable<Acervo>{
     public int compareTo(Acervo o) {
         return tituloObra.compareTo(o.tituloObra);            
     }
-
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
     
     public String toString() {
         return getIdAcervo() + " | " + tituloObra;
@@ -228,7 +214,7 @@ public class Acervo implements Serializable, Comparable<Acervo>{
     @Column(length = 30, columnDefinition = "varchar(30) default ''")
     private String acabamentoMiolo;
     
-    private static long serialVersionUID = -8256983727176831230L;
+    private static final long serialVersionUID = -8256983727176831230L;
 
     /*** @retorna o id do Acervo ***/
     public short getIdAcervo() {

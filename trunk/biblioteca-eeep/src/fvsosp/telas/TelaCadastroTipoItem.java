@@ -220,13 +220,10 @@ public class TelaCadastroTipoItem extends javax.swing.JDialog {
             }
             tipoItem.setDescricao(tfTipoItem.getText().toString());
             int idIdioma = tipoItem.getIdTipoItem();
-            TipoItem tipoItemExis = tipoItemRN.pesquisarDescricaEq(tfTipoItem.getText());
-//            if(tipoItemExis!=null){
-//                JOptionPane.showMessageDialog(rootPane, "Descrição Já Cadastrada! Informe outra Descrição!");
-//            } else
+            tipoItemRN.pesquisarDescricaEq(tfTipoItem.getText());
             if (tipoItemRN.salvar(tipoItem)) {
                 JOptionPane.showMessageDialog(rootPane, "Tipo de Item " + tipoItem.getDescricao()
-                        + ", " + ((tipoItem.getIdTipoItem() == 0) ? "cadastrado" : "alterado") + "com sucesso!");
+                        + ", " + ((idIdioma == 0) ? "cadastrado" : "alterado") + "com sucesso!");
                 limpaCampos();
             }
         }

@@ -58,7 +58,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     Leitor leitor;
     ExemplarEmprestimos exemplarEmprestimo = new ExemplarEmprestimos();
     LeitorRN leitorRN = new LeitorRN();
-    Set<ExemplarEmprestimos> exemplares = new HashSet<ExemplarEmprestimos>();
+    Set<ExemplarEmprestimos> exemplares = new HashSet<>();
 
     /**
      * Creates new form TelaCadastroEmpr
@@ -66,7 +66,6 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     public TelaCadastroEmprestimos() {
         initComponents();
         tfDataEmprestimoDia.setText("");
-        ExemplarRN exemplarRN = new ExemplarRN();
         lblDevolucao.setText("");
         tfTombo.setDocument(new OnlyNumberField());
         limpaCampos();
@@ -448,7 +447,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
                         parametros.put("biblioteca", bRN.listar().get(0));
                     } catch (Exception e) {
                     }
-                    if (itensOperadorInConsulta != "") {
+                    if (!"".equals(itensOperadorInConsulta)) {
                         parametros.put("sql", "(" + itensOperadorInConsulta + ")  and exeem.operacao in (2,3) and "
                                 + "emp.idemprestimo=" + emprestimo.getIdEmprestimo());
                     } else {
@@ -532,7 +531,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     }//GEN-LAST:event_btPesquisar6ActionPerformed
 
     private void RemoveAcrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RemoveAcrActionPerformed
-        if (exemplares.size() == 0) {
+        if (exemplares.isEmpty()) {
             JOptionPane.showMessageDialog(rootPane, "Não existem exemplares para remover!");
         } else {
             int tombo = pegaTomboSelecionado();
@@ -772,7 +771,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
     private void limpaCampos() {
         emprestimo = null;
         leitor = null;
-        exemplares = new HashSet<ExemplarEmprestimos>();
+        exemplares = new HashSet<>();
         tfDataEmprestimoDia.setText("");
         tfDataEmprestimoMes.setText("");
         tfDataEmprestimoAno.setText("");

@@ -207,8 +207,7 @@ public class TelaCadastroCidade extends javax.swing.JDialog {
         CidadeTableModel itm = new CidadeTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Cidade");
         if (o != null) {
-            cidade = new Cidade();
-            cidade = cidadeRN.pesquisarIBGE(Integer.valueOf(String.valueOf(o)));
+            cidade = cidadeRN.pesquisarIBGE(Integer.parseInt(o.toString()));
             tfCodIBGE.setText(String.valueOf(cidade.getCodIBGE()));
             tfDescricao.setText(cidade.getDescricao());
             cbUF.setSelectedItem(cidade.getUf().toString());

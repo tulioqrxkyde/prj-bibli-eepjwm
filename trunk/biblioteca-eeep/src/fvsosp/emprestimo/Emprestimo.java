@@ -12,20 +12,6 @@ import javax.persistence.*;
 @Table(name = "emprestimo")
 public class Emprestimo implements Serializable {
 
-    /**
-     * @return the serialVersionUID
-     */
-    public static long getSerialVersionUID() {
-        return serialVersionUID;
-    }
-
-    /**
-     * @param aSerialVersionUID the serialVersionUID to set
-     */
-    public static void setSerialVersionUID(long aSerialVersionUID) {
-        serialVersionUID = aSerialVersionUID;
-    }
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -140,7 +126,7 @@ public class Emprestimo implements Serializable {
     public void setLeitor(Leitor leitor) {
         this.leitor = leitor;
     }
-    private static long serialVersionUID = -326568673743692245L;
+    private static final long serialVersionUID = -326568673743692245L;
 
 
 
