@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.acervo;
 
 import fvsosp.exemplar.Exemplar;
@@ -13,27 +25,37 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 import javax.persistence.*;
-import org.hibernate.annotations.Cascade;
-import org.hibernate.annotations.IndexColumn;
 import org.hibernate.annotations.NaturalId;
 
+/**
+ *
+ * @author tulio.xcrtf
+ */
 @Entity
-@Table(name="acervo")
-public class Acervo implements Serializable, Comparable<Acervo>{
-    
+@Table(name = "acervo")
+public class Acervo implements Serializable, Comparable<Acervo> {
+
+    /**
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
     @Override
     public int compareTo(Acervo o) {
-        return tituloObra.compareTo(o.tituloObra);            
+        return tituloObra.compareTo(o.tituloObra);
     }
-    
+
+    /**
+     * @return String contendo o id do Acervo e o Título da Obra.
+     */
+    @Override
     public String toString() {
         return getIdAcervo() + " | " + tituloObra;
     }
 
-    @Id
-    @GeneratedValue
-    private short idAcervo;
-
+    /**
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -62,6 +84,10 @@ public class Acervo implements Serializable, Comparable<Acervo>{
         return hash;
     }
 
+    /**
+     * @param obj objeto a ser acessado através da Composição.
+     * @return um booleano (true|false).
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -140,16 +166,22 @@ public class Acervo implements Serializable, Comparable<Acervo>{
         return true;
     }
     
+    @Id
+    @GeneratedValue
+    private short idAcervo;
+    
     private String cutter;
     
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "palavraschavesacervo", 
-            joinColumns = @JoinColumn(name = "idAcervo"), 
-            inverseJoinColumns = @JoinColumn(name = "idPalavrasChaves"))
+    @JoinTable(name = "palavraschavesacervo",
+            joinColumns =
+            @JoinColumn(name = "idAcervo"),
+            inverseJoinColumns =
+            @JoinColumn(name = "idPalavrasChaves"))
     private Set<PalavrasChaves> palavrasChaves;
-      
+    
     @Column(nullable = false, length = 50)
-    @NaturalId(mutable=true)
+    @NaturalId(mutable = true)
     private String tituloObra;
     
     @Column(nullable = false, length = 50)
@@ -157,7 +189,7 @@ public class Acervo implements Serializable, Comparable<Acervo>{
     
     @Column(length = 14, columnDefinition = "varchar(14) default ''")
     private String isbn;
-     
+    
     @Column(length = 4, nullable = false)
     private String volume;
     
@@ -174,305 +206,362 @@ public class Acervo implements Serializable, Comparable<Acervo>{
     private String localizacao;
     
     @ManyToOne
-    @JoinColumn(name="idtipoitem", nullable=false)
+    @JoinColumn(name = "idtipoitem", nullable = false)
     private TipoItem tipoItem;
-      
+    
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "autoresacervo", 
-            joinColumns = @JoinColumn(name = "idAcervo"), 
-            inverseJoinColumns = @JoinColumn(name = "idAutor"))
+    @JoinTable(name = "autoresacervo",
+            joinColumns =
+            @JoinColumn(name = "idAcervo"),
+            inverseJoinColumns =
+            @JoinColumn(name = "idAutor"))
     private Set<Autor> autores;
     
     @ManyToOne
-    @JoinColumn(name="ideditora", nullable=false)
+    @JoinColumn(name = "ideditora", nullable = false)
     private Editora editora;
     
     @ManyToOne
-    @JoinColumn(name="ididioma", nullable=false)
+    @JoinColumn(name = "ididioma", nullable = false)
     private Idioma idioma;
-      
+    
     @ManyToOne
-    @JoinColumn(name="idsessao")
+    @JoinColumn(name = "idsessao")
     private Sessao sessao;
     
     @ManyToOne
-    @JoinColumn(name="idbiblioteca", nullable=false)
+    @JoinColumn(name = "idbiblioteca", nullable = false)
     private Biblioteca biblioteca;
     
-    @OneToMany(mappedBy="acervo",fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "acervo", fetch = FetchType.EAGER)
     private List<Exemplar> exemplares;
     
     @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")
     private short numeroPaginas;
-
+    
     @Column(length = 7, columnDefinition = "smallint default '0'")
     private short peso;
-
+    
     @Column(length = 30, columnDefinition = "varchar(30) default ''")
     private String acabamentoCapa;
-
+    
     @Column(length = 30, columnDefinition = "varchar(30) default ''")
     private String acabamentoMiolo;
     
     private static final long serialVersionUID = -8256983727176831230L;
 
-    /*** @retorna o id do Acervo ***/
+    /**
+     * @return short idAcervo.
+     */
     public short getIdAcervo() {
         return idAcervo;
     }
 
-    /*** @retorna o Título da Obra ***/
+    /**
+     * @return String títuloObra.
+     */
     public String getTituloObra() {
         return tituloObra;
     }
 
-    /*** @seta o Título da Obra ***/
+    /**
+     * @param tituloObra String.
+     */
     public void setTituloObra(String tituloObra) {
         this.tituloObra = tituloObra;
     }
 
-    /*** @retorna o Sub-Título da Obra ***/
+    /**
+     * @return String subtituloObra.
+     */
     public String getSubtituloObra() {
         return subtituloObra;
     }
 
-    /*** @seta o Sub-Título da Obra ***/
+    /**
+     * @param subtituloObra String.
+     */
     public void setSubtituloObra(String subtituloObra) {
         this.subtituloObra = subtituloObra;
     }
 
-    /*** @retorna o Isbn ***/
+    /**
+     * @return String isbn.
+     */
     public String getIsbn() {
         return isbn;
     }
 
-    /*** @seta o Isbn ***/
+    /**
+     * @param isbn String.
+     */
     public void setIsbn(String isbn) {
         this.isbn = isbn;
     }
 
-    /*** @retorna o Volume ***/
+    /**
+     * @return String volume.
+     */
     public String getVolume() {
         return volume;
     }
 
-    /*** @seta o Volume ***/
+    /**
+     * @param volume String.
+     */
     public void setVolume(String volume) {
         this.volume = volume;
     }
 
-    /*** @retorna a Edição ***/
+    /**
+     * @return String edicao.
+     */
     public String getEdicao() {
         return edicao;
     }
 
-    /*** @seta a Edição ***/
+    /**
+     * @param edicao String.
+     */
     public void setEdicao(String edicao) {
         this.edicao = edicao;
     }
 
-    /*** @retorna o Ano de Edição ***/
+    /**
+     * @return short anoEdicao.
+     */
     public short getAnoEdicao() {
         return anoEdicao;
     }
 
-    /*** @seta o Ano de Edição ***/
+    /**
+     * @param anoEdicao short.
+     */
     public void setAnoEdicao(short anoEdicao) {
         this.anoEdicao = anoEdicao;
     }
 
-    /*** @retorna as Informações Adicionais ***/
+    /**
+     * @return String informacoesAdicionais.
+     */
     public String getInformacoesAdicionais() {
         return informacoesAdicionais;
     }
 
-    /*** @seta as Informações Adicionais ***/
+    /**
+     * @param informacoesAdicionais String.
+     */
     public void setInformacoesAdicionais(String informacoesAdicionais) {
         this.informacoesAdicionais = informacoesAdicionais;
     }
 
-    /*** @retorna a Localização ***/
+    /**
+     * @return String localizacao.
+     */
     public String getLocalizacao() {
         return localizacao;
     }
 
-    /*** @seta a Localização ***/
+    /**
+     * @param localizacao String.
+     */
     public void setLocalizacao(String localizacao) {
         this.localizacao = localizacao;
     }
 
-    /*** @retorna o Tipo de Item ***/
+    /**
+     * @return TipoItem tipoItem.
+     */
     public TipoItem getTipoItem() {
         return tipoItem;
     }
 
-    /*** @seta e copia o Tipo de Item recebido para o Tipo de Item da Classe ***/
+    /**
+     * @param tipoItem TipoItem.
+     */
     public void setTipoItem(TipoItem tipoItem) {
         this.tipoItem = tipoItem;
     }
 
-    /*** @retorna o Autor ***/
+    /**
+     * @return Set(Autor) autores.
+     */
     public Set<Autor> getAutor() {
         return getAutores();
     }
 
-    /*** @seta e copia o Autor recebido para o Autor da Classe ***/
+    /**
+     * @param autores Set(Autor).
+     */
     public void setAutor(Set<Autor> autores) {
         this.setAutores(autores);
     }
 
-    /*** @retorna a Editora ***/
+    /**
+     * @return Editora editora.
+     */
     public Editora getEditora() {
         return editora;
     }
 
-    /*** @seta e copia a Editora recebida para a Editora da Classe ***/
+    /**
+     * @param editora Editora.
+     */
     public void setEditora(Editora editora) {
         this.editora = editora;
     }
 
-    /*** @retorna o Idioma ***/
+    /**
+     * @return Idioma idioma.
+     */
     public Idioma getIdioma() {
         return idioma;
     }
 
-    /*** @seta e copia o Idioma recebido para o Idioma da Classe ***/
+    /**
+     * @param idioma Idioma.
+     */
     public void setIdioma(Idioma idioma) {
         this.idioma = idioma;
     }
 
-    /*** @retorna a Sessão ***/
+    /**
+     * @return Sessao sessao.
+     */
     public Sessao getSessao() {
         return sessao;
     }
 
-    /*** @seta e copia a Sessão recebida para a Sessão da Classe ***/
+    /**
+     * @param sessao Sessao.
+     */
     public void setSessao(Sessao sessao) {
         this.sessao = sessao;
     }
 
-    /*** @retorna a Biblioteca ***/
+    /**
+     * @return Biblioteca biblioteca.
+     */
     public Biblioteca getBiblioteca() {
         return biblioteca;
     }
 
-    /*** @seta e copia a Biblioteca recebida para a Biblioteca da Classe ***/
+    /**
+     * @param biblioteca Biblioteca.
+     */
     public void setBiblioteca(Biblioteca biblioteca) {
         this.biblioteca = biblioteca;
     }
 
     /**
-     * @return the exemplares
+     * @return List(Exemplar) exemplares.
      */
     public List<Exemplar> getExemplares() {
         return exemplares;
     }
 
     /**
-     * @return the palavrasChaves
+     * @return Set(PalavrasChaves) palavrasChaves.
      */
     public Set<PalavrasChaves> getPalavrasChaves() {
         return palavrasChaves;
     }
 
-    
-   
     /**
-     * @return the autores
+     * @return Set(Autor) autores.
      */
     public Set<Autor> getAutores() {
         return autores;
     }
 
-      /**
-     * @return the numeroPaginas
+    /**
+     * @return short numeroPaginas.
      */
     public short getNumeroPaginas() {
         return numeroPaginas;
     }
 
     /**
-     * @param numeroPaginas the numeroPaginas to set
+     * @param numeroPaginas short.
      */
     public void setNumeroPaginas(short numeroPaginas) {
         this.numeroPaginas = numeroPaginas;
     }
 
     /**
-     * @return the peso
+     * @return short peso.
      */
     public short getPeso() {
         return peso;
     }
 
     /**
-     * @param peso the peso to set
+     * @param peso short.
      */
     public void setPeso(short peso) {
         this.peso = peso;
     }
 
     /**
-     * @return the acabamentoCapa
+     * @return String acabamentoCapa.
      */
     public String getAcabamentoCapa() {
         return acabamentoCapa;
     }
 
     /**
-     * @param acabamentoCapa the acabamentoCapa to set
+     * @param acabamentoCapa String.
      */
     public void setAcabamentoCapa(String acabamentoCapa) {
         this.acabamentoCapa = acabamentoCapa;
     }
 
     /**
-     * @return the acabamentoMiolo
+     * @return String acabamentoMiolo.
      */
     public String getAcabamentoMiolo() {
         return acabamentoMiolo;
     }
 
     /**
-     * @param acabamentoMiolo the acabamentoMiolo to set
+     * @param acabamentoMiolo String.
      */
     public void setAcabamentoMiolo(String acabamentoMiolo) {
         this.acabamentoMiolo = acabamentoMiolo;
     }
 
     /**
-     * @return the cutter
+     * @return String cutter.
      */
     public String getCutter() {
         return cutter;
     }
 
     /**
-     * @param cutter the cutter to set
+     * @param cutter String,
      */
     public void setCutter(String cutter) {
         this.cutter = cutter;
     }
 
     /**
-     * @param palavrasChaves the palavrasChaves to set
+     * @param palavrasChaves Set(PalavrasChaves).
      */
     public void setPalavrasChaves(Set<PalavrasChaves> palavrasChaves) {
         this.palavrasChaves = palavrasChaves;
     }
 
     /**
-     * @param autores the autores to set
+     * @param autores Set(Autor).
      */
     public void setAutores(Set<Autor> autores) {
         this.autores = autores;
     }
 
     /**
-     * @param exemplares the exemplares to set
+     * @param exemplares List(Exemplar).
      */
     public void setExemplares(List<Exemplar> exemplares) {
         this.exemplares = exemplares;
     }
-
 }
