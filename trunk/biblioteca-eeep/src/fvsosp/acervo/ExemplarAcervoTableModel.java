@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.acervo;
 
@@ -14,7 +22,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 @SuppressWarnings("serial")
 public class ExemplarAcervoTableModel extends AbstractTableModel {
@@ -22,11 +30,17 @@ public class ExemplarAcervoTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Tombo", "Nº Exemplar"};
     private List<Exemplar> exemplares;
 
-    // construtor padrão criando um arraylist de alunos  
+    /**
+     * Construtor padrão.
+     */
     public ExemplarAcervoTableModel() {
     }
 
-    // construtor que adiciona a lista passada pelo método ao alunos  
+    /**
+     * Construtor sobrecarregado.
+     *
+     * @param list List(Exemplar).
+     */
     public ExemplarAcervoTableModel(List<Exemplar> lista) {
         //this();
 //        this.exemplares.clear();
@@ -36,17 +50,37 @@ public class ExemplarAcervoTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
+    @Override
     public int getRowCount() {
-        return exemplares.size();  
+        return exemplares.size();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int.
+     * @param columnIndex int.
+     * @return Object.
+     */
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
-        List<Exemplar> outraLitsa = (List<Exemplar>) exemplares;
-        Exemplar exemplar = outraLitsa.get(rowIndex);
+        List<Exemplar> outraLista = (List<Exemplar>) exemplares;
+        Exemplar exemplar = outraLista.get(rowIndex);
         switch (columnIndex) {
             case 0:
                 return Util.decimalFormat().format(exemplar.getTombo());
@@ -56,6 +90,13 @@ public class ExemplarAcervoTableModel extends AbstractTableModel {
         return null;
     }
 
+    /**
+     * Método sobrescrito.
+     * 
+     * @param column int
+     * @return String nomeColunas[index].
+     */
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

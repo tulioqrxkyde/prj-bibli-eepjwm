@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.acervo;
 
@@ -12,20 +20,28 @@ import fvsosp.tipoitem.TipoItem;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.*;
-import javax.swing.JOptionPane;
 import org.hibernate.*;
 import org.hibernate.criterion.*;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class AcervoDAO extends GenericDAO<Acervo> {
 
+    /**
+     * Construtor da classe AcervoDAO.
+     */
     public AcervoDAO() {
         super(Acervo.class);
     }
 
+    /**
+     * Pesquisa um Acervo que contenham o título da obra passado por parâmetro.
+     *
+     * @param titulo String.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarTitulodaObra(String titulo) {
         List<Acervo> acervo = null;
         try {
@@ -40,6 +56,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa um Acervo que contenham o título da obra passado por parâmetro.
+     *
+     * @param titulo String.
+     * @return Acervo acervo.
+     */
     public Acervo pesquisarTitulodaObraEq(String titulo) {
         Acervo acervo = null;
         try {
@@ -54,6 +76,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham o subtitulo da obra passado por parâmetro.
+     *
+     * @param subtitulo String.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarSubTitulodaObra(String subtitulo) {
         List<Acervo> acervo = null;
         try {
@@ -68,6 +96,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham o isbn passado por parâmetro.
+     *
+     * @param isbn String.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarIsbn(String isbns) {
         List<Acervo> acervo = null;
         try {
@@ -82,6 +116,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham o volume passado por parâmetro.
+     *
+     * @param volumes String.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarVolume(String volumes) {
         List<Acervo> acervo = null;
         try {
@@ -96,6 +136,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham as edições passadas por parâmetro.
+     *
+     * @param edicoes String.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarEdicao(String edicoes) {
         List<Acervo> acervo = null;
         try {
@@ -110,6 +156,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham o ano passado por parâmetro.
+     *
+     * @param anos short.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisaranoEdicao(short anos) {
         List<Acervo> acervo = null;
         try {
@@ -124,6 +176,13 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham a informação adicional passada por
+     * parâmetro.
+     *
+     * @param informacoes String.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarInformacoesAdicionais(String informacoes) {
         List<Acervo> acervo = null;
         try {
@@ -138,12 +197,18 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
-    public List<Acervo> pesquisarLocalizacao(String localizacoes) {
+    /**
+     * Pesquisa Acervos que contenham a localização passada por parâmetro.
+     *
+     * @param localizacao String.
+     * @return List(Acervo) acervo.
+     */
+    public List<Acervo> pesquisarLocalizacao(String localizacao) {
         List<Acervo> acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("localizacao", localizacoes, MatchMode.ANYWHERE)).addOrder(Order.asc("localizacoes")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.ilike("localizacao", localizacao, MatchMode.ANYWHERE)).addOrder(Order.asc("localizacao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar a Localização. Erro: " + e.getMessage());
         } finally {
@@ -152,6 +217,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham o Tipo de Item passado por parâmetro.
+     *
+     * @param tipoitem TipoItem.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarTipoItem(TipoItem tipoitem) {
         List<Acervo> acervo = null;
         try {
@@ -166,6 +237,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham o Autor passado por parâmetro.
+     *
+     * @param autor Autor.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarAutor(Autor autor) {
         List<Acervo> acervo = null;
         try {
@@ -181,8 +258,10 @@ public class AcervoDAO extends GenericDAO<Acervo> {
     }
 
     /**
-     * @param query
-     * @return Lista de Acervos que contenham a query(Autor) 
+     * Pesquisa Acervos localizáveis pela query(Autor) passada por parâmetro.
+     *
+     * @param informacoes String.
+     * @return List querySQL.list().
      */
     public List pesquisarAutorQuery(String query) {
         try {
@@ -198,6 +277,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return null;
     }
 
+    /**
+     * Pesquisa Acervos que contenham a Editora passada por parâmetro.
+     *
+     * @param editora Editora.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarEditora(Editora editora) {
         List<Acervo> acervo = null;
         try {
@@ -212,6 +297,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham a Sessao passada por parâmetro.
+     *
+     * @param sessao Sessao.
+     * @return List(Acervo) acervo.
+     */
     public List<Acervo> pesquisarSessao(Sessao sessao) {
         List<Acervo> acervo = null;
         try {
@@ -226,6 +317,12 @@ public class AcervoDAO extends GenericDAO<Acervo> {
         return acervo;
     }
 
+    /**
+     * Pesquisa Acervos que contenham a Biblioteca passada por parâmetro.
+     *
+     * @param biblioteca Biblioteca.
+     * @return List(Acervo) acervo.
+     */
     public Acervo pesquisarBiblioteca(Biblioteca biblioteca) {
         Acervo acervo = null;
         try {
@@ -241,8 +338,11 @@ public class AcervoDAO extends GenericDAO<Acervo> {
     }
 
     /**
-     * @param query
-     * @return Lista de Acervos que contenham a query(PalavraChave) 
+     * Pesquisa Acervos localizáveis pela query(PalavrasChaves) passada por
+     * parâmetro.
+     *
+     * @param query String.
+     * @return List querySQL.list().
      */
     public List pesquisarPalavrasChavesQuery(String query) {
         try {
@@ -259,8 +359,10 @@ public class AcervoDAO extends GenericDAO<Acervo> {
     }
 
     /**
-     * @param codigo
-     * @return Acervo
+     * Pesquisa Acervos que contenham o codigo passado por parâmetro.
+     *
+     * @param codigo short.
+     * @return Acervo acervo.
      */
     public Acervo pesquisarCodigo(short codigo) {
         Acervo acervo = null;
@@ -280,7 +382,9 @@ public class AcervoDAO extends GenericDAO<Acervo> {
     }
 
     /**
-     * @return Lista de Acervos
+     * Pesquisa por todos os acervos, e os retorna.
+     *
+     * @return List querySQL.list()
      */
     public List relatorioAcervo() {
         String text = "select ac.idAcervo, "
@@ -309,9 +413,6 @@ public class AcervoDAO extends GenericDAO<Acervo> {
             this.setTransacao(getSessao().beginTransaction());
             SQLQuery query = getSessao()
                     .createSQLQuery("select * from acervo ac ").addEntity("acervo", Acervo.class);
-            //query.addEntity(Acervo.class
-
-
             return query.list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Acervo. Erro: " + e.getMessage());
@@ -322,8 +423,10 @@ public class AcervoDAO extends GenericDAO<Acervo> {
     }
 
     /**
-     * @param query
-     * @return Lista de Acervos que contenham a query
+     * Pesquisa Acervos localizáveis pela query(String) passada por parâmetro.
+     *
+     * @param query String.
+     * @return List querySQL.list().
      */
     public List consultaAcervo(String query) {
         try {

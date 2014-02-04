@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.acervo;
 
@@ -9,20 +17,27 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author TÚLIO
+ * @author tulio.xcrtf
  */
+@SuppressWarnings("serial")
 public class AcervoTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Título", "Sub-Título", "ISBN", 
-                                "Sessão"};
+    private String[] nomeColunas = {"Código", "Título", "Sub-Título", "ISBN",
+        "Sessão"};
     private List<Acervo> acervos;
 
-    // construtor padrão criando um arraylist de alunos  
+    /**
+     * Construtor padrão.
+     */
     public AcervoTableModel() {
         //acervos = new LinkedList<Acervo>();
     }
 
-    // construtor que adiciona a lista passada pelo método ao alunos  
+    /**
+     * Construtor sobrecarregado.
+     *
+     * @param list List(Acervo).
+     */
     public AcervoTableModel(List<Acervo> lista) {
         //this();
         acervos = new ArrayList(new HashSet(lista));
@@ -32,16 +47,34 @@ public class AcervoTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
+    @Override
     public int getRowCount() {
         return acervos.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int
+     * @param columnIndex int.
+     * @return Object.
+     */
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Acervo acervo = acervos.get(rowIndex);
         switch (columnIndex) {
@@ -52,15 +85,19 @@ public class AcervoTableModel extends AbstractTableModel {
             case 2:
                 return acervo.getSubtituloObra();
             case 3:
-                return acervo.getIsbn();        
+                return acervo.getIsbn();
             case 4:
                 return acervo.getSessao();
-            
+
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
+    /**
+     * @param column String.
+     * @return String nomeColunas[index].
+     */
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:
@@ -73,8 +110,6 @@ public class AcervoTableModel extends AbstractTableModel {
                 return nomeColunas[3];
             case 4:
                 return nomeColunas[4];
-                      
-            
         }
         return null;
     }
