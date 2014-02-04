@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.autor;
 
 import fvsosp.util.Util;
@@ -9,14 +21,19 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author acer
+ * @author tulio.xcrtf
  */
 @SuppressWarnings("serial")
 public class AutorTableModel extends AbstractTableModel {
 
-    private String[] nomeColunas = {"Código", "Sobrenome","Autor", "Sobre o Autor"};
+    private String[] nomeColunas = {"Código", "Sobrenome", "Autor", "Sobre o Autor"};
     private List<Autor> autores;
 
+    /**
+     * Construtor sobrecarregado.
+     *
+     * @param lista List(Autor).
+     */
     public AutorTableModel(List<Autor> lista) {
         autores = new ArrayList(new HashSet(lista));
         this.autores.clear();
@@ -25,32 +42,53 @@ public class AutorTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getRowCount() {
         return autores.size();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getColumnCount() {
         return nomeColunas.length;
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int
+     * @param columnIndex int.
+     * @return Object.
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Autor autor = autores.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                    return Util.decimalFormat().format(autor.getIdAutor());
+                return Util.decimalFormat().format(autor.getIdAutor());
             case 1:
-                    return autor.getSobrenome();
+                return autor.getSobrenome();
             case 2:
-                    return autor.getNome();
+                return autor.getNome();
             case 3:
-                    return autor.getSobreOAutor();
+                return autor.getSobreOAutor();
         }
         return null;
     }
 
+    /**
+     * @param column String.
+     * @return String nomeColunas[index].
+     */
     @Override
     public String getColumnName(int column) {
         switch (column) {

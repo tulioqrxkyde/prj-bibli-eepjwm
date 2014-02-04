@@ -1,27 +1,60 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.autor;
 
-import fvsosp.acervo.Acervo;
 import java.io.Serializable;
-
-import java.util.List;
 import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.Type;
 
-
+/**
+ *
+ * @author tulio.xcrtf
+ */
 @Entity
-@Table(name="autor")
+@Table(name = "autor")
 public class Autor implements Comparable<Autor>, Serializable {
 
-     @Override
-    public int compareTo(Autor o) {        
-        return getNome().compareTo(o.getNome());            
+    /**
+     * Método sobrescrito
+     *
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
+    @Override
+    public int compareTo(Autor o) {
+        return getNome().compareTo(o.getNome());
     }
-    
+
+    /**
+     * Método sobrescrito.
+     *
+     * @return String contendo o id do Autor e informação Sobre o Autor.
+     */
+    @Override
+    public String toString() {
+        return idAutor + " | " + getSobreOAutor() + ", " + getNome();
+    }
     @Id // campo chave primária
     @GeneratedValue // campo autoincremento
     private short idAutor;
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -32,6 +65,12 @@ public class Autor implements Comparable<Autor>, Serializable {
         return hash;
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param obj objeto a ser acessado através da Composição.
+     * @return booleano (true|false).
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -55,62 +94,65 @@ public class Autor implements Comparable<Autor>, Serializable {
         }
         return true;
     }
-   
-    // not null de tamanho 70 e valor padrão ''
-    @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 
+    @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''")
     private String nome;
-    
-    @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''") 
+    @Column(nullable = false, length = 70, columnDefinition = "varchar(70) default ''")
     private String sobrenome;
-    
-    @Type(type="text")
+    @Type(type = "text")
     @Column(nullable = false, length = 150)
     private String sobreOAutor;
-      
-    /*** @retorna o id do Autor ***/
+
+    /**
+     * @return short idAutor.
+     */
     public short getIdAutor() {
         return idAutor;
     }
 
-    /*** @seta o id do Autor ***/
+    /**
+     * @param idAutor short.
+     */
     public void setIdAutor(short idAutor) {
         this.idAutor = idAutor;
     }
 
-    /*** @retorna o nome do Autor ***/
+    /**
+     * @return String nome.
+     */
     public String getNome() {
         return nome;
     }
 
-    /*** @seta o nome do Autor ***/
+    /**
+     * @param nome String.
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
 
-    /*** @retorna as informações sobre o Autor ***/
+    /**
+     * @return String sobreOAutor.
+     */
     public String getSobreOAutor() {
         return sobreOAutor;
     }
 
-    /*** @seta as informações do Autor ***/
+    /**
+     * @param sobreOAutor String.
+     */
     public void setSobreOAutor(String sobreOAutor) {
         this.sobreOAutor = sobreOAutor;
     }
 
-    /*** @retorna a lista de Acervos ***/
-    public String toString(){
-        return idAutor+" | "+getSobreOAutor()+", "+getNome();
-    }
-
     /**
-     * @return the sobrenome
+     * @return String sobrenome.
      */
     public String getSobrenome() {
         return sobrenome;
     }
 
     /**
-     * @param sobrenome the sobrenome to set
+     * @param sobrenome String.
      */
     public void setSobrenome(String sobrenome) {
         this.sobrenome = sobrenome;

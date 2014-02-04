@@ -36,6 +36,8 @@ import org.hibernate.annotations.NaturalId;
 public class Acervo implements Serializable, Comparable<Acervo> {
 
     /**
+     * Método sobrescrito.
+     *
      * @param o objeto a ser acessado através da Composição.
      * @return inteiro negativo, zero ou um inteiro positivo.
      */
@@ -45,6 +47,8 @@ public class Acervo implements Serializable, Comparable<Acervo> {
     }
 
     /**
+     * Método sobrescrito.
+     *
      * @return String contendo o id do Acervo e o Título da Obra.
      */
     @Override
@@ -53,6 +57,8 @@ public class Acervo implements Serializable, Comparable<Acervo> {
     }
 
     /**
+     * Método sobrescrito.
+     *
      * @return um inteiro(hash) contendo o valor total do cálculo de todos os
      * hashCodes dos Atributos contidos na Classe.
      */
@@ -85,8 +91,10 @@ public class Acervo implements Serializable, Comparable<Acervo> {
     }
 
     /**
+     * Método sobrescrito.
+     * 
      * @param obj objeto a ser acessado através da Composição.
-     * @return um booleano (true|false).
+     * @return booleano (true|false).
      */
     @Override
     public boolean equals(Object obj) {
@@ -165,13 +173,10 @@ public class Acervo implements Serializable, Comparable<Acervo> {
         }
         return true;
     }
-    
     @Id
     @GeneratedValue
     private short idAcervo;
-    
     private String cutter;
-    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "palavraschavesacervo",
             joinColumns =
@@ -179,36 +184,26 @@ public class Acervo implements Serializable, Comparable<Acervo> {
             inverseJoinColumns =
             @JoinColumn(name = "idPalavrasChaves"))
     private Set<PalavrasChaves> palavrasChaves;
-    
     @Column(nullable = false, length = 50)
     @NaturalId(mutable = true)
     private String tituloObra;
-    
     @Column(nullable = false, length = 50)
     private String subtituloObra;
-    
     @Column(length = 14, columnDefinition = "varchar(14) default ''")
     private String isbn;
-    
     @Column(length = 4, nullable = false)
     private String volume;
-    
     @Column(length = 4)
     private String edicao;
-    
     @Column(length = 4, nullable = false)
     private short anoEdicao;
-    
     @Column(length = 70)
     private String informacoesAdicionais;
-    
     @Column(length = 50)
     private String localizacao;
-    
     @ManyToOne
     @JoinColumn(name = "idtipoitem", nullable = false)
     private TipoItem tipoItem;
-    
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "autoresacervo",
             joinColumns =
@@ -216,38 +211,28 @@ public class Acervo implements Serializable, Comparable<Acervo> {
             inverseJoinColumns =
             @JoinColumn(name = "idAutor"))
     private Set<Autor> autores;
-    
     @ManyToOne
     @JoinColumn(name = "ideditora", nullable = false)
     private Editora editora;
-    
     @ManyToOne
     @JoinColumn(name = "ididioma", nullable = false)
     private Idioma idioma;
-    
     @ManyToOne
     @JoinColumn(name = "idsessao")
     private Sessao sessao;
-    
     @ManyToOne
     @JoinColumn(name = "idbiblioteca", nullable = false)
     private Biblioteca biblioteca;
-    
     @OneToMany(mappedBy = "acervo", fetch = FetchType.EAGER)
     private List<Exemplar> exemplares;
-    
     @Column(length = 7, nullable = false, columnDefinition = "smallint default '0'")
     private short numeroPaginas;
-    
     @Column(length = 7, columnDefinition = "smallint default '0'")
     private short peso;
-    
     @Column(length = 30, columnDefinition = "varchar(30) default ''")
     private String acabamentoCapa;
-    
     @Column(length = 30, columnDefinition = "varchar(30) default ''")
     private String acabamentoMiolo;
-    
     private static final long serialVersionUID = -8256983727176831230L;
 
     /**

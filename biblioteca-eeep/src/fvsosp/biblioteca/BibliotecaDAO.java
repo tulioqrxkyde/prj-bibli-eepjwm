@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.biblioteca;
 
@@ -13,29 +21,30 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class BibliotecaDAO extends GenericDAO<Biblioteca> {
 
+    /**
+     * Construtor.
+     */
     public BibliotecaDAO() {
         super(Biblioteca.class);
     }
-    
+
+    /**
+     * Pesquisa Bibliotecas que contenham a descrição passada por parâmetro.
+     *
+     * @param descricao String.
+     * @return List(Biblioteca) bibliotecas.
+     */
     public List<Biblioteca> pesquisarDescricao(String descricao) {
         List<Biblioteca> bibliotecas = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            /*
-             * pesquisa uma biblioteca por descricao
-             * usando o ilike, o MatchMode.ANYWHERE quer dizer
-             * que a sequência de caracteres passada na String descricao
-             * pode ser encontrada em qualquer lugar, representa o '%descricao%', ordenando
-             * de forma crescente por descicao
-             */
             bibliotecas = (List<Biblioteca>) getSessao().createCriteria(Biblioteca.class).
                     add(Restrictions.ilike("descricao", descricao, MatchMode.ANYWHERE)).list();
-
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Descrição: " + e.getMessage());
         } finally {
@@ -43,13 +52,19 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
         }
         return bibliotecas;
     }
-    
+
+    /**
+     * Pesquisa uma Biblioteca que contenha a descrição passada por parâmetro.
+     *
+     * @param descricao String.
+     * @return Biblioteca biblioteca.
+     */
     public Biblioteca pesquisarDescricaoEq(String descricao) {
         Biblioteca bibliotecas = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            
+
             bibliotecas = (Biblioteca) getSessao().createCriteria(Biblioteca.class).
                     add(Restrictions.eq("descricao", descricao)).uniqueResult();
 
@@ -61,6 +76,12 @@ public class BibliotecaDAO extends GenericDAO<Biblioteca> {
         return bibliotecas;
     }
 
+    /**
+     * Pesquisa uma Biblioteca que contenha a descrição passada por parâmetro.
+     *
+     * @param codigo short.
+     * @return Biblioteca biblioteca.
+     */
     public Biblioteca pesquisarCodigo(short codigo) {
         Biblioteca biblioteca = null;
         try {

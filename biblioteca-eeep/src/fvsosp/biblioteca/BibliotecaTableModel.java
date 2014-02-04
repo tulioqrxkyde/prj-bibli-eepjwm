@@ -7,7 +7,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author TÚLIO
+ * @author tulio.xcrtf
  */
 @SuppressWarnings("serial")
 public class BibliotecaTableModel extends AbstractTableModel {
@@ -15,6 +15,11 @@ public class BibliotecaTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Código", "Biblioteca"};
     private List<Biblioteca> bibliotecas;
 
+    /**
+     * Construtor sobrecarregado.
+     *
+     * @param lista List(Biblioteca).
+     */
     public BibliotecaTableModel(List<Biblioteca> lista) {
         bibliotecas = new ArrayList<>();
         this.bibliotecas.clear();
@@ -22,16 +27,33 @@ public class BibliotecaTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getRowCount() {
-        return bibliotecas.size(); 
+        return bibliotecas.size();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getColumnCount() {
-        return nomeColunas.length; 
+        return nomeColunas.length;
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int
+     * @param columnIndex int.
+     * @return Object.
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Biblioteca biblioteca = bibliotecas.get(rowIndex);
@@ -44,6 +66,10 @@ public class BibliotecaTableModel extends AbstractTableModel {
         return null;
     }
 
+    /**
+     * @param column String.
+     * @return String nomeColunas[index].
+     */
     @Override
     public String getColumnName(int column) {
         switch (column) {
