@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.editora;
 
 import fvsosp.acervo.Acervo;
@@ -13,10 +25,19 @@ import org.hibernate.criterion.*;
  */
 public class EditoraDAO extends GenericDAO<Editora> {
 
+     /**
+     * Construtor da classe EditoraDAO.
+     */
     public EditoraDAO() {
         super(Editora.class);
     }
-
+    
+     /**
+     * Pesquisa Autores que contenham o nome passado por parâmetro.
+     *
+     * @param nome String.
+     * @return List(Editora) editoras.
+     */
     public List<Editora> procuraNomeEditora(String nome) {
         List<Editora> editoras = null;
 
@@ -35,6 +56,13 @@ public class EditoraDAO extends GenericDAO<Editora> {
         }
         return editoras;
     }
+    
+     /**
+     * Pesquisa NomeEditora que contenham o nome passado por parâmetro.
+     *
+     * @param nome String.
+     * @return List(Editora) editoras.
+     */
     
     public Editora procuraNomeEditoraEq(String nome) {
         Editora editoras = null;
@@ -55,6 +83,12 @@ public class EditoraDAO extends GenericDAO<Editora> {
         return editoras;
     }
  
+     /**
+     * Pesquisa Acervos que contenham o ed passado por parâmetro.
+     *
+     * @param ed Editora.
+     * @return List(Acervos) acervos.
+     */
     public List<Acervo> procuraAcervoEditora(Editora ed) {
         List<Acervo> acervos = null;
 
@@ -73,6 +107,13 @@ public class EditoraDAO extends GenericDAO<Editora> {
         }
         return acervos;
     }
+    
+     /**
+     * Pesquisa Editoras que contenham o codigo passado por parâmetro.
+     *
+     * @param codigo short.
+     * @return Editora editora.
+     */
     
     public Editora pesquisarCodigo(short codigo) {
         Editora editora = null;
