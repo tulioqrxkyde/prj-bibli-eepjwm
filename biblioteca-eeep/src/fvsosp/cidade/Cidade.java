@@ -48,7 +48,7 @@ public class Cidade implements Serializable, Comparable<Cidade> {
      */
     @Override
     public String toString() {
-        return idCidade + " | " + descricao + "-" + uf;
+        return descricao + "-" + uf;
     }
 
     /**

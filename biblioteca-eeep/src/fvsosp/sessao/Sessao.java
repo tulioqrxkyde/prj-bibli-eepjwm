@@ -75,6 +75,6 @@ public class Sessao implements Serializable, Comparable<Sessao>{
     private static final long serialVersionUID = 2535742826332189587L;
     
     public String toString(){
-        return idSessao+" | "+descricao;
+        return descricao;
     }
 }

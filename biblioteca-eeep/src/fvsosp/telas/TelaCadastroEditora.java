@@ -6,6 +6,7 @@ import fvsosp.editora.Editora;
 import fvsosp.editora.EditoraRN;
 import fvsosp.editora.EditoraTableModel;
 import fvsosp.util.Util;
+import java.util.Collections;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -25,6 +26,8 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     public TelaCadastroEditora() {
         initComponents();
         limpaCampos();
+        setModal(true);
+        setLocationRelativeTo(null);
     }
 
     public void limpaCampos() {
@@ -57,6 +60,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
         jLabel24 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
         cbCidade = new javax.swing.JComboBox();
+        jLabel1 = new javax.swing.JLabel();
 
         setTitle("OSBiblio - Editora");
         setModal(true);
@@ -126,7 +130,20 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
 
         cbCidade.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbCidade.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
-        CidadeRN cidRN = new CidadeRN();         for (Cidade cidade : cidRN.listar()) {             cbCidade.addItem(cidade);         }
+        CidadeRN cidRN = new CidadeRN();
+        List<Cidade> cidades = cidRN.listar();
+        Collections.sort(cidades);
+        for (Cidade cidade : cidades) {
+            cbCidade.addItem(cidade);
+        }
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/application-add-icon.png"))); // NOI18N
+        jLabel1.setToolTipText("Cadastrar Cidade");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -152,7 +169,10 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel24)
                             .addComponent(jLabel29)
-                            .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jLabel1)))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -167,8 +187,10 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel29)
                 .addGap(4, 4, 4)
-                .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 23, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbCidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel1))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btSair)
                     .addComponent(btPesquisar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -232,7 +254,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (Util.chkVazio(tfDescricao.getText(),cbCidade.getSelectedItem().toString())) {
+        if (Util.chkVazio(tfDescricao.getText(), cbCidade.getSelectedItem().toString())) {
             if (editora == null) {
                 editora = new Editora();
             }
@@ -259,6 +281,21 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         limpaCampos();
     }//GEN-LAST:event_btNovoActionPerformed
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        TelaCadastroCidade tCC = new TelaCadastroCidade();
+        tCC.setVisible(true);
+        cbCidade.removeAllItems();
+        CidadeRN cidRN = new CidadeRN();
+        List<Cidade> cidades = cidRN.listar();
+        Collections.sort(cidades);
+        cbCidade.addItem("--");
+        for (Cidade cidade : cidades) {
+            cbCidade.addItem(cidade);
+        }
+
+    }//GEN-LAST:event_jLabel1MouseClicked
 
     /**
      * @param args the command line arguments
@@ -301,6 +338,7 @@ public class TelaCadastroEditora extends javax.swing.JDialog {
     private javax.swing.JButton btSair;
     private javax.swing.JButton btSalvar;
     private javax.swing.JComboBox cbCidade;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel29;

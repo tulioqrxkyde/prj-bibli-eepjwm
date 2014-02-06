@@ -51,7 +51,7 @@ public class Biblioteca implements Serializable {
      * @return String contendo o id da Biblioteca e a descricao sobre ela.
      */
     public String toString() {
-        return idBiblioteca + " | " + descricao;
+        return  descricao;
     }
 
     /**

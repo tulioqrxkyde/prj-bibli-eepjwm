@@ -37,6 +37,8 @@ public class TelaRelatorioAcervo extends javax.swing.JDialog {
      */
     public TelaRelatorioAcervo() {
         initComponents();
+        setModal(true);
+        setLocationRelativeTo(null);
     }
 
     /**

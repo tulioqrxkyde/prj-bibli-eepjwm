@@ -111,7 +111,7 @@ public class Usuario implements Serializable, Comparable<Usuario>{
     }
     
     public String toString(){
-        return idUsuario+" | "+login;
+        return login;
     }
     
     

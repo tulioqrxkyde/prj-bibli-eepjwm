@@ -88,6 +88,6 @@ public class TipoItem implements Serializable, Comparable<TipoItem>{
     private static final long serialVersionUID = 139376686869872414L;
     
     public String toString(){
-        return idTipoItem+" | "+descricao;
+        return descricao;
     }
 }

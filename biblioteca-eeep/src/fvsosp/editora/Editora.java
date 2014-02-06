@@ -99,7 +99,7 @@ public class Editora implements Serializable, Comparable<Editora> {
    
     
     public String toString(){
-        return idEditora+" | "+getNome();
+        return getNome();
     }
 
     /**
