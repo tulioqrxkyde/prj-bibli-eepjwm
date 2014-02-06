@@ -43,7 +43,7 @@ public class Autor implements Comparable<Autor>, Serializable {
      */
     @Override
     public String toString() {
-        return idAutor + " | " + getSobreOAutor() + ", " + getNome();
+        return getSobreOAutor() + ", " + getNome();
     }
     @Id // campo chave primária
     @GeneratedValue // campo autoincremento

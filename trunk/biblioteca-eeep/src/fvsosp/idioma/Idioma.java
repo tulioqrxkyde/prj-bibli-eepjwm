@@ -73,6 +73,6 @@ public class Idioma implements Serializable {
     private static final long serialVersionUID = -3057265994106209062L;
 
     public String toString() {
-        return idIdioma + " | " + descricao;
+        return  descricao;
     }
 }

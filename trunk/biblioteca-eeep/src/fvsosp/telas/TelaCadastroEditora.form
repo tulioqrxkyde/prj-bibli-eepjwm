@@ -71,7 +71,11 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jLabel24" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
-                              <Component id="cbCidade" min="-2" pref="230" max="-2" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="cbCidade" min="-2" pref="230" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
                           <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       </Group>
@@ -91,8 +95,11 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jLabel29" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="4" pref="4" max="-2" attributes="0"/>
-                  <Component id="cbCidade" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="3" attributes="0">
+                      <Component id="cbCidade" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace pref="21" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="btSair" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="btPesquisar" alignment="0" min="-2" pref="33" max="-2" attributes="0"/>
@@ -227,8 +234,19 @@
             </Property>
           </Properties>
           <AuxValues>
-            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="CidadeRN cidRN = new CidadeRN();         for (Cidade cidade : cidRN.listar()) {             cbCidade.addItem(cidade);         }"/>
+            <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="CidadeRN cidRN = new CidadeRN();&#xd;&#xa;        List&lt;Cidade&gt; cidades = cidRN.listar();&#xd;&#xa;        Collections.sort(cidades);&#xd;&#xa;        for (Cidade cidade : cidades) {&#xd;&#xa;            cbCidade.addItem(cidade);&#xd;&#xa;        }"/>
           </AuxValues>
+        </Component>
+        <Component class="javax.swing.JLabel" name="jLabel1">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/fvsosp/imagens/application-add-icon.png"/>
+            </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Cadastrar Cidade"/>
+          </Properties>
+          <Events>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel1MouseClicked"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

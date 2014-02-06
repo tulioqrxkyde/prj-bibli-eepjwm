@@ -53,7 +53,7 @@ public class Acervo implements Serializable, Comparable<Acervo> {
      */
     @Override
     public String toString() {
-        return getIdAcervo() + " | " + tituloObra;
+        return tituloObra;
     }
 
     /**

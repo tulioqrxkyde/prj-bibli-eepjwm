@@ -49,7 +49,7 @@ import javax.swing.KeyStroke;
  */
 @SuppressWarnings("serial")
 public class TelaCadastroAcervo extends javax.swing.JDialog {
-
+    
     Acervo acervo;
     AcervoRN acervoRN = new AcervoRN();
     Exemplar exemplar;
@@ -77,7 +77,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         FormataTamanhoColunasJTable.packColumns(tbPalavrasChaves, 1);
         FormataTamanhoColunasJTable.packColumns(tbExemplares, 1);
         setLocationRelativeTo(null);
-
+        
     }
 
     /**
@@ -158,6 +158,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         jLabel45 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         tfInformacoesAdicionais = new javax.swing.JTextArea();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("OSBiblio - Acervo");
@@ -586,101 +588,94 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         tbbPaneAcervo.addTab("Autores *", jPanel7);
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel1.setText("Biblioteca.:*");
+        jPanel4.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 87, -1, -1));
 
         jLabel2.setText("Editora.:*");
+        jPanel4.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 36, -1, -1));
 
         jLabel4.setText("Idioma.:*");
+        jPanel4.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 36, -1, -1));
 
         jLabel5.setText("Sessão.: *");
+        jPanel4.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 87, -1, -1));
 
         jLabel6.setText("Tipo Item.:*");
+        jPanel4.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, -1));
 
         cbBiblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbBiblioteca.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
-        BibliotecaRN bibRN = new BibliotecaRN();         List<Biblioteca> bibliotecas = bibRN.listar();         for (Biblioteca biblioteca : bibliotecas) {             cbBiblioteca.addItem(biblioteca);         }         if (bibliotecas.size() > 0) {             cbBiblioteca.setSelectedIndex(1);         }
+        BibliotecaRN bibRN = new BibliotecaRN();         
+        List<Biblioteca> bibliotecas = bibRN.listar(); 
+        for (Biblioteca biblioteca : bibliotecas) {   
+            cbBiblioteca.addItem(biblioteca);         }   
+        if (bibliotecas.size() > 0) {             
+            cbBiblioteca.setSelectedIndex(1);         }
+        jPanel4.add(cbBiblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 107, 192, -1));
 
         cbEditora.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbEditora.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
-        EditoraRN edtRN = new EditoraRN();         List<Editora> editoras = edtRN.listar();         for (Editora editora : editoras) {             cbEditora.addItem(editora);         }
+        EditoraRN edtRN = new EditoraRN();         
+        List<Editora> editoras = edtRN.listar(); 
+        Collections.sort(editoras);
+        for (Editora editora : editoras) {             
+            cbEditora.addItem(editora);         
+        }
+        jPanel4.add(cbEditora, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 56, 192, -1));
 
         cbIdioma.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbIdioma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
-        IdiomaRN idRN = new IdiomaRN();         List<Idioma> idiomas = idRN.listar();         for (Idioma idioma : idiomas) {             cbIdioma.addItem(idioma);         }
+        IdiomaRN idRN = new IdiomaRN();         
+        List<Idioma> idiomas = idRN.listar(); 
+        for (Idioma idioma : idiomas) {             
+            cbIdioma.addItem(idioma);         }
+        jPanel4.add(cbIdioma, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 56, 205, -1));
 
         cbSessao.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbSessao.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
-        SessaoRN sesRN = new SessaoRN();         List<Sessao> sessoes = sesRN.listar();         for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }
+        SessaoRN sesRN = new SessaoRN();         
+        List<Sessao> sessoes = sesRN.listar();      
+        Collections.sort(sessoes);
+        for (Sessao sessao : sessoes) {             cbSessao.addItem(sessao);         }
+        jPanel4.add(cbSessao, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 107, 205, -1));
 
         cbTipoItem.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         cbTipoItem.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "--" }));
-        TipoItemRN tipRN = new TipoItemRN();         List<TipoItem> tipoitens = tipRN.listar();         for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }
+        TipoItemRN tipRN = new TipoItemRN();         
+        List<TipoItem> tipoitens = tipRN.listar(); 
+        Collections.sort(tipoitens);
+        for (TipoItem tipo : tipoitens) {             cbTipoItem.addItem(tipo);         }
+        jPanel4.add(cbTipoItem, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 160, 192, -1));
 
         jLabel45.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jLabel45.setText("Informações Adicionais.:");
+        jPanel4.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, -1, 29));
 
         tfInformacoesAdicionais.setColumns(20);
         tfInformacoesAdicionais.setRows(5);
         jScrollPane1.setViewportView(tfInformacoesAdicionais);
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(cbBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(cbEditora, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6)
-                            .addComponent(cbTipoItem, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel45))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(cbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel5))
-                            .addComponent(cbSessao, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 205, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap())
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbIdioma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbEditora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(9, 9, 9)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cbSessao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbBiblioteca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cbTipoItem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
+        jPanel4.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 225, 435, 51));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/application-add-icon.png"))); // NOI18N
+        jLabel3.setToolTipText("Cadastrar Editora");
+        jLabel3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel3MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 56, -1, -1));
+
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/application-add-icon.png"))); // NOI18N
+        jLabel7.setToolTipText("Cadastrar Tipo de Item");
+        jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel7MouseClicked(evt);
+            }
+        });
+        jPanel4.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(206, 160, -1, -1));
 
         tbbPaneAcervo.addTab("Outros *", jPanel4);
 
@@ -746,11 +741,11 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             tfIsbn.setText(acervo.getIsbn());
         }
     }//GEN-LAST:event_btPesquisarActionPerformed
-
+    
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
         dispose();
     }//GEN-LAST:event_btSairActionPerformed
-
+    
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
         if (acervo == null) {
@@ -838,19 +833,19 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
 //                    JOptionPane.showMessageDialog(rootPane, "Título Já Cadastrado! Informe outro Titulo!");
 //                } else
                 if (acervoRN.salvar(acervo)) {
-
+                    
                     JOptionPane.showMessageDialog(rootPane, "Acervo " + acervo.getTituloObra()
                             + ", " + ((tdAcervo == 0) ? "cadastrado" : "alterado") + " com sucesso!");
                     limparCampos();
-
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Preencha todos os campos com '*'! ");
             }
         }
-
+        
     }
-
+    
     public void limparCampos() {
         tfTitulo.setText("");
         tfSubTitulo.setText("");
@@ -902,35 +897,35 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             } catch (Exception ex) {
                 System.out.println("Erro: " + ex.getMessage());
             }
-
-
+            
+            
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione a Linha!",
                     "ERRO", JOptionPane.ERROR_MESSAGE);
         }
         return palavraChave;
-
+        
     }
-
+    
     private void ExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ExcluirActionPerformed
         // TODO add your handling code here:
         PalavrasChaves p = pegaPalavaChaveSelecionado();
         if (JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir a Palavra Chave " + p.getDescricao() + "?",
                 "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             palavrasChavesAcervo.remove(p);
-
+            
             JOptionPane.showMessageDialog(rootPane, "Palavra Chave " + p.getDescricao() + " Excluído com Sucesso!",
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
         atualizaTabelaPalavrasChaves();
-
+        
     }//GEN-LAST:event_ExcluirActionPerformed
-
+    
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         PalavrasChavesRN palavrasRN = new PalavrasChavesRN();
         List<PalavrasChaves> lista = palavrasRN.listar();
-
+        
         PalavrasChavesTableModel itm = new PalavrasChavesTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Palavras Chaves");
         if (o != null) {
@@ -944,7 +939,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
-
+    
     private Autor pegaAutorSelecionado() {
         int row = tbAutores.getSelectedRow();
         Autor autor = null;
@@ -958,51 +953,51 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             } catch (Exception ex) {
                 System.out.println("Erro: " + ex.getMessage());
             }
-
-
+            
+            
         } else {
             JOptionPane.showMessageDialog(rootPane, "Selecione a Linha!",
                     "ERRO", JOptionPane.ERROR_MESSAGE);
         }
         return autor;
-
+        
     }
-
+    
     private void btExcluirAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btExcluirAutorActionPerformed
         // TODO add your handling code here:
         Autor a = pegaAutorSelecionado();
         if (JOptionPane.showConfirmDialog(rootPane, "Deseja Excluir o Autor " + a.getNome() + "?",
                 "Excluir", JOptionPane.YES_NO_OPTION, JOptionPane.WARNING_MESSAGE) == JOptionPane.YES_OPTION) {
             autoresAcervo.remove(a);
-
+            
             JOptionPane.showMessageDialog(rootPane, "Autor " + a.getNome() + " Excluído com Sucesso!",
                     "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         }
         atualizaTabelaAutores();
     }//GEN-LAST:event_btExcluirAutorActionPerformed
-
+    
     private void btInserirAutorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btInserirAutorActionPerformed
         // TODO add your handling code here:
         AutorRN autorRN = new AutorRN();
         List<Autor> lista = autorRN.listar();
-
+        
         AutorTableModel itm = new AutorTableModel(lista);
         Object o = TelaPesquisa.exibeTela(itm, "Autor");
-
+        
         if (o != null) {
             short id = Short.valueOf(String.valueOf(o));
             Autor autor = autorRN.pesquisarCodigo(id);
             if (JOptionPane.showConfirmDialog(rootPane, "Deseja Inserir o Autor: "
                     + autor.getNome() + "?", "Inserir Autor",
                     JOptionPane.YES_NO_OPTION, JOptionPane.INFORMATION_MESSAGE) == JOptionPane.YES_OPTION) {
-
+                
                 autoresAcervo.add(autor);
                 atualizaTabelaAutores();
             }
-
+            
         }
     }//GEN-LAST:event_btInserirAutorActionPerformed
-
+    
     private void btGerarExemplaresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btGerarExemplaresActionPerformed
         // TODO add your handling code here:
         if (tfqtdExemplar.getText().replaceAll(" ", "").equals("")) {
@@ -1015,7 +1010,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 Exemplar exemplar;
                 for (int i = 0; i < qtd; i++) {
                     exemplar = new Exemplar();
-
+                    
                     if ((acervo == null) && (exemplaresAcervo.size() == 0)) {
                         exemplar.setExemplar(Short.valueOf(String.valueOf(i + 1)));
                     } else {
@@ -1027,9 +1022,9 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                             Collections.sort(exemplaresAcervo);
                             numexemplar = Short.valueOf(String.valueOf(exemplaresAcervo.get(tamanhoListaExmeplares).getExemplar() + 1));
                         }
-
+                        
                         exemplar.setExemplar(numexemplar);
-
+                        
                     }
                     exemplar.setAtivo(true);
                     exemplar.setSituacao(1);
@@ -1040,80 +1035,108 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_btGerarExemplaresActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         TelaCadastroPalavasChaves tCPC = new TelaCadastroPalavasChaves();
         tCPC.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
-
+    
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         TelaCadastroAutor tCA = new TelaCadastroAutor();
         tCA.setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
-
+    
     private void tfLocalizacaoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfLocalizacaoKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             tbbPaneAcervo.setSelectedIndex(1);
-
+            
         }
     }//GEN-LAST:event_tfLocalizacaoKeyPressed
-
+    
     private void tfqtdExemplarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfqtdExemplarKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             btGerarExemplaresActionPerformed(null);
-
+            
         }
     }//GEN-LAST:event_tfqtdExemplarKeyPressed
-
+    
     private void tfPesoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tfPesoKeyPressed
         // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             tbbPaneAcervo.setSelectedIndex(4);
         }
     }//GEN-LAST:event_tfPesoKeyPressed
-
+    
+    private void jLabel3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel3MouseClicked
+        // TODO add your handling code here:
+        TelaCadastroEditora tCE = new TelaCadastroEditora();
+        tCE.setVisible(true);
+        cbEditora.removeAllItems();
+        cbEditora.addItem("--");
+        EditoraRN edtRN = new EditoraRN();
+        List<Editora> editoras = edtRN.listar();
+        Collections.sort(editoras);
+        for (Editora editora : editoras) {
+            cbEditora.addItem(editora);
+        }
+    }//GEN-LAST:event_jLabel3MouseClicked
+    
+    private void jLabel7MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel7MouseClicked
+        // TODO add your handling code here:
+        TelaCadastroTipoItem tCTI = new TelaCadastroTipoItem();
+        tCTI.setVisible(true);
+        TipoItemRN tipRN = new TipoItemRN();        
+        List<TipoItem> tipoitens = tipRN.listar();        
+        Collections.sort(tipoitens);
+        cbTipoItem.addItem("--");
+        cbTipoItem.removeAllItems();
+        for (TipoItem tipo : tipoitens) {
+            cbTipoItem.addItem(tipo);
+        }
+    }//GEN-LAST:event_jLabel7MouseClicked
+    
     private void atualizaTabelaPalavrasChaves() {
         PalavraChaveAcervoTableModel atm;
         try {
             atm = new PalavraChaveAcervoTableModel(palavrasChavesAcervo);
             tbPalavrasChaves.setModel(atm);
-
+            
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
         FormataTamanhoColunasJTable.packColumns(tbPalavrasChaves, 1);
     }
-
+    
     private void atualizaTabelaAutores() {
         AutoresAcervoTableModel atm;
         try {
             atm = new AutoresAcervoTableModel(autoresAcervo);
             tbAutores.setModel(atm);
-
+            
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
         FormataTamanhoColunasJTable.packColumns(tbAutores, 1);
-
-
+        
+        
     }
-
+    
     private void atualizaTabelaExemplares() {
         ExemplarAcervoTableModel atm;
         try {
             atm = new ExemplarAcervoTableModel(exemplaresAcervo);
             tbExemplares.setModel(atm);
-
+            
         } catch (Exception ex) {
             System.out.println("Erro: " + ex.getMessage());
         }
         FormataTamanhoColunasJTable.packColumns(tbExemplares, 1);
-
-
+        
+        
     }
 
     /**
@@ -1130,14 +1153,14 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                 if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-
-
-
-
-
-
-
-
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -1185,6 +1208,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
@@ -1199,6 +1223,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
     private javax.swing.JLabel jLabel45;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;

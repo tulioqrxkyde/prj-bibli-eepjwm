@@ -33,7 +33,7 @@ public class Leitor implements Serializable, Comparable<Leitor>{
     
     @Override
     public String toString(){
-        return idLeitor+" | "+nome;
+        return nome;
     }
 
     @Id

@@ -152,7 +152,7 @@ public class Emprestimo implements Serializable {
 //    }
     
     public String toString() {
-        return idEmprestimo + " | Dt. Empréstimo: " + dataEmprestimo+
+        return "Dt. Empréstimo: " + dataEmprestimo+
                 " | Leitor: "+leitor.getNome();
     }
 }

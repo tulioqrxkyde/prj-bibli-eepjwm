@@ -132,6 +132,6 @@ public class GruposLeitores implements Serializable, Comparable<GruposLeitores>{
     private static final long serialVersionUID = -3510357413546466120L;  
     
     public String toString(){
-        return idGruposLeitores+" | "+descricao+", Q.Dias: "+duracaoDiasEmprestimo+", Q.Livros: "+quantMaxLivros;
+        return descricao+", Q.Dias: "+duracaoDiasEmprestimo+", Q.Livros: "+quantMaxLivros;
     }
 }
