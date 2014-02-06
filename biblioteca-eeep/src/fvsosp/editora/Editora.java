@@ -24,12 +24,17 @@ import org.hibernate.annotations.NaturalId;
 @Table(name = "editora")
 public class Editora implements Serializable, Comparable<Editora> {
     
-    
+     /**
+     * Método sobrescrito
+     *
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
     @Override
     public int compareTo(Editora o) {
         return nome.compareTo(o.nome);            
     }
-
+    
     @Id
     @GeneratedValue
     private short idEditora;
@@ -64,7 +69,14 @@ public class Editora implements Serializable, Comparable<Editora> {
     }
 
     private static final long serialVersionUID = 3804966434934653111L;
-
+    
+    
+    /**
+     * Método sobrescrito.
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -73,6 +85,13 @@ public class Editora implements Serializable, Comparable<Editora> {
         hash = 41 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
+    
+    /**
+     * Método sobrescrito.
+     *
+     * @param obj objeto a ser acessado através da Composição.
+     * @return booleano (true|false).
+     */
 
     @Override
     public boolean equals(Object obj) {
@@ -95,22 +114,24 @@ public class Editora implements Serializable, Comparable<Editora> {
         return true;
     }
 
-    
-   
-    
+    /**
+     * Método sobrescrito.
+     *
+     * @return String contendo o Nome da Editora.
+     */
     public String toString(){
         return getNome();
     }
 
     /**
-     * @return the cidade
+     * @return String cidade
      */
     public Cidade getCidade() {
         return cidade;
     }
 
     /**
-     * @param cidade the cidade to set
+     * @param Cidade String
      */
     public void setCidade(Cidade cidade) {
         this.cidade = cidade;
