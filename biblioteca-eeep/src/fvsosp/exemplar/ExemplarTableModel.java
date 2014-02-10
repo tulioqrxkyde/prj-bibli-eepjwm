@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.exemplar;
 
@@ -23,11 +31,17 @@ public class ExemplarTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Tombo", "Nº Exemplar", "Acervo"};
     private List<Exemplar> exemplares;
 
-    // construtor padrão criando um arraylist de alunos  
+    /**
+     * Construtor padrão.
+     */
     public ExemplarTableModel() {
     }
 
-    // construtor que adiciona a lista passada pelo método ao alunos  
+    /**
+     * Construtor sobrecarregado.
+     *
+     * @param list List(Exemplar).
+     */  
     public ExemplarTableModel(List<Exemplar> lista) {
         //this();
 //        this.exemplares.clear();
@@ -36,15 +50,30 @@ public class ExemplarTableModel extends AbstractTableModel {
         Collections.sort(exemplares);
         super.fireTableDataChanged();
     }
-
+    
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     public int getRowCount() {
         return exemplares.size();  
     }
-
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     public int getColumnCount() {
         return nomeColunas.length;
     }
-
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int
+     * @param columnIndex int.
+     * @return Object.
+     */
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<Exemplar> outraLitsa = (List<Exemplar>) exemplares;
         Exemplar exemplar = outraLitsa.get(rowIndex);
@@ -58,7 +87,10 @@ public class ExemplarTableModel extends AbstractTableModel {
         }
         return null;
     }
-
+    /**
+     * @param column String.
+     * @return String nomeColunas[index].
+     */
     public String getColumnName(int column) {
         switch (column) {
             case 0:

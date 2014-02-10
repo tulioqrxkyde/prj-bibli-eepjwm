@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.emprestimo;
 
 import fvsosp.util.Util;
@@ -15,6 +27,11 @@ public class EmprestimoTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Código", "Data de Empréstimo", "Acervo", "Autor"};
     private List<Emprestimo> emprestimos;
 
+     /**
+     * Construtor sobrecarregado.
+     *
+     * @param list List(Emprestimo).
+     */
     public EmprestimoTableModel(List<Emprestimo> lista) {
         emprestimos = new ArrayList<>();
         this.emprestimos.clear();
@@ -22,16 +39,32 @@ public class EmprestimoTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
+     /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getRowCount() {
         return emprestimos.size();
     }
 
+     /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getColumnCount() {
         return nomeColunas.length;
     }
-
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int
+     * @param columnIndex int.
+     * @return Object.
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Emprestimo emprestimo = emprestimos.get(rowIndex);
@@ -48,6 +81,10 @@ public class EmprestimoTableModel extends AbstractTableModel {
         }
         return null;
     }
+     /**
+     * @param column String.
+     * @return String nomeColunas[index].
+     */
 
     @Override
     public String getColumnName(int column) {

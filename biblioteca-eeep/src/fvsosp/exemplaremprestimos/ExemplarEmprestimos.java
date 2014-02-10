@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.exemplaremprestimos;
 
@@ -27,6 +35,11 @@ import org.hibernate.annotations.CollectionId;
 @Table(name="exemplaremprestimos")
 public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEmprestimos> {
     
+    /**
+     * Método sobrescrito.
+     *
+     * @return String contendo o id e tombo do Emprestimo, número do exemplar, Título da obra e o tipo da operação.
+     */
     @Override
     public String toString() {
         return idExemplarEmprestimos+" | Tombo: "+getExemplar().getTombo()+" | Nº exemplar =" + 
@@ -36,6 +49,12 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
                 ;
     }
     
+    /**
+     * Método sobrescrito.
+     *
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
     @Override
     public int compareTo(ExemplarEmprestimos o) {
         Short exemplar2 = getIdExemplarEmprestimos();;
@@ -61,6 +80,12 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
     @Temporal(TemporalType.DATE)
     private Date dataPrevistaDevolucao;
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -74,6 +99,12 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
         return hash;
     }
 
+    /**
+     * Método sobrescrito.
+     * 
+     * @param obj objeto a ser acessado através da Composição.
+     * @return booleano (true|false).
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -111,9 +142,13 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
     
     
     /*
+     * Metodo sobrescrito.
+     * 
      * 1 - Emprestado
      * 2 - Devolvido
      * 3 - Renovado
+     * 
+     * @return String
      */
     private int operacao;
     
@@ -129,98 +164,98 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
     }
 
     /**
-     * @return the idExemplarEmprestimos
+     * @return short idExemplarEmprestimos
      */
     public short getIdExemplarEmprestimos() {
         return idExemplarEmprestimos;
     }
 
     /**
-     * @param idExemplarEmprestimos the idExemplarEmprestimos to set
+     * @param idExemplarEmprestimos short
      */
     public void setIdExemplarEmprestimos(short idExemplarEmprestimos) {
         this.idExemplarEmprestimos = idExemplarEmprestimos;
     }
 
     /**
-     * @return the emprestimo
+     * @return Emprestimo emprestimo
      */
     public Emprestimo getEmprestimo() {
         return emprestimo;
     }
 
     /**
-     * @param emprestimo the emprestimo to set
+     * @param emprestimo Emprestimo
      */
     public void setEmprestimo(Emprestimo emprestimo) {
         this.emprestimo = emprestimo;
     }
 
     /**
-     * @return the exemplar
+     * @return Exemplar exemplar
      */
     public Exemplar getExemplar() {
         return exemplar;
     }
 
     /**
-     * @param exemplar the exemplar to set
+     * @param exemplar Exemplar
      */
     public void setExemplar(Exemplar exemplar) {
         this.exemplar = exemplar;
     }
 
     /**
-     * @return the operacao
+     * @return int operacao
      */
     public int getOperacao() {
         return operacao;
     }
 
     /**
-     * @param operacao the operacao to set
+     * @param operacao int
      */
     public void setOperacao(int operacao) {
         this.operacao = operacao;
     }
 
     /**
-     * @return the dataEmprestimo
+     * @return Date dataEmprestimo
      */
     public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
     /**
-     * @param dataEmprestimo the dataEmprestimo to set
+     * @param dataEmprestimo Date
      */
     public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
     /**
-     * @return the dataDevolucao
+     * @return Date dataDevolucao
      */
     public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
     /**
-     * @param dataDevolucao the dataDevolucao to set
+     * @param dataDevolucao Date
      */
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
     /**
-     * @return the dataPrevistaDevolucao
+     * @return Date dataPrevistaDevolucao
      */
     public Date getDataPrevistaDevolucao() {
         return dataPrevistaDevolucao;
     }
 
     /**
-     * @param dataPrevistaDevolucao the dataPrevistaDevolucao to set
+     * @param dataPrevistaDevolucao Date
      */
     public void setDataPrevistaDevolucao(Date dataPrevistaDevolucao) {
         this.dataPrevistaDevolucao = dataPrevistaDevolucao;

@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.exemplaremprestimos;
 
@@ -18,10 +26,19 @@ import org.hibernate.criterion.Restrictions;
  */
 public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
     
+     /**
+     * Construtor da classe ExemplarDAO.
+     */
     public ExemplarEmprestimosDAO(){
         super(ExemplarEmprestimos.class);
     }
     
+     /**
+     * Pesquisa Exemplares emprestados que contenham o codigo passado por parâmetro.
+     *
+     * @param codigo short.
+     * @return Exemplar exemplarempr.
+     */
     public ExemplarEmprestimos pesquisarCodigo(short codigo) {
         ExemplarEmprestimos exemplarempr = null;
         try {
@@ -39,6 +56,12 @@ public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
         }
         return exemplarempr;
     }
+    
+     /**
+     * Pesquisa pelo exe devolvido, e o retorna
+     *
+     * @return List querySQL.list()
+     */
     
     public short pesquisarIdExemplarEmprestimoDevolvido(Exemplar exe) {
         String text = "select ee.idExemplarEmprestimos from exemplaremprestimos ee "
