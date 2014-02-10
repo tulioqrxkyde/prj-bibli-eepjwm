@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.exemplar;
 
@@ -25,6 +33,12 @@ import javax.persistence.Table;
 @Table(name = "exemplar")
 public class Exemplar implements Serializable, Comparable<Exemplar> {
 
+     /**
+     * Método sobrescrito
+     *
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
     @Override
     public int compareTo(Exemplar o) {
         Short tombo = getTombo();
@@ -38,6 +52,12 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
     private short tombo;
     @Column(length = 20, nullable = false)
     private short exemplar;
+    
+     /**
+     * Método sobrescrito.
+     *
+     * @return String com o Tombo, Número do exemplar e o Título da Obra.
+     */
 
     @Override
     public String toString() {
@@ -61,6 +81,12 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
     @Column(columnDefinition="int default 1")
     private int situacao;
 
+     /**
+     * Método sobrescrito.
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
     @Override
     public int hashCode() {
         int hash = 5;
@@ -72,6 +98,12 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
         return hash;
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param obj objeto a ser acessado através da Composição.
+     * @return booleano (true|false).
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -102,70 +134,70 @@ public class Exemplar implements Serializable, Comparable<Exemplar> {
    
 
     /**
-     * @return the tombo
+     * @return short tombo
      */
     public short getTombo() {
         return tombo;
     }
 
     /**
-     * @param tombo the tombo to set
+     * @param tombo short
      */
     public void setTombo(short tombo) {
         this.tombo = tombo;
     }
 
     /**
-     * @return the exemplar
+     * @return short exemplar
      */
     public short getExemplar() {
         return exemplar;
     }
 
     /**
-     * @param exemplar the exemplar to set
+     * @param exemplar short
      */
     public void setExemplar(short exemplar) {
         this.exemplar = exemplar;
     }
 
     /**
-     * @return the acervo
+     * @return Acervo acervo
      */
     public Acervo getAcervo() {
         return acervo;
     }
 
     /**
-     * @param acervo the acervo to set
+     * @param acervo Acervo
      */
     public void setAcervo(Acervo acervo) {
         this.acervo = acervo;
     }
 
     /**
-     * @return the ativo
+     * @return boolean ativo
      */
     public boolean isAtivo() {
         return ativo;
     }
 
     /**
-     * @param ativo the ativo to set
+     * @param ativo boolean
      */
     public void setAtivo(boolean ativo) {
         this.ativo = ativo;
     }
 
     /**
-     * @return the situacao
+     * @return int situacao
      */
     public int getSituacao() {
         return situacao;
     }
 
     /**
-     * @param situacao the situacao to set
+     * @param situacao int
      */
     public void setSituacao(int situacao) {
         this.situacao = situacao;

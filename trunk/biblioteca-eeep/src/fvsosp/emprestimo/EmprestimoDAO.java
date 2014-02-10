@@ -1,3 +1,16 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
+
 package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
@@ -17,9 +30,18 @@ import org.hibernate.criterion.*;
  */
 public class EmprestimoDAO extends GenericDAO<Emprestimo> {
 
+     /**
+     * Construtor da classe EmprestimoDAO.
+     */
     public EmprestimoDAO() {
         super(Emprestimo.class);
     }
+     /**
+     * Pesquisa Emprestimo que contenham o codigo passado por parâmetro.
+     *
+     * @param codigo short.
+     * @return Emprestimo emprestimo.
+     */
 
     public Emprestimo pesquisarCodigo(short codigo) {
         Emprestimo emprestimo = null;
@@ -38,6 +60,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return emprestimo;
     }
+    
+     /**
+     * Pesquisa Emprestimos que contenham a data de emprestimo passada por parâmetro.
+     *
+     * @param emprestimo String.
+     * @return List(Emprestimo) emprestimo.
+     */
 
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
         List<Emprestimo> emprestimo = null;
@@ -52,6 +81,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return emprestimo;
     }
+    
+     /**
+     * Pesquisa Emprestimos que contenham a data de devolução passada por parâmetro.
+     *
+     * @param data Date.
+     * @return Emprestimo emprestimo.
+     */
 
     public Emprestimo pesquisardataDevolucao(Date data) {
         Emprestimo emprestimo = null;
@@ -66,6 +102,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return emprestimo;
     }
+    
+     /**
+     * Pesquisa o Acervo que contenha o emprestimo passado por parâmetro.
+     *
+     * @param emprestimo Emprestimo.
+     * @return List(Acervo) acervo.
+     */
 
     public List<Acervo> pesquisarEmprestimo(Emprestimo emprestimo) {
         List<Acervo> acervo = null;
@@ -80,6 +123,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return acervo;
     }
+    
+     /**
+     * Pesquisa o Leitor que contenha o emprestimo passado por parâmetro.
+     *
+     * @param emprestimo Emprestimo.
+     * @return Leitor leitor.
+     */
 
     public Leitor pesquisarLeitorEmprestimo(Emprestimo emprestimo) {
         Leitor leitor = null;
@@ -94,6 +144,12 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return leitor;
     }
+    
+     /**
+     * Pesquisa pelo leitor passado por parâmetro, e retorna sua situação.
+     *
+     * @return List querySQL.list()
+     */
 
     public int pesquisarSituacao(Leitor leitor) {
         String text = "select distinct(exe.tombo) from exemplaremprestimos ee  "
@@ -115,6 +171,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
 
     }
     
+     /**
+     * Pesquisa por todos os exemplares emprestados, e os retorna.
+     *
+     * @param leitor
+     * @return List querySQL.list()
+     */
+    
     public List<ExemplarEmprestimos> pesquisarExemplaresEmprestados(Leitor leitor) {
         String text = "select * from exemplaremprestimos ee  "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
@@ -134,6 +197,12 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         return null;
 
     }
+    
+     /**
+     * Pesquisa por todos emprestimos, e os retorna
+     *
+     * @return List querySQL.list()
+     */
 
     public short pesquisarEmprestimoLivroDevolvido(Exemplar exe) {
         String text = "select e.idEmprestimo from exemplaremprestimos ee "

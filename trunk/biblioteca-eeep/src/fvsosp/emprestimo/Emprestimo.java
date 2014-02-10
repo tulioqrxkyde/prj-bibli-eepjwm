@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
@@ -11,6 +23,13 @@ import javax.persistence.*;
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo implements Serializable {
+    
+     /**
+     * Método sobrescrito.
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
 
     @Override
     public int hashCode() {
@@ -21,6 +40,13 @@ public class Emprestimo implements Serializable {
         hash = 53 * hash + Objects.hashCode(this.getLeitor());
         return hash;
     }
+    
+     /**
+     * Método sobrescrito.
+     *
+     * @param obj objeto a ser acessado através da Composição.
+     * @return booleano (true|false).
+     */
 
     @Override
     public boolean equals(Object obj) {
@@ -131,26 +157,27 @@ public class Emprestimo implements Serializable {
 
 
     /**
-     * @return the usuario
+     * @return Usuario usuario
      */
     public Usuario getUsuario() {
         return usuario;
     }
 
     /**
-     * @param usuario the usuario to set
+     * @param usuario Usuario
      */
     public void setUsuario(Usuario usuario) {
         this.usuario = usuario;
     }
 
-    /**
-     * @param exemplares the exemplares to set
-     */
 //    public void setExemplares(Set<ExemplarEmprestimos> exemplares) {
 //        this.exemplares = exemplares;
 //    }
-    
+     /**
+     * Método sobrescrito.
+     *
+     * @return String contendo o Nome do Leitor.
+     */
     public String toString() {
         return "Dt. Empréstimo: " + dataEmprestimo+
                 " | Leitor: "+leitor.getNome();
