@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.tipoitem;
 
 import fvsosp.util.Util;
@@ -18,27 +30,48 @@ public class TipoItemTableModel extends AbstractTableModel {
     private List<TipoItem> tipoitems;
 
     public TipoItemTableModel() {
-        
     }
 
+    /**
+     * Construtor sobrecarregado.
+     *
+     * @param lista List(TipoItem).
+     */
     public TipoItemTableModel(List<TipoItem> lista) {
         tipoitems = new ArrayList(new HashSet(lista));
-//        this.tipoitems.clear();
-//        this.tipoitems.addAll(lista);
+        //this.tipoitems.clear();
+        //this.tipoitems.addAll(lista);
         Collections.sort(tipoitems);
         super.fireTableDataChanged();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getRowCount() {
         return tipoitems.size();
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @return int.
+     */
     @Override
     public int getColumnCount() {
         return nomeColunas.length;
     }
 
+    /**
+     * Método sobrescrito.
+     *
+     * @param rowIndex int.
+     * @param columnIndex int.
+     * @return Object.
+     */
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         TipoItem tipoitem = tipoitems.get(rowIndex);
@@ -51,6 +84,12 @@ public class TipoItemTableModel extends AbstractTableModel {
         return null;
     }
 
+    /**
+     * Método sobrescrito
+     * 
+     * @param column String.
+     * @return String nomeColunas[index].
+     */
     @Override
     public String getColumnName(int column) {
         switch (column) {
