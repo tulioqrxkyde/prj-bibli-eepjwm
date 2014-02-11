@@ -1,11 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.sessao;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.leitor.Leitor;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.List;
@@ -20,10 +27,19 @@ import org.hibernate.criterion.Restrictions;
  */
 public class SessaoDAO extends GenericDAO<Sessao> {
 
+    /**
+     * Construtor da classe SeesaoDAO.
+     */
     public SessaoDAO() {
         super(Sessao.class);
     }
 
+    /**
+     * Pesquisa Sessao que contenha a descrição passado por parâmetro.
+     *
+     * @param descricao String.
+     * @return Sessao sessao.
+     */
     public Sessao pesquisarDescricao(String descricao) {
         Sessao sessao = null;
         try {
@@ -39,11 +55,17 @@ public class SessaoDAO extends GenericDAO<Sessao> {
         } finally {
             this.getSessao().close();
         }
-            
+
         return sessao;
 
     }
 
+    /**
+     * Pesquisa Sessao que contenha a descrição passado por parâmetro.
+     *
+     * @param descricao String.
+     * @return List(Sessao)sessao.
+     */
     public List<Sessao> pesquisarDescricaoLike(String descricao) {
         List<Sessao> sessao = null;
         try {
@@ -59,11 +81,17 @@ public class SessaoDAO extends GenericDAO<Sessao> {
         } finally {
             this.getSessao().close();
         }
-            
+
         return sessao;
 
     }
-    
+
+    /**
+     * Pesquisa Sessao que contenha o codigo passado por parâmetro.
+     *
+     * @param codigo short.
+     * @return Sessao sessao.
+     */
     public Sessao pesquisarCodigo(short codigo) {
         Sessao sessao = null;
         try {
@@ -82,6 +110,12 @@ public class SessaoDAO extends GenericDAO<Sessao> {
 
     }
 
+    /**
+     * Pesquisa Sessao que contenha o acervo passsado por parâmetro.
+     *
+     * @param acervos Acervo.
+     * @return List(Sessao)sessaoa.
+     */
     public List<Sessao> pesquisarAcervos(Acervo acervos) {
         List<Sessao> Sessaoa = null;
         try {
