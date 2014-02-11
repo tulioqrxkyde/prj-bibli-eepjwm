@@ -1,6 +1,14 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
  */
 package fvsosp.usuario;
 
@@ -14,11 +22,9 @@ import javax.swing.JOptionPane;
  */
 public class UsuarioRN {
 
-    /*
-     * Essa é a classe de comunicação com
-     * a camada visual (interface)
-     * e com a camada de dados,
-     * essa classe implementa todas as regras de negócio
+    /**
+     * Essa é a classe de comunicação com a camada visual (interface) e com a
+     * camada de dados, essa classe implementa todas as regras de negócio
      * possíveis a Usuario
      */
     private UsuarioDAO usuDAO = new UsuarioDAO();
@@ -32,8 +38,11 @@ public class UsuarioRN {
         }
     }
 
-    /*
-     * se usuário for administrador não pode ser removido
+    /**
+     * Se usuário for administrador não pode ser removido
+     *
+     * @param usuario Usuario.
+     * @return booleano (true|false).
      */
     public boolean remover(Usuario usuario) {
         if (!usuario.isAdministrador()) {
@@ -43,11 +52,20 @@ public class UsuarioRN {
         }
     }
 
+    /**
+     * Acessa o método usuDAO.adicionar que por sua vez acessa o método da
+     * classe generica (GenericDAO) salvado o usuario.
+     *
+     * @param usuario Usuario.
+     * @param outraSenha String.
+     * @return booleano (true|false).
+     * @see UsuarioDAO.
+     */
     public boolean salvar(Usuario usuario, String outraSenha) {
         if (usuario.getIdUsuario() == 0) {
             //se adiciona tem que ter uma senha pra confirma a senha digitada
             List<Usuario> lista = usuDAO.checkExists("login", usuario.getLogin());
-            if (lista.size()==0) {
+            if (lista.size() == 0) {
                 outraSenha = Util.md5(outraSenha);
                 if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
                     if (usuario.getSenha().equals(outraSenha)) {
@@ -68,18 +86,46 @@ public class UsuarioRN {
         return false;
     }
 
+    /**
+     * Acessa o metodo dao.pesquisarLogin(login) de UsuarioDAO.
+     *
+     * @param login String.
+     * @return Usuario.
+     * @see UsuarioDAO.
+     */
     public Usuario pesquisaLogin(String login) {
         return usuDAO.pesquisarLogin(login);
     }
 
+    /**
+     * Acessao método dao,listar de TipoItemDAO que por sua vez acessa o método
+     * da classe generica (GenericDAO) listando o Usuario.
+     *
+     * @return List(Usuario).
+     * @see UsuarioDAO.
+     */
     public List<Usuario> listar() {
         return usuDAO.listar();
     }
 
+    /**
+     * Acessa o metodo dao.pesquisarLoginLike(login) de UsuarioDAO.
+     *
+     * @param login String.
+     * @return list(usuario).
+     * @see UsuarioDAO.
+     */
     public List<Usuario> pesquisarLoginLike(String login) {
         return usuDAO.pesquisarLoginLike(login);
     }
 
+    /**
+     * Acessa o metodo dao.pesquisarCodigo(codigo) de UsuarioDAO.
+     *
+     * @param codigo short.
+     * @return Usuario.
+     * @see UsuarioDAO.
+     */
     public Usuario pesquisarCodigo(short codigo) {
         return usuDAO.pesquisarCodigo(codigo);
     }

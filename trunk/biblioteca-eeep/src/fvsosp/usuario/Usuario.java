@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.usuario;
 
 import fvsosp.util.Util;
@@ -5,77 +17,99 @@ import java.io.Serializable;
 import java.util.Objects;
 import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
-//classe persistente de usuário
+
+/**
+ *
+ * @author Pedro Saraiva
+ */
 @Entity
-@Table(name="usuario")
-public class Usuario implements Serializable, Comparable<Usuario>{
-    
-     @Override
+@Table(name = "usuario")
+public class Usuario implements Serializable, Comparable<Usuario> {
+
+    /**
+     * Método sobrescrito
+     *
+     * @param o objeto a ser acesssado através da Composição.
+     * @return inteiro negativo, zero ou inteiro positivo.
+     */
+    @Override
     public int compareTo(Usuario o) {
-        return login.compareTo(o.login);            
+        return login.compareTo(o.login);
     }
-    
     @Id // chave primária
     @GeneratedValue // campo auto incremento
     private short idUsuario;
-
-    @NaturalId(mutable=true) // será um valor único mas poderá ser alterado
+    @NaturalId(mutable = true) // será um valor único mas poderá ser alterado
     @Column(length = 50, nullable = false)
     private String login;
-    
     @Column(length = 50, nullable = false)
     private String senha;
-    
     @Column(nullable = false)
     private boolean administrador;
 
-    /*** @retorna o id do Usuário ***/
+    /**
+     * @return short IdUsuario.
+     */
     public short getIdUsuario() {
         return idUsuario;
     }
 
-    /*** @seta o id do Usuário ***/
+    /**
+     * @param id short.
+     */
     public void setIdUsuario(short id) {
         this.idUsuario = id;
     }
 
-    /*** @retorna o Login do Usuário ***/
+    /**
+     * @return String login.
+     */
     public String getLogin() {
         return login;
     }
 
-    /*** @seta o Login do Usuário ***/
+    /**
+     * @param login String.
+     */
     public void setLogin(String login) {
         this.login = login;
     }
 
-    /*** @retorna a Senha do Usuário ***/
+    /**
+     * @return String senha.
+     */
     public String getSenha() {
         return senha;
     }
 
-    /*** @seta a senha a passando para o HASH MD5 ***/
+    /**
+     * @param senha String.
+     */
     public void setSenha(String senha) {
         this.senha = Util.md5(senha);
     }
-    
-    
     private static final long serialVersionUID = -8877584534061371241L;
 
     /**
-     * @return the administrador
+     * @return boolean administrador.
      */
     public boolean isAdministrador() {
         return administrador;
     }
 
     /**
-     * @param administrador the administrador to set
+     * @param administrador boolean.
      */
     public void setAdministrador(boolean administrador) {
         this.administrador = administrador;
     }
 
+    /**
+     * Método sobrescrito
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hasCodes dos Atributos contidos na classe.
+     */
     @Override
     public int hashCode() {
         int hash = 3;
@@ -86,6 +120,12 @@ public class Usuario implements Serializable, Comparable<Usuario>{
         return hash;
     }
 
+    /**
+     * Método sobrescrito
+     *
+     * @param obj a ser acessado através da composição.
+     * @return booleando (true|false).
+     */
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -109,10 +149,13 @@ public class Usuario implements Serializable, Comparable<Usuario>{
         }
         return true;
     }
-    
-    public String toString(){
-        return login;
+
+    /**
+     * Método sobrescrito
+     *
+     * @return String contendo o id do Usuario e o Login.
+     */
+    public String toString() {
+        return idUsuario + " | " + login;
     }
-    
-    
 }
