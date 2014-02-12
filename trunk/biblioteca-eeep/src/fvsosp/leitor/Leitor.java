@@ -62,7 +62,7 @@ public class Leitor implements Serializable, Comparable<Leitor>{
     @Column(length=20)
     private String celular;
     
-    @Column(length=50, nullable=false)
+    @Column(length=50/*, nullable=false*/)
     @NaturalId(mutable=true)
     private String matricula;
     

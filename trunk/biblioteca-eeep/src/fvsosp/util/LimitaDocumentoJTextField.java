@@ -12,10 +12,10 @@ import javax.swing.text.PlainDocument;
  *
  * @author Pedro Saraiva
  */
-public class LimataDocumentoJTextField extends PlainDocument{
+public class LimitaDocumentoJTextField extends PlainDocument{
     private int tamanhoMax = 10;
          
-    public LimataDocumentoJTextField(int tamanhoMax){
+    public LimitaDocumentoJTextField(int tamanhoMax){
         this.tamanhoMax = tamanhoMax;
     }
     @Override
