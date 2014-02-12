@@ -24,7 +24,7 @@ import fvsosp.sessao.SessaoRN;
 import fvsosp.tipoitem.TipoItem;
 import fvsosp.tipoitem.TipoItemRN;
 import fvsosp.util.FormataTamanhoColunasJTable;
-import fvsosp.util.LimataDocumentoJTextField;
+import fvsosp.util.LimitaDocumentoJTextField;
 import fvsosp.util.OnlyNumberField;
 import fvsosp.util.Util;
 import java.awt.event.ActionEvent;
@@ -66,7 +66,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         limparCampos();
         tfPaginas.setDocument(new OnlyNumberField());
         tffAnoEdicao.setDocument(new OnlyNumberField(4));
-        tfcutter2.setDocument(new LimataDocumentoJTextField(5));
+        tfcutter2.setDocument(new LimitaDocumentoJTextField(5));
         tfEdicao.setDocument(new OnlyNumberField());
         tfqtdExemplar.setDocument(new OnlyNumberField(10));
         setModal(true);
@@ -77,6 +77,8 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
         FormataTamanhoColunasJTable.packColumns(tbPalavrasChaves, 1);
         FormataTamanhoColunasJTable.packColumns(tbExemplares, 1);
         setLocationRelativeTo(null);
+        tfTitulo.setDocument(new LimitaDocumentoJTextField(50));
+        tfSubTitulo.setDocument(new LimitaDocumentoJTextField(50));
         
     }
 
@@ -1008,6 +1010,7 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                     + " Exemplares para Este Acervo?", "Exemplares", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                 int qtd = Integer.parseInt(tfqtdExemplar.getText().replaceAll(" ", "").toString());
                 Exemplar exemplar;
+                Collections.sort(exemplaresAcervo);
                 for (int i = 0; i < qtd; i++) {
                     exemplar = new Exemplar();
                     
@@ -1019,8 +1022,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                         } else {
                             int tamanhoListaExmeplares = 0;
                             tamanhoListaExmeplares = exemplaresAcervo.size() - 1;
-                            Collections.sort(exemplaresAcervo);
+                            //Collections.sort(exemplaresAcervo);
+                            int nExemplar = exemplaresAcervo.get(tamanhoListaExmeplares).getExemplar();
                             numexemplar = Short.valueOf(String.valueOf(exemplaresAcervo.get(tamanhoListaExmeplares).getExemplar() + 1));
+                            
                         }
                         
                         exemplar.setExemplar(numexemplar);
@@ -1028,8 +1033,10 @@ public class TelaCadastroAcervo extends javax.swing.JDialog {
                     }
                     exemplar.setAtivo(true);
                     exemplar.setSituacao(1);
+                    
                     exemplaresAcervo.add(exemplar);
                 }
+                Collections.sort(exemplaresAcervo);
                 atualizaTabelaExemplares();
                 tfqtdExemplar.setText("");
             }

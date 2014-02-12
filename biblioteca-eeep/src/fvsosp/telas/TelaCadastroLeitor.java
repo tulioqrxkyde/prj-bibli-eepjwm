@@ -164,7 +164,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
         pn1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel31.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        jLabel31.setText("Matrícula.: *");
+        jLabel31.setText("Matrícula.:");
         pn1.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, -1, 29));
 
         jLabel25.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
@@ -409,7 +409,7 @@ public class TelaCadastroLeitor extends javax.swing.JDialog {
     }//GEN-LAST:event_btRemoverActionPerformed
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
-        if (Util.chkVazio(tfMatricula.getText().replaceAll(" ", ""), tfNome.getText(),
+        if (Util.chkVazio(tfNome.getText(),
                 cbGrupoLeitores.getSelectedItem().toString(), tfDataNascimento.getText(),
                 tfEndereco.getText(),
                 tfBairro.getText(), cbCidade.getSelectedItem().toString(), cbGrupoLeitores.getSelectedItem().toString())) {
