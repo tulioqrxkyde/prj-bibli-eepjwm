@@ -42,7 +42,7 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
      *
      * @param lista set(PalavrasChaves).
      */
-    public PalavrasChavesTableModel(Set<PalavrasChaves> lista) {
+    public PalavrasChavesTableModel(List<PalavrasChaves> lista) {
         this();
         this.palavras.clear();
         this.palavras.addAll(lista);

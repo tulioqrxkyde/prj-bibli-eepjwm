@@ -84,10 +84,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         menuConsulta = new javax.swing.JMenu();
         itemConsultarAcervo = new javax.swing.JMenuItem();
         itemRelatorioUsuario = new javax.swing.JMenu();
-        jMenuItem3 = new javax.swing.JMenuItem();
         itemRelatorioFinanceiro = new javax.swing.JMenuItem();
-        itemRelMulta = new javax.swing.JMenuItem();
         jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        itemRelMulta = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
         ItemSair = new javax.swing.JMenu();
@@ -312,14 +313,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         itemRelatorioUsuario.setText("Relatórios");
 
-        jMenuItem3.setText("Extrato de Leitor");
-        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem3ActionPerformed(evt);
-            }
-        });
-        itemRelatorioUsuario.add(jMenuItem3);
-
         itemRelatorioFinanceiro.setText("Acervo");
         itemRelatorioFinanceiro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -327,6 +320,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
         itemRelatorioUsuario.add(itemRelatorioFinanceiro);
+
+        jMenuItem1.setText("Etiquetas");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        itemRelatorioUsuario.add(jMenuItem1);
+
+        jMenuItem3.setText("Extrato de Leitor");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        itemRelatorioUsuario.add(jMenuItem3);
 
         itemRelMulta.setText("Multa");
         itemRelMulta.addActionListener(new java.awt.event.ActionListener() {
@@ -336,13 +345,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         });
         itemRelatorioUsuario.add(itemRelMulta);
 
-        jMenuItem1.setText("Etiquetas");
-        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem5.setText("Situação Exemplar");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem1ActionPerformed(evt);
+                jMenuItem5ActionPerformed(evt);
             }
         });
-        itemRelatorioUsuario.add(jMenuItem1);
+        itemRelatorioUsuario.add(jMenuItem5);
 
         BarradeMenuPrincipal.add(itemRelatorioUsuario);
 
@@ -514,6 +523,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
         tsobre.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        // TODO add your handling code here:
+        TelaRelatorioSituacaoExemplar tSE = new TelaRelatorioSituacaoExemplar();
+        tSE.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -576,6 +591,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
