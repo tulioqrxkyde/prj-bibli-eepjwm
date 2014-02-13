@@ -39,6 +39,8 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
      */
     public TelaRelatorioExtratoLeitor() {
         initComponents();
+        setModal(true);
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -60,8 +62,8 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         btPesquisar6 = new javax.swing.JButton();
         tfDataInicial = new javax.swing.JFormattedTextField();
         Descricao_Biblioteca1 = new javax.swing.JLabel();
-        Descricao_Biblioteca2 = new javax.swing.JLabel();
         tfDataFinal = new javax.swing.JFormattedTextField();
+        Descricao_Biblioteca3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Relatório Extrato de Leitor");
@@ -93,7 +95,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 35));
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca.setText("Data Final.:");
+        Descricao_Biblioteca.setText("Data Final.: *");
         jPanel1.add(Descricao_Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, 29));
 
         btImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/imprimir2.png"))); // NOI18N
@@ -130,12 +132,8 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         jPanel1.add(tfDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 120, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca1.setText("Leitor.:");
+        Descricao_Biblioteca1.setText("Leitor.: *");
         jPanel1.add(Descricao_Biblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 54, -1, 29));
-
-        Descricao_Biblioteca2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca2.setText("Data Inicial.:");
-        jPanel1.add(Descricao_Biblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 29));
 
         try {
             tfDataFinal.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##/##/####")));
@@ -147,6 +145,10 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         tfDataFinal.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
         jPanel1.add(tfDataFinal, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 130, 120, -1));
 
+        Descricao_Biblioteca3.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
+        Descricao_Biblioteca3.setText("Data Inicial.: *");
+        jPanel1.add(Descricao_Biblioteca3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 29));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -155,13 +157,12 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 224, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 227, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -170,7 +171,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
 
     private void btImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btImprimirActionPerformed
         // TODO add your handling code here:
-        if (tfLeitor.getText().equals("")) {
+        if (leitor == null) {
             JOptionPane.showMessageDialog(rootPane, "Informe o Leitor!");
         } else if (tfDataInicial.getText().equals("  /  /    ")) {
             JOptionPane.showMessageDialog(rootPane, "Informe a Data Inicial!");
@@ -200,14 +201,15 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
             }
 
 
-            sql += "where empr.idleitor="
-                    + String.valueOf(leitor.getIdLeitor())
-                    + " and exeem.dataEmprestimo between '" + dataInicial + "' and '"
+            sql += "where exeem.dataEmprestimo between '" + dataInicial + "' and '"
                     + dataFinal + "'";
 
+            if (leitor != null) {
+                sql += " and empr.idleitor="
+                        + String.valueOf(leitor.getIdLeitor());
+            }
 
-
-            texto += "Leitor: " + leitor.getNome() + "; Dt.Inicial: "
+            texto += " Dt.Inicial: "
                     + tfDataInicial.getText() + "; Data Final: " + tfDataFinal.getText();
             sql += " order by exeem.dataEmprestimo,exeem.operacao,ac.tituloObra,ex.tombo";
             parametros.put("sql", sql);
@@ -227,7 +229,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
                 pathjrxml = JasperCompileManager.compileReport("src/relatorios/RelExtratoLeitor.jrxml");
                 JasperPrint printReport = JasperFillManager.fillReport(pathjrxml, parametros,
                         connection);
-               // JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelExtratoLeitor.pdf");
+                // JasperExportManager.exportReportToPdfFile(printReport, "src/relatorios/RelExtratoLeitor.pdf");
                 JasperViewer jv = new JasperViewer(printReport, false);
                 viewer.getContentPane().add(jv.getContentPane());
                 viewer.setVisible(true);
@@ -236,11 +238,14 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
                 Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             //dispose();
+            tfLeitor.setText("");
+            tfDataFinal.setText("");
+            tfDataInicial.setText("");
+            leitor = null;
         }
         //tfLeitor = null;
-        tfLeitor.setText("");
-        tfDataFinal.setText("");
-        tfDataInicial.setText("");
+
+
 
     }//GEN-LAST:event_btImprimirActionPerformed
 
@@ -297,7 +302,7 @@ public class TelaRelatorioExtratoLeitor extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Descricao_Biblioteca;
     private javax.swing.JLabel Descricao_Biblioteca1;
-    private javax.swing.JLabel Descricao_Biblioteca2;
+    private javax.swing.JLabel Descricao_Biblioteca3;
     private javax.swing.JButton btImprimir;
     private javax.swing.JButton btPesquisar6;
     private javax.swing.JButton btSair;

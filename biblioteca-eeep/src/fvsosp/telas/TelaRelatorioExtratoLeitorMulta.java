@@ -93,7 +93,7 @@ public class TelaRelatorioExtratoLeitorMulta extends javax.swing.JDialog {
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 350, 35));
 
         Descricao_Biblioteca.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca.setText("Data Final.:");
+        Descricao_Biblioteca.setText("Data Final.: *");
         jPanel1.add(Descricao_Biblioteca, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 100, -1, 29));
 
         btImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/fvsosp/imagens/imprimir2.png"))); // NOI18N
@@ -130,11 +130,11 @@ public class TelaRelatorioExtratoLeitorMulta extends javax.swing.JDialog {
         jPanel1.add(tfDataInicial, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 130, 120, -1));
 
         Descricao_Biblioteca1.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca1.setText("Leitor.:");
+        Descricao_Biblioteca1.setText("Leitor.: *");
         jPanel1.add(Descricao_Biblioteca1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 54, -1, 29));
 
         Descricao_Biblioteca2.setFont(new java.awt.Font("Verdana", 0, 12)); // NOI18N
-        Descricao_Biblioteca2.setText("Data Inicial.:");
+        Descricao_Biblioteca2.setText("Data Inicial.: *");
         jPanel1.add(Descricao_Biblioteca2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 29));
 
         try {
@@ -161,7 +161,6 @@ public class TelaRelatorioExtratoLeitorMulta extends javax.swing.JDialog {
         Util.setAcessibilidade(this);
 
         pack();
-        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSairActionPerformed
@@ -236,11 +235,12 @@ public class TelaRelatorioExtratoLeitorMulta extends javax.swing.JDialog {
                 Logger.getLogger(TelaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
             //dispose();
+            tfLeitor.setText("");
+            tfDataFinal.setText("");
+            tfDataInicial.setText("");
         }
         //tfLeitor = null;
-        tfLeitor.setText("");
-        tfDataFinal.setText("");
-        tfDataInicial.setText("");
+
 
     }//GEN-LAST:event_btImprimirActionPerformed
 

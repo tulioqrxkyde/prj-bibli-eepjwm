@@ -183,7 +183,7 @@ public class Util {
         utilidades.meurootpane.getRootPane().getActionMap().put("ESCAPE", new AbstractAction("ESCAPE") {
             @Override
             public void actionPerformed(ActionEvent e) {
-                if (JOptionPane.showConfirmDialog(null, "Deseja sair e cancelar alterações?", "Sair", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+                if (JOptionPane.showConfirmDialog(null, "Deseja sair do formulário?", "Sair", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
                     tela.setVisible(false);
                 }
             }
