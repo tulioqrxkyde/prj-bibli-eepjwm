@@ -21,20 +21,19 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author acer
+ * @author tulio.xcrtf
  */
 @SuppressWarnings("serial")
 public class EditoraTableModel extends AbstractTableModel {
 
     private String[] nomeColunas = {"Código", "Descrição"};
     private List<Editora> editoras;
-    
-     /**
+
+    /**
      * Construtor sobrecarregado.
      *
      * @param lista List(Editora).
      */
-
     public EditoraTableModel(List<Editora> lista) {
         editoras = new ArrayList(new HashSet(lista));
         this.editoras.clear();
@@ -43,54 +42,52 @@ public class EditoraTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
-    
-     /**
+    /**
      * Método sobrescrito.
      *
      * @return int.
      */
     @Override
     public int getRowCount() {
-        return editoras.size(); 
+        return editoras.size();
     }
-    
-     /**
+
+    /**
      * Método sobrescrito.
      *
      * @return int.
      */
-
     @Override
     public int getColumnCount() {
-        return nomeColunas.length; 
+        return nomeColunas.length;
     }
-    
-     /**
+
+    /**
      * Método sobrescrito.
      *
      * @param rowIndex int
      * @param columnIndex int.
      * @return Object.
      */
-
     @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         Editora editora = editoras.get(rowIndex);
         switch (columnIndex) {
             case 0:
-                    return Util.decimalFormat().format(editora.getIdEditora());
+                return Util.decimalFormat().format(editora.getIdEditora());
             case 1:
-                    return editora.getNome();
-            
+                return editora.getNome();
+
         }
         return null;
     }
-    
-     /**
-     * @param column String.
+
+    /**
+     * Método sobrescrito.
+     * 
+     * @param column int.
      * @return String nomeColunas[index].
      */
-
     @Override
     public String getColumnName(int column) {
         switch (column) {

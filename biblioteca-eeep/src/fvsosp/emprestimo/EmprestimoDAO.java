@@ -10,7 +10,6 @@
  * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
  * para maiores detalhes.
  */
-
 package fvsosp.emprestimo;
 
 import fvsosp.acervo.Acervo;
@@ -20,29 +19,28 @@ import fvsosp.leitor.Leitor;
 import fvsosp.util.*;
 import java.util.*;
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.SQLQuery;
 import org.hibernate.criterion.*;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class EmprestimoDAO extends GenericDAO<Emprestimo> {
 
-     /**
+    /**
      * Construtor da classe EmprestimoDAO.
      */
     public EmprestimoDAO() {
         super(Emprestimo.class);
     }
-     /**
-     * Pesquisa Emprestimo que contenham o codigo passado por parâmetro.
+
+    /**
+     * Pesquisa um Emprestimo que contenha o codigo passado por parâmetro.
      *
      * @param codigo short.
      * @return Emprestimo emprestimo.
      */
-
     public Emprestimo pesquisarCodigo(short codigo) {
         Emprestimo emprestimo = null;
         try {
@@ -60,14 +58,14 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return emprestimo;
     }
-    
-     /**
-     * Pesquisa Emprestimos que contenham a data de emprestimo passada por parâmetro.
+
+    /**
+     * Pesquisa Emprestimos que contenham a data de emprestimo passada por
+     * parâmetro.
      *
-     * @param emprestimo String.
+     * @param emprestimo Date.
      * @return List(Emprestimo) emprestimo.
      */
-
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
         List<Emprestimo> emprestimo = null;
         try {
@@ -81,14 +79,14 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return emprestimo;
     }
-    
-     /**
-     * Pesquisa Emprestimos que contenham a data de devolução passada por parâmetro.
+
+    /**
+     * Pesquisa Emprestimos que contenham a data de devolução passada por
+     * parâmetro.
      *
      * @param data Date.
      * @return Emprestimo emprestimo.
      */
-
     public Emprestimo pesquisardataDevolucao(Date data) {
         Emprestimo emprestimo = null;
         try {
@@ -102,14 +100,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return emprestimo;
     }
-    
-     /**
-     * Pesquisa o Acervo que contenha o emprestimo passado por parâmetro.
+
+    /**
+     * Pesquisa por Acervos que contenham o emprestimo passado por parâmetro.
      *
      * @param emprestimo Emprestimo.
      * @return List(Acervo) acervo.
      */
-
     public List<Acervo> pesquisarEmprestimo(Emprestimo emprestimo) {
         List<Acervo> acervo = null;
         try {
@@ -123,14 +120,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return acervo;
     }
-    
-     /**
+
+    /**
      * Pesquisa o Leitor que contenha o emprestimo passado por parâmetro.
      *
      * @param emprestimo Emprestimo.
      * @return Leitor leitor.
      */
-
     public Leitor pesquisarLeitorEmprestimo(Emprestimo emprestimo) {
         Leitor leitor = null;
         try {
@@ -144,13 +140,12 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         }
         return leitor;
     }
-    
-     /**
+
+    /**
      * Pesquisa pelo leitor passado por parâmetro, e retorna sua situação.
      *
-     * @return List querySQL.list()
+     * @return int querySQL.list().size()
      */
-
     public int pesquisarSituacao(Leitor leitor) {
         String text = "select distinct(exe.tombo) from exemplaremprestimos ee  "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
@@ -170,14 +165,13 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
         return 0;
 
     }
-    
-     /**
+
+    /**
      * Pesquisa por todos os exemplares emprestados, e os retorna.
      *
-     * @param leitor
-     * @return List querySQL.list()
+     * @param leitor Leitor
+     * @return List(ExemplarEmprestimos) querySQL.list()
      */
-    
     public List<ExemplarEmprestimos> pesquisarExemplaresEmprestados(Leitor leitor) {
         String text = "select * from exemplaremprestimos ee  "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo "
@@ -195,30 +189,28 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             this.getSessao().close();
         }
         return null;
-
     }
-    
-     /**
-     * Pesquisa por todos emprestimos, e os retorna
-     *
-     * @return List querySQL.list()
-     */
 
+    /**
+     * Pesquisa por todos os emprestimos, e retorna seu código
+     *
+     * @return short querySQL.list().get(0)
+     */
     public short pesquisarEmprestimoLivroDevolvido(Exemplar exe) {
         String text = "select e.idEmprestimo from exemplaremprestimos ee "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo  "
                 + "where ee.idExemplarEmprestimos=( "
                 + "select max(idExemplarEmprestimos) from exemplaremprestimos ee "
-                + "where ee.idExemplar="+exe.getTombo()+" and ee.operacao in (1,3))";
+                + "where ee.idExemplar=" + exe.getTombo() + " and ee.operacao in (1,3))";
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
             SQLQuery query = getSessao()
                     .createSQLQuery(text);
             System.out.println(query.list());
-            
+
             Object o = query.list().get(0);
-            
+
             //Integer codigo = (Integer) list.get(0);
             return (short) o;
         } catch (HibernateException e) {
@@ -227,9 +219,5 @@ public class EmprestimoDAO extends GenericDAO<Emprestimo> {
             this.getSessao().close();
         }
         return 0;
-
     }
-    
-    
-    
 }

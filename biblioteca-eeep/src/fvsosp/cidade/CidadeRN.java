@@ -40,7 +40,7 @@ public class CidadeRN {
 
     /**
      * Acessa o método dao.remover de CidadeDAO que por sua vez acessa o método
-     * da classe genérica (GenericDao) removendo a Biblioteca.
+     * da classe genérica (GenericDao) removendo a Cidade.
      *
      * @param cidade Cidade.
      * @return booleano (true|false).

@@ -20,7 +20,7 @@ import org.hibernate.annotations.NaturalId;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 @Entity
 @Table(name = "usuario")
@@ -29,7 +29,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
     /**
      * Método sobrescrito
      *
-     * @param o objeto a ser acesssado através da Composição.
+     * @param o objeto a ser acessado através da Composição.
      * @return inteiro negativo, zero ou inteiro positivo.
      */
     @Override
@@ -155,6 +155,7 @@ public class Usuario implements Serializable, Comparable<Usuario> {
      *
      * @return String contendo o id do Usuario e o Login.
      */
+    @Override
     public String toString() {
         return idUsuario + " | " + login;
     }

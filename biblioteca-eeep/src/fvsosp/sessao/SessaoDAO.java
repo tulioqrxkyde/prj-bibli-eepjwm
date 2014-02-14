@@ -23,7 +23,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class SessaoDAO extends GenericDAO<Sessao> {
 
@@ -35,7 +35,7 @@ public class SessaoDAO extends GenericDAO<Sessao> {
     }
 
     /**
-     * Pesquisa Sessao que contenha a descrição passado por parâmetro.
+     * Pesquisa uma Sessao que contenha a descrição passada por parâmetro.
      *
      * @param descricao String.
      * @return Sessao sessao.
@@ -61,10 +61,10 @@ public class SessaoDAO extends GenericDAO<Sessao> {
     }
 
     /**
-     * Pesquisa Sessao que contenha a descrição passado por parâmetro.
+     * Pesquisa por Sessões que contenham a descrição passada por parâmetro.
      *
      * @param descricao String.
-     * @return List(Sessao)sessao.
+     * @return List(Sessao) sessao.
      */
     public List<Sessao> pesquisarDescricaoLike(String descricao) {
         List<Sessao> sessao = null;
@@ -87,7 +87,7 @@ public class SessaoDAO extends GenericDAO<Sessao> {
     }
 
     /**
-     * Pesquisa Sessao que contenha o codigo passado por parâmetro.
+     * Pesquisa uma Sessao que contenha o codigo passado por parâmetro.
      *
      * @param codigo short.
      * @return Sessao sessao.
@@ -111,18 +111,18 @@ public class SessaoDAO extends GenericDAO<Sessao> {
     }
 
     /**
-     * Pesquisa Sessao que contenha o acervo passsado por parâmetro.
+     * Pesquisa uma Sessao que contenha o acervo passado por parâmetro.
      *
      * @param acervos Acervo.
-     * @return List(Sessao)sessaoa.
+     * @return List(Sessao) sessao.
      */
     public List<Sessao> pesquisarAcervos(Acervo acervos) {
-        List<Sessao> Sessaoa = null;
+        List<Sessao> sessao = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            Sessaoa = (List<Sessao>) getSessao().createCriteria(Sessao.class).
+            sessao = (List<Sessao>) getSessao().createCriteria(Sessao.class).
                     add(Restrictions.eq("acervos", acervos)).
                     addOrder(Order.asc("descricao")).list();
 
@@ -131,7 +131,6 @@ public class SessaoDAO extends GenericDAO<Sessao> {
         } finally {
             this.getSessao().close();
         }
-        return Sessaoa;
-
+        return sessao;
     }
 }

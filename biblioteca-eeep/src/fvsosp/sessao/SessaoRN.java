@@ -18,7 +18,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Oziel
+ * @author adrianolima
  */
 public class SessaoRN {
 
@@ -35,7 +35,7 @@ public class SessaoRN {
     public boolean salvar(Sessao sessao) {
         if (sessao.getIdSessao() == 0) {
             List<Sessao> lista = dao.checkExists("descricao", sessao.getDescricao());
-            if (lista.size() == 0) {
+            if (lista.isEmpty()) {
                 return dao.adicionar(sessao);
             } else {
                 JOptionPane.showMessageDialog(null, "Descrição já cadastrada para Sessão!");
@@ -48,7 +48,7 @@ public class SessaoRN {
 
     /**
      * Acessa o método dao.remover de SessaoDAO que por sua vez acessa o método
-     * da classe generica (GenericDAO) removendo a Sessao.
+     * da classe genérica (GenericDAO) removendo a Sessao.
      *
      * @param sessao Sessao.
      * @return booleano (true|false).
@@ -56,12 +56,11 @@ public class SessaoRN {
      */
     public boolean remove(Sessao sessao) {
         return dao.remover(sessao);
-
     }
 
     /**
-     * Acessa o metodo dao.listar de SessaoDAO que por sua vez acessa o método
-     * da classe generica (GenericDAO) listando a Sesssao.
+     * Acessa o método dao.listar de SessaoDAO que por sua vez acessa o método
+     * da classe genérica (GenericDAO) listando a Sesssao.
      *
      * @return List(Sessao).
      * @see SessaoDAO.
@@ -71,7 +70,7 @@ public class SessaoRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarDescricao(descricao) de SessaoDAO.
+     * Acessa o método dao.pesquisarDescricao(descricao) de SessaoDAO.
      *
      * @param descricao String.
      * @return Sessao.
@@ -82,7 +81,7 @@ public class SessaoRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarDescricaoLike(descricao) de SessaoDAO.
+     * Acessa o método dao.pesquisarDescricaoLike(descricao) de SessaoDAO.
      *
      * @param descricao String.
      * @return list(Sessao).
@@ -93,7 +92,7 @@ public class SessaoRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarAcervos(acervos) de SessaoDAO.
+     * Acessa o método dao.pesquisarAcervos(acervos) de SessaoDAO.
      *
      * @param acervos Acervo.
      * @return List(Sessao).
@@ -104,10 +103,10 @@ public class SessaoRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarCodigo(codigo) de SessaoDAO.
+     * Acessa o método dao.pesquisarCodigo(codigo) de SessaoDAO.
      *
      * @param codigo short.
-     * @return Sesssao.
+     * @return Sessao.
      * @see SessaoDAO.
      */
     public Sessao pesquisarCodigo(short codigo) {

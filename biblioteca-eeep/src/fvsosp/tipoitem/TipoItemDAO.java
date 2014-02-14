@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class TipoItemDAO extends GenericDAO<TipoItem> {
 
@@ -34,17 +34,17 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
     }
 
     /**
-     * Pesquisa TipoItem que contenha a descrição passado por parâmetro.
+     * Pesquisa um TipoItem que contenha a descrição passada por parâmetro.
      *
      * @param descricao String.
-     * @return List(TipoItem)tipoitens.
+     * @return List(TipoItem) tipoitens.
      */
     public List<TipoItem> procuraDescricao(String descricao) {
         List<TipoItem> tipoitens = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            /**
+            /*
              * pesquisa um tipo de item por descricao usando o ilike, o
              * MatchMode.ANYWHERE quer dizer que a sequência de caracteres
              * passada na String descricao pode ser encontrada em qualquer
@@ -64,7 +64,7 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
     }
 
     /**
-     * Pesquisa um TipoItem que contenha a descrição passado por parãmetro.
+     * Pesquisa um TipoItem que contenha a descrição passada por parâmetro.
      *
      * @param descricao String.
      * @return TipoItem tipoitens.
@@ -87,7 +87,7 @@ public class TipoItemDAO extends GenericDAO<TipoItem> {
     }
 
     /**
-     * Pesquisa um TipoItem que contenha o codigo passada por parãmetro.
+     * Pesquisa um TipoItem que contenha o codigo passada por parâmetro.
      *
      * @param codigo short.
      * @return TipoItem tipointens.

@@ -20,13 +20,13 @@ import java.util.*;
 
 /**
  *
- * @author Túlio
+ * @author tulio.xcrtf
  */
 public class EmprestimoRN {
 
     EmprestimoDAO dao = new EmprestimoDAO();
-    
-     /**
+
+    /**
      * Acessa o método dao.adicionar de EmprestimoDAO que por sua vez acessa o
      * método da classe genérica (GenericDAO) salvando o Emprestimo.
      *
@@ -34,123 +34,110 @@ public class EmprestimoRN {
      * @return booleano (true|false).
      * @see EmprestimoDAO.
      */
-
     public boolean adiciona(Emprestimo em) {
         if (em.getIdEmprestimo() == 0) {
-                return dao.adicionar(em);
+            return dao.adicionar(em);
         } else {
             return dao.atualizar(em);
         }
     }
-    
-     /**
-     * Acessa o método dao.remover de EmprestimoDAO que por sua vez acessa o método
-     * da classe genérica (GenericDao) removendo o Emprestimo.
+
+    /**
+     * Acessa o método dao.remover de EmprestimoDAO que por sua vez acessa o
+     * método da classe genérica (GenericDao) removendo o Emprestimo.
      *
      * @param emp Emprestimo.
      * @return booleano (true|false).
      * @see EmprestimoDAO.
      */
-
     public boolean remover(Emprestimo em) {
         return dao.remover(em);
-
     }
-    
-     /**
-     * Acessa o método dao.listar de EmprestimoDAO que por sua vez acessa o método
-     * da classe genérica (GenericDao) listando os Emprestimos.
+
+    /**
+     * Acessa o método dao.listar de EmprestimoDAO que por sua vez acessa o
+     * método da classe genérica (GenericDao) listando os Emprestimos.
      *
      * @return List(Emprestimo).
      * @see EmprestimoDAO.
      */
-
     public List<Emprestimo> listar() {
         return dao.listar();
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.pesquisarCodigo(codigo) de EmprestimoDAO.
      *
      * @param codigo short.
      * @return Emprestimo.
      * @see EmprestimoDAO.
      */
-    
     public Emprestimo pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }
-    
+
     /**
      * Acessa o método dao.pesquisardataEmprestimo(data) de EmprestimoDAO.
      *
      * @param data Date.
-     * @return Emprestimo.
+     * @return List(Emprestimo).
      * @see EmprestimoDAO.
      */
-
     public List<Emprestimo> pesquisardataEmprestimo(Date data) {
         return dao.pesquisardataEmprestimo(data);
     }
-   
-       
-     /**
+
+    /**
      * Acessa o método dao.pesquisardataDevolucao(data) de EmprestimoDAO.
      *
      * @param data Date.
-     * @return Emprestimo.
+     * @return List(Emprestimo).
      * @see EmprestimoDAO.
      */
-
     public List<Emprestimo> pesquisardataDevolucao(Date data) {
         return dao.pesquisardataEmprestimo(data);
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.pesquisarEmprestimo(emprestimo) de EmprestimoDAO.
      *
      * @param emprestimo Emprestimo.
-     * @return Emprestimo.
+     * @return List(Acervo).
      * @see EmprestimoDAO.
      */
-
     public List<Acervo> pesquisarEmprestimo(Emprestimo emprestimo) {
         return dao.pesquisarEmprestimo(emprestimo);
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.pesquisarSituacao(leitor) de EmprestimoDAO.
      *
      * @param leitor Leitor.
-     * @return Emprestimo.
+     * @return int.
      * @see EmprestimoDAO.
      */
-    
     public int pesquisarSituacao(Leitor leitor) {
         return dao.pesquisarSituacao(leitor);
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.pesquisarEmprestimoLivroDevolvido() de EmprestimoDAO.
      *
-     * @return List querySQL.list().
+     * @return short.
      * @see EmprestimoDAO.
      */
-    
     public short pesquisarEmprestimoLivroDevolvido(Exemplar exe) {
         return dao.pesquisarEmprestimoLivroDevolvido(exe);
 
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.pesquisarExemplaresEmprestados() de EmprestimoDAO.
      *
-     * @return List querySQL.list().
+     * @return List(ExemplarEmprestimos) querySQL.list().
      * @see EmprestimoDAO.
      */
-    
     public List<ExemplarEmprestimos> pesquisarExemplaresEmprestados(Leitor leitor) {
         return dao.pesquisarExemplaresEmprestados(leitor);
-
     }
 }

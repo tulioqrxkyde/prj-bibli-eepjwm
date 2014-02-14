@@ -94,7 +94,9 @@ public class AcervoTableModel extends AbstractTableModel {
     }
 
     /**
-     * @param column String.
+     * Método sobrescrito.
+     * 
+     * @param column int.
      * @return String nomeColunas[index].
      */
     @Override

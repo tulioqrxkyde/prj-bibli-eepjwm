@@ -32,7 +32,7 @@ public class CidadeDAO extends GenericDAO<Cidade> {
     }
 
     /**
-     * Pesquisa uma Cidade que contenha o codibge passado por parâmetro.
+     * Pesquisa uma Cidade que contenha o código do IBGE passado por parâmetro.
      *
      * @param codibge int.
      * @return Cidade cidade.

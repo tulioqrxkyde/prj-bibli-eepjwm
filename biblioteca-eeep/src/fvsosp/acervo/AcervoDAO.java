@@ -157,17 +157,17 @@ public class AcervoDAO extends GenericDAO<Acervo> {
     }
 
     /**
-     * Pesquisa Acervos que contenham o ano passado por parâmetro.
+     * Pesquisa Acervos que contenham o ano, passado por parâmetro.
      *
-     * @param anos short.
+     * @param ano short.
      * @return List(Acervo) acervo.
      */
-    public List<Acervo> pesquisaranoEdicao(short anos) {
+    public List<Acervo> pesquisaranoEdicao(short ano) {
         List<Acervo> acervo = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("anoEdicao", anos)).addOrder(Order.asc("anoEdicao")).list();
+            acervo = (List<Acervo>) getSessao().createCriteria(Acervo.class).add(Restrictions.eq("anoEdicao", ano)).addOrder(Order.asc("anoEdicao")).list();
         } catch (HibernateException e) {
             System.out.println("Erro ao localizar o Ano de Edição. Erro: " + e.getMessage());
         } finally {
@@ -321,7 +321,7 @@ public class AcervoDAO extends GenericDAO<Acervo> {
      * Pesquisa Acervos que contenham a Biblioteca passada por parâmetro.
      *
      * @param biblioteca Biblioteca.
-     * @return List(Acervo) acervo.
+     * @return Acervo acervo.
      */
     public Acervo pesquisarBiblioteca(Biblioteca biblioteca) {
         Acervo acervo = null;

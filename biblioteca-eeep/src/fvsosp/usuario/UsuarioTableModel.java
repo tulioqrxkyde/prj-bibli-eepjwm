@@ -21,7 +21,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author ADRIANO
+ * @author adrianolima
  */
 @SuppressWarnings("serial")
 public class UsuarioTableModel extends AbstractTableModel {
@@ -29,6 +29,9 @@ public class UsuarioTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Código", "Login"};
     private List<Usuario> usuarios;
 
+    /**
+     * Construtor padrão.
+     */
     public UsuarioTableModel() {
     }
 
@@ -84,10 +87,10 @@ public class UsuarioTableModel extends AbstractTableModel {
         return null;
     }
 
-     /**
+    /**
      * Método sobrescrito
-     * 
-     * @param column String.
+     *
+     * @param column int.
      * @return String nomeColunas[index].
      */
     @Override

@@ -12,25 +12,26 @@
  */
 package fvsosp.emprestimo;
 
-import fvsosp.acervo.Acervo;
-import fvsosp.exemplar.Exemplar;
 import fvsosp.leitor.Leitor;
 import fvsosp.usuario.Usuario;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 
+/**
+ *
+ * @author adrianolima
+ */
 @Entity
 @Table(name = "emprestimo")
 public class Emprestimo implements Serializable {
-    
-     /**
+
+    /**
      * Método sobrescrito.
      *
      * @return um inteiro(hash) contendo o valor total do cálculo de todos os
      * hashCodes dos Atributos contidos na Classe.
      */
-
     @Override
     public int hashCode() {
         int hash = 3;
@@ -40,14 +41,13 @@ public class Emprestimo implements Serializable {
         hash = 53 * hash + Objects.hashCode(this.getLeitor());
         return hash;
     }
-    
-     /**
+
+    /**
      * Método sobrescrito.
      *
      * @param obj objeto a ser acessado através da Composição.
      * @return booleano (true|false).
      */
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -85,76 +85,63 @@ public class Emprestimo implements Serializable {
      * O CascadaType.ALL quer dizer que ao excluir um emprestimo,
      * todos os itens da tabela acervoemprestimos que façam referência 
      * ao emprestimo excluído será deletado também
-     */
-//    @OneToMany(fetch= FetchType.EAGER)
-//    private Set<ExemplarEmprestimos> exemplares = new HashSet<ExemplarEmprestimos>();
-    /*set não aceita valores duplicados, 
+     * @OneToMany(fetch= FetchType.EAGER)
+     * private Set<ExemplarEmprestimos> exemplares = new HashSet<ExemplarEmprestimos>();
+     * set não aceita valores duplicados, 
      * ou seja um mesmo livro não poderá ser emprestado ao 
      * mesmo emprestimo
-     */
-
-    /*um emprestimo tem apenas um leitor
+     um emprestimo tem apenas um leitor
      * a chave estrangeira irá se chamar idLeitor
      */
     @ManyToOne
     @JoinColumn(name = "idLeitor")
     private Leitor leitor;
-    
     @ManyToOne
     @JoinColumn(name = "idUsuario")
     private Usuario usuario;
 
     /**
-     * * @retorna o id do Empréstimo **
+     * @return short idEmprestimo
      */
     public short getIdEmprestimo() {
         return idEmprestimo;
     }
 
     /**
-     * * @seta o id do Empréstimo **
+     * @param idEmprestimo short
      */
     public void setIdEmprestimo(short idEmprestimo) {
         this.idEmprestimo = idEmprestimo;
     }
 
     /**
-     * * @retorna a Data do Empréstimo **
+     * @return Date dataEmprestimo
      */
     public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
     /**
-     * * @seta a Data do Empréstimo **
+     * @param dataEmprestimo Date
      */
     public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
     /**
-     * * @retorna a lista de Exemplares **
-     */
-//    public Set<ExemplarEmprestimos> getExemplares() {
-//        return exemplares;
-//    }
-
-    /**
-     * * @retorna o Leitor **
+     * @return Leitor leitor
      */
     public Leitor getLeitor() {
         return leitor;
     }
 
     /**
-     * * @seta o Leitor **
+     * @param leitor Leitor
      */
     public void setLeitor(Leitor leitor) {
         this.leitor = leitor;
     }
     private static final long serialVersionUID = -326568673743692245L;
-
-
 
     /**
      * @return Usuario usuario
@@ -170,16 +157,14 @@ public class Emprestimo implements Serializable {
         this.usuario = usuario;
     }
 
-//    public void setExemplares(Set<ExemplarEmprestimos> exemplares) {
-//        this.exemplares = exemplares;
-//    }
-     /**
+    /**
      * Método sobrescrito.
      *
-     * @return String contendo o Nome do Leitor.
+     * @return String contendo a Data do Empréstimo e o nome do Leitor.
      */
+    @Override
     public String toString() {
-        return "Dt. Empréstimo: " + dataEmprestimo+
-                " | Leitor: "+leitor.getNome();
+        return "Dt. Empréstimo: " + dataEmprestimo
+                + " | Leitor: " + leitor.getNome();
     }
 }

@@ -23,7 +23,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
 
@@ -35,7 +35,7 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
     }
 
     /**
-     * Pesquisa PalavrasChaves que contenha a descrição passado por parâmetro.
+     * Pesquisa por PalavrasChaves que contenham a descrição passada por parâmetro.
      *
      * @param descricao String.
      * @return List(PalavrasChaves)PalavrasChavess.
@@ -59,7 +59,7 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
     }
 
     /**
-     * Pesquisa PalavrasChaves que contenha a descrição passado por parâmetro.
+     * Pesquisa uma PalavraChave que contenha a descrição passada por parâmetro.
      *
      * @param descricao String.
      * @return PalavrasChaves PalavrasChavess.
@@ -83,7 +83,7 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
     }
 
     /**
-     * Pesquisa PalavrasChaves que contenha o id passado por parâmetro.
+     * Pesquisa uma PalavraChave que contenha o id passado por parâmetro.
      *
      * @param id short.
      * @return PalavrasChaves palavrasChavess.
@@ -107,18 +107,18 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
     }
 
     /**
-     * Pesquisa PalavrasChaves que  contenha o acervo passado por parâmetro.
+     * Pesquisa PalavrasChaves que contenham o acervo passado por parâmetro.
      *
      * @param acervo Acervo.
-     * @return List(PalavrasChaves)PalavrasChavess.
+     * @return List(PalavrasChaves) palavrasChaves.
      */
     public List<PalavrasChaves> pesquisarAcervo(Acervo acervo) {
-        List<PalavrasChaves> PalavrasChavess = null;
+        List<PalavrasChaves> palavrasChaves = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
 
-            PalavrasChavess = (List<PalavrasChaves>) getSessao().createCriteria(PalavrasChaves.class).
+            palavrasChaves = (List<PalavrasChaves>) getSessao().createCriteria(PalavrasChaves.class).
                     add(Restrictions.eq("acervo", acervo)).
                     addOrder(Order.asc("descricao")).list();
 
@@ -127,6 +127,6 @@ public class PalavrasChavesDAO extends GenericDAO<PalavrasChaves> {
         } finally {
             this.getSessao().close();
         }
-        return PalavrasChavess;
+        return palavrasChaves;
     }
 }

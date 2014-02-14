@@ -17,13 +17,13 @@ import java.util.List;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class ExemplarEmprestimosRN {
-    
+
     ExemplarEmprestimosDAO dao = new ExemplarEmprestimosDAO();
-    
-     /**
+
+    /**
      * Acessa o método dao.adicionar de EmprestimoDAO que por sua vez acessa o
      * método da classe genérica (GenericDAO) salvando o Emprestimo.
      *
@@ -33,13 +33,13 @@ public class ExemplarEmprestimosRN {
      */
     public boolean adiciona(ExemplarEmprestimos em) {
         if (em.getIdExemplarEmprestimos() == 0) {
-                return dao.adicionar(em);
+            return dao.adicionar(em);
         } else {
             return dao.atualizar(em);
         }
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.remover de ExemplarDAO que por sua vez acessa o
      * método da classe genérica (GenericDAO) removendo o ExemplarEmprestimos.
      *
@@ -47,15 +47,14 @@ public class ExemplarEmprestimosRN {
      * @return booleano (true|false).
      * @see ExemplarDAO.
      */
-
     public boolean remover(ExemplarEmprestimos em) {
         return dao.remover(em);
 
     }
 
-     /**
-     * Acessa o método dao.listar de EmprestimoDAO que por sua vez acessa o método da
-     * classe genérica (GenericDao) listando os Exemplares.
+    /**
+     * Acessa o método dao.listar de EmprestimoDAO que por sua vez acessa o
+     * método da classe genérica (GenericDao) listando os Exemplares.
      *
      * @return List(ExemplarEmprestimos).
      * @see ExemplarDAO.
@@ -63,8 +62,8 @@ public class ExemplarEmprestimosRN {
     public List<ExemplarEmprestimos> listar() {
         return dao.listar();
     }
-    
-     /**
+
+    /**
      * Acessa o método dao.pesquisarCodigo(codigo) de ExemplarDAO.
      *
      * @param codigo short.
@@ -74,9 +73,10 @@ public class ExemplarEmprestimosRN {
     public ExemplarEmprestimos pesquisarCodigo(short codigo) {
         return dao.pesquisarCodigo(codigo);
     }
-    
-     /**
-     * Acessa o método dao.pesquisarIdExemplarEmprestimoDevolvido(exe) de ExemplarDAO.
+
+    /**
+     * Acessa o método dao.pesquisarIdExemplarEmprestimoDevolvido(exe) de
+     * ExemplarDAO.
      *
      * @param exe Exemplar.
      * @return short codigo).
@@ -84,6 +84,5 @@ public class ExemplarEmprestimosRN {
      */
     public short pesquisarIdExemplarEmprestimoDevolvido(Exemplar exe) {
         return dao.pesquisarIdExemplarEmprestimoDevolvido(exe);
-
     }
 }

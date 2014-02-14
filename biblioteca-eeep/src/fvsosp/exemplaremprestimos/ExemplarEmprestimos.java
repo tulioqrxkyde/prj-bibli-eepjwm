@@ -25,30 +25,29 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import org.hibernate.annotations.CollectionId;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 @Entity
-@Table(name="exemplaremprestimos")
-public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEmprestimos> {
-    
+@Table(name = "exemplaremprestimos")
+public class ExemplarEmprestimos implements Serializable, Comparable<ExemplarEmprestimos> {
+
     /**
      * Método sobrescrito.
      *
-     * @return String contendo o id e tombo do Emprestimo, número do exemplar, Título da obra e o tipo da operação.
+     * @return String contendo o id e tombo do Emprestimo, número do exemplar,
+     * Título da obra e o tipo da operação.
      */
     @Override
     public String toString() {
-        return idExemplarEmprestimos+" | Tombo: "+getExemplar().getTombo()+" | Nº exemplar =" + 
-                getExemplar().getExemplar()+
-                " | Acervo: "+getExemplar().getAcervo().getTituloObra()+
-                " | Operação: "+descricaoOperacao()
-                ;
+        return idExemplarEmprestimos + " | Tombo: " + getExemplar().getTombo() + " | Nº exemplar ="
+                + getExemplar().getExemplar()
+                + " | Acervo: " + getExemplar().getAcervo().getTituloObra()
+                + " | Operação: " + descricaoOperacao();
     }
-    
+
     /**
      * Método sobrescrito.
      *
@@ -59,19 +58,16 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
     public int compareTo(ExemplarEmprestimos o) {
         Short exemplar2 = getIdExemplarEmprestimos();;
         Short exemplarO2 = o.getIdExemplarEmprestimos();
-        return exemplar2.compareTo(exemplarO2);            
+        return exemplar2.compareTo(exemplarO2);
     }
-    
     @Id
     @GeneratedValue
     private short idExemplarEmprestimos;
-    
     @ManyToOne
-    @JoinColumn(name="idEmprestimo")
+    @JoinColumn(name = "idEmprestimo")
     private Emprestimo emprestimo;
-    
     @ManyToOne
-    @JoinColumn(name="idExemplar")
+    @JoinColumn(name = "idExemplar")
     private Exemplar exemplar;
     @Temporal(TemporalType.DATE)
     private Date dataEmprestimo;
@@ -101,7 +97,7 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
 
     /**
      * Método sobrescrito.
-     * 
+     *
      * @param obj objeto a ser acessado através da Composição.
      * @return booleano (true|false).
      */
@@ -137,130 +133,120 @@ public class ExemplarEmprestimos implements Serializable , Comparable<ExemplarEm
         }
         return true;
     }
-
-    
-    
     
     /*
-     * Metodo sobrescrito.
-     * 
      * 1 - Emprestado
      * 2 - Devolvido
      * 3 - Renovado
-     * 
-     * @return String
      */
     private int operacao;
-    
-    public String descricaoOperacao(){
-        if(getOperacao()==1){
+
+    public String descricaoOperacao() {
+        if (getOperacao() == 1) {
             return "Emprestado";
-        } else if (getOperacao()==2){
+        } else if (getOperacao() == 2) {
             return "Devolvido";
-        } else if(getOperacao()==3){
+        } else if (getOperacao() == 3) {
             return "Renovado";
         }
         return "";
     }
 
     /**
-     * @return short idExemplarEmprestimos
+     * @return short idExemplarEmprestimos.
      */
     public short getIdExemplarEmprestimos() {
         return idExemplarEmprestimos;
     }
 
     /**
-     * @param idExemplarEmprestimos short
+     * @param idExemplarEmprestimos short.
      */
     public void setIdExemplarEmprestimos(short idExemplarEmprestimos) {
         this.idExemplarEmprestimos = idExemplarEmprestimos;
     }
 
     /**
-     * @return Emprestimo emprestimo
+     * @return Emprestimo emprestimo.
      */
     public Emprestimo getEmprestimo() {
         return emprestimo;
     }
 
     /**
-     * @param emprestimo Emprestimo
+     * @param emprestimo Emprestimo.
      */
     public void setEmprestimo(Emprestimo emprestimo) {
         this.emprestimo = emprestimo;
     }
 
     /**
-     * @return Exemplar exemplar
+     * @return Exemplar exemplar.
      */
     public Exemplar getExemplar() {
         return exemplar;
     }
 
     /**
-     * @param exemplar Exemplar
+     * @param exemplar Exemplar.
      */
     public void setExemplar(Exemplar exemplar) {
         this.exemplar = exemplar;
     }
 
     /**
-     * @return int operacao
+     * @return int operacao.
      */
     public int getOperacao() {
         return operacao;
     }
 
     /**
-     * @param operacao int
+     * @param operacao int.
      */
     public void setOperacao(int operacao) {
         this.operacao = operacao;
     }
 
     /**
-     * @return Date dataEmprestimo
+     * @return Date dataEmprestimo.
      */
     public Date getDataEmprestimo() {
         return dataEmprestimo;
     }
 
     /**
-     * @param dataEmprestimo Date
+     * @param dataEmprestimo Date.
      */
     public void setDataEmprestimo(Date dataEmprestimo) {
         this.dataEmprestimo = dataEmprestimo;
     }
 
     /**
-     * @return Date dataDevolucao
+     * @return Date dataDevolucao.
      */
     public Date getDataDevolucao() {
         return dataDevolucao;
     }
 
     /**
-     * @param dataDevolucao Date
+     * @param dataDevolucao Date.
      */
     public void setDataDevolucao(Date dataDevolucao) {
         this.dataDevolucao = dataDevolucao;
     }
 
     /**
-     * @return Date dataPrevistaDevolucao
+     * @return Date dataPrevistaDevolucao.
      */
     public Date getDataPrevistaDevolucao() {
         return dataPrevistaDevolucao;
     }
 
     /**
-     * @param dataPrevistaDevolucao Date
+     * @param dataPrevistaDevolucao Date.
      */
     public void setDataPrevistaDevolucao(Date dataPrevistaDevolucao) {
         this.dataPrevistaDevolucao = dataPrevistaDevolucao;
     }
-    
-    
-    
 }

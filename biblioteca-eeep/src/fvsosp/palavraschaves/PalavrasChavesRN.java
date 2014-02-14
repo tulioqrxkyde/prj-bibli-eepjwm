@@ -18,16 +18,16 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Oziel
+ * @author adrianolima
  */
 public class PalavrasChavesRN {
 
     private PalavrasChavesDAO dao = new PalavrasChavesDAO();
-    
+
     /**
-     * Acessa o metodo dao.adicionar de PalavrasChavesDAO que por sua vez acessa
-     * o metodo da classe generica (GenericDAO) salvando as PalavrasChaves.
-     * 
+     * Acessa o método dao.adicionar de PalavrasChavesDAO que por sua vez acessa
+     * o método da classe genérica (GenericDAO) salvando as PalavrasChaves.
+     *
      * @param pc PalavrasChaves.
      * @return booleano (true|false).
      * @see PalavrasChavesDAO.
@@ -35,8 +35,8 @@ public class PalavrasChavesRN {
     public boolean adicionar(PalavrasChaves pc) {
         if (pc.getIdPalavrasChaves() == 0) {
             List<PalavrasChaves> lista = dao.checkExists("descricao", pc.getDescricao());
-            if(lista.size()==0){
-            return dao.adicionar(pc);
+            if (lista.isEmpty()) {
+                return dao.adicionar(pc);
             } else {
                 JOptionPane.showMessageDialog(null, "Descrição já cadastrada para Palavra Chave!");
                 return false;
@@ -45,33 +45,33 @@ public class PalavrasChavesRN {
             return dao.atualizar(pc);
         }
     }
+
     /**
-     * Acessa o metodo dao.remove de PalavrasChavesDAO que por sua vez acessa
-     * o metodo da classe generica (GenericDAO) removendo as PalavrasChaves.
-     * 
+     * Acessa o método dao.remove de PalavrasChavesDAO que por sua vez acessa o
+     * método da classe genérica (GenericDAO) removendo as PalavrasChaves.
+     *
      * @param pc PalavrasChaves
      * @return booleano (true|false).
      * @see PalavrasChavesDAO
-     */ 
+     */
     public boolean remove(PalavrasChaves pc) {
         return dao.remover(pc);
-
     }
-    
+
     /**
-     * Acessa o metodo dao.listar de PalavrasChavesDAO que por sua vez acessa
-     * o metodo da classe generica (GenericDAO) listando as PalavrasChaves.
-     * 
+     * Acessa o método dao.listar de PalavrasChavesDAO que por sua vez acessa o
+     * método da classe genérica (GenericDAO) listando as PalavrasChaves.
+     *
      * @return List(PalavrasChaves).
      * @see PalavrasChavesDAO.
      */
     public List<PalavrasChaves> listar() {
         return dao.listar();
     }
-    
+
     /**
-     * Acessa o metodo dao.pesquisarDescricao(descricao) de PalavrasChavesDAO.
-     * 
+     * Acessa o método dao.pesquisarDescricao(descricao) de PalavrasChavesDAO.
+     *
      * @param descricao String.
      * @return List(PalavrasChaves).
      * @see PalavrasChavesDAO.
@@ -79,10 +79,10 @@ public class PalavrasChavesRN {
     public List<PalavrasChaves> pesquisarDescricao(String descricao) {
         return dao.pesquisarDescricao(descricao);
     }
-    
+
     /**
-     * Acessa o metodo dao.pesquisarDescricaoEq(descricao) de PalavrasChavesDAO.
-     * 
+     * Acessa o método dao.pesquisarDescricaoEq(descricao) de PalavrasChavesDAO.
+     *
      * @param descricao String.
      * @return PalavrasChaves.
      * @see PalavrasChavesDAO.
@@ -90,10 +90,10 @@ public class PalavrasChavesRN {
     public PalavrasChaves pesquisarDescricaoEq(String descricao) {
         return dao.pesquisarDescricaoEq(descricao);
     }
-    
+
     /**
-     * Acessa o metodo dao.pesquisarCodigo(id) de PalavrasChavesDAO.
-     * 
+     * Acessa o método dao.pesquisarCodigo(id) de PalavrasChavesDAO.
+     *
      * @param id short.
      * @return PalavrasChaves.
      * @see PalavrasChavesDAO.
@@ -101,10 +101,10 @@ public class PalavrasChavesRN {
     public PalavrasChaves pesquisarCodigo(short id) {
         return dao.pesquisarCodigo(id);
     }
-    
+
     /**
-     * Acessa o metodo dao.pesquisarAcervo(acervo) de PalavrasChavesDAO.
-     * 
+     * Acessa o método dao.pesquisarAcervo(acervo) de PalavrasChavesDAO.
+     *
      * @param acervo Acervo.
      * @return List(PalavrasChaves).
      * @see PalavrasChavesDAO.

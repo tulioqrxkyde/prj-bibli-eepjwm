@@ -10,21 +10,23 @@
  * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
  * para maiores detalhes.
  */
-
 package fvsosp.editora;
 
-import fvsosp.acervo.Acervo;
 import fvsosp.cidade.Cidade;
 import java.io.Serializable;
 import java.util.*;
 import javax.persistence.*;
 import org.hibernate.annotations.NaturalId;
 
+/**
+ *
+ * @author adrianolima
+ */
 @Entity
 @Table(name = "editora")
 public class Editora implements Serializable, Comparable<Editora> {
-    
-     /**
+
+    /**
      * Método sobrescrito
      *
      * @param o objeto a ser acessado através da Composição.
@@ -32,45 +34,49 @@ public class Editora implements Serializable, Comparable<Editora> {
      */
     @Override
     public int compareTo(Editora o) {
-        return nome.compareTo(o.nome);            
+        return nome.compareTo(o.nome);
     }
-    
     @Id
     @GeneratedValue
     private short idEditora;
     @Column(length = 70, nullable = false)
-    @NaturalId(mutable=true)
+    @NaturalId(mutable = true)
     private String nome;
-    
     @ManyToOne
-    @JoinColumn(name="idcidade")
+    @JoinColumn(name = "idcidade", nullable = false)
     private Cidade cidade;
 //    @OneToMany(mappedBy = "editora")
 //    private List<Acervo> acervo;
 
-    /*** @retorna o id da Editora ***/
+    /**
+     * * @retorna o id da Editora **
+     */
     public short getIdEditora() {
         return idEditora;
     }
 
-    /*** @seta o id da Editora ***/
+    /**
+     * * @seta o id da Editora **
+     */
     public void setIdEditora(short idEditora) {
         this.idEditora = idEditora;
     }
 
-    /*** @retorna o nome da Editora ***/
+    /**
+     * * @retorna o nome da Editora **
+     */
     public String getNome() {
         return nome;
     }
 
-    /*** @seta o nome da Editora ***/
+    /**
+     * * @seta o nome da Editora **
+     */
     public void setNome(String nome) {
         this.nome = nome;
     }
-
     private static final long serialVersionUID = 3804966434934653111L;
-    
-    
+
     /**
      * Método sobrescrito.
      *
@@ -85,14 +91,13 @@ public class Editora implements Serializable, Comparable<Editora> {
         hash = 41 * hash + Objects.hashCode(this.cidade);
         return hash;
     }
-    
+
     /**
      * Método sobrescrito.
      *
      * @param obj objeto a ser acessado através da Composição.
      * @return booleano (true|false).
      */
-
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -119,7 +124,8 @@ public class Editora implements Serializable, Comparable<Editora> {
      *
      * @return String contendo o Nome da Editora.
      */
-    public String toString(){
+    @Override
+    public String toString() {
         return getNome();
     }
 

@@ -13,7 +13,6 @@
 package fvsosp.exemplar;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.leitor.Leitor;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
 import java.util.List;
@@ -23,19 +22,19 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class ExemplarDAO extends GenericDAO<Exemplar> {
-    
-     /**
+
+    /**
      * Construtor da classe ExemplarDAO.
      */
     public ExemplarDAO() {
         super(Exemplar.class);
     }
-    
-     /**
-     * Pesquisa Exemplares que contenham o tombo passado por parâmetro.
+
+    /**
+     * Pesquisa um Exemplar que contenha o tombo passado por parâmetro.
      *
      * @param tombo short.
      * @return Exemplar exemplar.
@@ -54,8 +53,8 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
         }
         return exemplar;
     }
-    
-     /**
+
+    /**
      * Pesquisa Exemplares que contenham o acervo passado por parâmetro.
      *
      * @param acervo Acervo.
@@ -75,6 +74,4 @@ public class ExemplarDAO extends GenericDAO<Exemplar> {
         }
         return exemplar;
     }
-    
-    
 }

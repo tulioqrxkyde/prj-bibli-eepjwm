@@ -13,27 +13,26 @@
 package fvsosp.emprestimo;
 
 import fvsosp.exemplaremprestimos.ExemplarEmprestimos;
-import fvsosp.acervo.*;
-import fvsosp.autor.Autor;
-import fvsosp.exemplar.Exemplar;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class ItensEmprestimoTableModel extends AbstractTableModel {
 
+    private static final long serialVersionUID = 52983324940038415L;
     private String[] nomeColunas = {"Tombo", "Exemplar", "Descrição", "Operação"};
     private List<ExemplarEmprestimos> exemplares;
 
-    // construtor padrão criando um arraylist de alunos  
+    /**
+     * Construtor padrão criando um arraylist de alunos.
+     */
     public ItensEmprestimoTableModel() {
         exemplares = new ArrayList<ExemplarEmprestimos>();
     }
@@ -41,7 +40,7 @@ public class ItensEmprestimoTableModel extends AbstractTableModel {
     /**
      * Construtor sobrecarregado.
      *
-     * @param list List(ExemplarEmprestimos).
+     * @param lista Set(ExemplarEmprestimos).
      */
     public ItensEmprestimoTableModel(Set<ExemplarEmprestimos> lista) {
         this();
@@ -50,25 +49,27 @@ public class ItensEmprestimoTableModel extends AbstractTableModel {
         Collections.sort(exemplares);
         super.fireTableDataChanged();
     }
+
     /**
      * Método sobrescrito.
      *
      * @return int.
      */
+    @Override
     public int getRowCount() {
         return exemplares.size();
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
+
     /**
      * Método sobrescrito.
      *
      * @return int.
      */
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
-    
+
     /**
      * Método sobrescrito.
      *
@@ -76,6 +77,7 @@ public class ItensEmprestimoTableModel extends AbstractTableModel {
      * @param columnIndex int.
      * @return Object.
      */
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<ExemplarEmprestimos> outraLista = (List<ExemplarEmprestimos>) exemplares;
         ExemplarEmprestimos exemplar = outraLista.get(rowIndex);
@@ -92,13 +94,15 @@ public class ItensEmprestimoTableModel extends AbstractTableModel {
                 return exemplar.descricaoOperacao();
         }
         return null;
-        //throw new UnsupportedOperationException("Not supported yet.");  
     }
 
     /**
+     * Método sobrescrito.
+     * 
      * @param column String.
      * @return String nomeColunas[index].
      */
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

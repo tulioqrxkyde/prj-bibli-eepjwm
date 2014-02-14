@@ -21,7 +21,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 @SuppressWarnings("serial")
 public class TipoItemTableModel extends AbstractTableModel {
@@ -87,7 +87,7 @@ public class TipoItemTableModel extends AbstractTableModel {
     /**
      * Método sobrescrito
      * 
-     * @param column String.
+     * @param column int.
      * @return String nomeColunas[index].
      */
     @Override

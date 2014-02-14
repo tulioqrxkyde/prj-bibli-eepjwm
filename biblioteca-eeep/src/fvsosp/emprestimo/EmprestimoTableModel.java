@@ -19,7 +19,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author TULIO
+ * @author tulio.xcrtf
  */
 @SuppressWarnings("serial")
 public class EmprestimoTableModel extends AbstractTableModel {
@@ -27,7 +27,7 @@ public class EmprestimoTableModel extends AbstractTableModel {
     private String[] nomeColunas = {"Código", "Data de Empréstimo", "Acervo", "Autor"};
     private List<Emprestimo> emprestimos;
 
-     /**
+    /**
      * Construtor sobrecarregado.
      *
      * @param list List(Emprestimo).
@@ -39,7 +39,7 @@ public class EmprestimoTableModel extends AbstractTableModel {
         super.fireTableDataChanged();
     }
 
-     /**
+    /**
      * Método sobrescrito.
      *
      * @return int.
@@ -49,7 +49,7 @@ public class EmprestimoTableModel extends AbstractTableModel {
         return emprestimos.size();
     }
 
-     /**
+    /**
      * Método sobrescrito.
      *
      * @return int.
@@ -58,6 +58,7 @@ public class EmprestimoTableModel extends AbstractTableModel {
     public int getColumnCount() {
         return nomeColunas.length;
     }
+
     /**
      * Método sobrescrito.
      *
@@ -81,11 +82,13 @@ public class EmprestimoTableModel extends AbstractTableModel {
         }
         return null;
     }
-     /**
+
+    /**
+     * Método sobrescrito.
+     * 
      * @param column String.
      * @return String nomeColunas[index].
      */
-
     @Override
     public String getColumnName(int column) {
         switch (column) {
