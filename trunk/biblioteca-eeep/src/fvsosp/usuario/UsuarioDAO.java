@@ -32,9 +32,9 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
     }
 
     /**
-     * Pesquisa Usuario que contenha o codigo passado por parâmetro.
+     * Pesquisa um Usuario que contenha o login passado por parâmetro.
      *
-     * @param codigo short.
+     * @param String login.
      * @return Usuario usuario.
      */
     public Usuario pesquisarLogin(String login) {
@@ -54,7 +54,7 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
     }
 
     /**
-     * Pesquisa Usuario que contenha o codigo passado por parâmetro.
+     * Pesquisa um Usuario que contenha o codigo passado por parâmetro.
      *
      * @param codigo short.
      * @return Usuario usuario.
@@ -76,10 +76,10 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
     }
 
     /**
-     * Pesquisa Usuario que contenha o login passado por parâmetro.
+     * Pesquisa um Usuario que contenha o login passado por parâmetro.
      *
      * @param login String.
-     * @return List(Usuario)usuario.
+     * @return List(Usuario) usuario.
      */
     public List<Usuario> pesquisarLoginLike(String login) {
         List<Usuario> usuario = null;
@@ -98,10 +98,10 @@ public class UsuarioDAO extends GenericDAO<Usuario> {
     }
 
     /**
-     * Pesquisa Usuario que contenha o usuario passado por parâmetro.
+     * Pesquisa um Usuario que contenha o usuario passado por parâmetro.
      *
      * @param usuario Usuario.
-     * @return usuario.
+     * @return usuario Usuario.
      */
     public Usuario pesquisaUsuario(Usuario usuario) {
         try {

@@ -21,19 +21,19 @@ import org.hibernate.criterion.*;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 public class EditoraDAO extends GenericDAO<Editora> {
 
-     /**
+    /**
      * Construtor da classe EditoraDAO.
      */
     public EditoraDAO() {
         super(Editora.class);
     }
-    
-     /**
-     * Pesquisa Autores que contenham o nome passado por parâmetro.
+
+    /**
+     * Pesquisa Editoras que contenham o nome passado por parâmetro.
      *
      * @param nome String.
      * @return List(Editora) editoras.
@@ -56,35 +56,31 @@ public class EditoraDAO extends GenericDAO<Editora> {
         }
         return editoras;
     }
-    
-     /**
-     * Pesquisa NomeEditora que contenham o nome passado por parâmetro.
+
+    /**
+     * Pesquisa uma Editora que contenha o nome passado por parâmetro.
      *
      * @param nome String.
-     * @return List(Editora) editoras.
+     * @return Editora editoras.
      */
-    
     public Editora procuraNomeEditoraEq(String nome) {
-        Editora editoras = null;
-
+        Editora editora = null;
         try {
             this.setSessao(HibernateUtil.getSessionFactory().openSession());
             this.setTransacao(getSessao().beginTransaction());
-
-            editoras = (Editora) getSessao().createCriteria(Editora.class).
+            editora = (Editora) getSessao().createCriteria(Editora.class).
                     add(Restrictions.eq("nome", nome)).
                     addOrder(Order.asc("nome")).uniqueResult();
-
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar por Nome da Editora: " + e.getMessage());
         } finally {
             this.getSessao().close();
         }
-        return editoras;
+        return editora;
     }
- 
-     /**
-     * Pesquisa Acervos que contenham o ed passado por parâmetro.
+
+    /**
+     * Pesquisa Acervos que contenham a Editora passada por parâmetro.
      *
      * @param ed Editora.
      * @return List(Acervos) acervos.
@@ -107,14 +103,13 @@ public class EditoraDAO extends GenericDAO<Editora> {
         }
         return acervos;
     }
-    
-     /**
-     * Pesquisa Editoras que contenham o codigo passado por parâmetro.
+
+    /**
+     * Pesquisa uma Editora que contenha o codigo passado por parâmetro.
      *
      * @param codigo short.
      * @return Editora editora.
      */
-    
     public Editora pesquisarCodigo(short codigo) {
         Editora editora = null;
         try {

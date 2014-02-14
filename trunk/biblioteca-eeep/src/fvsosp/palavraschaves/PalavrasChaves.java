@@ -1,3 +1,16 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
+
 package fvsosp.palavraschaves;
 
 import java.io.Serializable;
@@ -7,7 +20,7 @@ import org.hibernate.annotations.NaturalId;
 
 /**
  *
- * @author Oziel
+ * @author oziel.ico
  */
 @Entity
 @Table(name = "palavraschaves")
@@ -101,7 +114,7 @@ public class PalavrasChaves implements Serializable, Comparable<PalavrasChaves> 
     /**
      * Método sobrescrito.
      *
-     * @return String contendo o id da PalavrasChaves e a Descricao.
+     * @return String contendo o id de PalavrasChaves e a descricão.
      */
     @Override
     public String toString() {

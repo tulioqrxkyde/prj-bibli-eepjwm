@@ -78,10 +78,10 @@ public class AutorDAO extends GenericDAO<Autor> {
     }
 
     /**
-     * Pesquisa Autores que contenham o codigo passado por parâmetro.
+     * Pesquisa um Autor que contenha o codigo passado por parâmetro.
      *
      * @param codigo short.
-     * @return List(Autor) autores.
+     * @return Autor autores.
      */
     public Autor pesquisarCodigo(short codigo) {
         Autor autor = null;

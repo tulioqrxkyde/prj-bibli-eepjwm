@@ -22,7 +22,7 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
     
@@ -34,7 +34,7 @@ public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
     }
     
      /**
-     * Pesquisa Exemplares emprestados que contenham o codigo passado por parâmetro.
+     * Pesquisa por Exemplares emprestados que contenham o codigo passado por parâmetro.
      *
      * @param codigo short.
      * @return Exemplar exemplarempr.
@@ -60,9 +60,8 @@ public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
      /**
      * Pesquisa pelo exe devolvido, e o retorna
      *
-     * @return List querySQL.list()
+     * @return short query.list().get(0).
      */
-    
     public short pesquisarIdExemplarEmprestimoDevolvido(Exemplar exe) {
         String text = "select ee.idExemplarEmprestimos from exemplaremprestimos ee "
                 + "inner join  emprestimo e on e.idEmprestimo=ee.idEmprestimo  "
@@ -86,6 +85,5 @@ public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
             this.getSessao().close();
         }
         return 0;
-
     }
 }

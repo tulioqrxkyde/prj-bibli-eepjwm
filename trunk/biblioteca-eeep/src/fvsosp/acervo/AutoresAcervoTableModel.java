@@ -92,7 +92,9 @@ public class AutoresAcervoTableModel extends AbstractTableModel {
     }
 
     /**
-     * @param column.
+     * Método sobrescrito.
+     * 
+     * @param column int.
      * @return String nomeColunas[index].
      */
     @Override

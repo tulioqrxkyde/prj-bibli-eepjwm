@@ -16,12 +16,11 @@ import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author PSaraiva
+ * @author pedrosaraiva
  */
 @SuppressWarnings("serial")
 public class PalavrasChavesTableModel extends AbstractTableModel {
@@ -37,10 +36,10 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
     }
 
     /**
-     * Construtor sobrecarregado que adiciona a lista passada pelo método as
-     * palvras Chaves.
+     * Construtor sobrecarregado que adiciona a lista passada pelo método para
+     * as palavras chaves.
      *
-     * @param lista set(PalavrasChaves).
+     * @param lista Set(PalavrasChaves).
      */
     public PalavrasChavesTableModel(List<PalavrasChaves> lista) {
         this();
@@ -52,7 +51,7 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
 
     /**
      * Método sobrescrito
-     * 
+     *
      * @return int.
      */
     @Override
@@ -62,7 +61,7 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
 
     /**
      * Método sobrescrito
-     * 
+     *
      * @return int.
      */
     @Override
@@ -72,7 +71,7 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
 
     /**
      * Método sobrescrito
-     *  
+     *
      * @param rowIndex int.
      * @param columIndex int.
      * @return Object.
@@ -91,8 +90,8 @@ public class PalavrasChavesTableModel extends AbstractTableModel {
 
     /**
      * Método sobrescrito
-     * 
-     * @param column String.
+     *
+     * @param column int.
      * @return String nomeColunas[index].
      */
     @Override

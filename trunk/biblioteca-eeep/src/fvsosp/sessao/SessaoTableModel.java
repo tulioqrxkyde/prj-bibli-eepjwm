@@ -21,7 +21,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author PSaraiva
+ * @author pedrosaraiva
  */
 @SuppressWarnings("serial")
 public class SessaoTableModel extends AbstractTableModel {
@@ -85,7 +85,7 @@ public class SessaoTableModel extends AbstractTableModel {
     /**
      * Método sobrescrito
      * 
-     * @param column String.
+     * @param column int.
      * @return String nomeColunas[index].
      */
     @Override

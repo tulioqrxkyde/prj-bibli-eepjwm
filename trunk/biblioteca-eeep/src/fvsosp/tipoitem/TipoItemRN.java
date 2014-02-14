@@ -17,7 +17,7 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class TipoItemRN {
 
@@ -25,11 +25,11 @@ public class TipoItemRN {
 
     /**
      * Acessa o método dao.remover de TipoItemDAO que por sua vez acessa o
-     * método da classe generica (GenericDAO) removendo o TipoItem.
+     * método da classe genérica (GenericDAO) removendo o TipoItem.
      *
      * @param tp TipoItem.
      * @return booleano (true|false).
-     * @see TipoItemDAO.    
+     * @see TipoItemDAO.
      */
     public boolean remover(TipoItem tp) {
         return dao.remover(tp);
@@ -38,7 +38,7 @@ public class TipoItemRN {
 
     /**
      * Acessa o método dao.adicionar de TipoItemDAO que por sua vez acessa o
-     * método da classe generica (GenericDAO) salvado o TipoItem.
+     * método da classe genérica (GenericDAO) salvado o TipoItem.
      *
      * @param tp TipoItem.
      * @return booleano (true|false).
@@ -47,7 +47,7 @@ public class TipoItemRN {
     public boolean salvar(TipoItem tp) {
         if (tp.getIdTipoItem() == 0) {
             List<TipoItem> lista = dao.checkExists("descricao", tp.getDescricao());
-            if (lista.size() == 0) {
+            if (lista.isEmpty()) {
                 return dao.adicionar(tp);
             } else {
                 JOptionPane.showMessageDialog(null, "Descrição já cadastrada para Tipo de Item!");
@@ -59,7 +59,7 @@ public class TipoItemRN {
     }
 
     /**
-     * Acessao método dao,listar de TipoItemDAO que por sua vez acessa o método
+     * Acessa o método dao,listar de TipoItemDAO que por sua vez acessa o método
      * da classe generica (GenericDAO) listando o TipoItem.
      *
      * @return List(TipoItem).
@@ -70,7 +70,7 @@ public class TipoItemRN {
     }
 
     /**
-     * Acessa o metodo dao.procuraDescricao(descricao) de TipoItemDAO.
+     * Acessa o método dao.procuraDescricao(descricao) de TipoItemDAO.
      *
      * @param descricao String.
      * @return TipoItem.
@@ -81,7 +81,7 @@ public class TipoItemRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarDescricaoEq(descricao) de TipoItemDAO.
+     * Acessa o método dao.pesquisarDescricaoEq(descricao) de TipoItemDAO.
      *
      * @param descricao String.
      * @return TipoItem.
@@ -92,7 +92,7 @@ public class TipoItemRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarCodigo(codigo) de TipoItemDAO.
+     * Acessa o método dao.pesquisarCodigo(codigo) de TipoItemDAO.
      *
      * @param codigo short.
      * @return TipoItem.

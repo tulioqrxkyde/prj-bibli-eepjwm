@@ -13,12 +13,11 @@
 package fvsosp.exemplar;
 
 import fvsosp.acervo.Acervo;
-import fvsosp.leitor.Leitor;
 import java.util.List;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class ExemplarRN {
 
@@ -68,7 +67,7 @@ public class ExemplarRN {
      * Acessa o método dao.pesquisarTombo(tombo) de ExemplarDAO.
      *
      * @param tombo short.
-     * @return List(Exemplar).
+     * @return Exemplar.
      * @see ExemplarDAO.
      */
     public Exemplar pesquisarTombo(short tombo) {

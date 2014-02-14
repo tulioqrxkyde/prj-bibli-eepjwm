@@ -18,14 +18,14 @@ import javax.swing.JOptionPane;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 public class UsuarioRN {
 
     /**
      * Essa é a classe de comunicação com a camada visual (interface) e com a
      * camada de dados, essa classe implementa todas as regras de negócio
-     * possíveis a Usuario
+     * possíveis a Usuario.
      */
     private UsuarioDAO usuDAO = new UsuarioDAO();
 
@@ -39,7 +39,7 @@ public class UsuarioRN {
     }
 
     /**
-     * Se usuário for administrador não pode ser removido
+     * Se usuário for administrador não pode ser removido.
      *
      * @param usuario Usuario.
      * @return booleano (true|false).
@@ -65,7 +65,7 @@ public class UsuarioRN {
         if (usuario.getIdUsuario() == 0) {
             //se adiciona tem que ter uma senha pra confirma a senha digitada
             List<Usuario> lista = usuDAO.checkExists("login", usuario.getLogin());
-            if (lista.size() == 0) {
+            if (lista.isEmpty()) {
                 outraSenha = Util.md5(outraSenha);
                 if ((usuario.getLogin() != null) && usuario.getSenha() != null) {
                     if (usuario.getSenha().equals(outraSenha)) {
@@ -77,7 +77,7 @@ public class UsuarioRN {
                 return false;
             }
         } else {
-            //se altera tem que ter uma senha pra confirmar a senha anterior
+            //se alterar tem que ter uma senha pra confirmar a senha anterior
             Usuario usu = usuDAO.pesquisarCodigo(usuario.getIdUsuario());
             if (usu.getSenha().equals(Util.md5(outraSenha))) {
                 return usuDAO.atualizar(usuario);
@@ -87,7 +87,7 @@ public class UsuarioRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarLogin(login) de UsuarioDAO.
+     * Acessa o método dao.pesquisarLogin(login) de UsuarioDAO.
      *
      * @param login String.
      * @return Usuario.
@@ -98,8 +98,8 @@ public class UsuarioRN {
     }
 
     /**
-     * Acessao método dao,listar de TipoItemDAO que por sua vez acessa o método
-     * da classe generica (GenericDAO) listando o Usuario.
+     * Acessa o método dao,listar de TipoItemDAO que por sua vez acessa o método
+     * da classe genérica (GenericDAO) listando o Usuario.
      *
      * @return List(Usuario).
      * @see UsuarioDAO.
@@ -109,7 +109,7 @@ public class UsuarioRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarLoginLike(login) de UsuarioDAO.
+     * Acessa o método dao.pesquisarLoginLike(login) de UsuarioDAO.
      *
      * @param login String.
      * @return list(usuario).
@@ -120,7 +120,7 @@ public class UsuarioRN {
     }
 
     /**
-     * Acessa o metodo dao.pesquisarCodigo(codigo) de UsuarioDAO.
+     * Acessa o método dao.pesquisarCodigo(codigo) de UsuarioDAO.
      *
      * @param codigo short.
      * @return Usuario.

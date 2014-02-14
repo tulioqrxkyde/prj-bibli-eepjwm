@@ -12,8 +12,6 @@
  */
 package fvsosp.exemplar;
 
-import fvsosp.acervo.*;
-import fvsosp.exemplar.Exemplar;
 import fvsosp.util.Util;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -23,7 +21,7 @@ import javax.swing.table.AbstractTableModel;
 
 /**
  *
- * @author Pedro Saraiva
+ * @author pedrosaraiva
  */
 @SuppressWarnings("serial")
 public class ExemplarTableModel extends AbstractTableModel {
@@ -41,32 +39,36 @@ public class ExemplarTableModel extends AbstractTableModel {
      * Construtor sobrecarregado.
      *
      * @param list List(Exemplar).
-     */  
+     */
     public ExemplarTableModel(List<Exemplar> lista) {
-        //this();
-//        this.exemplares.clear();
-//        this.exemplares.addAll(lista);
+      /*this();
+        this.exemplares.clear();
+        this.exemplares.addAll(lista);*/
         exemplares = new ArrayList(new HashSet(lista));
         Collections.sort(exemplares);
         super.fireTableDataChanged();
     }
-    
+
     /**
      * Método sobrescrito.
      *
      * @return int.
      */
+    @Override
     public int getRowCount() {
-        return exemplares.size();  
+        return exemplares.size();
     }
+
     /**
      * Método sobrescrito.
      *
      * @return int.
      */
+    @Override
     public int getColumnCount() {
         return nomeColunas.length;
     }
+
     /**
      * Método sobrescrito.
      *
@@ -74,6 +76,7 @@ public class ExemplarTableModel extends AbstractTableModel {
      * @param columnIndex int.
      * @return Object.
      */
+    @Override
     public Object getValueAt(int rowIndex, int columnIndex) {
         List<Exemplar> outraLitsa = (List<Exemplar>) exemplares;
         Exemplar exemplar = outraLitsa.get(rowIndex);
@@ -87,10 +90,14 @@ public class ExemplarTableModel extends AbstractTableModel {
         }
         return null;
     }
+
     /**
-     * @param column String.
+     * Método sobrescrito.
+     * 
+     * @param column int.
      * @return String nomeColunas[index].
      */
+    @Override
     public String getColumnName(int column) {
         switch (column) {
             case 0:

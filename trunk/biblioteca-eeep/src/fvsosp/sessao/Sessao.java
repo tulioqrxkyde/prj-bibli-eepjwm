@@ -19,7 +19,7 @@ import org.hibernate.annotations.NaturalId;
 
 /**
  *
- * @author oziel
+ * @author oziel.ico
  */
 @Entity
 @Table(name = "sessao")
