@@ -45,32 +45,32 @@ public class Editora implements Serializable, Comparable<Editora> {
     @ManyToOne
     @JoinColumn(name = "idcidade", nullable = false)
     private Cidade cidade;
-//    @OneToMany(mappedBy = "editora")
-//    private List<Acervo> acervo;
+    //@OneToMany(mappedBy = "editora")
+    //private List<Acervo> acervo;
 
     /**
-     * * @retorna o id da Editora **
+     * @return short IdEditora.
      */
     public short getIdEditora() {
         return idEditora;
     }
 
     /**
-     * * @seta o id da Editora **
+     * @param idEditora short.
      */
     public void setIdEditora(short idEditora) {
         this.idEditora = idEditora;
     }
 
     /**
-     * * @retorna o nome da Editora **
+     * @return String nome.
      */
     public String getNome() {
         return nome;
     }
 
     /**
-     * * @seta o nome da Editora **
+     * @param nome String.
      */
     public void setNome(String nome) {
         this.nome = nome;
