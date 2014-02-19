@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.grupoleitores;
 
 import fvsosp.acervo.Acervo;
@@ -11,19 +23,40 @@ import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.NaturalId;
 
+/**
+ *
+ * @author Francisco Junior
+ */
+
 @Entity
 @Table (name="gruposleitores")
 public class GruposLeitores implements Serializable, Comparable<GruposLeitores>{
 
+    /**
+     * Método sobrescrito
+     *
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
     @Override
     public int compareTo(GruposLeitores o) {
         return descricao.compareTo(o.descricao);            
     }
-    
-    @Id
-    @GeneratedValue
+    /**
+     * Método sobrescrito.
+     *
+     * @return String contendo o id do Grupoleitores e informação Sobre o Grupoleitores.
+     */
+    @Id // campo chave primária
+    @GeneratedValue // campo autoincremento
     private short idGruposLeitores;
-
+    
+    /**
+     * Método sobrescrito.
+     *
+     * @return um inteiro(hash) contendo o valor total do cálculo de todos os
+     * hashCodes dos Atributos contidos na Classe.
+     */
     @Override
     public int hashCode() {
         int hash = 7;
@@ -36,6 +69,12 @@ public class GruposLeitores implements Serializable, Comparable<GruposLeitores>{
         return hash;
     }
     
+   /**
+     * Método sobrescrito.
+     *
+     * @param obj objeto a ser acessado através da Composição.
+     * @return booleano (true|false).
+     */ 
     @Override
     public boolean equals(Object obj) {
         if (obj == null) {
@@ -79,45 +118,79 @@ public class GruposLeitores implements Serializable, Comparable<GruposLeitores>{
     @Column(length = 2, nullable = false)
     private byte duracaoDiasEmprestimo;
     
+     /**
+     * @return short idGrupoLeitoresr.
+     */
 //    @OneToMany(fetch = FetchType.LAZY, mappedBy = "gruposLeitores")
 //    private List<Leitor> leitores;
 
+   /**
+     * @return String idGrupoleitores.
+     */
+    
     public short getIdGruposLeitores() {
         return idGruposLeitores;
     }
+     /**
+     * @param idGrupoleitores short.
+     */
     
     public void setIdGruposLeitores(short idGruposLeitores) {
         this.idGruposLeitores = idGruposLeitores;
     }
+    /**
+     * @return String descrição.
+     */
 
     public String getDescricao() {
         return descricao;
     }
+      /**
+     * @param descrição String.
+     */
 
     public void setDescricao(String descricao) {
         this.descricao = descricao;
     }
-
+    
+    /**
+     * @return String valorMultaDiaria.
+     */
     public double getValorMultaDiaria() {
         return valorMultaDiaria;
     }
+    /**
+     * @param valorMultaDiaria String.
+     */
 
     public void setValorMultaDiaria(double valorMultaDiaria) {
         this.valorMultaDiaria = valorMultaDiaria;
     }
-
+      /**
+     * @return String QuantMaxLivros.
+     */
     public byte getQuantMaxLivros() {
         return quantMaxLivros;
     }
 
+     /**
+     * @param QuantMaxLivros String.
+     */
     public void setQuantMaxLivros(byte quantMaxLivros) {
         this.quantMaxLivros = quantMaxLivros;
     }
 
+    
+    /**
+     * @return String DuracaoDiasEmprestimo.
+     */
     public byte getDuracaoDiasEmprestimo() {
         return duracaoDiasEmprestimo;
     }
 
+     /**
+     * @param DuracaoDiasEmprestimo String.
+     */
     public void setDuracaoDiasEmprestimo(byte duracaoDiasEmprestimo) {
         this.duracaoDiasEmprestimo = duracaoDiasEmprestimo;
     }

@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 /*
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
@@ -15,14 +27,24 @@ import org.hibernate.criterion.Restrictions;
 
 /**
  *
- * @author Oziel
+ * @author Francisco Junior
  */
 public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
 
+    /**
+     * Construtor da classe GrupoLeitoresDAO.
+     */
     public GruposLeitoresDAO() {
         super(GruposLeitores.class);
     }
 
+    /**
+     * Pesquisa GrupoLeitores que contenham o nome passado por parâmetro.
+     *
+     * @param GrupoLeitores String.
+     * @return List(c) autores.
+     */
+    
     /* Metódo da Pesquisa criado por Marcos Ellys */
     public List<GruposLeitores> pesquisaDescricao(String descricao) {
         List<GruposLeitores> descricaoPesquisa = null;
@@ -42,6 +64,14 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
             this.getSessao().close();
         }
         return descricaoPesquisa;
+        
+     /**
+     * Pesquisa GruposLeitores que contenham o pesquisaDescricaoEq passado por parâmetro.
+     *
+     * @param descricao String.
+     * @return List(GruposLeitores) descricaoPesquisa.
+     */
+        
     }
 
     public GruposLeitores pesquisaDescricaoEq(String descricao) {
@@ -64,6 +94,14 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
         return descricaoPesquisa;
     }
 
+    /**
+     * Pesquisa descricaoPesquisa que contenha o codigo passado por parâmetro.
+     *
+     * @param descricao String.
+     * @return GruposLeitores descricaoPesquisa.
+     */
+    
+    
     public List<GruposLeitores> pesquisarDescricaoLike(String descricao) {
         List<GruposLeitores> gruposleitores = null;
         try {
@@ -84,6 +122,12 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
 
     }
 
+    /**
+     * Pesquisa um gruposleitores que contenha o codigo passado por parâmetro.
+     *
+     * @param codigo short.
+     * @return GruposLeitores descricaoPesquisa.
+     */
     public GruposLeitores pesquisarCodigo(short codigo) {
         GruposLeitores gruposleitores = null;
         try {
