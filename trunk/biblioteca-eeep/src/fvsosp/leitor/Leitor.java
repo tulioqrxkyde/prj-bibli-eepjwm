@@ -1,3 +1,15 @@
+/* Este arquivo é parte do OSBiblio.
+ * Copyright (C) 2014 (Pedro Saraiva, Túlio Vidal, Luís Henrique, Adriano Lima, Oziel Pereira,
+ * Marcos Ellys, Francisco Júnior, Fátima Pinheiro, Darly Vinicio).
+ *
+ * OSBiblio é um software livre; você pode redistribuí-lo e/ou  modificá-lo dentro dos termos da 
+ * Licença Pública Geral GNU como publicada pela Fundação do Software Livre (FSF); na versão 2 da Licença,
+ * ou (na sua opinião) qualquer versão.
+ *
+ * Este programa é distribuído na esperança de que possa ser útil, mas SEM NENHUMA GARANTIA; sem uma garantia 
+ * implícita de ADEQUAÇÃO a qualquer MERCADO ou APLICAÇÃO EM PARTICULAR. Veja a Licença Pública Geral GNU
+ * para maiores detalhes.
+ */
 package fvsosp.leitor;
 
 import fvsosp.acervo.Acervo;
@@ -26,10 +38,22 @@ import org.hibernate.annotations.NaturalId;
 @Table(name="leitor")
 public class Leitor implements Serializable, Comparable<Leitor>{
 
+     /**
+     * Método sobrescrito
+     *
+     * @param o objeto a ser acessado através da Composição.
+     * @return inteiro negativo, zero ou um inteiro positivo.
+     */
     @Override
     public int compareTo(Leitor o) {
         return nome.compareTo(o.nome);            
     }
+    
+    /**
+     * Método sobrescrito.
+     *
+     * @return String contendo o id do Leitor e informação Sobre o Leitor.
+     */
     
     @Override
     public String toString(){
@@ -39,6 +63,7 @@ public class Leitor implements Serializable, Comparable<Leitor>{
     @Id
     @GeneratedValue
     private short idLeitor;
+    
     
     @Column(nullable=false, length=100)
     @NaturalId(mutable=true)
