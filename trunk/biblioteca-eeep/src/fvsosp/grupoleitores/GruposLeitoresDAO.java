@@ -42,7 +42,7 @@ public class GruposLeitoresDAO extends GenericDAO<GruposLeitores> {
      * Pesquisa GrupoLeitores que contenham o nome passado por parâmetro.
      *
      * @param GrupoLeitores String.
-     * @return List(GrupodeLeitores) autores.
+     * @return List(GrupodeLeitores) descricaoPesquisa.
      */
     
     /* Metódo da Pesquisa criado por Marcos Ellys */
