@@ -84,7 +84,7 @@ public class IdiomaRN {
      * Acessa o método dao.pesquisarDescricaoEq(descricao) de IdiomaDAO.
      *
      * @param descricao String.
-     * @return List(Idioma).
+     * @return Idioma.
      * @see IdiomaDAO.
      */
     public Idioma pesquisarDescricaoEq(String descricao) {

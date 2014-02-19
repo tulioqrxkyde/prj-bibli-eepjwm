@@ -112,7 +112,7 @@ public class MultaDAO extends GenericDAO<Multa> {
      * Pesquisa Multas que contenham o nome passado por parâmetro.
      *
      * @param leitor Leitor.
-     * @return List(Leitor) Leitor.
+     * @return List(Multa) multas.
      */
     public List<Multa> pesquisarMultas(Leitor leitor) {
         List<Multa> multas = null;
