@@ -83,7 +83,7 @@ public class IdiomaDAO extends GenericDAO<Idioma> {
     /**
      * Pesquisa Idioma que contenham o nome passado por parâmetro.
      *
-     * @param codigo String.
+     * @param codigo Short.
      * @return List(Idioma) idiomas.
      */
     public Idioma pesquisarCodigo(short codigo) {

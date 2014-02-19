@@ -79,7 +79,7 @@ public class MultaRN {
      * Acessa o método dao.pesquisarMultas(leitor) de MultaDAO.
      *
      * @param leitor Leitor.
-     * @return List(Leitor).
+     * @return List(Multa).
      * @see MultaDAO.
      */
     public List<Multa> pesquisarMultas(Leitor leitor) {

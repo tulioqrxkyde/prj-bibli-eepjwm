@@ -30,7 +30,7 @@ public class GruposLeitoresRN {
      * Acessa o método dao.adicionar de GruposLeitoresDAO que por sua vez acessa o método
      * da classe genérica (GenericDAO) salvando o Autor.
      *
-     * @param gl Autor.
+     * @param gl GruposLeitore.
      * @return booleano (true|false).
      * @see GruposLeitoresDAO.
      */
