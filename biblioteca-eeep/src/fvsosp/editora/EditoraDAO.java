@@ -21,7 +21,7 @@ import org.hibernate.criterion.*;
 
 /**
  *
- * @author oziel.ico
+ * @author 
  */
 public class EditoraDAO extends GenericDAO<Editora> {
 
