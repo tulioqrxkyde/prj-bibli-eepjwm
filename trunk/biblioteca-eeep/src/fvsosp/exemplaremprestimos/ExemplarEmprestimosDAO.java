@@ -15,6 +15,8 @@ package fvsosp.exemplaremprestimos;
 import fvsosp.exemplar.Exemplar;
 import fvsosp.util.GenericDAO;
 import fvsosp.util.HibernateUtil;
+import java.util.Date;
+import java.util.List;
 import org.hibernate.HibernateException;
 import org.hibernate.SQLQuery;
 import org.hibernate.criterion.Order;
@@ -48,6 +50,32 @@ public class ExemplarEmprestimosDAO extends GenericDAO<ExemplarEmprestimos> {
             exemplarempr = (ExemplarEmprestimos) getSessao().createCriteria(ExemplarEmprestimos.class).
                     add(Restrictions.eq("idExemplarEmprestimos", codigo)).
                     addOrder(Order.asc("idExemplarEmprestimos")).uniqueResult();
+
+        } catch (HibernateException e) {
+            System.out.println("Erro ao procurar pelo Código do ExemplarEmprestimo: " + e.getMessage());
+        } finally {
+            getSessao().close();
+        }
+        return exemplarempr;
+    }
+    
+    /**
+     * Pesquisa por Exemplares emprestados que estejam no intervalo de data passado por parâmetro.
+     *
+     * @param d1,d2 Date.
+     * @return List<ExemplarEmprestimos>.
+     */
+    public List<ExemplarEmprestimos> pesquisarData(Date dt1, Date dt2) {
+        List<ExemplarEmprestimos> exemplarempr = null;
+        try {
+            this.setSessao(HibernateUtil.getSessionFactory().openSession());
+            this.setTransacao(getSessao().beginTransaction());
+
+            Integer[] valores = {1,3};
+            exemplarempr = (List<ExemplarEmprestimos>) getSessao().createCriteria(ExemplarEmprestimos.class).
+                    add(Restrictions.between("dataPrevistaDevolucao", dt1, dt2)).
+                    add(Restrictions.in("operacao", valores)).
+                    addOrder(Order.asc("idExemplarEmprestimos")).list();
 
         } catch (HibernateException e) {
             System.out.println("Erro ao procurar pelo Código do ExemplarEmprestimo: " + e.getMessage());

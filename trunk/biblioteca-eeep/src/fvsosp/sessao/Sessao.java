@@ -116,6 +116,6 @@ public class Sessao implements Serializable, Comparable<Sessao> {
      */
     @Override
     public String toString() {
-        return idSessao + " | " + descricao;
+        return descricao;
     }
 }
