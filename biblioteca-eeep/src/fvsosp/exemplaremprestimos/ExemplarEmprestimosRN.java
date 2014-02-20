@@ -13,6 +13,7 @@
 package fvsosp.exemplaremprestimos;
 
 import fvsosp.exemplar.Exemplar;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -84,5 +85,17 @@ public class ExemplarEmprestimosRN {
      */
     public short pesquisarIdExemplarEmprestimoDevolvido(Exemplar exe) {
         return dao.pesquisarIdExemplarEmprestimoDevolvido(exe);
+    }
+    
+    /**
+     * Acessa o método dao.pesquisarData(d1,d2) de
+     * ExemplarEmprestimoDAO.
+     *
+     * @param dt1,dt2 Date.
+     * @return List<ExemplarEmprestimos> codigo).
+     * @see ExemplaEmprestimorDAO.
+     */
+    public List<ExemplarEmprestimos> pesquisarData(Date dt1, Date dt2) {
+        return dao.pesquisarData(dt1, dt2);
     }
 }

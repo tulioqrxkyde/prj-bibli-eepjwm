@@ -120,6 +120,6 @@ public class TipoItem implements Serializable, Comparable<TipoItem> {
      */
     @Override
     public String toString() {
-           return idTipoItem + " | " + descricao;
+           return descricao;
     }
 }

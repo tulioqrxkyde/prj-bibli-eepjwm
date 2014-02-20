@@ -10,7 +10,10 @@ import java.awt.event.KeyEvent;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
@@ -34,7 +37,7 @@ public class Util {
     JRootPane meurootpane;
 
     public static String getVersao() {
-        return "1.3";
+        return "1.5";
     }
 
     /**
@@ -153,6 +156,19 @@ public class Util {
      */
     public static DecimalFormat decimalFormat(int... opt) {
         return new DecimalFormat(((opt.length <= 0) ? "0000000" : "0000"));
+    }
+
+    public boolean dataValida(String data) {
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        df.setLenient(false); // aqui o pulo do gato  
+        try {
+            df.parse(data);
+            // data válida
+            return true;
+        } catch (ParseException ex) {
+            // data inválida  
+            return false;
+        }
     }
 
     public static int diferencaData(Date dia1, Date dia2) {

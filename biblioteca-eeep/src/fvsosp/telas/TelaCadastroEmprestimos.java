@@ -429,7 +429,7 @@ public class TelaCadastroEmprestimos extends javax.swing.JDialog {
 
                         eRN.adiciona(exemplar);
                     }
-                    if (seEemprestimo) {
+                        if (seEemprestimo) {
                         JOptionPane.showMessageDialog(rootPane, "Empréstimo " + ((id == 0) ? "cadastrado" : "alterado")
                                 + " com sucesso!");
                     } else {
